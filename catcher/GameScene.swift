@@ -38,8 +38,9 @@ class GameScene: SKScene, JoystickDelegate {
         border.collisionBitMask = 0b0001
         hero.physicsBody?.collisionBitMask = 0b0001
         hero.physicsBody?.categoryBitMask = 0b0001
-        
         joystick.set(collisionBitMask: 0b0010, categoryBitMask: 0b0010)
+        
+        view.isMultipleTouchEnabled = false;
     }
     
     
