@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, JoystickDelegate {
+class GameScene: SKScene {
     
     //TODO
     //1. Remove second touch
@@ -18,42 +18,53 @@ class GameScene: SKScene, JoystickDelegate {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     private let hero = Hero(radius: 20)
-    private let joystick = Joystick(color: .white)
-
+    private var anchor = CGPoint.zero
+    private var heroAnchor = CGPoint.zero
     
+    private let gridGenerator = GridGenerator()
+
     override func didMove(to view: SKView) {
-        hero.position = CGPoint(x: size.width/2, y: size.height/2)
-        joystick.position = CGPoint(x: size.width/2, y: 100)
-        joystick.delegate = self
+        let center = CGPoint(x: frame.midX, y: frame.midY)
+        hero.position = center
         addChild(hero)
-        addChild(joystick)
-        
-        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-        border.friction = 0
-        border.restitution = 0
-        
-        physicsBody = border
-        
-        border.categoryBitMask = 0b0001
-        border.collisionBitMask = 0b0001
         hero.physicsBody?.collisionBitMask = 0b0001
         hero.physicsBody?.categoryBitMask = 0b0001
-        joystick.set(collisionBitMask: 0b0010, categoryBitMask: 0b0010)
-        
         view.isMultipleTouchEnabled = false;
+        if let texture = gridGenerator.generate() {
+            let bgNode = SKSpriteNode(texture: texture, color: .clear, size: texture.size())
+            bgNode.position = center
+            bgNode.zPosition = -1
+            addChild(bgNode)
+        }
+        
+        let cameraNode = SKCameraNode()
+            
+        cameraNode.position = center
+            
+        addChild(cameraNode)
+        camera = cameraNode
+        
+        
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-
+        anchor = pos
+        heroAnchor = hero.position
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        joystick.move(position: pos)
+        let newX =  heroAnchor.x + (pos.x - anchor.x)/1.5
+        let newY =  heroAnchor.y + (pos.y - anchor.y)/1.5
+        
+        let moveAction = SKAction.move(to: CGPoint(x: newX, y:  newY), duration: 0)
+        
+        hero.run(moveAction)
+        camera?.run(moveAction)
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        joystick.calm()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,7 +88,5 @@ class GameScene: SKScene, JoystickDelegate {
         // Called before each frame is rendered
     }
     
-    func joystickMoved(_ newVector: CGVector) {
-        hero.moveWith(vector: newVector)
-    }
+
 }

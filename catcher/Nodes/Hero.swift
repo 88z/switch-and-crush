@@ -22,11 +22,5 @@ class Hero:SKShapeNode {
         physicsBody?.restitution = 0
     }
     
-    public func moveWith(vector:CGVector) {
-        let newVector = CGVector(dx: vector.dx * speedMultiplier, dy: vector.dy*speedMultiplier)
-        physicsBody?.velocity = newVector
-    }
-    
-    
 }
 
