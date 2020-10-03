@@ -11,7 +11,7 @@ import GameplayKit
 class Hero:SKShapeNode {
     private var colors = [UIColor.blue, UIColor.red]
     private var stateIndex = 0
-    private var speedMultiplier = CGFloat(3);
+    private var speedMultiplier = CGFloat(10);
     convenience init(radius: CGFloat) {
         self.init(circleOfRadius:radius)
         fillColor = colors[stateIndex];
@@ -21,6 +21,12 @@ class Hero:SKShapeNode {
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
     }
+    
+    public func moveWith(vector:CGVector) {
+        let newVector = CGVector(dx: vector.dx * speedMultiplier, dy: vector.dy*speedMultiplier)
+        physicsBody?.velocity = newVector
+    }
+
     
 }
 

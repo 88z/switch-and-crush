@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030890C2528893A00C51C22 /* GridGenerator.swift */; };
+		8030891C2528A3BF00C51C22 /* JoystickScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030891B2528A3BF00C51C22 /* JoystickScene.swift */; };
+		8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */; };
 		80CA5F332524F187003E900D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F322524F187003E900D /* AppDelegate.swift */; };
 		80CA5F392524F187003E900D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F382524F187003E900D /* GameScene.swift */; };
 		80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F3A2524F187003E900D /* GameViewController.swift */; };
@@ -17,7 +19,6 @@
 		80CA5F4B2524F18D003E900D /* catcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F4A2524F18C003E900D /* catcherTests.swift */; };
 		80CA5F562524F18D003E900D /* catcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F552524F18D003E900D /* catcherUITests.swift */; };
 		80CA5F672524F711003E900D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F662524F711003E900D /* Hero.swift */; };
-		80CA5F6C252501A5003E900D /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F6B252501A5003E900D /* Joystick.swift */; };
 		80CA5F7425251221003E900D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F7325251221003E900D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8030890C2528893A00C51C22 /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
+		8030891B2528A3BF00C51C22 /* JoystickScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickScene.swift; sourceTree = "<group>"; };
+		8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBackgroundManager.swift; sourceTree = "<group>"; };
 		80CA5F2F2524F187003E900D /* catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CA5F322524F187003E900D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CA5F382524F187003E900D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		80CA5F552524F18D003E900D /* catcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catcherUITests.swift; sourceTree = "<group>"; };
 		80CA5F572524F18D003E900D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80CA5F662524F711003E900D /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
-		80CA5F6B252501A5003E900D /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		80CA5F7325251221003E900D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,18 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				8030890C2528893A00C51C22 /* GridGenerator.swift */,
+				8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */,
 			);
 			path = Background;
-			sourceTree = "<group>";
-		};
-		809271A82525A36E00C899EC /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				803089112528938C00C51C22 /* Background */,
-				80CA5F662524F711003E900D /* Hero.swift */,
-				80CA5F6B252501A5003E900D /* Joystick.swift */,
-			);
-			path = Nodes;
 			sourceTree = "<group>";
 		};
 		80CA5F262524F187003E900D = {
@@ -125,11 +118,13 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
-				809271A82525A36E00C899EC /* Nodes */,
-				80CA5F322524F187003E900D /* AppDelegate.swift */,
+				80CA5F662524F711003E900D /* Hero.swift */,
+				803089112528938C00C51C22 /* Background */,
+				8030891B2528A3BF00C51C22 /* JoystickScene.swift */,
 				80CA5F382524F187003E900D /* GameScene.swift */,
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
 				80CA5F3C2524F187003E900D /* Main.storyboard */,
+				80CA5F322524F187003E900D /* AppDelegate.swift */,
 				80CA5F3F2524F18C003E900D /* Assets.xcassets */,
 				80CA5F412524F18C003E900D /* Info.plist */,
 				80CA5F7325251221003E900D /* Utils.swift */,
@@ -287,11 +282,12 @@
 			files = (
 				80CA5F392524F187003E900D /* GameScene.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
-				80CA5F6C252501A5003E900D /* Joystick.swift in Sources */,
+				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
 				80CA5F7425251221003E900D /* Utils.swift in Sources */,
 				80CA5F332524F187003E900D /* AppDelegate.swift in Sources */,
+				8030891C2528A3BF00C51C22 /* JoystickScene.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

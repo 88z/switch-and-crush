@@ -7,10 +7,11 @@
 
 import SpriteKit
 
-class GridGenerator {
+class GridGenerator:InfiniteBackgroundTextureGenerator {
+    
     func generate() -> SKTexture?{
-        let cols = 40
-        let rows = 40
+        let cols = 20
+        let rows = 20
         let blockSize = CGFloat(200)
         let size = CGSize(width: CGFloat(cols)*blockSize+1.0, height: CGFloat(rows)*blockSize+1.0)
         UIGraphicsBeginImageContext(size)
