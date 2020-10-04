@@ -9,7 +9,8 @@ import SpriteKit
 
 protocol JoystickDelegate {
     func joystickMoved(_ newVector: CGVector)
-    func joystickDoubleTapped()
+    func joystickPressed()
+    func joystickReleased()
 }
 
 class JoystickScene: SKScene {
@@ -20,7 +21,6 @@ class JoystickScene: SKScene {
     private var core:SKShapeNode!
     private var stick:SKShapeNode!
     
-    private let moveDelaySeconds:TimeInterval = 0.3
     private var touchStartSeconds:TimeInterval = 0
     
     var joystickDelegate: JoystickDelegate?
@@ -59,36 +59,41 @@ class JoystickScene: SKScene {
     
     func touchDown(atPoint pos : CGPoint, tapCount: Int) {
         if pressReady && tapCount == 1 {
-            joystickDelegate?.joystickDoubleTapped()
+            joystickDelegate?.joystickPressed()
         }
         calmDownTimer?.invalidate()
         stick.position = pos
         core.position = CGPoint(x: pos.x - savedStickCoreDelta.x, y: pos.y - savedStickCoreDelta.y)
+        touchStartSeconds = NSDate().timeIntervalSince1970
     }
     
     func touchMoved(toPoint pos : CGPoint) {
         let moveAction = SKAction.move(to: pos, duration: 0)
         stick.run(moveAction)
         let vector = convert(stick.position, to: core)
-        joystickDelegate?.joystickMoved(CGVector(dx: vector.x, dy: vector.y))
+        var len = hypot(vector.x, vector.y)
+        len = len == 0 ? 1 : len
+        joystickDelegate?.joystickMoved(CGVector(dx: borderRadius*vector.x/len, dy: borderRadius*vector.y/len))
     }
     
     func touchUp(atPoint pos : CGPoint) {
+        if NSDate().timeIntervalSince1970 - touchStartSeconds <= 0.3 {
+            joystickDelegate?.joystickPressed()
+            pressReady = false
+        } else{
+            pressReady = true
+        }
+        
         savedStickCoreDelta = CGPoint(x: stick.position.x - core.position.x, y: stick.position.y-core.position.y)
-        pressReady = true
+        
         
         //ждем время и только после этого отпускаем stick
         calmDownTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [unowned self] timer in
-            self.stick.removeAllActions()
-            let moveAction = SKAction.move(to: self.core.position, duration: 0.5)
-            self.stick.run(moveAction)
-            let delegateAction = SKAction.customAction(withDuration: 0.3) { (node, elapsedTime) in
-                let vector = self.convert(node.position, to: self.core)
-                self.joystickDelegate?.joystickMoved(CGVector(dx: vector.x, dy: vector.y))
-            }
-            self.stick.run(delegateAction);
+            let moveAction = SKAction.move(to: self.core.position, duration: 0.1)
+            stick.run(moveAction)
             savedStickCoreDelta = .zero
             pressReady = false
+            joystickDelegate?.joystickReleased()
         })
     }
     

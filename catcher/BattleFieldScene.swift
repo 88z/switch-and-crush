@@ -12,7 +12,7 @@ class BattleFieldScene: SKScene, JoystickDelegate {
     
 
     private let hero = Hero(radius: 20)
-    private var joystickVector = CGVector.zero
+    private var joystickVector: CGVector?
 
     override func didMove(to view: SKView) {
         let center = CGPoint(x: frame.midX, y: frame.midY)
@@ -31,6 +31,10 @@ class BattleFieldScene: SKScene, JoystickDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        guard let joystickVector = joystickVector else {
+            return
+        }
+        
         camera?.position = hero.position
         hero.updateWith(moveVector: joystickVector)
     }
@@ -39,8 +43,12 @@ class BattleFieldScene: SKScene, JoystickDelegate {
         joystickVector = newVector
     }
 
-    func joystickDoubleTapped() {
+    func joystickPressed() {
         hero.toggleState()
+    }
+    
+    func joystickReleased() {
+        joystickVector = .zero
     }
 
 }
