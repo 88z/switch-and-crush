@@ -11,22 +11,35 @@ import GameplayKit
 class Hero:SKShapeNode {
     private var colors = [UIColor.blue, UIColor.red]
     private var stateIndex = 0
-    private var speedMultiplier = CGFloat(10);
+    private var speedMultiplier = CGFloat(5);
     convenience init(radius: CGFloat) {
         self.init(circleOfRadius:radius)
         fillColor = colors[stateIndex];
         strokeColor = colors[stateIndex];
-        
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
     }
     
-    public func moveWith(vector:CGVector) {
-        let newVector = CGVector(dx: vector.dx * speedMultiplier, dy: vector.dy*speedMultiplier)
-        physicsBody?.velocity = newVector
+    public func updateWith(moveVector:CGVector) {
+        guard let physicsBody = physicsBody else {
+            return
+        }
+        let newVector = CGVector(dx: moveVector.dx * speedMultiplier, dy: moveVector.dy*speedMultiplier)
+        let rate = 0.5;
+        let relativeVelocity = CGVector(dx: newVector.dx-physicsBody.velocity.dx, dy: newVector.dy-physicsBody.velocity.dy);
+        physicsBody.velocity=CGVector(dx: physicsBody.velocity.dx+relativeVelocity.dx*CGFloat(rate), dy: physicsBody.velocity.dy+relativeVelocity.dy*CGFloat(rate));
     }
-
     
+    public func toggleState() {
+        var newIndex = 0
+        if let currentIndex = colors.firstIndex(of: fillColor) {
+            if currentIndex < colors.count - 1 {
+                newIndex = currentIndex + 1
+            }
+        }
+        fillColor = colors[newIndex]
+        strokeColor = colors[newIndex]
+    }
 }
 

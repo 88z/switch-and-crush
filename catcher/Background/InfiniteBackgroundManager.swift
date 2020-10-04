@@ -15,6 +15,7 @@ class InfiniteBackgroundManager {
     private var nodes = [SKSpriteNode]()
     private var centralNode: SKSpriteNode!
     private var scene: SKScene
+    private let colors:[UIColor] = [.blue, .systemOrange, .yellow, .blue, .systemOrange, .yellow, .blue, .systemOrange, .yellow]
     init?(scene: SKScene, textureGenerator: InfiniteBackgroundTextureGenerator) {
         self.scene = scene
         for row in -1...1 {
@@ -33,6 +34,10 @@ class InfiniteBackgroundManager {
             }
             
         }
+//        for i in 0...8 {
+//            nodes[i].color = colors[i]
+//            nodes[i].colorBlendFactor = 1
+//        }
     }
     
     

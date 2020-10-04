@@ -12,7 +12,7 @@
 		8030891C2528A3BF00C51C22 /* JoystickScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030891B2528A3BF00C51C22 /* JoystickScene.swift */; };
 		8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */; };
 		80CA5F332524F187003E900D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F322524F187003E900D /* AppDelegate.swift */; };
-		80CA5F392524F187003E900D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F382524F187003E900D /* GameScene.swift */; };
+		80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F382524F187003E900D /* BattleFieldScene.swift */; };
 		80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F3A2524F187003E900D /* GameViewController.swift */; };
 		80CA5F3E2524F187003E900D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CA5F3C2524F187003E900D /* Main.storyboard */; };
 		80CA5F402524F18C003E900D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CA5F3F2524F18C003E900D /* Assets.xcassets */; };
@@ -46,7 +46,7 @@
 		8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBackgroundManager.swift; sourceTree = "<group>"; };
 		80CA5F2F2524F187003E900D /* catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CA5F322524F187003E900D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		80CA5F382524F187003E900D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		80CA5F382524F187003E900D /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
 		80CA5F3A2524F187003E900D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		80CA5F3D2524F187003E900D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80CA5F3F2524F18C003E900D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 				80CA5F662524F711003E900D /* Hero.swift */,
 				803089112528938C00C51C22 /* Background */,
 				8030891B2528A3BF00C51C22 /* JoystickScene.swift */,
-				80CA5F382524F187003E900D /* GameScene.swift */,
+				80CA5F382524F187003E900D /* BattleFieldScene.swift */,
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
 				80CA5F3C2524F187003E900D /* Main.storyboard */,
 				80CA5F322524F187003E900D /* AppDelegate.swift */,
@@ -280,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80CA5F392524F187003E900D /* GameScene.swift in Sources */,
+				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
