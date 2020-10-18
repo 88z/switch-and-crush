@@ -80,7 +80,7 @@ class JoystickScene: SKScene {
         savedStickCoreDelta = CGPoint(x: stick.position.x - core.position.x, y: stick.position.y-core.position.y)
         
         //ждем время и только после этого отпускаем stick
-        calmDownTimer = Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false, block: { [unowned self] timer in
+        calmDownTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { [unowned self] timer in
             let moveAction = SKAction.move(to: self.core.position, duration: 0.1)
             stick.run(moveAction)
             savedStickCoreDelta = .zero

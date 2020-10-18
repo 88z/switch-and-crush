@@ -11,6 +11,9 @@
 		8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030890C2528893A00C51C22 /* GridGenerator.swift */; };
 		8030891C2528A3BF00C51C22 /* JoystickScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030891B2528A3BF00C51C22 /* JoystickScene.swift */; };
 		8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */; };
+		803AEC232529FD290071B46D /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803AEC222529FD290071B46D /* Bullet.swift */; };
+		8056EF07253B783D000D226E /* ShooterDrafts.txt in Sources */ = {isa = PBXBuildFile; fileRef = 8056EF06253B783D000D226E /* ShooterDrafts.txt */; };
+		80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4C33625396EE200EEB097 /* QuadraticSolver.swift */; };
 		80CA5F332524F187003E900D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F322524F187003E900D /* AppDelegate.swift */; };
 		80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F382524F187003E900D /* BattleFieldScene.swift */; };
 		80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F3A2524F187003E900D /* GameViewController.swift */; };
@@ -19,7 +22,8 @@
 		80CA5F4B2524F18D003E900D /* catcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F4A2524F18C003E900D /* catcherTests.swift */; };
 		80CA5F562524F18D003E900D /* catcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F552524F18D003E900D /* catcherUITests.swift */; };
 		80CA5F672524F711003E900D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F662524F711003E900D /* Hero.swift */; };
-		80CA5F7425251221003E900D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F7325251221003E900D /* Utils.swift */; };
+		80CA5F7425251221003E900D /* CGUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F7325251221003E900D /* CGUtils.swift */; };
+		80E5BFDD2529FF4100A4E05B /* Shooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E5BFDC2529FF4100A4E05B /* Shooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,9 @@
 		8030890C2528893A00C51C22 /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
 		8030891B2528A3BF00C51C22 /* JoystickScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickScene.swift; sourceTree = "<group>"; };
 		8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBackgroundManager.swift; sourceTree = "<group>"; };
+		803AEC222529FD290071B46D /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		8056EF06253B783D000D226E /* ShooterDrafts.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ShooterDrafts.txt; sourceTree = "<group>"; };
+		80A4C33625396EE200EEB097 /* QuadraticSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticSolver.swift; sourceTree = "<group>"; };
 		80CA5F2F2524F187003E900D /* catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CA5F322524F187003E900D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CA5F382524F187003E900D /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
@@ -58,7 +65,8 @@
 		80CA5F552524F18D003E900D /* catcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catcherUITests.swift; sourceTree = "<group>"; };
 		80CA5F572524F18D003E900D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80CA5F662524F711003E900D /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
-		80CA5F7325251221003E900D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		80CA5F7325251221003E900D /* CGUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGUtils.swift; sourceTree = "<group>"; };
+		80E5BFDC2529FF4100A4E05B /* Shooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,15 @@
 			path = Background;
 			sourceTree = "<group>";
 		};
+		80A4C33225396EAF00EEB097 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				80CA5F7325251221003E900D /* CGUtils.swift */,
+				80A4C33625396EE200EEB097 /* QuadraticSolver.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		80CA5F262524F187003E900D = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +135,8 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
+				80A4C33225396EAF00EEB097 /* Utils */,
+				80E5BFDB2529FE4C00A4E05B /* Villains */,
 				80CA5F662524F711003E900D /* Hero.swift */,
 				803089112528938C00C51C22 /* Background */,
 				8030891B2528A3BF00C51C22 /* JoystickScene.swift */,
@@ -127,7 +146,6 @@
 				80CA5F322524F187003E900D /* AppDelegate.swift */,
 				80CA5F3F2524F18C003E900D /* Assets.xcassets */,
 				80CA5F412524F18C003E900D /* Info.plist */,
-				80CA5F7325251221003E900D /* Utils.swift */,
 				800609442525DFC4007DA1FA /* TestScene.swift */,
 			);
 			path = catcher;
@@ -149,6 +167,16 @@
 				80CA5F572524F18D003E900D /* Info.plist */,
 			);
 			path = catcherUITests;
+			sourceTree = "<group>";
+		};
+		80E5BFDB2529FE4C00A4E05B /* Villains */ = {
+			isa = PBXGroup;
+			children = (
+				803AEC222529FD290071B46D /* Bullet.swift */,
+				80E5BFDC2529FF4100A4E05B /* Shooter.swift */,
+				8056EF06253B783D000D226E /* ShooterDrafts.txt */,
+			);
+			path = Villains;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,13 +308,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8056EF07253B783D000D226E /* ShooterDrafts.txt in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
-				80CA5F7425251221003E900D /* Utils.swift in Sources */,
+				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
+				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
 				80CA5F332524F187003E900D /* AppDelegate.swift in Sources */,
+				803AEC232529FD290071B46D /* Bullet.swift in Sources */,
+				80E5BFDD2529FF4100A4E05B /* Shooter.swift in Sources */,
 				8030891C2528A3BF00C51C22 /* JoystickScene.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
 			);

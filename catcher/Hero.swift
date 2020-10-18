@@ -14,11 +14,14 @@ class Hero:SKShapeNode {
     private var speedMultiplier = CGFloat(10);
     convenience init(radius: CGFloat) {
         self.init(circleOfRadius:radius)
+        name = String(describing: Hero.self)
         fillColor = colors[stateIndex];
         strokeColor = colors[stateIndex];
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
+        physicsBody?.friction = 0
+        physicsBody?.linearDamping = 0
     }
     
     public func updateWith(moveVector:CGVector) {
