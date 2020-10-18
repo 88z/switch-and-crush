@@ -9,10 +9,13 @@ import SpriteKit
 import GameplayKit
 
 class BattleFieldScene: SKScene, JoystickDelegate, SKPhysicsContactDelegate {
+    
+    
 
     private let hero = Hero(radius: 5)
-    private var joystickVector: CGVector?
-    private var shooter: Shooter!
+    private var movingTargetX = CGFloat(0)
+    private var heroAnchorX = CGFloat(0)
+    private let fallSpeed = CGFloat(-100)
 
     override func didMove(to view: SKView) {
         let center = CGPoint(x: frame.midX, y: frame.midY)
@@ -29,28 +32,27 @@ class BattleFieldScene: SKScene, JoystickDelegate, SKPhysicsContactDelegate {
         camera = cameraNode
         
         physicsWorld.contactDelegate = self
-        
-        shooter = Shooter(scene: self, target: hero, bulletCollisionBitMask: 0b0000, bulletCategoryBitMask: 0b0010, bulletContactBitMask: 0b0001)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
-            self.shooter.shoot(scatter: 100)
-        }
+        movingTargetX = frame.midX
         
     }
     
     override func update(_ currentTime: TimeInterval) {
-        camera?.position = hero.position
-        shooter.rungarbageLoop()
-        guard let joystickVector = joystickVector else {
-            return
-        }
-        camera?.position = hero.position
-        hero.updateWith(moveVector: joystickVector)
-        
-        
+        adjustCamera()
+        hero.updateWith(moveVector: CGVector(dx: movingTargetX - hero.position.x, dy: fallSpeed))
     }
     
-    func joystickMoved(_ newVector: CGVector) {
-        joystickVector = newVector
+    func adjustCamera() {
+        let dy = frame.height/2 - 50
+        camera?.position.y = hero.position.y - dy
+    }
+    
+    func joystickTouched(at pos: CGPoint) {
+        heroAnchorX = hero.position.x
+    }
+    
+    func joystickMoved(to pos: CGPoint) {
+        movingTargetX = pos.x + heroAnchorX
+
     }
 
     func joystickPressed() {
@@ -58,17 +60,9 @@ class BattleFieldScene: SKScene, JoystickDelegate, SKPhysicsContactDelegate {
     }
     
     func joystickReleased() {
-        joystickVector = .zero
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        guard let aName = contact.bodyA.node?.name, let bName = contact.bodyB.node?.name else {
-            return
-        }
-        let names = [String(describing: Bullet.self), String(describing: Hero.self)]
         
-        if names.contains(aName) && names.contains(bName) && aName != bName {
-            print("killed")
-        }
     }
 }
