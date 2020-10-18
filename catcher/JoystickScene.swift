@@ -15,7 +15,7 @@ protocol JoystickDelegate {
 }
 
 class JoystickScene: SKScene {
-    private var touchStartSeconds:TimeInterval = 0
+    private var touchUpSeconds:TimeInterval = 0
     private var touchStartPoint = CGPoint.zero
     
     var joystickDelegate: JoystickDelegate?
@@ -27,20 +27,24 @@ class JoystickScene: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint, tapCount: Int) {
+        if NSDate().timeIntervalSince1970 - touchUpSeconds <= 1{
+            joystickDelegate?.joystickPressed()
+        }
         calmDownTimer?.invalidate()
-        touchStartSeconds = NSDate().timeIntervalSince1970
+        
         touchStartPoint = pos
         joystickDelegate?.joystickTouched(at: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
         joystickDelegate?.joystickMoved(to: CGPoint(x: pos.x - touchStartPoint.x, y: pos.y - touchStartPoint.y))
+        
+        
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if NSDate().timeIntervalSince1970 - touchStartSeconds <= 0.3 {
-            joystickDelegate?.joystickPressed()
-        }
+        touchUpSeconds = NSDate().timeIntervalSince1970
+        
         //ждем время и только после этого отпускаем stick
         calmDownTimer = Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false, block: { [unowned self] timer in
             joystickDelegate?.joystickReleased()
