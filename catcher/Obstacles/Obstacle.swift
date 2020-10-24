@@ -10,7 +10,7 @@ import SpriteKit
 
 class Obstacle: StateNode {
     convenience init(mask: Mask) {
-        let rect = CGRect(x: 0, y: 0, width: 250, height: 20)
+        let rect = CGRect(x: 0, y: 0, width: 240, height: 21)
         self.init(rect: rect)
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x: frame.midX, y: frame.midY))

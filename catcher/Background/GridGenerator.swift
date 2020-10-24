@@ -22,18 +22,13 @@ class GridGenerator:InfiniteBackgroundTextureGenerator {
         let bezierPath = UIBezierPath()
         let offset:CGFloat = 0.5
         
-        for i in 0...cols {
-            let x = CGFloat(i)*blockSize + offset
-            bezierPath.move(to: CGPoint(x: x, y: 0))
-            bezierPath.addLine(to: CGPoint(x: x, y: size.height))
-        }
         for i in 0...rows {
             let y = CGFloat(i)*blockSize + offset
             bezierPath.move(to: CGPoint(x: 0, y: y))
             bezierPath.addLine(to: CGPoint(x: size.width, y: y))
         }
         
-        UIColor.darkGray.setStroke()
+        UIColor(red: 55/255, green: 41/255, blue: 61/255, alpha: 1).setStroke()
         bezierPath.lineWidth = 1.0
         bezierPath.stroke()
         context.addPath(bezierPath.cgPath)

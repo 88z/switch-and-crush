@@ -16,9 +16,9 @@ protocol BattleDelegate {
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
 
-    private let hero = Hero(radius: 5)
+    private let hero = Hero(radius: 8)
     
-    private var fallSpeed = CGFloat(-4)
+    private var fallSpeed = CGFloat(-3)
     
     var battleDelegate: BattleDelegate?
 
@@ -28,11 +28,12 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     var obstacleArranger: ObstacleArranger!
     
     func startBattle() {
-        obstacleArranger = ObstacleArranger(scene: self, startPointY: hero.position.y - 400, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
+        obstacleArranger = ObstacleArranger(scene: self, startPointY: hero.position.y - frame.size.height, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
         obstacleArranger.arrange()
     }
     
     override func didMove(to view: SKView) {
+        backgroundColor = UIColor(red: 4/255, green: 15/255, blue: 22/255, alpha: 1)
         let center = CGPoint(x: frame.midX, y: frame.midY)
         hero.position = center
         addChild(hero)
@@ -74,7 +75,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             obstacle = aNode as! Obstacle
         }
         if hero.state == obstacle.state {
-            breakObstacle(obstacle)
+            breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             battleDelegate?.battleIsOver()
@@ -82,15 +83,16 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
        
     }
     
-    func breakObstacle(_ obstacle: Obstacle) {
-        obstacleArranger.remove(obstacle: obstacle)
+    func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
+        let shatter = ObstacleShatter(obstacle: obstacle)
+        shatter.shatter(contactPoint: contactPoint)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         speedUp()
     }
     
     func speedUp() {
-        fallSpeed = fallSpeed - 0.05
+        fallSpeed = fallSpeed - 0.1
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

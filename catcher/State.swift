@@ -18,9 +18,9 @@ extension State {
         get {
             switch self {
             case .first:
-                return .blue
+                return UIColor(red: 0, green: 157/255, blue: 220/255, alpha: 1)
             case .second:
-                return .red
+                return UIColor(red: 219/255, green: 41/255, blue: 85/255, alpha: 1)
             }
         }
     }

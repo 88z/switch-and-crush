@@ -42,6 +42,7 @@ class ObstacleArranger {
         for _ in 1...100 {
             arrangeOne()
         }
+        obstacles = []
     }
     
     func positionFor(_ obstacle:Obstacle) -> CGPoint{
@@ -58,10 +59,6 @@ class ObstacleArranger {
             return startPointY
         }
         return lastPlaced.frame.minY - randomBetween(minYSpace, and: maxYSpace)
-    }
-    
-    func remove(obstacle: Obstacle) {
-        obstacle.removeFromParent()
     }
     
     

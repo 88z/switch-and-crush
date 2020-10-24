@@ -14,6 +14,8 @@
 		8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */; };
 		8087E43E25442C8B00340D10 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E43D25442C8B00340D10 /* State.swift */; };
 		8087E44925444AE500340D10 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E44825444AE500340D10 /* MenuScene.swift */; };
+		8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E45825446E4000340D10 /* ObstacleShatter.swift */; };
+		8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8087E4602544A75800340D10 /* Launch Screen.storyboard */; };
 		80890CFE2540058A00F5552B /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890CFD2540058A00F5552B /* Obstacle.swift */; };
 		80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890D05254006C200F5552B /* ObstacleArranger.swift */; };
 		80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4C33625396EE200EEB097 /* QuadraticSolver.swift */; };
@@ -53,6 +55,8 @@
 		8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBorderManager.swift; sourceTree = "<group>"; };
 		8087E43D25442C8B00340D10 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		8087E44825444AE500340D10 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		8087E45825446E4000340D10 /* ObstacleShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleShatter.swift; sourceTree = "<group>"; };
+		8087E4602544A75800340D10 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		80890CFD2540058A00F5552B /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		80890D05254006C200F5552B /* ObstacleArranger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleArranger.swift; sourceTree = "<group>"; };
 		80A4C33625396EE200EEB097 /* QuadraticSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticSolver.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			children = (
 				80890CFD2540058A00F5552B /* Obstacle.swift */,
 				80890D05254006C200F5552B /* ObstacleArranger.swift */,
+				8087E45825446E4000340D10 /* ObstacleShatter.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				8087E44825444AE500340D10 /* MenuScene.swift */,
 				80CA5F382524F187003E900D /* BattleFieldScene.swift */,
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
+				8087E4602544A75800340D10 /* Launch Screen.storyboard */,
 				8087E43D25442C8B00340D10 /* State.swift */,
 				80CA5F3C2524F187003E900D /* Main.storyboard */,
 				80CA5F322524F187003E900D /* AppDelegate.swift */,
@@ -288,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */,
 				80CA5F3E2524F187003E900D /* Main.storyboard in Resources */,
 				80CA5F402524F18C003E900D /* Assets.xcassets in Resources */,
 			);
@@ -322,6 +329,7 @@
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
+				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,

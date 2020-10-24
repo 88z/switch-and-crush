@@ -34,13 +34,13 @@ class GameViewController: UIViewController, SKSceneDelegate, BattleDelegate, Men
             }
             let scene = BattleFieldScene(size: view.bounds.size)
             scene.battleDelegate = self
-            scene.scaleMode = .aspectFill
+            scene.scaleMode = .resizeFill
             scene.delegate = self
             battleFieldScene = scene
             view.presentScene(scene)
             view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+            view.showsFPS = false
+            view.showsNodeCount = false
             view.showsPhysics = false
             backgroundManager = InfiniteBackgroundManager(scene: scene, textureGenerator: GridGenerator())
         
