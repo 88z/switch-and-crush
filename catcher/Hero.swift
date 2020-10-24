@@ -8,15 +8,13 @@
 import SpriteKit
 import GameplayKit
 
-class Hero:SKShapeNode {
-    private var colors = [UIColor.blue, UIColor.red]
-    private var stateIndex = 0
-    private var speedMultiplier = CGFloat(5);
+class Hero:StateNode {
+    private var speedMultiplier = CGFloat(60);
+
     convenience init(radius: CGFloat) {
         self.init(circleOfRadius:radius)
+        state = .first
         name = String(describing: Hero.self)
-        fillColor = colors[stateIndex];
-        strokeColor = colors[stateIndex];
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
@@ -31,17 +29,6 @@ class Hero:SKShapeNode {
         
         let newVector = CGVector(dx: moveVector.dx * speedMultiplier, dy: moveVector.dy*speedMultiplier)
         physicsBody.velocity = newVector
-    }
-    
-    public func toggleState() {
-        var newIndex = 0
-        if let currentIndex = colors.firstIndex(of: fillColor) {
-            if currentIndex < colors.count - 1 {
-                newIndex = currentIndex + 1
-            }
-        }
-        fillColor = colors[newIndex]
-        strokeColor = colors[newIndex]
     }
 }
 
