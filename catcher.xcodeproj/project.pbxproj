@@ -12,6 +12,8 @@
 		8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */; };
 		8033B22C2542B0D90050C162 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B22B2542B0D90050C162 /* Mask.swift */; };
 		8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */; };
+		806B9DDD25455629003CB4EE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B9DDC25455629003CB4EE /* Level.swift */; };
+		806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B9DE425456510003CB4EE /* DefaultPresenter.swift */; };
 		8087E43E25442C8B00340D10 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E43D25442C8B00340D10 /* State.swift */; };
 		8087E44925444AE500340D10 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E44825444AE500340D10 /* MenuScene.swift */; };
 		8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E45825446E4000340D10 /* ObstacleShatter.swift */; };
@@ -53,6 +55,8 @@
 		8030892E2528B78800C51C22 /* InfiniteBackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBackgroundManager.swift; sourceTree = "<group>"; };
 		8033B22B2542B0D90050C162 /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
 		8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBorderManager.swift; sourceTree = "<group>"; };
+		806B9DDC25455629003CB4EE /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		806B9DE425456510003CB4EE /* DefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPresenter.swift; sourceTree = "<group>"; };
 		8087E43D25442C8B00340D10 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		8087E44825444AE500340D10 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		8087E45825446E4000340D10 /* ObstacleShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleShatter.swift; sourceTree = "<group>"; };
@@ -102,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8012B4F72545841000ACBCC0 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				806B9DE425456510003CB4EE /* DefaultPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 		803089112528938C00C51C22 /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,22 @@
 				8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */,
 			);
 			path = Background;
+			sourceTree = "<group>";
+		};
+		804C3AB3254551DE0012EDD8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8087E44825444AE500340D10 /* MenuScene.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		806B9DDB25455616003CB4EE /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				806B9DDC25455629003CB4EE /* Level.swift */,
+			);
+			path = Levels;
 			sourceTree = "<group>";
 		};
 		80890CFC2540057800F5552B /* Obstacles */ = {
@@ -155,11 +183,13 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
+				806B9DDB25455616003CB4EE /* Levels */,
+				804C3AB3254551DE0012EDD8 /* UI */,
 				80890CFC2540057800F5552B /* Obstacles */,
 				80A4C33225396EAF00EEB097 /* Utils */,
+				8012B4F72545841000ACBCC0 /* Presenters */,
 				803089112528938C00C51C22 /* Background */,
 				80CA5F662524F711003E900D /* Hero.swift */,
-				8087E44825444AE500340D10 /* MenuScene.swift */,
 				80CA5F382524F187003E900D /* BattleFieldScene.swift */,
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
 				8087E4602544A75800340D10 /* Launch Screen.storyboard */,
@@ -321,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806B9DDD25455629003CB4EE /* Level.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80890CFE2540058A00F5552B /* Obstacle.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
@@ -332,6 +363,7 @@
 				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
+				806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */,
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,
 				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
 				8087E44925444AE500340D10 /* MenuScene.swift in Sources */,

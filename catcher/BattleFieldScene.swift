@@ -9,28 +9,22 @@ import SpriteKit
 import GameplayKit
 import AudioToolbox
 
-
 protocol BattleDelegate {
-    func battleIsOver()
+    func crashed()
+    func levelFinished()
 }
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
 
     private let hero = Hero(radius: 8)
-    
     private var fallSpeed = CGFloat(-3)
-    
     var battleDelegate: BattleDelegate?
-
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
     let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
-    
     var obstacleArranger: ObstacleArranger!
+    private var level: Level?
+    private var progress: Int = 0
     
-    func startBattle() {
-        obstacleArranger = ObstacleArranger(scene: self, startPointY: hero.position.y - frame.size.height, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
-        obstacleArranger.arrange()
-    }
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(red: 4/255, green: 15/255, blue: 22/255, alpha: 1)
@@ -47,7 +41,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         camera = cameraNode
         
         physicsWorld.contactDelegate = self
-        
+    }
+    
+    func start(level: Level) {
+        self.level = level
+        self.fallSpeed = -level.initialSpeed
+        obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: hero.position.y - frame.size.height, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
+        obstacleArranger.arrange()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -78,7 +78,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-            battleDelegate?.battleIsOver()
+            battleDelegate?.crashed()
         }
        
     }
@@ -89,10 +89,20 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         speedUp()
+        progress += 1
+        guard let obstacleCount = level?.obstacleCount else {
+            return
+        }
+        if progress == obstacleCount - 1 {
+            battleDelegate?.levelFinished()
+        }
     }
     
     func speedUp() {
-        fallSpeed = fallSpeed - 0.1
+        guard let level = self.level else {
+            return
+        }
+        fallSpeed = fallSpeed - level.acceleration
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

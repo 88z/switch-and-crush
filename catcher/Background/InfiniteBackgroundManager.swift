@@ -14,7 +14,7 @@ protocol InfiniteBackgroundTextureGenerator {
 class InfiniteBackgroundManager {
     private var nodes = [SKSpriteNode]()
     private var centralNode: SKSpriteNode!
-    private var scene: SKScene
+    private weak var scene: SKScene?
     private let colors:[UIColor] = [.blue, .systemOrange, .yellow, .blue, .systemOrange, .yellow, .blue, .systemOrange, .yellow]
     init?(scene: SKScene, textureGenerator: InfiniteBackgroundTextureGenerator) {
         self.scene = scene
@@ -34,10 +34,7 @@ class InfiniteBackgroundManager {
             }
             
         }
-//        for i in 0...8 {
-//            nodes[i].color = colors[i]
-//            nodes[i].colorBlendFactor = 1
-//        }
+
     }
     
     
@@ -69,7 +66,7 @@ class InfiniteBackgroundManager {
     }
     
     public func swapIfNeeded() {
-        guard let cameraPosition = scene.camera?.position, let currentNode = nodeFor(cameraPosition: cameraPosition) else {
+        guard let cameraPosition = scene?.camera?.position, let currentNode = nodeFor(cameraPosition: cameraPosition) else {
             return
         }
         

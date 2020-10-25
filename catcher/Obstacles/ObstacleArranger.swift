@@ -10,7 +10,9 @@ import SpriteKit
 
 class ObstacleArranger {
     var obstacles:[SKNode] = []
-    let scene: SKScene
+    let obstacleCount: Int
+    let firstObstacleState: State
+    weak var scene: SKScene?
     let startPointY: CGFloat
     let leftBorderX: CGFloat
     let rightBorderX: CGFloat
@@ -22,25 +24,36 @@ class ObstacleArranger {
     let maxYSpace: CGFloat = 300
     
     
-    init(scene: SKScene, startPointY: CGFloat, leftBorderX:CGFloat, rightBorderX: CGFloat, obstacleMask: Mask) {
+    init(scene: SKScene,
+         obstacleCount:Int,
+         firstObstacleState: State,
+         startPointY: CGFloat,
+         leftBorderX:CGFloat,
+         rightBorderX: CGFloat,
+         obstacleMask: Mask
+         ) {
         self.scene = scene
+        self.obstacleCount = obstacleCount
+        self.firstObstacleState = firstObstacleState
         self.startPointY = startPointY
         self.leftBorderX = leftBorderX
         self.rightBorderX = rightBorderX
         self.obstacleMask = obstacleMask
+        
     }
     
-    func arrangeOne() {
+    func arrangeOne(with state: State) {
         let obstacle = Obstacle(mask: obstacleMask)
-        obstacle.state = State.random()
+        obstacle.state = state
         obstacle.position = positionFor(obstacle)
-        scene.addChild(obstacle)
+        scene?.addChild(obstacle)
         obstacles.append(obstacle)
     }
     
     func arrange() {
-        for _ in 1...100 {
-            arrangeOne()
+        arrangeOne(with: firstObstacleState)
+        for _ in 1..<obstacleCount-1 {
+            arrangeOne(with: State.random())
         }
         obstacles = []
     }
