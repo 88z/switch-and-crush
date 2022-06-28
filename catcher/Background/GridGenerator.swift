@@ -28,7 +28,7 @@ class GridGenerator:InfiniteBackgroundTextureGenerator {
             bezierPath.addLine(to: CGPoint(x: size.width, y: y))
         }
         
-        UIColor(red: 55/255, green: 41/255, blue: 61/255, alpha: 1).setStroke()
+        UIColor.grid().setStroke()
         bezierPath.lineWidth = 1.0
         bezierPath.stroke()
         context.addPath(bezierPath.cgPath)

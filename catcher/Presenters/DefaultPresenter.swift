@@ -8,53 +8,52 @@
 import Foundation
 import SpriteKit
 
-class DefaultPresenter: NSObject, SKSceneDelegate, BattleDelegate, OneActionSceneDelegate {
+class DefaultPresenter: BasePresenter {
     
-    private var backgroundManager: InfiniteBackgroundManager?
-    private weak var vc: GameViewController?
-    private weak var battleFieldScene: BattleFieldScene!
-    init (vc: GameViewController) {
-        self.vc = vc
+    let showIntro: Bool
+    let startState: State
+    init(vc: GameViewController, showIntro: Bool, startState: State) {
+        self.showIntro = showIntro
+        self.startState = startState
+        super.init(vc: vc)
     }
     
-    func present(){
-        let battleFieldScene = BattleFieldScene(size: UIScreen.main.bounds.size)
-        battleFieldScene.battleDelegate = self
-        battleFieldScene.scaleMode = .resizeFill
-        battleFieldScene.delegate = self
-        backgroundManager = InfiniteBackgroundManager(scene: battleFieldScene, textureGenerator: GridGenerator())
-        vc?.showBattleField(scene: battleFieldScene)
-        self.battleFieldScene = battleFieldScene
-        
-        
-        let menuScene = OneActionScene(size: UIScreen.main.bounds.size, text: "Tap to Start")
-        menuScene.oneActionSceneDelegate = self
-        menuScene.scaleMode = .aspectFill
-        menuScene.backgroundColor = .clear
-        vc?.showUI(scene: menuScene)
+    required init(vc: GameViewController) {
+        fatalError("init(vc:) has not been implemented")
     }
     
-    func update(_ currentTime: TimeInterval, for scene: SKScene) {
-        scene.update(currentTime)
-        backgroundManager?.swapIfNeeded()
+    override func present(){
+        super.present()
+        if showIntro {
+            let menuScene = OneActionScene(size: UIScreen.main.bounds.size, elements:[])
+            menuScene.oneActionSceneDelegate = self
+            vc?.showUI(scene: menuScene)
+        } else {
+            startGame()
+        }
+       
     }
     
     
-    func crashed() {
+    override func crashed() {
         guard let vc = vc else {
             return
         }
         vc.freezeInteraction()
-        let newPresenter = DefaultPresenter(vc: vc)
-        vc.updatePresenterWith(newPresenter)
+        let newPresenter = DefaultPresenter(vc: vc, showIntro: true, startState: battleFieldScene.heroState)
+        vc.set(presenter:newPresenter)
     }
     
-    func levelFinished() {
+    override func didFinish(level:Level) {
         
     }
     
-    func oneActionScenePressed(scene: OneActionScene) {
+    private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: Level(obstacleCount: 100, initialSpeed: 3, acceleration: 0.05))
+        battleFieldScene?.start(level: Level(obstacleCount: 100, initialSpeed: 4, acceleration: 0.05, name:"default", initialState: startState, userInterationEnabled: true))
+    }
+    
+    override func oneActionScenePressed(scene: OneActionScene) {
+        startGame()
     }
 }

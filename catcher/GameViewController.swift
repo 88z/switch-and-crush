@@ -12,16 +12,20 @@ import GameplayKit
 class GameViewController: UIViewController {
     
     private var uiView: SKView?
-    private var battleFieldScene: BattleFieldScene!
     private var menuScene: OneActionScene!
     private var isOnboarding = true
-    private var presenter: DefaultPresenter!
+    private var presenter: GamePresenter!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = DefaultPresenter(vc: self)
-        presenter.present()
+        let presenter: GamePresenter
+        if isOnboarding {
+            presenter = OnboardingPresenter(vc: self)
+        } else {
+            presenter = DefaultPresenter(vc:self, showIntro: true, startState: State.first)
+        }
+        set(presenter: presenter)
     }
 
     func showUI(scene: SKScene) {
@@ -46,8 +50,8 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             view.presentScene(scene)
             view.ignoresSiblingOrder = true
-            view.showsFPS = false
-            view.showsNodeCount = false
+            view.showsFPS = true
+            view.showsNodeCount = true
             view.showsPhysics = false
         }
     }
@@ -78,7 +82,7 @@ class GameViewController: UIViewController {
         })
     }
     
-    func updatePresenterWith(_ presenter: DefaultPresenter) {
+    func set(presenter: GamePresenter) {
         self.presenter = presenter
         self.presenter.present()
         

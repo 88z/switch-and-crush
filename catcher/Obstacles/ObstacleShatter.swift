@@ -54,7 +54,7 @@ class ObstacleShatter {
             i = i * -1
         }
         
-        let fadeAction = SKAction.fadeOut(withDuration: 1.5)
+        let fadeAction = SKAction.fadeOut(withDuration: 0.5)
         for atom in atoms {
             atom.run(fadeAction) {
                 atom.removeFromParent()

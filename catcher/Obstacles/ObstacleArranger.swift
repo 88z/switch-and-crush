@@ -16,6 +16,7 @@ class ObstacleArranger {
     let startPointY: CGFloat
     let leftBorderX: CGFloat
     let rightBorderX: CGFloat
+    let hPadding = CGFloat(10)
     
     let obstacleMask: Mask
     
@@ -36,22 +37,29 @@ class ObstacleArranger {
         self.obstacleCount = obstacleCount
         self.firstObstacleState = firstObstacleState
         self.startPointY = startPointY
-        self.leftBorderX = leftBorderX
-        self.rightBorderX = rightBorderX
+        self.leftBorderX = leftBorderX + hPadding
+        self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
         
     }
     
     func arrangeOne(with state: State) {
-        let obstacle = Obstacle(mask: obstacleMask)
+        let obstacle = Obstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
         obstacle.state = state
         obstacle.position = positionFor(obstacle)
+        obstacle.physicsBody?.velocity.dy = 20
         scene?.addChild(obstacle)
         obstacles.append(obstacle)
     }
     
     func arrange() {
+        guard  obstacleCount > 0 else {
+            return
+        }
         arrangeOne(with: firstObstacleState)
+        guard  obstacleCount > 1 else {
+            return
+        }
         for _ in 1..<obstacleCount-1 {
             arrangeOne(with: State.random())
         }
@@ -59,12 +67,13 @@ class ObstacleArranger {
     }
     
     func positionFor(_ obstacle:Obstacle) -> CGPoint{
-        guard !obstacles.contains(obstacle) else {
-            return .zero
-        }
-        let left = leftBorderX
-        let right = rightBorderX - obstacle.frame.width
-        return CGPoint(x: CGFloat.random(in: left...right ), y:nextY())
+//        guard !obstacles.contains(obstacle) else {
+//            return .zero
+//        }
+//        let left = leftBorderX
+//        let right = rightBorderX - obstacle.frame.width
+//        return CGPoint(x: CGFloat.random(in: left...right ), y:nextY())
+        return CGPoint(x: leftBorderX, y:nextY())
     }
     
     func nextY() -> CGFloat {

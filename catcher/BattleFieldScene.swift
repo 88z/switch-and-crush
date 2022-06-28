@@ -11,12 +11,18 @@ import AudioToolbox
 
 protocol BattleDelegate {
     func crashed()
-    func levelFinished()
+    func didFinish(level:Level)
 }
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
 
     private let hero = Hero(radius: 8)
+
+    private let heroTopOffset: CGFloat
+
+    var heroState: State {
+        return hero.state
+    }
     private var fallSpeed = CGFloat(-3)
     var battleDelegate: BattleDelegate?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
@@ -25,9 +31,18 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var level: Level?
     private var progress: Int = 0
     
+    init (size: CGSize, heroTopOffset: CGFloat) {
+        self.heroTopOffset = heroTopOffset
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func didMove(to view: SKView) {
-        backgroundColor = UIColor(red: 4/255, green: 15/255, blue: 22/255, alpha: 1)
+        backgroundColor = UIColor.background()
         let center = CGPoint(x: frame.midX, y: frame.midY)
         hero.position = center
         addChild(hero)
@@ -46,17 +61,19 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     func start(level: Level) {
         self.level = level
         self.fallSpeed = -level.initialSpeed
+        self.isUserInteractionEnabled = level.userInterationEnabled
+        hero.state = level.initialState
         obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: hero.position.y - frame.size.height, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
         obstacleArranger.arrange()
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        adjustCameraAndBorders()
+    override func didFinishUpdate() {
         hero.updateWith(moveVector: CGVector(dx: frame.midX - hero.position.x, dy: fallSpeed))
+        adjustCameraAndBorders()
     }
     
-    func adjustCameraAndBorders() {
-        let newPositionY = hero.position.y - frame.height/2 + 50
+    private func adjustCameraAndBorders() {
+        let newPositionY = hero.position.y - frame.height/2 + heroTopOffset
         camera?.position.y = newPositionY
     }
     
@@ -93,8 +110,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         guard let obstacleCount = level?.obstacleCount else {
             return
         }
-        if progress == obstacleCount - 1 {
-            battleDelegate?.levelFinished()
+        if progress >= obstacleCount {
+            if let level = self.level {
+                battleDelegate?.didFinish(level: level)
+            }
         }
     }
     
