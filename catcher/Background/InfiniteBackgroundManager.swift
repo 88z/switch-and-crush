@@ -20,6 +20,7 @@ class InfiniteBackgroundManager {
         self.scene = scene
         for row in -1...1 {
             for col in -1...1 {
+                return nil
                 guard let texture = textureGenerator.generate() else {
                     return nil
                 }
@@ -30,6 +31,7 @@ class InfiniteBackgroundManager {
                 nodes.append(node)
                 node.position = positionFor(row: row, col: col, center: CGPoint(x: scene.frame.midX, y: scene.frame.midY))!
                 node.zPosition = -1
+                node.name = "InfiniteBackgroundNode"
                 scene.addChild(node)
             }
             

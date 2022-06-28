@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */; };
 		8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B50625458FB400ACBCC0 /* BasePresenter.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2391E959286BA0820043BCA4 /* HeroShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatter.swift; sourceTree = "<group>"; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		8012B50625458FB400ACBCC0 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
@@ -120,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2391E958286BA0340043BCA4 /* Hero */ = {
+			isa = PBXGroup;
+			children = (
+				80CA5F662524F711003E900D /* Hero.swift */,
+				2391E959286BA0820043BCA4 /* HeroShatter.swift */,
+			);
+			path = Hero;
+			sourceTree = "<group>";
+		};
 		8012B4F72545841000ACBCC0 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +237,7 @@
 				80A4C33225396EAF00EEB097 /* Utils */,
 				8012B4F72545841000ACBCC0 /* Presenters */,
 				803089112528938C00C51C22 /* Background */,
-				80CA5F662524F711003E900D /* Hero.swift */,
+				2391E958286BA0340043BCA4 /* Hero */,
 				80CA5F382524F187003E900D /* BattleFieldScene.swift */,
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
 				8087E4602544A75800340D10 /* Launch Screen.storyboard */,
@@ -395,6 +406,7 @@
 				8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80890CFE2540058A00F5552B /* Obstacle.swift in Sources */,
+				2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,

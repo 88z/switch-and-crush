@@ -9,6 +9,14 @@ import Foundation
 import SpriteKit
 
 class Obstacle: StateNode {
+    var velocity: CGFloat {
+            set {
+                physicsBody?.velocity.dy = newValue
+            }
+            get {
+                physicsBody?.velocity.dy ?? 0
+            }
+    }
     convenience init(mask: Mask, width: CGFloat) {
         let rect = CGRect(x: 0, y: 0, width: width, height: 21)
         self.init(rect: rect)
@@ -20,4 +28,6 @@ class Obstacle: StateNode {
         physicsBody?.linearDamping = 0
         physicsBody?.set(mask: mask)
     }
+    
+    
 }

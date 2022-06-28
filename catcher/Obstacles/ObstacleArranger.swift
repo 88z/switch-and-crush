@@ -17,6 +17,7 @@ class ObstacleArranger {
     let leftBorderX: CGFloat
     let rightBorderX: CGFloat
     let hPadding = CGFloat(10)
+    let initialSpeed: CGFloat
     
     let obstacleMask: Mask
     
@@ -31,7 +32,8 @@ class ObstacleArranger {
          startPointY: CGFloat,
          leftBorderX:CGFloat,
          rightBorderX: CGFloat,
-         obstacleMask: Mask
+         obstacleMask: Mask,
+         initialSpeed: CGFloat
          ) {
         self.scene = scene
         self.obstacleCount = obstacleCount
@@ -40,6 +42,7 @@ class ObstacleArranger {
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
+        self.initialSpeed = initialSpeed
         
     }
     
@@ -47,9 +50,10 @@ class ObstacleArranger {
         let obstacle = Obstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
         obstacle.state = state
         obstacle.position = positionFor(obstacle)
-        obstacle.physicsBody?.velocity.dy = 20
+        obstacle.physicsBody?.velocity.dy = initialSpeed
         scene?.addChild(obstacle)
         obstacles.append(obstacle)
+
     }
     
     func arrange() {

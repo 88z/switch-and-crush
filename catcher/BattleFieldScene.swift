@@ -23,7 +23,24 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     var heroState: State {
         return hero.state
     }
-    private var fallSpeed = CGFloat(-3)
+    
+    private var fallSpeed: CGFloat {
+        get {
+            guard let obstacle = obstacles().first as? Obstacle else {
+                return CGFloat(0)
+            }
+            return obstacle.velocity
+        }
+        set {
+            let obstacles = obstacles()
+            for obstacle in obstacles {
+                if let obstacle = obstacle as? Obstacle {
+                    obstacle.velocity = newValue
+                }
+            }
+        }
+    }
+    
     var battleDelegate: BattleDelegate?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
     let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
@@ -43,14 +60,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor.background()
-        let center = CGPoint(x: frame.midX, y: frame.midY)
-        hero.position = center
+        hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
         addChild(hero)
         
         hero.physicsBody?.set(mask: heroMask)
 
         let cameraNode = SKCameraNode()
-        cameraNode.position = center
+        cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
             
         addChild(cameraNode)
         camera = cameraNode
@@ -60,16 +76,11 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func start(level: Level) {
         self.level = level
-        self.fallSpeed = -level.initialSpeed
+        self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
         hero.state = level.initialState
-        obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: hero.position.y - frame.size.height, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask)
+        obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
         obstacleArranger.arrange()
-    }
-    
-    override func didFinishUpdate() {
-        hero.updateWith(moveVector: CGVector(dx: frame.midX - hero.position.x, dy: fallSpeed))
-        adjustCameraAndBorders()
     }
     
     private func adjustCameraAndBorders() {
@@ -95,9 +106,15 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            breakHero(hero, contactPoint: contact.contactPoint)
             battleDelegate?.crashed()
         }
        
+    }
+    
+    func breakHero(_ hero: Hero, contactPoint: CGPoint) {
+        let shatter = HeroShatter(hero: hero)
+        shatter.shatter(contactPoint: contactPoint)
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
@@ -117,12 +134,17 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func obstacles() -> [SKNode] {
+        return self[String(describing: Obstacle.self)]
+    }
+    
     func speedUp() {
         guard let level = self.level else {
             return
         }
-        fallSpeed = fallSpeed - level.acceleration
+        fallSpeed = fallSpeed + level.acceleration
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         hero.toggleState()
