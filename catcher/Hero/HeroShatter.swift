@@ -22,7 +22,7 @@ class HeroShatter {
         self.heroRadius = frame.size.height/2
     }
     
-    func shatter(contactPoint: CGPoint) {
+    func shatter(contactPoint: CGPoint,  completion: @escaping()->Void) {
         guard let scene = hero.scene else {
             return
         }
@@ -58,11 +58,18 @@ class HeroShatter {
             atom.physicsBody?.applyImpulse(CGVector(dx: i*0.02, dy: 0.01))
             i = i * -1
         }
+        
         let fadeAction = SKAction.fadeOut(withDuration: 2)
+        let group = DispatchGroup()
         for atom in atoms {
+            group.enter()
             atom.run(fadeAction) {
                 atom.removeFromParent()
+                group.leave()
             }
+        }
+        group.notify(queue: .main) {
+            completion()
         }
     }
 }

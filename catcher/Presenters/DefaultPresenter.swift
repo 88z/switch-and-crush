@@ -50,7 +50,7 @@ class DefaultPresenter: BasePresenter {
     
     private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: Level(obstacleCount: 100, initialSpeed: 100, acceleration: 10, name:"default", initialState: startState, userInterationEnabled: true))
+        battleFieldScene?.start(level: Level(obstacleCount: 20, initialSpeed: 200, acceleration: 10, name:"default", initialState: startState, userInterationEnabled: true))
     }
     
     override func oneActionScenePressed(scene: OneActionScene) {

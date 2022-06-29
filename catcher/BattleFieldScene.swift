@@ -15,6 +15,8 @@ protocol BattleDelegate {
 }
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
+    
+    
 
     private let hero = Hero(radius: 8)
 
@@ -115,7 +117,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
         fallSpeed = 0
         let shatter = HeroShatter(hero: hero)
-        shatter.shatter(contactPoint: contactPoint)
+        shatter.shatter(contactPoint: contactPoint) {
+            
+        }
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
@@ -150,4 +154,5 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         hero.toggleState()
     }
+    
 }

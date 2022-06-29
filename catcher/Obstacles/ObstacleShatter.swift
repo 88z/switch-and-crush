@@ -50,7 +50,7 @@ class ObstacleShatter {
         }
         var i = 1
         for atom in collisionAtoms {
-            atom.physicsBody?.applyImpulse(CGVector(dx: 3*i   , dy: 1))
+            atom.physicsBody?.applyImpulse(CGVector(dx: 3*i, dy: 1))
             i = i * -1
         }
         

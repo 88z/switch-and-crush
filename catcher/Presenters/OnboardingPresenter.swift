@@ -30,7 +30,7 @@ class OnboardingPresenter: BasePresenter {
     override func oneActionScenePressed(scene: OneActionScene) {
         if scene == thisIsBallUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 100, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false))
+            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false))
         } else if scene == secondStepUI {
             vc?.hideUI()
             guard let vc = vc else {

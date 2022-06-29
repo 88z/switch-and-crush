@@ -131,6 +131,13 @@
 			path = Hero;
 			sourceTree = "<group>";
 		};
+		2391E95B286CDBE10043BCA4 /* Shatter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shatter;
+			sourceTree = "<group>";
+		};
 		8012B4F72545841000ACBCC0 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +237,7 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
+				2391E95B286CDBE10043BCA4 /* Shatter */,
 				809AD88A25619D4C0057C76E /* Fonts */,
 				806B9DDB25455616003CB4EE /* Levels */,
 				804C3AB3254551DE0012EDD8 /* UI */,
