@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     
     private var uiView: SKView?
     private var menuScene: OneActionScene!
-    private var isOnboarding = true
+    private var isOnboarding = false
     private var presenter: GamePresenter!
     
     

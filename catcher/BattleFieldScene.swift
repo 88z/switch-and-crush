@@ -113,6 +113,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
+        fallSpeed = 0
         let shatter = HeroShatter(hero: hero)
         shatter.shatter(contactPoint: contactPoint)
     }

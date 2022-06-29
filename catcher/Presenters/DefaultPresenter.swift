@@ -36,12 +36,12 @@ class DefaultPresenter: BasePresenter {
     
     
     override func crashed() {
-        guard let vc = vc else {
-            return
-        }
-        vc.freezeInteraction()
-        let newPresenter = DefaultPresenter(vc: vc, showIntro: true, startState: battleFieldScene.heroState)
-        vc.set(presenter:newPresenter)
+//        guard let vc = vc else {
+//            return
+//        }
+//        vc.freezeInteraction()
+//        let newPresenter = DefaultPresenter(vc: vc, showIntro: true, startState: battleFieldScene.heroState)
+//        vc.set(presenter:newPresenter)
     }
     
     override func didFinish(level:Level) {
