@@ -25,8 +25,8 @@ class DefaultPresenter: BasePresenter {
     override func present(){
         super.present()
         if showIntro {
-            let menuScene = OneActionScene(size: UIScreen.main.bounds.size, elements:[])
-            menuScene.oneActionSceneDelegate = self
+            let menuScene = UIScene(size: UIScreen.main.bounds.size, elements:[])
+            menuScene.delegate = self
             vc?.showUI(scene: menuScene)
         } else {
             startGame()
@@ -53,7 +53,16 @@ class DefaultPresenter: BasePresenter {
         battleFieldScene?.start(level: Level(obstacleCount: 20, initialSpeed: 200, acceleration: 10, name:"default", initialState: startState, userInterationEnabled: true))
     }
     
-    override func oneActionScenePressed(scene: OneActionScene) {
+    override func uiScenePressed(scene: UIScene) {
         startGame()
+    }
+    
+    override func crashAnimated(scene: BattleFieldScene) {
+        super.crashAnimated(scene: scene)
+        showGameOver()
+    }
+    
+    func showGameOver() {
+        
     }
 }

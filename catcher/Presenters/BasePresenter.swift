@@ -10,7 +10,7 @@
 import Foundation
 import SpriteKit
 
-class BasePresenter: NSObject, GamePresenter, SKSceneDelegate, BattleDelegate, OneActionSceneDelegate {
+class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDelegate, UISceneDelegate {
     
     private var backgroundManager: InfiniteBackgroundManager?
     public weak var vc: GameViewController?
@@ -45,7 +45,11 @@ class BasePresenter: NSObject, GamePresenter, SKSceneDelegate, BattleDelegate, O
         
     }
     
-    func oneActionScenePressed(scene: OneActionScene) {
+    func uiScenePressed(scene: UIScene) {
+        
+    }
+    
+    func crashAnimated(scene: BattleFieldScene) {
         
     }
 }

@@ -14,11 +14,13 @@ protocol BattleDelegate {
     func didFinish(level:Level)
 }
 
-class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
-    
-    
+protocol BattleFieldSceneDelegate: SKSceneDelegate {
+    func crashAnimated(scene: BattleFieldScene)
+}
 
-    private let hero = Hero(radius: 8)
+
+class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
+    private let hero = Hero(radius: 10)
 
     private let heroTopOffset: CGFloat
 
@@ -115,10 +117,16 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
-        fallSpeed = 0
         let shatter = HeroShatter(hero: hero)
-        shatter.shatter(contactPoint: contactPoint) {
+        shatter.shatter(contactPoint: contactPoint) { [weak self] in
+            guard let self = self else {
+                return
+            }
             
+            guard let delegate = self.delegate as? BattleFieldSceneDelegate else {
+                return
+            }
+            delegate.crashAnimated(scene: self)
         }
     }
     

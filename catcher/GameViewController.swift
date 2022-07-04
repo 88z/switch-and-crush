@@ -12,8 +12,8 @@ import GameplayKit
 class GameViewController: UIViewController {
     
     private var uiView: SKView?
-    private var menuScene: OneActionScene!
-    private var isOnboarding = false
+    private var menuScene: UIScene!
+    private var isOnboarding = true
     private var presenter: GamePresenter!
     
     

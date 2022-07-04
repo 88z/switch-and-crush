@@ -9,15 +9,15 @@ import Foundation
 import SpriteKit
 
 
-protocol OneActionSceneDelegate {
-    func oneActionScenePressed(scene: OneActionScene)
+protocol UISceneDelegate {
+    func uiScenePressed(scene: UIScene)
 }
 
-class OneActionScene:SKScene {
-    var oneActionSceneDelegate: OneActionSceneDelegate?
-    let elements: [OneActionSceneElement]
+class UIScene:SKScene {
+    var uiSceneDelegate: UISceneDelegate?
+    let elements: [UISceneElement]
     
-    init(size: CGSize, elements: [OneActionSceneElement]) {
+    init(size: CGSize, elements: [UISceneElement]) {
         self.elements = elements
         super.init(size: size)
         self.backgroundColor = .clear
@@ -28,15 +28,15 @@ class OneActionScene:SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func add(_ element:OneActionSceneElement) {
+    func add(_ element:UISceneElement) {
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(element.delayBeforePresent)) {
-            if element is OneActionSceneText {
-                self.addText(element as! OneActionSceneText)
+            if element is UISceneText {
+                self.addText(element as! UISceneText)
             }
         }
     }
     
-    func addText(_ text:OneActionSceneText) {
+    func addText(_ text:UISceneText) {
         let node = TextTypeNode(text: text.text, font: text.font, color: text.color)
         node.preferredMaxLayoutWidth = 300
         node.numberOfLines = 10
@@ -53,7 +53,7 @@ class OneActionScene:SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        oneActionSceneDelegate?.oneActionScenePressed(scene: self)
+        uiSceneDelegate?.uiScenePressed(scene: self)
     }
     
 }
