@@ -9,14 +9,17 @@ import Foundation
 import SpriteKit
 
 class UISceneElement {
-    let position: CGPoint
     let color: UIColor
     let delayBeforePresent: Int
+    let position: CGPoint
+    let font = UIFont(name: "MajorMonoDisplay-Regular", size: 24)!
+    let name: String
     
-    init(position: CGPoint, color: UIColor, delayBeforePresent: Int) {
-        self.position = position
+    init(position: CGPoint, color: UIColor, delayBeforePresent: Int, name: String="") {
         self.color = color
         self.delayBeforePresent = delayBeforePresent
+        self.position = position
+        self.name = name
     }
 }
 

@@ -10,14 +10,14 @@ import SpriteKit
 
 class UISceneText: UISceneElement {
     let text: String
-    let font: UIFont
-    init(position: CGPoint, color: UIColor, delayBeforePresent: Int, text:String, font: UIFont) {
+    init(position: CGPoint, color: UIColor, delayBeforePresent: Int, text:String) {
         self.text = text
-        self.font = font
-        super.init(position: position, color: color, delayBeforePresent: delayBeforePresent)
+        super.init(position: position, color: color, delayBeforePresent: delayBeforePresent, name: text)
     }
     
     convenience init(position: CGPoint, delayBeforePresent: Int, text:String) {
-        self.init(position: position, color: .white, delayBeforePresent: delayBeforePresent, text: text, font: UIFont(name: "MajorMonoDisplay-Regular", size: 24)!)
+        self.init(position: position, color: .white, delayBeforePresent: delayBeforePresent, text: text)
     }
+    
+
 }

@@ -12,6 +12,9 @@ class DefaultPresenter: BasePresenter {
     
     let showIntro: Bool
     let startState: State
+    private weak var gameOverUI: UIScene?
+    
+    
     init(vc: GameViewController, showIntro: Bool, startState: State) {
         self.showIntro = showIntro
         self.startState = startState
@@ -36,12 +39,7 @@ class DefaultPresenter: BasePresenter {
     
     
     override func crashed() {
-//        guard let vc = vc else {
-//            return
-//        }
-//        vc.freezeInteraction()
-//        let newPresenter = DefaultPresenter(vc: vc, showIntro: true, startState: battleFieldScene.heroState)
-//        vc.set(presenter:newPresenter)
+
     }
     
     override func didFinish(level:Level) {
@@ -54,15 +52,37 @@ class DefaultPresenter: BasePresenter {
     }
     
     override func uiScenePressed(scene: UIScene) {
+        if scene == gameOverUI {
+            return
+        }
         startGame()
     }
     
-    override func crashAnimated(scene: BattleFieldScene) {
-        super.crashAnimated(scene: scene)
+    override func uiSceneElementPressed(scene: UIScene, element: UISceneElement) {
+        guard  scene == gameOverUI else {
+            return
+        }
+        guard let vc = vc else {
+            return
+        }
+        vc.freezeInteraction()
+        let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: battleFieldScene.heroState)
+        vc.set(presenter:newPresenter)
+    }
+    
+    override func crashAnimationFinished(scene: BattleFieldScene) {
+        super.crashAnimationFinished(scene: scene)
         showGameOver()
     }
     
     func showGameOver() {
-        
+        let frame = vc?.view.frame ?? .zero
+        let gameOverUI = UIScene(size: UIScreen.main.bounds.size, elements:
+                                    [UISceneButton(position: CGPoint(x: frame.midX, y: frame.midY), color: .white, delayBeforePresent: 0, text: "play again")
+            
+        ])
+        gameOverUI.uiSceneDelegate = self
+        vc?.showUI(scene: gameOverUI)
+        self.gameOverUI = gameOverUI
     }
 }

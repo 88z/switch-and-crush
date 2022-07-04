@@ -11,6 +11,7 @@ import Foundation
 import SpriteKit
 
 class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDelegate, UISceneDelegate {
+
     
     private var backgroundManager: InfiniteBackgroundManager?
     public weak var vc: GameViewController?
@@ -49,7 +50,11 @@ class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDe
         
     }
     
-    func crashAnimated(scene: BattleFieldScene) {
+    func uiSceneElementPressed(scene: UIScene, element: UISceneElement) {
+        
+    }
+    
+    func crashAnimationFinished(scene: BattleFieldScene) {
         
     }
 }

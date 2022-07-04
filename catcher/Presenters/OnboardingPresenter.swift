@@ -22,7 +22,7 @@ class OnboardingPresenter: BasePresenter {
             UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "Tap the screen to continue"),
             
         ])
-        thisIsBallUI.delegate = self
+        thisIsBallUI.uiSceneDelegate = self
         vc?.showUI(scene: thisIsBallUI)
         self.thisIsBallUI = thisIsBallUI
     }
@@ -47,7 +47,7 @@ class OnboardingPresenter: BasePresenter {
             let secondStepUI = UIScene(size: UIScreen.main.bounds.size, elements:[
                 UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 0, text: "Tap the screen To switch BALL color")
             ])
-            secondStepUI.delegate = self
+            secondStepUI.uiSceneDelegate = self
             vc?.showUI(scene: secondStepUI)
             self.secondStepUI = secondStepUI
         } 

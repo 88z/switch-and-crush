@@ -10,6 +10,7 @@
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
 		2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* UISceneText.swift */; };
 		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
+		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
 		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */; };
@@ -64,6 +65,7 @@
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		2388BA77287349BE00D27DBD /* UISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneText.swift; sourceTree = "<group>"; };
 		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
+		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		2391E959286BA0820043BCA4 /* HeroShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatter.swift; sourceTree = "<group>"; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				2388BA77287349BE00D27DBD /* UISceneText.swift */,
 				2388BA79287349F700D27DBD /* UISceneButton.swift */,
 				809DE936254F169400975BD5 /* TextTypeNode.swift */,
+				2388BA7D287351AC00D27DBD /* ButtonNode.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
+				2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */,
 				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,

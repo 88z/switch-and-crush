@@ -15,7 +15,7 @@ protocol BattleDelegate {
 }
 
 protocol BattleFieldSceneDelegate: SKSceneDelegate {
-    func crashAnimated(scene: BattleFieldScene)
+    func crashAnimationFinished(scene: BattleFieldScene)
 }
 
 
@@ -126,7 +126,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             guard let delegate = self.delegate as? BattleFieldSceneDelegate else {
                 return
             }
-            delegate.crashAnimated(scene: self)
+            delegate.crashAnimationFinished(scene: self)
         }
     }
     
