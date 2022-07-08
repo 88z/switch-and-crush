@@ -118,16 +118,12 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
         let shatter = HeroShatter(hero: hero)
-        shatter.shatter(contactPoint: contactPoint) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            guard let delegate = self.delegate as? BattleFieldSceneDelegate else {
-                return
-            }
-            delegate.crashAnimationFinished(scene: self)
+        shatter.shatter(contactPoint: contactPoint) {}
+        dimObstacles()
+        guard let delegate = delegate as? BattleFieldSceneDelegate else {
+            return
         }
+        delegate.crashAnimationFinished(scene: self)
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
@@ -161,6 +157,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         hero.toggleState()
+    }
+    
+    func dimObstacles() {
+        let dimAction = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
+        for obstacle in obstacles()  {
+            obstacle.run(dimAction)
+        }
     }
     
 }
