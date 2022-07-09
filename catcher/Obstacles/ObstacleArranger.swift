@@ -47,7 +47,7 @@ class ObstacleArranger {
     }
     
     func arrangeOne(with state: State) {
-        let obstacle = Obstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
+        let obstacle = PlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
         obstacle.state = state
         obstacle.position = positionFor(obstacle)
         obstacle.physicsBody?.velocity.dy = initialSpeed
@@ -70,7 +70,7 @@ class ObstacleArranger {
         obstacles = []
     }
     
-    func positionFor(_ obstacle:Obstacle) -> CGPoint{
+    func positionFor(_ obstacle:PlankObstacle) -> CGPoint{
 //        guard !obstacles.contains(obstacle) else {
 //            return .zero
 //        }

@@ -17,9 +17,11 @@ protocol UISceneDelegate {
 class UIScene:SKScene {
     var uiSceneDelegate: UISceneDelegate?
     let elements: [UISceneElement]
+    let uifreezeTime: CGFloat
     
-    init(size: CGSize, elements: [UISceneElement]) {
+    init(size: CGSize, uifreezeTime: CGFloat = 0, elements: [UISceneElement]) {
         self.elements = elements
+        self.uifreezeTime = uifreezeTime
         super.init(size: size)
         self.backgroundColor = .clear
     }
@@ -63,6 +65,14 @@ class UIScene:SKScene {
         for element in elements {
             add(element)
         }
+        if uifreezeTime == 0 {
+            return
+        }
+        
+        view.isUserInteractionEnabled = false
+        Timer.scheduledTimer(withTimeInterval: uifreezeTime, repeats: false, block: { [unowned self] timer in
+            view.isUserInteractionEnabled = true
+        })
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

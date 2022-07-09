@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  catcher
+
+  Created by Aleksandr Zhuravlev on 08.07.2022.
+  
+*/
+
+"This is BALL" = "Это шар";
+"Tap to continue" = "Нажми на экран для продолжения";
+"Tap to switch BALL color" = "Нажми на экран, чтобы переключить его цвет";
+"Game Over" = "Ты разбился";
+"play again" = "Сыграть еще раз";
+"switch BALL color now" = "переключи цвет шара еще раз";
+"red ball crashes red blocks" = "красные блоки разбиваются красным шаром";
+"blue ball crashes blue blocks" = "синие блоки разбиваются синим шаром";
+"switch BALL color to start the game" = "переключи цвет, чтобы начать игру";    

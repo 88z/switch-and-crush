@@ -18,7 +18,7 @@ class TextTypeNode: SKLabelNode {
         attributedText.addAttributes([.foregroundColor: UIColor.clear, .font: font], range: NSRange(location: 0, length: text.count))
         self.attributedText = attributedText
         
-        type(delay: 0.1)
+        type(delay: 0.05)
     }
     
     private func type(delay: Double) {

@@ -48,7 +48,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     var battleDelegate: BattleDelegate?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
     let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
-    var obstacleArranger: ObstacleArranger!
+//    var obstacleArranger: ObstacleArranger!
     private var level: Level?
     private var progress: Int = 0
     
@@ -63,6 +63,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
+        isUserInteractionEnabled = false
+        
         backgroundColor = UIColor.background()
         hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
         addChild(hero)
@@ -83,7 +85,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
         hero.state = level.initialState
-        obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
+        let obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
         obstacleArranger.arrange()
     }
     

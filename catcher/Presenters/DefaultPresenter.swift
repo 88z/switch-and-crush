@@ -48,7 +48,7 @@ class DefaultPresenter: BasePresenter {
     
     private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: Level(obstacleCount: 20, initialSpeed: 200, acceleration: 10, name:"default", initialState: startState, userInterationEnabled: true))
+        battleFieldScene?.start(level: Level(obstacleCount: 30, initialSpeed: 300, acceleration: 10, name:"default", initialState: startState, userInterationEnabled: true))
     }
     
     override func uiScenePressed(scene: UIScene) {
@@ -78,8 +78,8 @@ class DefaultPresenter: BasePresenter {
     func showGameOver() {
         let frame = vc?.view.frame ?? .zero
         let gameOverUI = UIScene(size: UIScreen.main.bounds.size, elements:[
-            UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .white, delayBeforePresent: 0, text: "Game Over"),
-            UISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .white, delayBeforePresent: 1, text: "play again")
+            UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .white, delayBeforePresent: 0, text: "Game Over".localiz()),
+            UISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .white, delayBeforePresent: 1, text: "play again".localiz())
         ])
         gameOverUI.uiSceneDelegate = self
         vc?.showUI(scene: gameOverUI)

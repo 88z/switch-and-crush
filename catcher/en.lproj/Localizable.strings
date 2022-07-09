@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  catcher
+
+  Created by Aleksandr Zhuravlev on 08.07.2022.
+  
+*/
+
+"This is BALL" = "This is BALL";
+"Tap the screen to continue" = "Tap the screen to continue";
+"Tap to switch BALL color" = "Tap the screen To switch BALL color";
+"Game Over" = "Game Over";
+"play again" = "play again";
+"red ball crashes red blocks" = "red ball crashes red blocks";
+"switch BALL color now" = "switch BALL color now";
+"blue ball crashes blue blocks" = "blue ball crashes blue blocks";
+"switch BALL color to start the game" ="switch BALL color to start the game";

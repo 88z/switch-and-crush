@@ -9,29 +9,48 @@ import Foundation
 import SpriteKit
 
 class OnboardingPresenter: BasePresenter {
-    
-    private weak var thisIsBallUI: UIScene?
-    private weak var secondStepUI: UIScene?
+    private weak var switchColorUI: UIScene?
+    private weak var redObstacleUI: UIScene?
+    private weak var blueObstacleUI: UIScene?
     
     override func present(){
         super.present()
         let frame = vc?.view.frame ?? .zero
         
-        let thisIsBallUI = UIScene(size: UIScreen.main.bounds.size, elements:[
-            UISceneText(position: CGPoint(x: frame.midX - 40, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 1, text: "This is BALL"),
-            UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "Tap the screen to continue"),
+        let thisIsBallUI = UIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
+            UISceneText(position: CGPoint(x: frame.midX - 40, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "This is BALL".localiz()),
+            UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 1, text: "Tap to switch BALL color".localiz()),
             
         ])
         thisIsBallUI.uiSceneDelegate = self
         vc?.showUI(scene: thisIsBallUI)
-        self.thisIsBallUI = thisIsBallUI
+        self.switchColorUI = thisIsBallUI
     }
     
     override func uiScenePressed(scene: UIScene) {
-        if scene == thisIsBallUI {
+        if scene == switchColorUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false))
-        } else if scene == secondStepUI {
+            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.second, userInterationEnabled: false))
+            let frame = vc?.view.frame ?? .zero
+            let redObstacleUI = UIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "red ball crashes red blocks".localiz()),
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color now".localiz())
+            ])
+            redObstacleUI.uiSceneDelegate = self
+            vc?.showUI(scene: redObstacleUI)
+            self.redObstacleUI = redObstacleUI
+        } else if scene == redObstacleUI {
+            vc?.hideUI()
+            battleFieldScene?.start(level: Level(obstacleCount: 2, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false))
+            let frame = vc?.view.frame ?? .zero
+            let blueObstacleUI = UIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "blue ball crashes blue blocks".localiz()),
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color to start the game".localiz())
+            ])
+            blueObstacleUI.uiSceneDelegate = self
+            vc?.showUI(scene: blueObstacleUI)
+            self.blueObstacleUI = redObstacleUI
+        } else {
             vc?.hideUI()
             guard let vc = vc else {
                 return
@@ -39,17 +58,5 @@ class OnboardingPresenter: BasePresenter {
             let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: State.second)
             vc.set(presenter:newPresenter)
         }
-    }
-    
-    override func didFinish(level:Level) {
-        if level.name == "1" {
-            let frame = vc?.view.frame ?? .zero
-            let secondStepUI = UIScene(size: UIScreen.main.bounds.size, elements:[
-                UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 0, text: "Tap the screen To switch BALL color")
-            ])
-            secondStepUI.uiSceneDelegate = self
-            vc?.showUI(scene: secondStepUI)
-            self.secondStepUI = secondStepUI
-        } 
     }
 }
