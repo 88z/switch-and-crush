@@ -12,7 +12,7 @@ class UISceneElement {
     let color: UIColor
     let delayBeforePresent: Int
     let position: CGPoint
-    let font = UIFont(name: "MajorMonoDisplay-Regular", size: 24)!
+    let font = FONT(size: 24)!
     let name: String
     
     init(position: CGPoint, color: UIColor, delayBeforePresent: Int, name: String="") {

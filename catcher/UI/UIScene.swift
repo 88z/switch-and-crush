@@ -76,7 +76,7 @@ class UIScene:SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        uiSceneDelegate?.uiScenePressed(scene: self)
         for element in elements {
             guard let node = childNode(withName: element.name) else {
                 continue
@@ -90,7 +90,7 @@ class UIScene:SKScene {
             }
             
         }
-        uiSceneDelegate?.uiScenePressed(scene: self)
+        
     }
     
 }
