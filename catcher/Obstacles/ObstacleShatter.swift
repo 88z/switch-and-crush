@@ -33,7 +33,7 @@ class ObstacleShatter {
         for row in 0..<rowCount {
             for col in 0..<colCount {
                 let atom = StateNode(rect:CGRect(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row), width: CGFloat(atomSize), height: CGFloat(atomSize)))
-                atom.state = obstacle.state
+                atom.state = obstacle.state(at: contactPoint)
                 atom.lineWidth = 0
                 atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
                 atom.physicsBody?.affectedByGravity = false

@@ -8,7 +8,16 @@
 import Foundation
 import SpriteKit
 
-class PlankObstacle: Obstacle {
+class PlankObstacle: StateNode, Obstacle {
+    
+    var velocity: CGFloat {
+            set {
+                physicsBody?.velocity.dy = newValue
+            }
+            get {
+                physicsBody?.velocity.dy ?? 0
+            }
+    }
     
     convenience init(mask: Mask, width: CGFloat) {
         let rect = CGRect(x: 0, y: 0, width: width, height: 21)
@@ -22,5 +31,7 @@ class PlankObstacle: Obstacle {
         physicsBody?.set(mask: mask)
     }
     
-    
+    func state(at point: CGPoint) -> State {
+        return state
+    }
 }

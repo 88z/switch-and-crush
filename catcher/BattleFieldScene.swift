@@ -38,7 +38,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         set {
             let obstacles = obstacles()
             for obstacle in obstacles {
-                if let obstacle = obstacle as? Obstacle {
+                if var obstacle = obstacle as? Obstacle {
                     obstacle.velocity = newValue
                 }
             }
@@ -108,7 +108,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             hero = bNode as! Hero
             obstacle = aNode as! Obstacle
         }
-        if hero.state == obstacle.state {
+        if hero.state == obstacle.state(at: contact.contactPoint) {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);

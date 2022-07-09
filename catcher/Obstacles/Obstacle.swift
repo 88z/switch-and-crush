@@ -8,13 +8,10 @@
 import Foundation
 import SpriteKit
 
-class Obstacle: StateNode {
-    var velocity: CGFloat {
-            set {
-                physicsBody?.velocity.dy = newValue
-            }
-            get {
-                physicsBody?.velocity.dy ?? 0
-            }
-    }
+protocol Obstacle {
+    var velocity: CGFloat { get set }
+    var frame: CGRect { get }
+    var scene: SKScene? { get }
+    func removeFromParent()
+    func state(at point:CGPoint) -> State
 }
