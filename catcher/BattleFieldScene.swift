@@ -48,9 +48,11 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     var battleDelegate: BattleDelegate?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
     let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
-//    var obstacleArranger: ObstacleArranger!
+    
     private var level: Level?
     private var progress: Int = 0
+    
+    private let counterNode = SKLabelNode()
     
     init (size: CGSize, heroTopOffset: CGFloat) {
         self.heroTopOffset = heroTopOffset
@@ -68,25 +70,32 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = UIColor.background()
         hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
         addChild(hero)
-        
         hero.physicsBody?.set(mask: heroMask)
 
         let cameraNode = SKCameraNode()
         cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
-            
         addChild(cameraNode)
         camera = cameraNode
+        
+        counterNode.position = CGPoint(x: frame.midX, y: frame.maxY - 75)
+        addChild(counterNode)
         
         physicsWorld.contactDelegate = self
     }
     
-    func start(level: Level) {
+    func start(level: Level, shouldShowCounter:Bool = true) {
         self.level = level
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
         hero.state = level.initialState
+        progress = 0
         let obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
         obstacleArranger.arrange()
+        
+        counterNode.isHidden = !shouldShowCounter
+        if shouldShowCounter {
+            updateCounter()
+        }
     }
     
     private func adjustCameraAndBorders() {
@@ -138,11 +147,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         guard let obstacleCount = level?.obstacleCount else {
             return
         }
+        updateCounter()
         if progress >= obstacleCount {
             if let level = self.level {
                 battleDelegate?.didFinish(level: level)
             }
         }
+        
     }
     
     func obstacles() -> [SKNode] {
@@ -168,4 +179,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func updateCounter() {
+        let text = "\(progress) / \(level?.obstacleCount ?? 0)"
+        let attributedText = NSMutableAttributedString(string: text)
+        attributedText.addAttributes([.foregroundColor: UIColor.white, .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
+        counterNode.attributedText = attributedText
+    }
 }

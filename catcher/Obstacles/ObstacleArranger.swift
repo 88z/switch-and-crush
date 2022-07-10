@@ -64,7 +64,7 @@ class ObstacleArranger {
         guard  obstacleCount > 1 else {
             return
         }
-        for _ in 1..<obstacleCount-1 {
+        for _ in 1..<obstacleCount {
             arrangeOne(with: State.random())
         }
         obstacles = []

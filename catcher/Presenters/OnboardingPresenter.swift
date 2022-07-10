@@ -30,10 +30,10 @@ class OnboardingPresenter: BasePresenter {
     override func uiScenePressed(scene: UIScene) {
         if scene == switchColorUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.second, userInterationEnabled: false))
+            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.second, userInterationEnabled: false), shouldShowCounter: false)
             let frame = vc?.view.frame ?? .zero
             let redObstacleUI = UIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
-                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "red ball crashes red blocks".localiz()),
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "red BALL crashes red blocks".localiz()),
                 UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color now".localiz())
             ])
             redObstacleUI.uiSceneDelegate = self
@@ -41,10 +41,10 @@ class OnboardingPresenter: BasePresenter {
             self.redObstacleUI = redObstacleUI
         } else if scene == redObstacleUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(obstacleCount: 2, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false))
+            battleFieldScene?.start(level: Level(obstacleCount: 1, initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false), shouldShowCounter: false)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = UIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
-                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "blue ball crashes blue blocks".localiz()),
+                UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),
                 UISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color to start the game".localiz())
             ])
             blueObstacleUI.uiSceneDelegate = self

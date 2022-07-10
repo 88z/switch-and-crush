@@ -12,6 +12,6 @@
 "Game Over" = "Ты разбился";
 "play again" = "Сыграть еще раз";
 "switch BALL color now" = "переключи цвет шара еще раз";
-"red ball crashes red blocks" = "красные блоки разбиваются красным шаром";
-"blue ball crashes blue blocks" = "синие блоки разбиваются синим шаром";
+"red BALL crashes red blocks" = "красные блоки разбиваются красным шаром";
+"blue BALL crashes blue blocks" = "синие блоки разбиваются синим шаром";
 "switch BALL color to start the game" = "переключи цвет, чтобы начать игру";    
