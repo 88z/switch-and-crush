@@ -78,8 +78,8 @@ class DefaultPresenter: BasePresenter {
     func showGameOver() {
         let frame = vc?.view.frame ?? .zero
         let gameOverUI = UIScene(size: UIScreen.main.bounds.size, elements:[
-            UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .white, delayBeforePresent: 0, text: "Game Over".localiz()),
-            UISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .white, delayBeforePresent: 1, text: "play again".localiz())
+            UISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "Game Over".localiz()),
+            UISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz())
         ])
         gameOverUI.uiSceneDelegate = self
         vc?.showUI(scene: gameOverUI)

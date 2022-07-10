@@ -37,7 +37,6 @@
 		8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8087E4602544A75800340D10 /* Launch Screen.storyboard */; };
 		80890CFE2540058A00F5552B /* PlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890CFD2540058A00F5552B /* PlankObstacle.swift */; };
 		80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890D05254006C200F5552B /* ObstacleArranger.swift */; };
-		809AD8C32561A0500057C76E /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 809AD8C22561A0500057C76E /* RobotoMono-Regular.ttf */; };
 		809AD8C92561A3A00057C76E /* UISceneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809AD8C82561A3A00057C76E /* UISceneElement.swift */; };
 		809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DE936254F169400975BD5 /* TextTypeNode.swift */; };
 		80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4C33625396EE200EEB097 /* QuadraticSolver.swift */; };
@@ -100,7 +99,6 @@
 		8087E4602544A75800340D10 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		80890CFD2540058A00F5552B /* PlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlankObstacle.swift; sourceTree = "<group>"; };
 		80890D05254006C200F5552B /* ObstacleArranger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleArranger.swift; sourceTree = "<group>"; };
-		809AD8C22561A0500057C76E /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		809AD8C82561A3A00057C76E /* UISceneElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneElement.swift; sourceTree = "<group>"; };
 		809DE936254F169400975BD5 /* TextTypeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTypeNode.swift; sourceTree = "<group>"; };
 		80A4C33625396EE200EEB097 /* QuadraticSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticSolver.swift; sourceTree = "<group>"; };
@@ -229,14 +227,6 @@
 			path = Obstacles;
 			sourceTree = "<group>";
 		};
-		809AD88A25619D4C0057C76E /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				809AD8C22561A0500057C76E /* RobotoMono-Regular.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		80A4C33225396EAF00EEB097 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				2391E95B286CDBE10043BCA4 /* Shatter */,
-				809AD88A25619D4C0057C76E /* Fonts */,
 				806B9DDB25455616003CB4EE /* Levels */,
 				804C3AB3254551DE0012EDD8 /* UI */,
 				80890CFC2540057800F5552B /* Obstacles */,
@@ -439,7 +428,6 @@
 				2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */,
 				80CA5F3E2524F187003E900D /* Main.storyboard in Resources */,
 				80CA5F402524F18C003E900D /* Assets.xcassets in Resources */,
-				809AD8C32561A0500057C76E /* RobotoMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

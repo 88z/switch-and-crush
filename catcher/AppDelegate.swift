@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        LanguageManager.shared.defaultLanguage = .ru
+        LanguageManager.shared.defaultLanguage = .en
         return true
     }
 

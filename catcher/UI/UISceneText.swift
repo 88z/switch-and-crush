@@ -16,7 +16,7 @@ class UISceneText: UISceneElement {
     }
     
     convenience init(position: CGPoint, delayBeforePresent: Int, text:String) {
-        self.init(position: position, color: .white, delayBeforePresent: delayBeforePresent, text: text)
+        self.init(position: position, color: UIColor.text(), delayBeforePresent: delayBeforePresent, text: text)
     }
     
 
