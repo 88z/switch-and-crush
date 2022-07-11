@@ -11,41 +11,44 @@ import SpriteKit
 class ObstacleShatter {
     private let atomSize: CFloat
     private let obstacle: Obstacle
-    private let frame: CGRect
+    private var frame: CGRect {
+        get {
+            guard let scene = obstacle.node.scene else {
+                fatalError("obstacle has no scene")
+            }
+            guard let parent = obstacle.node.parent  else {
+                return obstacle.node.frame
+            }
+            return scene.convertRect(obstacle.node.frame, from: parent)
+        }
+    }
     private let rowCount:Int = 3
     init (obstacle: Obstacle) {
         self.obstacle = obstacle
-        frame = obstacle.frame
-        atomSize = CFloat(Float(obstacle.frame.size.height)/Float(rowCount))
-
-        
+        atomSize = CFloat(Float(obstacle.node.frame.size.height)/Float(rowCount))
     }
+    
+    
+    private class func rootParent(of obstacle:Obstacle)->Obstacle {
+        var parent = obstacle
+        while parent.parent() != nil {
+            parent = parent.parent()!
+        }
+        return parent
+    }
+    
     func shatter(contactPoint: CGPoint) {
-        guard let scene = obstacle.scene else {
+        guard let scene = obstacle.node.scene else {
             return
         }
-        obstacle.removeFromParent()
-        
-        let colCount = Int(Float(obstacle.frame.size.width) / Float(atomSize))
-        
         var collisionAtoms:[SKShapeNode] = []
-        var atoms:[SKShapeNode] = []
-        for row in 0..<rowCount {
-            for col in 0..<colCount {
-                let atom = StateNode(rect:CGRect(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row), width: CGFloat(atomSize), height: CGFloat(atomSize)))
-                atom.state = obstacle.state(at: contactPoint)
-                atom.lineWidth = 0
-                atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
-                atom.physicsBody?.affectedByGravity = false
-                atom.physicsBody?.categoryBitMask = 0b1000
-                atom.physicsBody?.collisionBitMask = 0b1000
-                atom.physicsBody?.restitution = 1
-                scene.addChild(atom)
-                
-                if abs(contactPoint.x - atom.frame.midX) <= CGFloat(atomSize) {
-                    collisionAtoms.append(atom)
-                }
-                atoms.append(atom)
+        let rootParent = ObstacleShatter.rootParent(of: obstacle)
+        let atoms = atoms(from: rootParent)
+        for atom in atoms {
+            scene.addChild(atom)
+            let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
+            if abs(contactPoint.x - atomMid.x) <= CGFloat(atomSize) {
+                collisionAtoms.append(atom)
             }
         }
         var i = 1
@@ -60,6 +63,43 @@ class ObstacleShatter {
                 atom.removeFromParent()
             }
         }
+        rootParent.node.removeFromParent()
+    }
+    
+    func atoms(from obstacle:Obstacle) -> [SKShapeNode]{
+        var atoms:[SKShapeNode] = []
+        let parts = obstacle.parts()
+        
+        if parts.count > 0 {
+            for part in parts {
+                atoms.append(contentsOf: self.atoms(from:part))
+            }
+            return atoms
+        } else {
+            guard let scene = obstacle.node.scene else {
+                return []
+            }
+            
+            let frame = scene.convertRect(obstacle.node.frame, from: obstacle.node.parent ?? scene)
+            let colCount = Int(Float(frame.size.width) / Float(atomSize))
+            for row in 0..<rowCount {
+                for col in 0..<colCount {
+                    let atom = StateNode(rect:CGRect(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row), width: CGFloat(atomSize), height: CGFloat(atomSize)))
+                    atom.state = obstacle.state(at: .zero)
+                    atom.lineWidth = 0
+                    atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
+                    atom.physicsBody?.affectedByGravity = false
+                    atom.physicsBody?.categoryBitMask = 0b1000
+                    atom.physicsBody?.collisionBitMask = 0b1000
+                    atom.physicsBody?.restitution = 1
+                    atoms.append(atom)
+                }
+            }
+            return atoms
+        }
+        
+        
+        
     }
     
     

@@ -46,14 +46,21 @@ class ObstacleArranger {
         
     }
     
-    func arrangeOne(with state: State) {
+    func _arrangeOne(with state: State) {
         let obstacle = PlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
         obstacle.state = state
         obstacle.position = positionFor(obstacle)
-        obstacle.physicsBody?.velocity.dy = initialSpeed
+        obstacle.velocity = initialSpeed
         scene?.addChild(obstacle)
         obstacles.append(obstacle)
-
+    }
+    
+    func arrangeOne(with state: State) {
+        let obstacle = MultiStatePlankObstacle.twoPartsPlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
+        obstacle.position = positionFor(obstacle)
+        obstacle.velocity = initialSpeed
+        scene?.addChild(obstacle)
+        obstacles.append(obstacle)
     }
     
     func arrange() {
@@ -70,13 +77,7 @@ class ObstacleArranger {
         obstacles = []
     }
     
-    func positionFor(_ obstacle:PlankObstacle) -> CGPoint{
-//        guard !obstacles.contains(obstacle) else {
-//            return .zero
-//        }
-//        let left = leftBorderX
-//        let right = rightBorderX - obstacle.frame.width
-//        return CGPoint(x: CGFloat.random(in: left...right ), y:nextY())
+    func positionFor(_ obstacle:Obstacle) -> CGPoint{
         return CGPoint(x: leftBorderX, y:nextY())
     }
     

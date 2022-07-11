@@ -18,7 +18,9 @@
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23FD3D1A28784D3E007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23FD3D1C2879753D007C178C /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1B2879753D007C178C /* Obstacle.swift */; };
-		23FD3D1E28797A0A007C178C /* ObstacleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1D28797A0A007C178C /* ObstacleContainer.swift */; };
+		23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */; };
+		23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */; };
+		23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D21287CBFE4007C178C /* SKHelper.swift */; };
 		78C0F6E39B8DC654C626DC3F /* Pods_catcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */; };
@@ -80,7 +82,9 @@
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
-		23FD3D1D28797A0A007C178C /* ObstacleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleContainer.swift; sourceTree = "<group>"; };
+		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
+		23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStatePlankObstacle.swift; sourceTree = "<group>"; };
+		23FD3D21287CBFE4007C178C /* SKHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKHelper.swift; sourceTree = "<group>"; };
 		619FE2DCCAF04EEA0BBDACCB /* Pods_catcher_catcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcher_catcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
@@ -222,7 +226,8 @@
 				23FD3D1B2879753D007C178C /* Obstacle.swift */,
 				80890D05254006C200F5552B /* ObstacleArranger.swift */,
 				8087E45825446E4000340D10 /* ObstacleShatter.swift */,
-				23FD3D1D28797A0A007C178C /* ObstacleContainer.swift */,
+				23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */,
+				23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				80A4C33625396EE200EEB097 /* QuadraticSolver.swift */,
 				8033B22B2542B0D90050C162 /* Mask.swift */,
 				8012B525254606FA00ACBCC0 /* Colors.swift */,
+				23FD3D21287CBFE4007C178C /* SKHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				806B9DDD25455629003CB4EE /* Level.swift in Sources */,
 				8012B526254606FA00ACBCC0 /* Colors.swift in Sources */,
 				8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */,
+				23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */,
 				8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80890CFE2540058A00F5552B /* PlankObstacle.swift in Sources */,
@@ -465,9 +472,10 @@
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
-				23FD3D1E28797A0A007C178C /* ObstacleContainer.swift in Sources */,
+				23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */,
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
+				23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
 				2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */,
 				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,

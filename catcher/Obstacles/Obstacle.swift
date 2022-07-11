@@ -10,8 +10,8 @@ import SpriteKit
 
 protocol Obstacle {
     var velocity: CGFloat { get set }
-    var frame: CGRect { get }
-    var scene: SKScene? { get }
-    func removeFromParent()
+    var node: SKNode { get }
     func state(at point:CGPoint) -> State
+    func parts() -> [Obstacle]
+    func parent() -> Obstacle?
 }

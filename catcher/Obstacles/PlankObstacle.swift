@@ -9,6 +9,12 @@ import Foundation
 import SpriteKit
 
 class PlankObstacle: StateNode, Obstacle {
+    var node: SKNode {
+        get {
+            return self
+        }
+    }
+    
     
     var velocity: CGFloat {
             set {
@@ -33,5 +39,13 @@ class PlankObstacle: StateNode, Obstacle {
     
     func state(at point: CGPoint) -> State {
         return state
+    }
+    
+    func parts() -> [Obstacle] {
+        return []
+    }
+    
+    func parent() -> Obstacle? {
+        return parent as? Obstacle ?? nil
     }
 }

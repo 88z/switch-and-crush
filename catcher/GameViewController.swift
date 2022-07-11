@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     
     private var uiView: SKView?
     private var menuScene: UIScene!
-    private var isOnboarding = true
+    private var isOnboarding = false
     private var presenter: GamePresenter!
     
     
@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
         if isOnboarding {
             presenter = OnboardingPresenter(vc: self)
         } else {
-            presenter = DefaultPresenter(vc:self, showIntro: true, startState: State.first)
+            presenter = DefaultPresenter(vc:self, showIntro: false, startState: State.first)
         }
         set(presenter: presenter)
     }
