@@ -56,7 +56,7 @@ class ObstacleArranger {
     }
     
     func arrangeOne(with state: State) {
-        let obstacle = MultiStatePlankObstacle.twoPartsPlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
+        let obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
         obstacle.position = positionFor(obstacle)
         obstacle.velocity = initialSpeed
         scene?.addChild(obstacle)

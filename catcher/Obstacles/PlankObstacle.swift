@@ -25,7 +25,8 @@ class PlankObstacle: StateNode, Obstacle {
             }
     }
     
-    convenience init(mask: Mask, width: CGFloat) {
+
+    required convenience init(mask: Mask, width: CGFloat) {
         let rect = CGRect(x: 0, y: 0, width: width, height: 21)
         self.init(rect: rect)
         name = String(describing: Obstacle.self)

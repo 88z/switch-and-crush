@@ -9,6 +9,10 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKNode, Obstacle {
+    required convenience init(mask: Mask, width: CGFloat) {
+        fatalError("tou should implement it in the subclass")
+    }
+    
     var node: SKNode {
         return self
     }
@@ -47,4 +51,5 @@ class MultiStateObstacle: SKNode, Obstacle {
     func parent() -> Obstacle? {
         return parent as? Obstacle ?? nil
     }
+    
 }

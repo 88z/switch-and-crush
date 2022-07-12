@@ -27,12 +27,12 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         }
     }
     
-    class func twoPartsPlankObstacle(mask:Mask, width: CGFloat) -> MultiStatePlankObstacle{
+    required convenience init(mask: Mask, width: CGFloat) {
         var leftPartSize = 0.25
         if Bool.random() {
             leftPartSize = 0.75
         }
-        var rightPartSize = 1-leftPartSize
+        let rightPartSize = 1-leftPartSize
         
         var leftPartState = State.first
         var rightPartState = State.second
@@ -41,8 +41,9 @@ class MultiStatePlankObstacle: MultiStateObstacle {
             rightPartState = State.first
         }
         
-        return MultiStatePlankObstacle(mask: mask, width: width, states: [leftPartState, rightPartState], partSizes: [leftPartSize, rightPartSize])
+        self.init(mask: mask, width: width, states: [leftPartState, rightPartState], partSizes: [leftPartSize, rightPartSize])
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -14,4 +14,5 @@ protocol Obstacle {
     func state(at point:CGPoint) -> State
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
+    init(mask: Mask, width: CGFloat)
 }

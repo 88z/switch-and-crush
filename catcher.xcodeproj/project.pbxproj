@@ -12,7 +12,7 @@
 		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
 		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
 		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
-		23B33AC5287813AF00827535 /* UIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* UIConfig.swift */; };
+		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 23FD3D1728784BF2007C178C /* LanguageManager-iOS */; };
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -21,6 +21,7 @@
 		23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */; };
 		23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */; };
 		23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D21287CBFE4007C178C /* SKHelper.swift */; };
+		23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D23287D4DC6007C178C /* LevelFactory.swift */; };
 		78C0F6E39B8DC654C626DC3F /* Pods_catcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */; };
@@ -78,13 +79,14 @@
 		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
 		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		2391E959286BA0820043BCA4 /* HeroShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatter.swift; sourceTree = "<group>"; };
-		23B33AC4287813AF00827535 /* UIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfig.swift; sourceTree = "<group>"; };
+		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStatePlankObstacle.swift; sourceTree = "<group>"; };
 		23FD3D21287CBFE4007C178C /* SKHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKHelper.swift; sourceTree = "<group>"; };
+		23FD3D23287D4DC6007C178C /* LevelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFactory.swift; sourceTree = "<group>"; };
 		619FE2DCCAF04EEA0BBDACCB /* Pods_catcher_catcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcher_catcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
@@ -206,7 +208,6 @@
 				2388BA79287349F700D27DBD /* UISceneButton.swift */,
 				809DE936254F169400975BD5 /* TextTypeNode.swift */,
 				2388BA7D287351AC00D27DBD /* ButtonNode.swift */,
-				23B33AC4287813AF00827535 /* UIConfig.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -215,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				806B9DDC25455629003CB4EE /* Level.swift */,
+				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -281,6 +283,7 @@
 				80CA5F3A2524F187003E900D /* GameViewController.swift */,
 				8087E4602544A75800340D10 /* Launch Screen.storyboard */,
 				8087E43D25442C8B00340D10 /* State.swift */,
+				23B33AC4287813AF00827535 /* Config.swift */,
 				80CA5F3C2524F187003E900D /* Main.storyboard */,
 				80CA5F322524F187003E900D /* AppDelegate.swift */,
 				80CA5F3F2524F18C003E900D /* Assets.xcassets */,
@@ -460,7 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B33AC5287813AF00827535 /* UIConfig.swift in Sources */,
+				23B33AC5287813AF00827535 /* Config.swift in Sources */,
 				806B9DDD25455629003CB4EE /* Level.swift in Sources */,
 				8012B526254606FA00ACBCC0 /* Colors.swift in Sources */,
 				8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */,
@@ -481,6 +484,7 @@
 				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
+				23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */,
 				809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */,
 				2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */,
 				806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */,
