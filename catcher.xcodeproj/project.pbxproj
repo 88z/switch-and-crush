@@ -14,6 +14,7 @@
 		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
+		23D5CDEE287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */; };
 		23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 23FD3D1728784BF2007C178C /* LanguageManager-iOS */; };
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23FD3D1A28784D3E007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -82,6 +83,7 @@
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateAnimatedPlankObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStatePlankObstacle.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				8087E45825446E4000340D10 /* ObstacleShatter.swift */,
 				23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */,
 				23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */,
+				23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */,
 				8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */,
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
+				23D5CDEE287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
 				23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */,
 				809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */,

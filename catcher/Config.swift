@@ -14,3 +14,7 @@ let UI_TITLE_TOP_OFFSET:CGFloat = 200
 func FONT(size: CGFloat) -> UIFont {
     return UIFont(name: "MajorMonoDisplay-Regular", size: size)!
 }
+
+let SQUARE_OBSTACLE_SIDE:CGFloat = 63
+let PLANK_OBSTACLE_HEIGHT:CGFloat = 21
+

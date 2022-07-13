@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 class PlankObstacle: StateNode, Obstacle {
+    
     var node: SKNode {
         get {
             return self
@@ -26,8 +27,8 @@ class PlankObstacle: StateNode, Obstacle {
     }
     
 
-    required convenience init(mask: Mask, width: CGFloat) {
-        let rect = CGRect(x: 0, y: 0, width: width, height: 21)
+    convenience init(mask: Mask, width: CGFloat, height: CGFloat) {
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
         self.init(rect: rect)
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x: frame.midX, y: frame.midY))
@@ -36,7 +37,9 @@ class PlankObstacle: StateNode, Obstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         physicsBody?.set(mask: mask)
+        state = State.random()
     }
+    
     
     func state(at point: CGPoint) -> State {
         return state
@@ -47,6 +50,10 @@ class PlankObstacle: StateNode, Obstacle {
     }
     
     func parent() -> Obstacle? {
+        var parent = parent
+        while parent != nil && !(parent is Obstacle) {
+            parent = parent?.parent
+        }
         return parent as? Obstacle ?? nil
     }
 }

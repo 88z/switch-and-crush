@@ -57,6 +57,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     init (size: CGSize, heroTopOffset: CGFloat) {
         self.heroTopOffset = heroTopOffset
         super.init(size: size)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,7 +90,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         self.isUserInteractionEnabled = level.userInterationEnabled
         hero.state = level.initialState
         progress = 0
-        let obstacleArranger = ObstacleArranger(scene: self, obstacleCount: level.obstacleCount, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
+        let obstacleArranger = ObstacleArranger(scene: self, obstacleTypes: level.obstacleTypes, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
         obstacleArranger.arrange()
         
         counterNode.isHidden = !shouldShowCounter
@@ -146,7 +147,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         generator.impactOccurred()
         speedUp()
         progress += 1
-        guard let obstacleCount = level?.obstacleCount else {
+        guard let obstacleCount = level?.obstacleTypes.count else {
             return
         }
         updateCounter()
@@ -182,7 +183,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateCounter() {
-        let text = "\(progress) / \(level?.obstacleCount ?? 0)"
+        let text = "\(progress) / \(level?.obstacleTypes.count ?? 0)"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText

@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 struct Level {
-    let obstacleCount: Int
+    let obstacleTypes: [ObstacleType]
     let initialSpeed: CGFloat
     let acceleration: CGFloat
     let name: String

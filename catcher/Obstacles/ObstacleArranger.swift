@@ -9,8 +9,8 @@ import Foundation
 import SpriteKit
 
 class ObstacleArranger {
-    var obstacles:[SKNode] = []
-    let obstacleCount: Int
+    var obstacleNodes:[SKNode] = []
+    let obstacleTypes: [ObstacleType]
     let firstObstacleState: State
     weak var scene: SKScene?
     let startPointY: CGFloat
@@ -27,7 +27,7 @@ class ObstacleArranger {
     
     
     init(scene: SKScene,
-         obstacleCount:Int,
+         obstacleTypes:[ObstacleType],
          firstObstacleState: State,
          startPointY: CGFloat,
          leftBorderX:CGFloat,
@@ -36,7 +36,7 @@ class ObstacleArranger {
          initialSpeed: CGFloat
          ) {
         self.scene = scene
-        self.obstacleCount = obstacleCount
+        self.obstacleTypes = obstacleTypes
         self.firstObstacleState = firstObstacleState
         self.startPointY = startPointY
         self.leftBorderX = leftBorderX + hPadding
@@ -46,46 +46,59 @@ class ObstacleArranger {
         
     }
     
-    func _arrangeOne(with state: State) {
-        let obstacle = PlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
-        obstacle.state = state
-        obstacle.position = positionFor(obstacle)
+    func arrangeOne(type: ObstacleType) -> Obstacle {
+        
+        var obstacle: Obstacle
+        let width = rightBorderX-leftBorderX
+        switch type {
+        case .plank:
+            obstacle = PlankObstacle(mask: obstacleMask, width: width, height: PLANK_OBSTACLE_HEIGHT)
+        case .twoColorPlank:
+            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
+        case .animatedTwoColorPlank:
+            obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
+        case .square:
+            obstacle = PlankObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, height: SQUARE_OBSTACLE_SIDE)
+        }
+        
+        obstacle.node.position = positionFor(obstacle, type: type)
         obstacle.velocity = initialSpeed
-        scene?.addChild(obstacle)
-        obstacles.append(obstacle)
-    }
-    
-    func arrangeOne(with state: State) {
-        let obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: rightBorderX-leftBorderX)
-        obstacle.position = positionFor(obstacle)
-        obstacle.velocity = initialSpeed
-        scene?.addChild(obstacle)
-        obstacles.append(obstacle)
+        scene?.addChild(obstacle.node)
+        obstacleNodes.append(obstacle.node)
+        return obstacle
     }
     
     func arrange() {
-        guard  obstacleCount > 0 else {
+        
+        guard  obstacleTypes.count > 0 else {
             return
         }
-        arrangeOne(with: firstObstacleState)
-        guard  obstacleCount > 1 else {
-            return
+        if let firstObstacle = arrangeOne(type: obstacleTypes[0]) as? PlankObstacle {
+            firstObstacle.state = firstObstacleState
         }
-        for _ in 1..<obstacleCount {
-            arrangeOne(with: State.random())
+
+        for i in 1..<obstacleTypes.count {
+            arrangeOne(type: obstacleTypes[i])
         }
-        obstacles = []
+        obstacleNodes = []
     }
     
-    func positionFor(_ obstacle:Obstacle) -> CGPoint{
-        return CGPoint(x: leftBorderX, y:nextY())
+    func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
+        switch type{
+        case .square:
+            return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
+        default:
+            return CGPoint(x: leftBorderX, y:nextY())
+        }
+        
+    
     }
     
     func nextY() -> CGFloat {
-        guard let lastPlaced = obstacles.last else {
+        guard let lastPlaced = obstacleNodes.last else {
             return startPointY
         }
-        return lastPlaced.frame.minY - randomBetween(minYSpace, and: maxYSpace)
+        return lastPlaced.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
     }
     
     

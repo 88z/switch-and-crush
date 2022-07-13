@@ -9,9 +9,19 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKNode, Obstacle {
-    required convenience init(mask: Mask, width: CGFloat) {
+    
+    init(mask: Mask, width: CGFloat) {
         fatalError("tou should implement it in the subclass")
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(){
+        super.init()
+    }
+    
     
     var node: SKNode {
         return self
@@ -19,10 +29,11 @@ class MultiStateObstacle: SKNode, Obstacle {
     
     var velocity: CGFloat {
         get {
-            return parts().first?.velocity ?? 0
+            return physicsBody?.velocity.dy ?? parts().first?.velocity ?? 0
         }
         
         set {
+            physicsBody?.velocity.dy = newValue
             for var obstacle in parts() {
                 obstacle.velocity = newValue
             }

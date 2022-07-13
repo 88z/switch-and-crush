@@ -9,7 +9,11 @@ import Foundation
 import SpriteKit
 
 class ObstacleShatter {
-    private let atomSize: CFloat
+    private var atomSize: CFloat {
+        get {
+            return CFloat(Float(obstacle.node.frame.size.height)/Float(rowCount))
+        }
+    }
     private let obstacle: Obstacle
     private var frame: CGRect {
         get {
@@ -22,10 +26,13 @@ class ObstacleShatter {
             return scene.convertRect(obstacle.node.frame, from: parent)
         }
     }
-    private let rowCount:Int = 3
+    private var rowCount:Int {
+        get {
+            return Int(obstacle.node.frame.size.height/7)
+        }
+    }
     init (obstacle: Obstacle) {
         self.obstacle = obstacle
-        atomSize = CFloat(Float(obstacle.node.frame.size.height)/Float(rowCount))
     }
     
     
@@ -97,11 +104,5 @@ class ObstacleShatter {
             }
             return atoms
         }
-        
-        
-        
     }
-    
-    
-    
 }

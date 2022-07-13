@@ -32,8 +32,8 @@ func CGVectorLen(_ vector:CGVector) -> CGFloat{
     return hypot(vector.dx, vector.dy)
 }
 
-func randomBetween(_ first:CGFloat, and second:CGFloat) -> CGFloat {
-    return CGFloat(arc4random_uniform(UInt32(second-first))) + CGFloat(first)
+func randomBetween(_ first:Int, and second:Int) -> Int {
+    return Int(arc4random_uniform(UInt32(second-first))) + first
 }
 
 func randomPointOn(_ rect: CGRect) -> CGPoint {
@@ -47,23 +47,23 @@ func randomPointOn(_ rect: CGRect) -> CGPoint {
     
     if side == 0 {
         y = rect.maxY
-        x = randomBetween(rect.minX, and: rect.maxX)
+        x = CGFloat(randomBetween(Int(rect.minX), and: Int(rect.maxX)))
     } else if side == 1 {
         x = rect.minX
-        y = randomBetween(rect.minY, and: rect.maxY)
+        y = CGFloat(randomBetween(Int(rect.minY), and: Int(rect.maxY)))
     } else if side == 2 {
         y = rect.minY
-        x = randomBetween(rect.minX, and: rect.maxX)
+        x = CGFloat(randomBetween(Int(rect.minX), and: Int(rect.maxX)))
     } else if side == 3 {
         x = rect.maxX
-        y = randomBetween(rect.minY, and: rect.maxY)
+        y = CGFloat(randomBetween(Int(rect.minY), and: Int(rect.maxY)))
     }
     return CGPoint(x: x, y: y)
 }
 
 func randomPointInsideSquareWith(center: CGPoint, side:CGFloat) -> CGPoint {
-    let x = randomBetween(center.x-side/2, and: center.x+side/2)
-    let y = randomBetween(center.y-side/2, and: center.y+side/2)
+    let x = CGFloat(randomBetween(Int(center.x-side/2), and: Int(center.x+side/2)))
+    let y = CGFloat(randomBetween(Int(center.y-side/2), and: Int(center.y+side/2)))
     return CGPoint(x: x, y: y)
 }
 

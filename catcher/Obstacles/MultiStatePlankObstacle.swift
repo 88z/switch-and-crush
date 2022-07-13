@@ -13,24 +13,26 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         guard states.count == partSizes.count else {
             fatalError("Multiplank Obstacles Constructor Error: state and partSizes must have equal size")
         }
+        
         super.init()
         var i = 0
         var nextX:CGFloat = 0
         for state in states {
             let partWidth = partSizes[i]*width
-            let obstacle = PlankObstacle(mask: mask, width: partWidth)
+            let obstacle = PlankObstacle(mask: mask, width: partWidth, height: PLANK_OBSTACLE_HEIGHT)
             obstacle.state = state
             obstacle.position = CGPoint(x: nextX, y: 0)
             addChild(obstacle)
             nextX+=partWidth+1
             i+=1
         }
+        name = String(describing: Obstacle.self)
     }
     
-    required convenience init(mask: Mask, width: CGFloat) {
-        var leftPartSize = 0.25
+    override convenience init(mask: Mask, width: CGFloat) {
+        var leftPartSize = CGFloat(randomBetween(25, and: 40))/100
         if Bool.random() {
-            leftPartSize = 0.75
+            leftPartSize = 1-leftPartSize
         }
         let rightPartSize = 1-leftPartSize
         
