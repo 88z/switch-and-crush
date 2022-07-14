@@ -18,7 +18,9 @@ enum ObstacleType {
 protocol Obstacle {
     var velocity: CGFloat { get set }
     var node: SKNode { get }
+    var type: ObstacleType! { get }
     func state(at point:CGPoint) -> State
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
+    
 }

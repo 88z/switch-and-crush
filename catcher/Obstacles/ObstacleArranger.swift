@@ -52,13 +52,13 @@ class ObstacleArranger {
         let width = rightBorderX-leftBorderX
         switch type {
         case .plank:
-            obstacle = PlankObstacle(mask: obstacleMask, width: width, height: PLANK_OBSTACLE_HEIGHT)
+            obstacle = PlankObstacle(mask: obstacleMask, width: width, type: type)
         case .twoColorPlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
         case .animatedTwoColorPlank:
             obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
         case .square:
-            obstacle = PlankObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, height: SQUARE_OBSTACLE_SIDE)
+            obstacle = PlankObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, type: type)
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)

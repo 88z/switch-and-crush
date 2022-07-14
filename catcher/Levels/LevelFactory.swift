@@ -10,6 +10,23 @@ import SpriteKit
 
 class LevelFactory {
     
+    func level0() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        for _ in 0..<25 {
+            obstacleTypes.append([
+                ObstacleType.square,
+                ObstacleType.twoColorPlank
+            ].randomElement() as! ObstacleType)
+           
+        }
+        return Level(obstacleTypes: obstacleTypes,
+                     initialSpeed: 200,
+                     acceleration: 7,
+                     name:"default",
+                     initialState: .first,
+                     userInterationEnabled: true)
+    }
+    
     func level1() -> Level {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<30 {

@@ -10,6 +10,9 @@ import SpriteKit
 
 class MultiStateObstacle: SKNode, Obstacle {
     
+    var type: ObstacleType! = nil
+    
+    
     init(mask: Mask, width: CGFloat) {
         fatalError("tou should implement it in the subclass")
     }

@@ -37,7 +37,7 @@ extension State {
 
 class StateNode: SKShapeNode {
     private var stateValue = State.first
-
+    
     var state: State {
         set (newValue) {
             stateValue = newValue

@@ -49,7 +49,7 @@ class DefaultPresenter: BasePresenter {
     private func startGame () {
         vc?.hideUI()
         let levelFactory = LevelFactory()
-        battleFieldScene?.start(level: levelFactory.level3())
+        battleFieldScene?.start(level: levelFactory.level0())
     }
     
     override func uiScenePressed(scene: UIScene) {

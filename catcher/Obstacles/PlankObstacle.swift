@@ -10,12 +10,12 @@ import SpriteKit
 
 class PlankObstacle: StateNode, Obstacle {
     
+    
     var node: SKNode {
         get {
             return self
         }
     }
-    
     
     var velocity: CGFloat {
             set {
@@ -26,10 +26,13 @@ class PlankObstacle: StateNode, Obstacle {
             }
     }
     
-
-    convenience init(mask: Mask, width: CGFloat, height: CGFloat) {
+    var type: ObstacleType!
+    
+    convenience init(mask: Mask, width: CGFloat, type: ObstacleType) {
+        let height = type == .square ? width : PLANK_OBSTACLE_HEIGHT
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         self.init(rect: rect)
+        self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x: frame.midX, y: frame.midY))
         physicsBody?.affectedByGravity = false
@@ -39,7 +42,6 @@ class PlankObstacle: StateNode, Obstacle {
         physicsBody?.set(mask: mask)
         state = State.random()
     }
-    
     
     func state(at point: CGPoint) -> State {
         return state
