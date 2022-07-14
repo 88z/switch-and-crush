@@ -103,9 +103,9 @@ class ObstacleShatter {
         let yMultiplier: CGFloat
         
         switch obstacle.type {
-        case .square:
-            xMultiplier = 0.35
-            yMultiplier = 0.35
+        case .square, .squareStackPart:
+            xMultiplier = 0.5
+            yMultiplier = 0.5
         default:
             xMultiplier = 3
             yMultiplier = 1

@@ -14,6 +14,7 @@
 		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
+		23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0678C2880997900E2A5C9 /* StackObstacle.swift */; };
 		23D5CDEE287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */; };
 		23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 23FD3D1728784BF2007C178C /* LanguageManager-iOS */; };
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -39,7 +40,7 @@
 		8087E44925444AE500340D10 /* UIScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E44825444AE500340D10 /* UIScene.swift */; };
 		8087E45925446E4000340D10 /* ObstacleShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E45825446E4000340D10 /* ObstacleShatter.swift */; };
 		8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8087E4602544A75800340D10 /* Launch Screen.storyboard */; };
-		80890CFE2540058A00F5552B /* PlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890CFD2540058A00F5552B /* PlankObstacle.swift */; };
+		80890CFE2540058A00F5552B /* RectObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890CFD2540058A00F5552B /* RectObstacle.swift */; };
 		80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890D05254006C200F5552B /* ObstacleArranger.swift */; };
 		809AD8C92561A3A00057C76E /* UISceneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809AD8C82561A3A00057C76E /* UISceneElement.swift */; };
 		809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DE936254F169400975BD5 /* TextTypeNode.swift */; };
@@ -83,6 +84,7 @@
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		23C0678C2880997900E2A5C9 /* StackObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackObstacle.swift; sourceTree = "<group>"; };
 		23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateAnimatedPlankObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		8087E44825444AE500340D10 /* UIScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScene.swift; sourceTree = "<group>"; };
 		8087E45825446E4000340D10 /* ObstacleShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleShatter.swift; sourceTree = "<group>"; };
 		8087E4602544A75800340D10 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		80890CFD2540058A00F5552B /* PlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlankObstacle.swift; sourceTree = "<group>"; };
+		80890CFD2540058A00F5552B /* RectObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectObstacle.swift; sourceTree = "<group>"; };
 		80890D05254006C200F5552B /* ObstacleArranger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleArranger.swift; sourceTree = "<group>"; };
 		809AD8C82561A3A00057C76E /* UISceneElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneElement.swift; sourceTree = "<group>"; };
 		809DE936254F169400975BD5 /* TextTypeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTypeNode.swift; sourceTree = "<group>"; };
@@ -226,13 +228,14 @@
 		80890CFC2540057800F5552B /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
-				80890CFD2540058A00F5552B /* PlankObstacle.swift */,
+				80890CFD2540058A00F5552B /* RectObstacle.swift */,
 				23FD3D1B2879753D007C178C /* Obstacle.swift */,
 				80890D05254006C200F5552B /* ObstacleArranger.swift */,
 				8087E45825446E4000340D10 /* ObstacleShatter.swift */,
 				23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */,
 				23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */,
 				23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */,
+				23C0678C2880997900E2A5C9 /* StackObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -470,10 +473,11 @@
 				806B9DDD25455629003CB4EE /* Level.swift in Sources */,
 				8012B526254606FA00ACBCC0 /* Colors.swift in Sources */,
 				8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */,
+				23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */,
 				23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */,
 				8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
-				80890CFE2540058A00F5552B /* PlankObstacle.swift in Sources */,
+				80890CFE2540058A00F5552B /* RectObstacle.swift in Sources */,
 				2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,

@@ -19,7 +19,7 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         var nextX:CGFloat = 0
         for state in states {
             let partWidth = partSizes[i]*width
-            let obstacle = PlankObstacle(mask: mask, width: partWidth, type: .plank)
+            let obstacle = RectObstacle(mask: mask, width: partWidth, type: .plank)
             obstacle.state = state
             obstacle.position = CGPoint(x: nextX, y: 0)
             addChild(obstacle)

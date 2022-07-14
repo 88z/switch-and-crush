@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class PlankObstacle: StateNode, Obstacle {
+class RectObstacle: StateNode, Obstacle {
     
     
     var node: SKNode {
@@ -29,7 +29,19 @@ class PlankObstacle: StateNode, Obstacle {
     var type: ObstacleType!
     
     convenience init(mask: Mask, width: CGFloat, type: ObstacleType) {
-        let height = type == .square ? width : PLANK_OBSTACLE_HEIGHT
+        let height: CGFloat
+        switch type {
+        case .square:
+            height = width
+        case .thinPlank:
+            height = 14
+        case .squareStackPart:
+            height = width/2
+        default:
+            height = PLANK_OBSTACLE_HEIGHT
+        }
+        
+
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         self.init(rect: rect)
         self.type = type

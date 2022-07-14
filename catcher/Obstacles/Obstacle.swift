@@ -13,6 +13,10 @@ enum ObstacleType {
     case square
     case twoColorPlank
     case animatedTwoColorPlank
+    case thinPlank
+    case plankStack
+    case squareStack
+    case squareStackPart
 }
 
 protocol Obstacle {

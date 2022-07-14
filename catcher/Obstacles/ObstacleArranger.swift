@@ -51,14 +51,19 @@ class ObstacleArranger {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank:
-            obstacle = PlankObstacle(mask: obstacleMask, width: width, type: type)
+        case .plank, .thinPlank, .squareStackPart:
+            obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
         case .twoColorPlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
         case .animatedTwoColorPlank:
             obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
         case .square:
-            obstacle = PlankObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, type: type)
+            obstacle = RectObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, type: type)
+        case .plankStack:
+            obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
+        case .squareStack:
+            obstacle = StackObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, states: [.first, .second].shuffled(), type: type)
+        
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -73,7 +78,7 @@ class ObstacleArranger {
         guard  obstacleTypes.count > 0 else {
             return
         }
-        if let firstObstacle = arrangeOne(type: obstacleTypes[0]) as? PlankObstacle {
+        if let firstObstacle = arrangeOne(type: obstacleTypes[0]) as? RectObstacle {
             firstObstacle.state = firstObstacleState
         }
 
@@ -85,7 +90,7 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .square:
+        case .square, .squareStack:
             return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())

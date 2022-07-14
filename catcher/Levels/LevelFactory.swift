@@ -14,9 +14,8 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<25 {
             obstacleTypes.append([
-                ObstacleType.square,
-                ObstacleType.twoColorPlank
-            ].randomElement() as! ObstacleType)
+                ObstacleType.squareStack
+            ].randomElement()! )
            
         }
         return Level(obstacleTypes: obstacleTypes,
@@ -50,7 +49,7 @@ class LevelFactory {
             obstacleTypes.append([
                 ObstacleType.plank,
                 ObstacleType.twoColorPlank
-            ].randomElement() as! ObstacleType)
+            ].randomElement()! )
            
         }
         return Level(obstacleTypes: obstacleTypes,

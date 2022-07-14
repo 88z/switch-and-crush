@@ -19,10 +19,10 @@ class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
             rightPartState = State.first
         }
         
-        let leftObstacle = PlankObstacle(mask: mask, width: width, type: .plank)
+        let leftObstacle = RectObstacle(mask: mask, width: width, type: .plank)
         leftObstacle.position = CGPoint(x: -width, y: 0)
         leftObstacle.state = leftPartState
-        let rightObstacle = PlankObstacle(mask: mask, width: width, type: .plank)
+        let rightObstacle = RectObstacle(mask: mask, width: width, type: .plank)
         rightObstacle.position = CGPoint(x: 1, y: 0)
         rightObstacle.state = rightPartState
         
