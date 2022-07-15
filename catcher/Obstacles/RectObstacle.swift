@@ -13,6 +13,8 @@ class RectObstacle: StateNode, Obstacle {
         
     }
     
+    func willBeShattered() {}
+    
     
     var node: SKNode {
         get {

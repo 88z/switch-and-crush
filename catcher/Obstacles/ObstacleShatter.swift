@@ -9,12 +9,15 @@ import Foundation
 import SpriteKit
 
 class ObstacleShatter {
+    
     private var atomSize: CFloat {
         get {
             return CFloat(Float(obstacle.node.frame.size.height)/Float(rowCount))
         }
     }
+    
     private let obstacle: Obstacle
+    
     private var frame: CGRect {
         get {
             guard let scene = obstacle.node.scene else {
@@ -26,14 +29,13 @@ class ObstacleShatter {
             return scene.convertRect(obstacle.node.frame, from: parent)
         }
     }
+    
     private var rowCount:Int {
         get {
             return Int(obstacle.node.frame.size.height/7)
         }
     }
 
-    
-    
     init (obstacle: Obstacle) {
         self.obstacle = obstacle
     }
@@ -70,7 +72,14 @@ class ObstacleShatter {
             for row in 0..<rowCount {
                 for col in 0..<colCount {
                     let atom = StateNode(rect:CGRect(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row), width: CGFloat(atomSize), height: CGFloat(atomSize)))
-                    atom.state = obstacle.state(at: .zero)
+                    
+                    if obstacle.type == .squareStackPart {
+                        atom.state = .random()
+                    } else {
+                        atom.state = obstacle.state(at: .zero)
+                    }
+
+                    
                     atom.lineWidth = 0
                     atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
                     atom.physicsBody?.affectedByGravity = false
@@ -90,6 +99,7 @@ class ObstacleShatter {
         }
         var collisionAtoms:[SKShapeNode] = []
         let rootParent = ObstacleShatter.rootParent(of: obstacle)
+        rootParent.willBeShattered()
         let atoms = atoms(from: rootParent)
         for atom in atoms {
             scene.addChild(atom)

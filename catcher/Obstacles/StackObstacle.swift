@@ -13,15 +13,11 @@ class StackObstacle: MultiStateObstacle {
     
     override var velocity: CGFloat {
         get {
-            return physicsBody?.velocity.dy ?? parts().first?.velocity ?? 0
+            return rotationContainer?.physicsBody?.velocity.dy ?? 0
         }
         
         set {
-            physicsBody?.velocity.dy = newValue
             rotationContainer?.physicsBody?.velocity.dy = newValue
-            for var obstacle in parts() {
-                obstacle.velocity = newValue
-            }
         }
     }
     
@@ -63,9 +59,7 @@ class StackObstacle: MultiStateObstacle {
             (rotationContainer ?? self).addChild(obstacle)
             obstacle.position = type == .rotatingSquareStack ? CGPoint(x:0-width/2, y:nextY-width/2) : CGPoint(x: 0, y: nextY)
             nextY = nextY + obstacle.frame.size.height - 2
-//            obstacle.physicsBody?.angularDamping = 0
-//            obstacle.physicsBody?.angularVelocity = 3
-            
+
         }
         
         
@@ -92,5 +86,9 @@ class StackObstacle: MultiStateObstacle {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func willBeShattered() {
+        rotationContainer?.zRotation = 0
     }
 }
