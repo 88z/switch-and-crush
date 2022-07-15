@@ -12,14 +12,15 @@ class LevelFactory {
     
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<25 {
+        for _ in 0..<100 {
             obstacleTypes.append([
-                ObstacleType.squareStack
+                ObstacleType.rotatingSquareStack,
+                ObstacleType.plank
             ].randomElement()! )
            
         }
         return Level(obstacleTypes: obstacleTypes,
-                     initialSpeed: 200,
+                     initialSpeed: 300,
                      acceleration: 7,
                      name:"default",
                      initialState: .first,

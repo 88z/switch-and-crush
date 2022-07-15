@@ -30,4 +30,10 @@ extension SKPhysicsBody {
         self.contactTestBitMask = mask.contact
         self.collisionBitMask = mask.collision
     }
+    
+    func setZeroMask(){
+        self.collisionBitMask = 0b000
+        self.categoryBitMask = 0b000
+        self.contactTestBitMask = 0b000
+    }
 }

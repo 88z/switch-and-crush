@@ -118,7 +118,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             hero = bNode as! Hero
             obstacle = aNode as! Obstacle
         } else {
-            fatalError("unknown collisions")
+            return
+//            fatalError("unknown collisions")
         }
         if hero.state == obstacle.state(at: contact.contactPoint) {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)

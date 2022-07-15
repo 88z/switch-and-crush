@@ -9,31 +9,85 @@ import Foundation
 import SpriteKit
 
 class StackObstacle: MultiStateObstacle {
+    var rotationContainer: SKNode?
+    
+    override var velocity: CGFloat {
+        get {
+            return physicsBody?.velocity.dy ?? parts().first?.velocity ?? 0
+        }
+        
+        set {
+            physicsBody?.velocity.dy = newValue
+            rotationContainer?.physicsBody?.velocity.dy = newValue
+            for var obstacle in parts() {
+                obstacle.velocity = newValue
+            }
+        }
+    }
+    
     init(mask:Mask, width: CGFloat, states: [State], type: ObstacleType) {
         super.init()
-        var i = 0
-        var nextY:CGFloat = 0
+        name = String(describing: Obstacle.self)
+        self.type = type
         
         let partType: ObstacleType
-        
         switch type {
         case .plankStack:
             partType = .thinPlank
-        case .squareStack:
+        case .squareStack, .rotatingSquareStack:
             partType = .squareStackPart
         default:
             partType = .thinPlank
         }
         
+        if type == .rotatingSquareStack {
+            rotationContainer = SKNode()
+            rotationContainer?.position = CGPoint(x: width/2 , y: width/2)
+            addChild(rotationContainer!)
+            rotationContainer?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: width), center: CGPoint(x: 0 , y: 0))
+            rotationContainer?.physicsBody?.affectedByGravity = false
+            rotationContainer?.physicsBody?.restitution = 0
+            rotationContainer?.physicsBody?.friction = 0
+            rotationContainer?.physicsBody?.linearDamping = 0
+            rotationContainer?.physicsBody?.setZeroMask()
+            rotationContainer?.physicsBody?.angularDamping = 0
+            rotationContainer?.physicsBody?.angularVelocity = 2
+            rotationContainer?.physicsBody?.density = 0
+        }
+        
+        var nextY:CGFloat = 0
         for state in states {
+            
             let obstacle = RectObstacle(mask: mask, width: width, type: partType)
             obstacle.state = state
-            obstacle.position = CGPoint(x: 0, y: nextY)
-            addChild(obstacle)
+            (rotationContainer ?? self).addChild(obstacle)
+            obstacle.position = type == .rotatingSquareStack ? CGPoint(x:0-width/2, y:nextY-width/2) : CGPoint(x: 0, y: nextY)
             nextY = nextY + obstacle.frame.size.height - 2
-            i+=1
+//            obstacle.physicsBody?.angularDamping = 0
+//            obstacle.physicsBody?.angularVelocity = 3
+            
         }
-        name = String(describing: Obstacle.self)
+        
+        
+    }
+    
+    override func onAddedToScene() {
+        let obstacles = parts()
+        guard let rotationContainer = rotationContainer,
+              let scene = scene,
+              obstacles.count>=2 else{
+            return
+        }
+        
+        for obstacle in parts() {
+            let position = scene.convert(.zero, from: rotationContainer)
+            scene.physicsWorld.add(SKPhysicsJointFixed.joint(withBodyA: rotationContainer.physicsBody!, bodyB: obstacle.node.physicsBody!, anchor: position))
+        }
+        
+    }
+    
+    override func parts() -> [Obstacle] {
+        return (rotationContainer ?? self)[String(describing: Obstacle.self)] as! [Obstacle]
     }
     
     required init?(coder aDecoder: NSCoder) {

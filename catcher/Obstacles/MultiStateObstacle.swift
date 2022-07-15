@@ -9,6 +9,10 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKNode, Obstacle {
+    func onAddedToScene() {
+        
+    }
+    
     
     var type: ObstacleType! = nil
     

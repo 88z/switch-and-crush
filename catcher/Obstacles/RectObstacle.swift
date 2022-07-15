@@ -9,6 +9,9 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
+    func onAddedToScene() {
+        
+    }
     
     
     var node: SKNode {
@@ -51,6 +54,8 @@ class RectObstacle: StateNode, Obstacle {
         physicsBody?.restitution = 0
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
+        physicsBody?.angularDamping = 0
+        physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
         state = State.random()
     }

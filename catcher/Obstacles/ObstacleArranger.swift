@@ -38,7 +38,8 @@ class ObstacleArranger {
         self.scene = scene
         self.obstacleTypes = obstacleTypes
         self.firstObstacleState = firstObstacleState
-        self.startPointY = startPointY
+//        self.startPointY = startPointY
+        self .startPointY = 100
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
@@ -61,14 +62,15 @@ class ObstacleArranger {
             obstacle = RectObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, type: type)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
-        case .squareStack:
+        case .squareStack, .rotatingSquareStack:
             obstacle = StackObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, states: [.first, .second].shuffled(), type: type)
-        
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
         obstacle.velocity = initialSpeed
         scene?.addChild(obstacle.node)
+        obstacle.onAddedToScene()
+        
         obstacleNodes.append(obstacle.node)
         return obstacle
     }
@@ -90,7 +92,7 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .square, .squareStack:
+        case .square, .squareStack, .rotatingSquareStack:
             return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())
