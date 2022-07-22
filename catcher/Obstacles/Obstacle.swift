@@ -10,7 +10,7 @@ import SpriteKit
 
 enum ObstacleType {
     case plank
-    case square
+    case circle
     case twoColorPlank
     case animatedTwoColorPlank
     case thinPlank

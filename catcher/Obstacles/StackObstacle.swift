@@ -13,11 +13,21 @@ class StackObstacle: MultiStateObstacle {
     
     override var velocity: CGFloat {
         get {
-            return rotationContainer?.physicsBody?.velocity.dy ?? 0
+            if type == .rotatingSquareStack {
+                return rotationContainer?.physicsBody?.velocity.dy ?? 0
+            } else {
+                return super.velocity
+            }
+            
         }
         
         set {
-            rotationContainer?.physicsBody?.velocity.dy = newValue
+            if type == .rotatingSquareStack {
+                rotationContainer?.physicsBody?.velocity.dy = newValue
+            } else {
+                super.velocity = newValue
+            }
+            
         }
     }
     

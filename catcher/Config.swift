@@ -15,6 +15,7 @@ func FONT(size: CGFloat) -> UIFont {
     return UIFont(name: "MajorMonoDisplay-Regular", size: size)!
 }
 
-let SQUARE_OBSTACLE_SIDE:CGFloat = 64
+let SQUARE_OBSTACLE_SIDE:CGFloat = 82
+let CIRCLE_OBSTACLE_RADIUS:CGFloat = 82
 let PLANK_OBSTACLE_HEIGHT:CGFloat = 21
 

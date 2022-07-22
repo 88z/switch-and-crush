@@ -71,14 +71,18 @@ class ObstacleShatter {
             let colCount = colCount(for: obstacle)
             for row in 0..<rowCount {
                 for col in 0..<colCount {
-                    let atom = StateNode(rect:CGRect(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row), width: CGFloat(atomSize), height: CGFloat(atomSize)))
+                    let atomOrigin = CGPoint(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row))
+                    let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))))
+                    
+                    if (CGPointDistance(from: CGPoint(x: frame.midX, y: frame.midY), to: atomOrigin) > frame.size.width/2) {
+                        continue
+                    }
                     
                     if obstacle.type == .squareStackPart {
                         atom.state = .random()
                     } else {
                         atom.state = obstacle.state(at: .zero)
                     }
-
                     
                     atom.lineWidth = 0
                     atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
@@ -113,7 +117,7 @@ class ObstacleShatter {
         let yMultiplier: CGFloat
         
         switch obstacle.type {
-        case .square, .squareStackPart:
+        case .circle, .squareStackPart:
             xMultiplier = 0.5
             yMultiplier = 0.5
         default:

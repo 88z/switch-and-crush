@@ -12,6 +12,7 @@
 		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
 		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
 		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
+		23A498272884330900DB6D0A /* CircleObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A498262884330900DB6D0A /* CircleObstacle.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0678C2880997900E2A5C9 /* StackObstacle.swift */; };
@@ -81,6 +82,7 @@
 		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
 		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		2391E959286BA0820043BCA4 /* HeroShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatter.swift; sourceTree = "<group>"; };
+		23A498262884330900DB6D0A /* CircleObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleObstacle.swift; sourceTree = "<group>"; };
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */,
 				23D5CDED287DFDFC00523B8B /* MultiStateAnimatedPlankObstacle.swift */,
 				23C0678C2880997900E2A5C9 /* StackObstacle.swift */,
+				23A498262884330900DB6D0A /* CircleObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */,
 				809AD8C92561A3A00057C76E /* UISceneElement.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
+				23A498272884330900DB6D0A /* CircleObstacle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

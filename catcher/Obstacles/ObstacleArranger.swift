@@ -22,7 +22,7 @@ class ObstacleArranger {
     let obstacleMask: Mask
     
     
-    let minYSpace: CGFloat = 150
+    let minYSpace: CGFloat = 200
     let maxYSpace: CGFloat = 300
     
     
@@ -58,8 +58,8 @@ class ObstacleArranger {
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
         case .animatedTwoColorPlank:
             obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
-        case .square:
-            obstacle = RectObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, type: type)
+        case .circle:
+            obstacle = CircleObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, type: type)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
         case .squareStack, .rotatingSquareStack:
@@ -92,8 +92,10 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .square, .squareStack, .rotatingSquareStack:
+        case .squareStack, .rotatingSquareStack:
             return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
+        case .circle:
+            return CGPoint(x: scene!.frame.midX, y:nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())
         }
