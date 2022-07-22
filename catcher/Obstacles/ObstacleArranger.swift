@@ -38,8 +38,7 @@ class ObstacleArranger {
         self.scene = scene
         self.obstacleTypes = obstacleTypes
         self.firstObstacleState = firstObstacleState
-//        self.startPointY = startPointY
-        self .startPointY = 100
+        self.startPointY = startPointY
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
