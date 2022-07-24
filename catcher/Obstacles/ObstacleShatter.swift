@@ -12,7 +12,7 @@ class ObstacleShatter {
     
     private var atomSize: CFloat {
         get {
-            return CFloat(Float(obstacle.node.frame.size.height)/Float(rowCount))
+            return CFloat(Float(obstacle.node.calculateAccumulatedFrame().size.height)/Float(rowCount))
         }
     }
     
@@ -24,15 +24,15 @@ class ObstacleShatter {
                 fatalError("obstacle has no scene")
             }
             guard let parent = obstacle.node.parent  else {
-                return obstacle.node.frame
+                return obstacle.node.calculateAccumulatedFrame()
             }
-            return scene.convertRect(obstacle.node.frame, from: parent)
+            return scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: parent)
         }
     }
     
     private var rowCount:Int {
         get {
-            return Int(obstacle.node.frame.size.height/7)
+            return Int(obstacle.node.calculateAccumulatedFrame().size.height/7)
         }
     }
 
@@ -50,7 +50,7 @@ class ObstacleShatter {
     }
     
     private func colCount(for obstacle:Obstacle) -> Int {
-       return Int(Float(obstacle.node.frame.size.width) / Float(atomSize))
+       return Int(Float(obstacle.node.calculateAccumulatedFrame().size.width) / Float(atomSize))
     }
     
     func atoms(from obstacle:Obstacle) -> [SKShapeNode]{
@@ -67,7 +67,7 @@ class ObstacleShatter {
                 return []
             }
             
-            let frame = scene.convertRect(obstacle.node.frame, from: obstacle.node.parent ?? scene)
+            let frame = scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: obstacle.node.parent ?? scene)
             let colCount = colCount(for: obstacle)
             for row in 0..<rowCount {
                 for col in 0..<colCount {
@@ -78,7 +78,7 @@ class ObstacleShatter {
                         continue
                     }
                     
-                    if obstacle.type == .squareStackPart {
+                    if [.squareStackPart, .twoColorCicrcle].contains(obstacle.type) {
                         atom.state = .random()
                     } else {
                         atom.state = obstacle.state(at: .zero)

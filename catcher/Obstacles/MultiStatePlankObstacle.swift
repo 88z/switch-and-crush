@@ -29,7 +29,7 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         name = String(describing: Obstacle.self)
     }
     
-    override convenience init(mask: Mask, width: CGFloat) {
+   override convenience init(mask: Mask, width: CGFloat) {
         var leftPartSize = CGFloat(randomBetween(25, and: 40))/100
         if Bool.random() {
             leftPartSize = 1-leftPartSize

@@ -32,6 +32,14 @@ extension State {
             return .second
         }
     }
+    
+    static func nextState(for state:State) -> State {
+        if state == .first {
+            return .second
+        } else {
+            return .first
+        }
+    }
 }
 
 

@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class MultiStateObstacle: SKNode, Obstacle {
+class MultiStateObstacle: SKShapeNode, Obstacle {
     func willBeShattered() {}
     
     func onAddedToScene() {}
@@ -48,7 +48,7 @@ class MultiStateObstacle: SKNode, Obstacle {
 
     func state(at point: CGPoint) -> State {
         guard let scene = scene else {
-            fatalError("obstacle ins not on scene")
+            fatalError("obstacle is not on scene")
         }
         
         let lPoint = convert(point, from: scene)

@@ -14,7 +14,7 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<100 {
             obstacleTypes.append([
-                ObstacleType.circle
+                ObstacleType.twoColorCicrcle
             ].randomElement()! )
            
         }

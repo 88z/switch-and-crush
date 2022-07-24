@@ -18,6 +18,7 @@ enum ObstacleType {
     case squareStack
     case squareStackPart
     case rotatingSquareStack
+    case twoColorCicrcle
 }
 
 protocol Obstacle {
