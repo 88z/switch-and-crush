@@ -70,8 +70,17 @@ class MultistateCircleObstacle: MultiStateObstacle {
             let endAngle = startAngle + partAngle
             let path = UIBezierPath()
             path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            path.addLine(to: center)
+            
+            let innerPath = UIBezierPath()
+            let innerRadius = radius-PLANK_OBSTACLE_HEIGHT
+            innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+            
+            let innerCircleEnd = innerPath.currentPoint
+            
+            path.addLine(to: innerCircleEnd)
+            path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
             path.close()
+            
             
             let node = StateNode(path: path.cgPath)
             node.state = state

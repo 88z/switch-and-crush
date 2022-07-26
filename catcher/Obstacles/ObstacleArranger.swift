@@ -65,7 +65,7 @@ class ObstacleArranger {
         case .squareStack, .rotatingSquareStack:
             obstacle = StackObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, states: [.first, .second].shuffled(), type: type)
         case .twoColorCicrcle:
-            obstacle = MultistateCircleObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second, .first, .second], type: type, rotationVelocity: 2)
+            obstacle = MultistateCircleObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 2)
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
