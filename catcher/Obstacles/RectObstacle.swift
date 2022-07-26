@@ -62,7 +62,7 @@ class RectObstacle: StateNode, Obstacle {
         state = State.random()
     }
     
-    func state(at point: CGPoint) -> State {
+    func state(at point: CGPoint) -> State? {
         return state
     }
     

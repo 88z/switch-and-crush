@@ -14,13 +14,14 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<100 {
             obstacleTypes.append([
-                ObstacleType.twoColorCicrcle
+                ObstacleType.twoColorRing,
+//                ObstacleType.plank
             ].randomElement()! )
            
         }
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 100,
-                     acceleration: 10,
+                     acceleration: 0,
                      name:"default",
                      initialState: .first,
                      userInterationEnabled: true)

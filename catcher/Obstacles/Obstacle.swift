@@ -18,7 +18,7 @@ enum ObstacleType {
     case squareStack
     case squareStackPart
     case rotatingSquareStack
-    case twoColorCicrcle
+    case twoColorRing
 }
 
 protocol Obstacle {
@@ -26,7 +26,7 @@ protocol Obstacle {
     var node: SKNode { get }
     var type: ObstacleType! { get }
     func onAddedToScene()
-    func state(at point:CGPoint) -> State
+    func state(at point:CGPoint) -> State?
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
     func willBeShattered()

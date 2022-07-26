@@ -121,7 +121,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return
 //            fatalError("unknown collisions")
         }
-        if hero.state == obstacle.state(at: contact.contactPoint) {
+        if hero.state == obstacle.state(at: CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-1)) {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
@@ -142,7 +142,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
-        let shatter = ObstacleShatter(obstacle: obstacle)
+        let shatter = ObstacleShatterer(obstacle: obstacle)
         shatter.shatter(contactPoint: contactPoint)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()

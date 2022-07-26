@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class MultistateCircleObstacle: MultiStateObstacle {
+class MultistateRingObstacle: MultiStateObstacle {
     override var velocity: CGFloat {
             set {
                 physicsBody?.velocity.dy = newValue
@@ -18,18 +18,7 @@ class MultistateCircleObstacle: MultiStateObstacle {
                 physicsBody?.velocity.dy ?? 0
             }
     }
-    
-    override func state(at point: CGPoint) -> State {
-        guard let scene = scene else {
-            fatalError("obstacle is not on scene")
-        }
-        let pnt = scene.convert(point, to: self)
-        
-        let state = (nodes(at: pnt).first as! StateNode).state
-        return state
-    }
 
-    
     private let radius: CGFloat
     
     private var center: CGPoint {
@@ -72,7 +61,7 @@ class MultistateCircleObstacle: MultiStateObstacle {
             path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
             
             let innerPath = UIBezierPath()
-            let innerRadius = radius-PLANK_OBSTACLE_HEIGHT
+            let innerRadius = radius-7
             innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
             
             let innerCircleEnd = innerPath.currentPoint
@@ -89,6 +78,26 @@ class MultistateCircleObstacle: MultiStateObstacle {
             
         }
         
+    }
+    
+    override func state(at point: CGPoint) -> State? {
+        guard let scene = scene else {
+            fatalError("obstacle is not on scene")
+        }
+        var state: State? = nil
+        let pnt = scene.convert(point, to: self)
+        
+        for child in children {
+            guard let child = child as? StateNode,
+                  let path = child.path else {
+                continue
+            }
+            if path.contains(pnt) {
+                state = child.state
+                break
+            }
+        }
+        return state
     }
     
 }

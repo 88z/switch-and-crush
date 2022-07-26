@@ -38,8 +38,8 @@ class ObstacleArranger {
         self.scene = scene
         self.obstacleTypes = obstacleTypes
         self.firstObstacleState = firstObstacleState
-//        self.startPointY = startPointY
-        self.startPointY = 100
+//        self.startPointY = 100
+        self.startPointY = startPointY
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
@@ -64,8 +64,8 @@ class ObstacleArranger {
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
         case .squareStack, .rotatingSquareStack:
             obstacle = StackObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, states: [.first, .second].shuffled(), type: type)
-        case .twoColorCicrcle:
-            obstacle = MultistateCircleObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 2)
+        case .twoColorRing:
+            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 0)
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -96,7 +96,7 @@ class ObstacleArranger {
         switch type{
         case .squareStack, .rotatingSquareStack:
             return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
-        case .circle, .twoColorCicrcle:
+        case .circle, .twoColorRing:
             return CGPoint(x: scene!.frame.midX, y:nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())

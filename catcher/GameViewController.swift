@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
+            view.showsPhysics = false
         }
     }
     
@@ -86,7 +86,6 @@ class GameViewController: UIViewController {
     func set(presenter: GamePresenter) {
         self.presenter = presenter
         self.presenter.present()
-        
     }
     
 }

@@ -30,7 +30,7 @@ class CircleObstacle: StateNode, Obstacle {
     
     func onAddedToScene() {}
     
-    func state(at point: CGPoint) -> State {
+    func state(at point: CGPoint) -> State? {
         return state
     }
     
