@@ -118,10 +118,11 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             hero = bNode as! Hero
             obstacle = aNode as! Obstacle
         } else {
-            return
-//            fatalError("unknown collisions")
+//            return
+            fatalError("unknown collisions")
         }
-        if hero.state == obstacle.state(at: CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-1)) {
+        let obstacleState = obstacle.state(at: CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-2))
+        if hero.state == obstacleState {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);

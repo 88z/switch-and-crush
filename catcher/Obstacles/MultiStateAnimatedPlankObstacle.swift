@@ -34,7 +34,7 @@ class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
         
         let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
         
-        let maskShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: width, height: 21))
+        let maskShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: width, height: PLANK_OBSTACLE_HEIGHT))
         maskShapeNode.strokeColor = .white
         maskShapeNode.fillColor = .white
         

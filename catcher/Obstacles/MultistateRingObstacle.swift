@@ -69,8 +69,7 @@ class MultistateRingObstacle: MultiStateObstacle {
             path.addLine(to: innerCircleEnd)
             path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
             path.close()
-            
-            
+        
             let node = StateNode(path: path.cgPath)
             node.state = state
             addChild(node)

@@ -36,12 +36,8 @@ class RectObstacle: StateNode, Obstacle {
     convenience init(mask: Mask, width: CGFloat, type: ObstacleType) {
         let height: CGFloat
         switch type {
-        case .circle:
-            height = width
         case .thinPlank:
             height = 14
-        case .squareStackPart:
-            height = width/2
         default:
             height = PLANK_OBSTACLE_HEIGHT
         }

@@ -12,15 +12,14 @@ class LevelFactory {
     
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<100 {
+        for _ in 0..<20 {
             obstacleTypes.append([
-                ObstacleType.twoColorRing,
-//                ObstacleType.plank
+                ObstacleType.carousel2
             ].randomElement()! )
            
         }
         return Level(obstacleTypes: obstacleTypes,
-                     initialSpeed: 100,
+                     initialSpeed: 150,
                      acceleration: 0,
                      name:"default",
                      initialState: .first,

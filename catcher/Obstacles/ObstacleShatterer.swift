@@ -63,18 +63,17 @@ class ObstacleShatterer {
             }
             return atoms
         } else {
-            let frame = obstacle.node.calculateAccumulatedFrame()
+            guard let scene = obstacle.node.scene else {
+                return []
+            }
+            let frame = scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: obstacle.node.parent!)  
             let colCount = colCount(for: obstacle)
             for row in 0..<rowCount {
                 for col in 0..<colCount {
-                    let state: State?
+
                     let atomOrigin = CGPoint(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row))
-                    if [.squareStackPart].contains(obstacle.type) {
-                        state = .random()
-                    } else {
-                        state = obstacle.state(at: atomOrigin)
-                    }
-                    
+                    let state = obstacle.state(at: atomOrigin)
+
                     guard let state = state else {
                         continue
                     }
@@ -85,7 +84,6 @@ class ObstacleShatterer {
                     if (CGPointDistance(from: CGPoint(x: frame.midX, y: frame.midY), to: atomOrigin) > frame.size.width/2) {
                         continue
                     }
-                    
                     
                     atom.lineWidth = 0
                     atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
@@ -120,7 +118,7 @@ class ObstacleShatterer {
         let yMultiplier: CGFloat
         
         switch obstacle.type {
-        case .circle, .squareStackPart, .twoColorRing:
+        case .fourSegmentAnimatedRing:
             xMultiplier = 0.5
             yMultiplier = 0.5
         default:
@@ -128,25 +126,22 @@ class ObstacleShatterer {
             yMultiplier = 1
         }
         
-        if obstacle.type == .twoColorRing {
-            let obstacleMid = scene.convert(CGPoint(x: obstacle.node.calculateAccumulatedFrame().midX, y: obstacle.node.calculateAccumulatedFrame().midY), from: obstacle.node.parent ?? scene)
+        if obstacle.type == .fourSegmentAnimatedRing {
+            let obstacleFrame = obstacle.node.calculateAccumulatedFrame()
+            let obstacleMid = scene.convert(CGPoint(x: obstacleFrame.midX, y: obstacleFrame.midY), from: obstacle.node.parent ?? scene)
             for atom in atoms {
                 let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
-//                let atomMid = atom.frame.origin
-                if atomMid.y < obstacleMid.y {
-                    print("here")
-                }
-                let vector = CGVector(CGVector(dx: atomMid.x-obstacleMid.x, dy: atomMid.y-obstacleMid.y), changeLenTo: xMultiplier)
+                let vector = CGVector(CGVector(dx: obstacleFrame.width/2 * (atomMid.x>obstacleMid.x ? 0.5 :-0.5), dy: abs(atomMid.y - obstacleMid.y)), changeLenTo: 0.25)
                 atom.physicsBody?.applyImpulse(vector)
             }
-        } else {
-            var i = 1
-            for atom in collisionAtoms {
-                atom.physicsBody?.applyImpulse(CGVector(dx: xMultiplier*CGFloat(i), dy: yMultiplier))
-                i = i * -1
-            }
         }
-        
+
+        var i = 1
+        for atom in collisionAtoms {
+            atom.physicsBody?.applyImpulse(CGVector(dx: xMultiplier*CGFloat(i), dy: yMultiplier))
+            i = i * -1
+        }
+
         
         
         let fadeAction = SKAction.fadeOut(withDuration: 0.5)

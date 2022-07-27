@@ -52,20 +52,18 @@ class ObstacleArranger {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank, .thinPlank, .squareStackPart:
+        case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
         case .twoColorPlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
         case .animatedTwoColorPlank:
             obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
-        case .circle:
-            obstacle = CircleObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, type: type)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
-        case .squareStack, .rotatingSquareStack:
-            obstacle = StackObstacle(mask: obstacleMask, width: SQUARE_OBSTACLE_SIDE, states: [.first, .second].shuffled(), type: type)
-        case .twoColorRing:
-            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 0)
+        case .fourSegmentAnimatedRing:
+            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 2)
+        case .carousel2:
+            obstacle = CarouselPlankObstacle(mask: obstacleMask, states:  [.first, .second, .first, .second], type:.carousel2)
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -94,10 +92,10 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .squareStack, .rotatingSquareStack:
-            return CGPoint(x: scene!.frame.midX-SQUARE_OBSTACLE_SIDE/2, y:nextY())
-        case .circle, .twoColorRing:
+        case .fourSegmentAnimatedRing:
             return CGPoint(x: scene!.frame.midX, y:nextY())
+        case .carousel2:
+            return CGPoint(x:0, y: nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())
         }

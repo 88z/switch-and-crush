@@ -10,16 +10,14 @@ import SpriteKit
 
 enum ObstacleType {
     case plank
-    case circle
     case twoColorPlank
     case animatedTwoColorPlank
     case thinPlank
     case plankStack
-    case squareStack
-    case squareStackPart
-    case rotatingSquareStack
-    case twoColorRing
+    case fourSegmentAnimatedRing
+    case carousel2
 }
+
 
 protocol Obstacle {
     var velocity: CGFloat { get set }
