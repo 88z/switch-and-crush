@@ -8,14 +8,21 @@
 import Foundation
 import SpriteKit
 
-enum ObstacleType {
+enum Speed {
+    case slow
+    case medium
+    case fast
+    case crazy
+}
+
+enum ObstacleType: Equatable {
     case plank
-    case twoColorPlank
-    case animatedTwoColorPlank
+    case twoStatePlank
+    case pendulumPlank(swingSpeed: Speed)
     case thinPlank
     case plankStack
-    case fourSegmentAnimatedRing
-    case carousel2
+    case animatedRing(segmentsCount: Int, rotationSpeed: Speed)
+    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool)
 }
 
 

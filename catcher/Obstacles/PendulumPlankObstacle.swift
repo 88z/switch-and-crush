@@ -8,9 +8,9 @@
 import Foundation
 import SpriteKit
 
-class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
+class PendulumPlankObstacle: MultiStateObstacle {
     
-    init(mask: Mask) {
+    init(mask: Mask, swingSpeed: Speed) {
         let width = UIScreen.main.bounds.size.width
         var leftPartState = State.first
         var rightPartState = State.second
@@ -27,14 +27,23 @@ class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
         rightObstacle.state = rightPartState
         
         let height = rightObstacle.frame.size.height
-        let duration:TimeInterval = 3
+        var duration:TimeInterval
+        
+        switch swingSpeed {
+        case .slow:
+            duration = 6
+        case .medium:
+            duration = 4
+        case .fast:
+            duration = 2
+        case .crazy:
+            duration = 1
+        }
 
         let moveRightAction = SKAction.moveBy(x: width, y:0, duration: duration)
         let moveLeftAction = SKAction.moveBy(x: -width, y:0, duration: duration)
         
         let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
-        
-        
         
         super.init()
         addChild(leftObstacle)

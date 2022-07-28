@@ -9,15 +9,13 @@ import Foundation
 import SpriteKit
 
 class LevelFactory {
-    
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<10 {
+        for _ in 0..<30 {
             obstacleTypes.append([
-                ObstacleType.carousel2,
-                ObstacleType.fourSegmentAnimatedRing
+                ObstacleType.pendulumPlank(swingSpeed: .medium),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: Bool.random())
             ].randomElement()! )
-           
         }
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 150,
@@ -49,7 +47,7 @@ class LevelFactory {
         for _ in 0..<25 {
             obstacleTypes.append([
                 ObstacleType.plank,
-                ObstacleType.twoColorPlank
+                ObstacleType.twoStatePlank
             ].randomElement()! )
            
         }
@@ -70,20 +68,20 @@ class LevelFactory {
         for _ in 0..<10 {
             obstacleTypes.append([
                 ObstacleType.plank,
-                ObstacleType.twoColorPlank,
+                ObstacleType.twoStatePlank,
             ].randomElement()! )
         }
         
         for _ in 0..<5 {
             obstacleTypes.append([
-                ObstacleType.twoColorPlank,
-                ObstacleType.animatedTwoColorPlank,
+                ObstacleType.twoStatePlank,
+                ObstacleType.pendulumPlank(swingSpeed: .slow),
             ].randomElement()! )
         }
         
         for _ in 0..<5 {
             obstacleTypes.append([
-                ObstacleType.animatedTwoColorPlank,
+                ObstacleType.pendulumPlank(swingSpeed: .slow),
             ].randomElement()! )
         }
         
@@ -94,8 +92,4 @@ class LevelFactory {
                      initialState: .first,
                      userInterationEnabled: true)
     }
-    
-    
-    
-    
 }

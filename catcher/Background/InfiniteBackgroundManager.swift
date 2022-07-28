@@ -20,7 +20,6 @@ class InfiniteBackgroundManager {
         self.scene = scene
         for row in -1...1 {
             for col in -1...1 {
-                return nil
                 guard let texture = textureGenerator.generate() else {
                     return nil
                 }

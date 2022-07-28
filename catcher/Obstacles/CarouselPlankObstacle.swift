@@ -11,7 +11,7 @@ import SpriteKit
 class CarouselPlankObstacle: MultiStateObstacle {
     let directionRight:Bool
     var shiftsCount = 0
-    init(mask: Mask, states: [State], directionRight:Bool = false, type: ObstacleType) {
+    init(mask: Mask, states: [State], directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
         let width = UIScreen.main.bounds.size.width
         self.directionRight = directionRight
         super.init()
@@ -19,6 +19,19 @@ class CarouselPlankObstacle: MultiStateObstacle {
         self.type = type
         name = String(describing: Obstacle.self)
         let partWidth = width/CGFloat(states.count-1)
+        var duration: CGFloat
+        switch carouselSpeed {
+        case .slow:
+            duration = 6
+        case .medium:
+            duration = 4
+        case .fast:
+            duration = 2
+        case .crazy:
+            duration = 1
+        }
+        
+        duration = duration/CGFloat(states.count-1)
         
         var i:CGFloat = 0;
         for state in states {
@@ -27,8 +40,10 @@ class CarouselPlankObstacle: MultiStateObstacle {
             part.position = CGPoint(x:x, y: 0)
             part.state = state
             addChild(part)
+            
+            
             part.run(SKAction.repeatForever(SKAction.sequence([
-                SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: 3),
+                SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: duration),
                 SKAction.customAction(withDuration: 0, actionBlock: {[weak self] node, time in
                     guard let lastPart = self?.extremePart(right: directionRight),
                     node == lastPart.node else {

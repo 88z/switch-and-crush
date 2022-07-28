@@ -70,7 +70,7 @@ class UIScene:SKScene {
         }
         
         view.isUserInteractionEnabled = false
-        Timer.scheduledTimer(withTimeInterval: uifreezeTime, repeats: false, block: { [unowned self] timer in
+        Timer.scheduledTimer(withTimeInterval: uifreezeTime, repeats: false, block: { timer in
             view.isUserInteractionEnabled = true
         })
     }

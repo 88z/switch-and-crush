@@ -27,7 +27,10 @@ class MultistateRingObstacle: MultiStateObstacle {
         }
     }
     
-    init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationVelocity: CGFloat) {
+    init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
+        
+        
+        
         self.radius = radius
         super.init()
         self.type = type
@@ -38,7 +41,16 @@ class MultistateRingObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         physicsBody?.angularDamping = 0
-        physicsBody?.angularVelocity = rotationVelocity
+        switch rotationSpeed {
+        case .slow:
+            physicsBody?.angularVelocity = 0.5
+        case .medium:
+            physicsBody?.angularVelocity = 1
+        case .fast:
+            physicsBody?.angularVelocity = 2
+        case .crazy:
+            physicsBody?.angularVelocity = 3
+        }
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
         initParts(with: states)

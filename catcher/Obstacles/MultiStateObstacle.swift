@@ -40,7 +40,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         
         set {
             physicsBody?.velocity.dy = newValue
-            for var obstacle in parts() {
+            for  obstacle in parts() {
                 obstacle.velocity = newValue
             }
         }

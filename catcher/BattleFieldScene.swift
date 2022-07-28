@@ -38,7 +38,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         set {
             let obstacles = obstacles()
             for obstacle in obstacles {
-                if var obstacle = obstacle as? Obstacle {
+                if let obstacle = obstacle as? Obstacle {
                     obstacle.velocity = newValue
                 }
             }
@@ -71,7 +71,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         
         backgroundColor = UIColor.background()
         hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
-        addChild(hero)
+//        addChild(hero)
         hero.physicsBody?.set(mask: heroMask)
 
         let cameraNode = SKCameraNode()
@@ -92,7 +92,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero.state = level.initialState
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self, obstacleTypes: level.obstacleTypes, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
-        obstacleArranger.arrangeFirst()
+//        obstacleArranger.arrangeFirst()
+        obstacleArranger.arrangeAll()
         
         self.obstacleArranger = obstacleArranger
         
@@ -130,6 +131,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             obstacleArranger?.arrangeNext()
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            obstacleArranger?.arrangeAll()
             breakHero(hero, contactPoint: contact.contactPoint)
             battleDelegate?.crashed()
         }

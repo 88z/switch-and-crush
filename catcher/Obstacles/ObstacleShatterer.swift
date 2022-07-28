@@ -118,7 +118,7 @@ class ObstacleShatterer {
         let yMultiplier: CGFloat
         
         switch obstacle.type {
-        case .fourSegmentAnimatedRing:
+        case .animatedRing:
             xMultiplier = 0.5
             yMultiplier = 0.5
         default:
@@ -126,7 +126,7 @@ class ObstacleShatterer {
             yMultiplier = 1
         }
         
-        if obstacle.type == .fourSegmentAnimatedRing {
+        if case .animatedRing(segmentsCount: _) = obstacle.type {
             let obstacleFrame = obstacle.node.calculateAccumulatedFrame()
             let obstacleMid = scene.convert(CGPoint(x: obstacleFrame.midX, y: obstacleFrame.midY), from: obstacle.node.parent ?? scene)
             for atom in atoms {
@@ -135,6 +135,7 @@ class ObstacleShatterer {
                 atom.physicsBody?.applyImpulse(vector)
             }
         }
+    
 
         var i = 1
         for atom in collisionAtoms {

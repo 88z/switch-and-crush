@@ -54,17 +54,28 @@ class ObstacleArranger {
         switch type {
         case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
-        case .twoColorPlank:
+        case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
-        case .animatedTwoColorPlank:
-            obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask)
+        case .pendulumPlank(swingSpeed: let swingSpeed):
+            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
-        case .fourSegmentAnimatedRing:
-            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 2)
-        case .carousel2:
-            obstacle = CarouselPlankObstacle(mask: obstacleMask, states:  [.first, .second], type:.carousel2)
+        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):
+            let segmentsCount = Int(round(Double(segmentsCount) / 2.0)) * 2
+            var states:[State] = []
+            for i in 0..<segmentsCount {
+                states.append(i % 2 == 0 ? .first : .second)
+            }
+            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
+        case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight):
+            let partsCount = Int(round(Double(partsCount) / 2.0)) * 2
+            var states:[State] = []
+            for i in 0..<partsCount {
+                states.append(i % 2 == 0 ? .first : .second)
+            }
+            obstacle = CarouselPlankObstacle(mask: obstacleMask, states: states, directionRight: directionRight, type:type, carouselSpeed: carouselSpeed)
         }
+
         
         obstacle.node.position = positionFor(obstacle, type: type)
         obstacle.velocity = initialSpeed
@@ -93,11 +104,24 @@ class ObstacleArranger {
         }
     }
     
+    func arrangeNext() {
+        guard arrangedCount < obstacleTypes.count else {
+            return
+        }
+        arrangeOne(type: obstacleTypes[arrangedCount])
+    }
+    
+    func arrangeAll() {
+        for i in arrangedCount..<obstacleTypes.count {
+            arrangeOne(type: obstacleTypes[i])
+        }
+    }
+    
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .fourSegmentAnimatedRing:
+        case .animatedRing:
             return CGPoint(x: scene!.frame.midX, y:nextY())
-        case .carousel2, .animatedTwoColorPlank:
+        case .carouselPlank, .pendulumPlank:
             return CGPoint(x:0, y: nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())
@@ -113,10 +137,6 @@ class ObstacleArranger {
         return lastPlaced.node.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
     }
     
-    func arrangeNext() {
-        guard arrangedCount < obstacleTypes.count else {
-            return
-        }
-        arrangeOne(type: obstacleTypes[arrangedCount])
-    }
+    
 }
+    
