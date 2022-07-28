@@ -12,7 +12,7 @@ class LevelFactory {
     
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<20 {
+        for _ in 0..<10 {
             obstacleTypes.append([
                 ObstacleType.carousel2,
 //                ObstacleType.animatedTwoColorPlank

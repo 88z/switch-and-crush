@@ -46,6 +46,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var battleDelegate: BattleDelegate?
+    private var obstacleArranger: ObstacleArranger?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
     let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
     
@@ -91,7 +92,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero.state = level.initialState
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self, obstacleTypes: level.obstacleTypes, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
-        obstacleArranger.arrange()
+        obstacleArranger.arrangeFirst()
+        
+        self.obstacleArranger = obstacleArranger
         
         counterNode.isHidden = !shouldShowCounter
         if shouldShowCounter {
@@ -124,6 +127,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         let obstacleState = obstacle.state(at: CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-2))
         if hero.state == obstacleState {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
+            obstacleArranger?.arrangeNext()
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             breakHero(hero, contactPoint: contact.contactPoint)

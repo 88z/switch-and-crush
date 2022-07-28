@@ -38,7 +38,6 @@ class ObstacleArranger {
         self.scene = scene
         self.obstacleTypes = obstacleTypes
         self.firstObstacleState = firstObstacleState
-//        self.startPointY = 100
         self.startPointY = startPointY
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
@@ -75,19 +74,21 @@ class ObstacleArranger {
         return obstacle
     }
     
-    func arrange() {
+    func arrangeFirst() {
         
         guard  obstacleTypes.count > 0 else {
             return
         }
-        if let firstObstacle = arrangeOne(type: obstacleTypes[0]) as? RectObstacle {
+        
+        let firstObstacle = arrangeOne(type: obstacleTypes[0])
+        if let firstObstacle = firstObstacle as? RectObstacle {
             firstObstacle.state = firstObstacleState
         }
 
-        for i in 1..<obstacleTypes.count {
-            arrangeOne(type: obstacleTypes[i])
+        var lastPlaced = firstObstacle
+        while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 {
+            lastPlaced = arrangeOne(type: obstacleTypes[obstacleNodes.count])
         }
-        obstacleNodes = []
     }
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
@@ -110,5 +111,10 @@ class ObstacleArranger {
         return lastPlaced.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
     }
     
-    
+    func arrangeNext() {
+        guard obstacleNodes.count < obstacleTypes.count else {
+            return
+        }
+        arrangeOne(type: obstacleTypes[obstacleNodes.count])
+    }
 }

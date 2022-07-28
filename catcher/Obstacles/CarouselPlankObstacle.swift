@@ -35,7 +35,18 @@ class CarouselPlankObstacle: MultiStateObstacle {
                         return
                     }
                     DispatchQueue.main.async {
-                        node.position = CGPoint(x:directionRight ? -partWidth+1 : width-1, y:0)
+                        if directionRight {
+                            guard let leftPart = self?.extremePart(right: false) else {
+                                return
+                            }
+                            node.position = CGPoint(x: leftPart.position.x - partWidth, y:0)
+                        } else {
+                            guard let rightPart = self?.extremePart(right: true) else {
+                                return
+                            }
+                            node.position = CGPoint(x:rightPart.position.x+partWidth, y:0)
+                        }
+                        
                     }
                     
                     self?.shiftsCount+=1
