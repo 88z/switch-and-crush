@@ -14,7 +14,8 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<20 {
             obstacleTypes.append([
-                ObstacleType.carousel2
+                ObstacleType.carousel2,
+//                ObstacleType.animatedTwoColorPlank
             ].randomElement()! )
            
         }

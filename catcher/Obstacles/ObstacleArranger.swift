@@ -57,13 +57,13 @@ class ObstacleArranger {
         case .twoColorPlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
         case .animatedTwoColorPlank:
-            obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask, width: width)
+            obstacle = MultiStateAnimatedPlankObstacle(mask: obstacleMask)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
         case .fourSegmentAnimatedRing:
             obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: [.first, .second, .first, .second], type: type, rotationVelocity: 2)
         case .carousel2:
-            obstacle = CarouselPlankObstacle(mask: obstacleMask, states:  [.first, .second, .first, .second], type:.carousel2)
+            obstacle = CarouselPlankObstacle(mask: obstacleMask, states:  [.first, .second], type:.carousel2)
         }
         
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -94,7 +94,7 @@ class ObstacleArranger {
         switch type{
         case .fourSegmentAnimatedRing:
             return CGPoint(x: scene!.frame.midX, y:nextY())
-        case .carousel2:
+        case .carousel2, .animatedTwoColorPlank:
             return CGPoint(x:0, y: nextY())
         default:
             return CGPoint(x: leftBorderX, y:nextY())

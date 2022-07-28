@@ -28,14 +28,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
             part.state = state
             addChild(part)
             part.run(SKAction.repeatForever(SKAction.sequence([
-                SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: 2),
+                SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: 3),
                 SKAction.customAction(withDuration: 0, actionBlock: {[weak self] node, time in
                     guard let lastPart = self?.extremePart(right: directionRight),
                     node == lastPart.node else {
                         return
                     }
                     DispatchQueue.main.async {
-                        node.position = CGPoint(x:directionRight ? -partWidth : width, y:0)
+                        node.position = CGPoint(x:directionRight ? -partWidth+1 : width-1, y:0)
                     }
                     
                     self?.shiftsCount+=1

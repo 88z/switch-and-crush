@@ -10,8 +10,8 @@ import SpriteKit
 
 class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
     
-    let cropNode: SKCropNode
-    override init(mask: Mask, width: CGFloat) {
+    init(mask: Mask) {
+        let width = UIScreen.main.bounds.size.width
         var leftPartState = State.first
         var rightPartState = State.second
         if Bool.random() {
@@ -34,16 +34,11 @@ class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
         
         let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
         
-        let maskShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: width, height: PLANK_OBSTACLE_HEIGHT))
-        maskShapeNode.strokeColor = .white
-        maskShapeNode.fillColor = .white
         
-        cropNode = SKCropNode()
-        cropNode.maskNode = maskShapeNode
-        cropNode.addChild(leftObstacle)
-        cropNode.addChild(rightObstacle)
         
         super.init()
+        addChild(leftObstacle)
+        addChild(rightObstacle)
         name = String(describing: Obstacle.self)
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height), center: CGPoint(x: width/2, y: height/2))
@@ -55,14 +50,9 @@ class MultiStateAnimatedPlankObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         
-        addChild(cropNode)
         leftObstacle.run(action)
         rightObstacle.run(action)
         
-    }
-    
-    override func parts() -> [Obstacle] {
-        return cropNode[String(describing: Obstacle.self)] as! [Obstacle]
     }
     
     required init?(coder aDecoder: NSCoder) {
