@@ -70,7 +70,6 @@ class ObstacleShatterer {
             let colCount = colCount(for: obstacle)
             for row in 0..<rowCount {
                 for col in 0..<colCount {
-
                     let atomOrigin = CGPoint(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row))
                     let state = obstacle.state(at: atomOrigin)
 
@@ -104,8 +103,9 @@ class ObstacleShatterer {
         }
         var collisionAtoms:[SKShapeNode] = []
         let rootParent = ObstacleShatterer.rootParent(of: obstacle)
-        rootParent.willBeShattered()
-        let atoms = atoms(from: rootParent)
+        let obstacleToShatter = rootParent.isSolid ? rootParent : obstacle
+        obstacleToShatter.willBeShattered()
+        let atoms = atoms(from: obstacleToShatter)
         for atom in atoms {
             scene.addChild(atom)
             let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
@@ -126,7 +126,7 @@ class ObstacleShatterer {
             yMultiplier = 1
         }
         
-        if case .animatedRing(segmentsCount: _) = obstacle.type {
+        if case .animatedRing(segmentsCount: _) = obstacle.type  {
             let obstacleFrame = obstacle.node.calculateAccumulatedFrame()
             let obstacleMid = scene.convert(CGPoint(x: obstacleFrame.midX, y: obstacleFrame.midY), from: obstacle.node.parent ?? scene)
             for atom in atoms {
@@ -151,7 +151,7 @@ class ObstacleShatterer {
                 atom.removeFromParent()
             }
         }
-        rootParent.node.removeFromParent()
+        obstacleToShatter.node.removeFromParent()
     }
     
     

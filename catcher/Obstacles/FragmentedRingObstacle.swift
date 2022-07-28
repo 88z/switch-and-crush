@@ -1,27 +1,18 @@
 //
-//  MultistateCircleObstacle.swift
+//  FragmentedRingObstacle.swift
 //  catcher
 //
-//  Created by Aleksandr Zhuravlev on 23.07.2022.
+//  Created by Aleksandr Zhuravlev on 28.07.2022.
 //
 
 import Foundation
 import SpriteKit
 
-class MultistateRingObstacle: MultiStateObstacle {
-    override var velocity: CGFloat {
-            set {
-                physicsBody?.velocity.dy = newValue
-                
-            }
-            get {
-                physicsBody?.velocity.dy ?? 0
-            }
-    }
+class FragmentedRingObstacle: MultiStateObstacle {
     
     override var isSolid: Bool {
         get {
-            return true
+            return false
         }
     }
 
@@ -31,6 +22,16 @@ class MultistateRingObstacle: MultiStateObstacle {
         get {
             return CGPoint(x: frame.midX, y: frame.midY)
         }
+    }
+    
+    override var velocity: CGFloat {
+            set {
+                physicsBody?.velocity.dy = newValue
+                
+            }
+            get {
+                physicsBody?.velocity.dy ?? 0
+            }
     }
     
     init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
@@ -55,40 +56,30 @@ class MultistateRingObstacle: MultiStateObstacle {
             physicsBody?.angularVelocity = 3
         }
         physicsBody?.density = 0.025
-        physicsBody?.set(mask: mask)
-        initParts(with: states)
+        physicsBody?.setZeroMask()
+        
+        initParts(mask: mask, states:states)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initParts(with states: [State]){
+    private func initParts(mask: Mask, states: [State]){
         guard states.count > 0 else {
             return
         }
         let partAngle = 2*CGFloat.pi/CGFloat(states.count)
         var startAngle:CGFloat = 0
+        let spaceAngle:CGFloat = 0.3
 
         for state in states {
-            let endAngle = startAngle + partAngle
-            let path = UIBezierPath()
-            path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            
-            let innerPath = UIBezierPath()
-            let innerRadius = radius-7
-            innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            
-            let innerCircleEnd = innerPath.currentPoint
-            
-            path.addLine(to: innerCircleEnd)
-            path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
-            path.close()
+            let endAngle = startAngle + partAngle - spaceAngle
         
-            let node = StateNode(path: path.cgPath)
-            node.state = state
+            let node = ArcObstacle(mask: mask, state: state, center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, type: .arcObstacle)
+            
             addChild(node)
-            startAngle = endAngle
+            startAngle = endAngle + spaceAngle
         }
     }
     
@@ -110,5 +101,12 @@ class MultistateRingObstacle: MultiStateObstacle {
             }
         }
         return state
+    }
+    
+    override func onAddedToScene() {
+        for obstacle in parts() {
+            let position = scene!.convert(.zero, from: self)
+            scene!.physicsWorld.add(SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: obstacle.node.physicsBody!, anchor: position))
+        }
     }
 }

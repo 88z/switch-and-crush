@@ -9,6 +9,12 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
+    var isSolid: Bool {
+        get {
+            fatalError("tou should implement it in the subclass")
+        }
+    }
+    
     func willBeShattered() {}
     
     func onAddedToScene() {}

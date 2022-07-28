@@ -122,8 +122,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             hero = bNode as! Hero
             obstacle = aNode as! Obstacle
         } else {
-//            return
-            fatalError("unknown collisions")
+            return
+//            fatalError("unknown collisions")
         }
         let obstacleState = obstacle.state(at: CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-2))
         if hero.state == obstacleState {

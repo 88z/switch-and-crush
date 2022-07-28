@@ -22,7 +22,9 @@ enum ObstacleType: Equatable {
     case thinPlank
     case plankStack
     case animatedRing(segmentsCount: Int, rotationSpeed: Speed)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed)
     case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool)
+    case arcObstacle
 }
 
 
@@ -30,9 +32,11 @@ protocol Obstacle: AnyObject {
     var velocity: CGFloat { get set }
     var node: SKNode { get }
     var type: ObstacleType! { get }
+    var isSolid: Bool { get }
     func onAddedToScene()
     func state(at point:CGPoint) -> State?
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
     func willBeShattered()
+    
 }

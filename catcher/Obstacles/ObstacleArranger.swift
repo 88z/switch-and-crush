@@ -22,7 +22,6 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    
     let minYSpace: CGFloat = 200
     let maxYSpace: CGFloat = 300
     
@@ -52,7 +51,7 @@ class ObstacleArranger {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank, .thinPlank:
+        case .plank, .thinPlank, .arcObstacle:
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
         case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
@@ -74,6 +73,13 @@ class ObstacleArranger {
                 states.append(i % 2 == 0 ? .first : .second)
             }
             obstacle = CarouselPlankObstacle(mask: obstacleMask, states: states, directionRight: directionRight, type:type, carouselSpeed: carouselSpeed)
+        case .fragmentedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):
+            let segmentsCount = Int(round(Double(segmentsCount) / 2.0)) * 2
+            var states:[State] = []
+            for i in 0..<segmentsCount {
+                states.append(i % 2 == 0 ? .first : .second)
+            }
+            obstacle = FragmentedRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
         }
 
         
@@ -119,7 +125,7 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .animatedRing:
+        case .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _):
             return CGPoint(x: scene!.frame.midX, y:nextY())
         case .carouselPlank, .pendulumPlank:
             return CGPoint(x:0, y: nextY())

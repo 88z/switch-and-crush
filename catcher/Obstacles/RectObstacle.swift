@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
+    var isSolid: Bool = true
+    
     func onAddedToScene() {
         
     }
@@ -21,6 +23,7 @@ class RectObstacle: StateNode, Obstacle {
             return self
         }
     }
+    
     
     var velocity: CGFloat {
             set {

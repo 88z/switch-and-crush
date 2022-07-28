@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2317B83C288C080700EBFDCE /* MultistateRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */; };
+		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
+		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
 		2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* UISceneText.swift */; };
 		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
@@ -80,6 +82,8 @@
 /* Begin PBXFileReference section */
 		067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultistateRingObstacle.swift; sourceTree = "<group>"; };
+		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
+		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		2388BA77287349BE00D27DBD /* UISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneText.swift; sourceTree = "<group>"; };
 		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 				23C0678C2880997900E2A5C9 /* StackObstacle.swift */,
 				2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */,
 				23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */,
+				232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */,
+				232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 				8087E43E25442C8B00340D10 /* State.swift in Sources */,
 				23DF8F5F2891ACBE00B43541 /* CarouselPlankObstacle.swift in Sources */,
 				23D5CDEE287DFDFC00523B8B /* PendulumPlankObstacle.swift in Sources */,
+				232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
 				23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */,
 				809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */,
@@ -510,6 +517,7 @@
 				806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */,
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,
 				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
+				232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */,
 				8087E44925444AE500340D10 /* UIScene.swift in Sources */,
 				8012B50C2545918B00ACBCC0 /* OnboardingPresenter.swift in Sources */,
 				23FD3D1C2879753D007C178C /* Obstacle.swift in Sources */,
