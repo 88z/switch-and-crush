@@ -108,12 +108,12 @@ class ObstacleArranger {
         guard arrangedCount < obstacleTypes.count else {
             return
         }
-        arrangeOne(type: obstacleTypes[arrangedCount])
+        _ = arrangeOne(type: obstacleTypes[arrangedCount])
     }
     
     func arrangeAll() {
         for i in arrangedCount..<obstacleTypes.count {
-            arrangeOne(type: obstacleTypes[i])
+            _ = arrangeOne(type: obstacleTypes[i])
         }
     }
     

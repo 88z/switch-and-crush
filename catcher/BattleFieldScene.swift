@@ -71,7 +71,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         
         backgroundColor = UIColor.background()
         hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
-//        addChild(hero)
+        addChild(hero)
         hero.physicsBody?.set(mask: heroMask)
 
         let cameraNode = SKCameraNode()
@@ -92,8 +92,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero.state = level.initialState
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self, obstacleTypes: level.obstacleTypes, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
-//        obstacleArranger.arrangeFirst()
-        obstacleArranger.arrangeAll()
+        obstacleArranger.arrangeFirst()
+//        obstacleArranger.arrangeAll()
         
         self.obstacleArranger = obstacleArranger
         
