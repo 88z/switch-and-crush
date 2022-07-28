@@ -15,7 +15,7 @@ class LevelFactory {
         for _ in 0..<10 {
             obstacleTypes.append([
                 ObstacleType.carousel2,
-//                ObstacleType.animatedTwoColorPlank
+                ObstacleType.fourSegmentAnimatedRing
             ].randomElement()! )
            
         }

@@ -9,7 +9,8 @@ import Foundation
 import SpriteKit
 
 class ObstacleArranger {
-    var obstacleNodes:[SKNode] = []
+    weak var lastObstacle: Obstacle?
+    var arrangedCount:Int = 0
     let obstacleTypes: [ObstacleType]
     let firstObstacleState: State
     weak var scene: SKScene?
@@ -70,7 +71,8 @@ class ObstacleArranger {
         scene?.addChild(obstacle.node)
         obstacle.onAddedToScene()
         
-        obstacleNodes.append(obstacle.node)
+        lastObstacle = obstacle
+        arrangedCount+=1
         return obstacle
     }
     
@@ -87,7 +89,7 @@ class ObstacleArranger {
 
         var lastPlaced = firstObstacle
         while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 {
-            lastPlaced = arrangeOne(type: obstacleTypes[obstacleNodes.count])
+            lastPlaced = arrangeOne(type: obstacleTypes[arrangedCount])
         }
     }
     
@@ -105,16 +107,16 @@ class ObstacleArranger {
     }
     
     func nextY() -> CGFloat {
-        guard let lastPlaced = obstacleNodes.last else {
+        guard let lastPlaced = lastObstacle else {
             return startPointY
         }
-        return lastPlaced.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
+        return lastPlaced.node.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
     }
     
     func arrangeNext() {
-        guard obstacleNodes.count < obstacleTypes.count else {
+        guard arrangedCount < obstacleTypes.count else {
             return
         }
-        arrangeOne(type: obstacleTypes[obstacleNodes.count])
+        arrangeOne(type: obstacleTypes[arrangedCount])
     }
 }

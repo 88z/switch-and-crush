@@ -19,7 +19,7 @@ enum ObstacleType {
 }
 
 
-protocol Obstacle {
+protocol Obstacle: AnyObject {
     var velocity: CGFloat { get set }
     var node: SKNode { get }
     var type: ObstacleType! { get }
