@@ -9,6 +9,11 @@ import Foundation
 import SpriteKit
 
 class CarouselPlankObstacle: MultiStateObstacle {
+    override var isSolid: Bool {
+        get {
+            return true
+        }
+    }
     let directionRight:Bool
     var shiftsCount = 0
     init(mask: Mask, states: [State], directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
@@ -21,6 +26,8 @@ class CarouselPlankObstacle: MultiStateObstacle {
         let partWidth = width/CGFloat(states.count-1)
         var duration: CGFloat
         switch carouselSpeed {
+        case .none:
+            duration = CGFloat.infinity
         case .slow:
             duration = 6
         case .medium:

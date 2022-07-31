@@ -9,6 +9,12 @@ import Foundation
 import SpriteKit
 
 class MultiStatePlankObstacle: MultiStateObstacle {
+    
+    override var isSolid: Bool {
+        get {
+            return true
+        }
+    }
     init(mask:Mask, width: CGFloat, states: [State], partSizes:[CGFloat]) {
         guard states.count == partSizes.count else {
             fatalError("Multiplank Obstacles Constructor Error: state and partSizes must have equal size")

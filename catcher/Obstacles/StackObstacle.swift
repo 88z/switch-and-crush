@@ -9,6 +9,12 @@ import Foundation
 import SpriteKit
 
 class StackObstacle: MultiStateObstacle {
+    
+    override var isSolid:Bool {
+        get {
+            return true
+        }
+    }
 
     init(mask:Mask, width: CGFloat, states: [State], type: ObstacleType) {
         super.init()

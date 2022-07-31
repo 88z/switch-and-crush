@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
+
+    
     var isSolid: Bool = true
     
     func onAddedToScene() {
@@ -61,7 +63,7 @@ class RectObstacle: StateNode, Obstacle {
         state = State.random()
     }
     
-    func state(at point: CGPoint) -> State? {
+    func state(at point: CGPoint, isContactTest: Bool) -> State? {
         return state
     }
     
@@ -76,4 +78,5 @@ class RectObstacle: StateNode, Obstacle {
         }
         return parent as? Obstacle ?? nil
     }
+    
 }

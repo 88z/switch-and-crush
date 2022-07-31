@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 enum Speed {
+    case none
     case slow
     case medium
     case fast
@@ -34,9 +35,21 @@ protocol Obstacle: AnyObject {
     var type: ObstacleType! { get }
     var isSolid: Bool { get }
     func onAddedToScene()
-    func state(at point:CGPoint) -> State?
+    func state(at point:CGPoint, isContactTest:Bool) -> State?
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
     func willBeShattered()
-    
+    var firstSolidParent: Obstacle { get }
+}
+
+extension Obstacle {
+    var firstSolidParent: Obstacle {
+        get {
+            var parent:Obstacle = self
+            while parent.parent() != nil && parent.isSolid {
+                parent = parent.parent()!
+            }
+            return parent
+        }
+    }
 }

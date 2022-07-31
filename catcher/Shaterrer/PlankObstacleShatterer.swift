@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class ObstacleShatterer {
+class PlankObstacleShatterer {
     
     private var atomSize: CFloat {
         get {
@@ -18,18 +18,6 @@ class ObstacleShatterer {
     
     private let obstacle: Obstacle
     
-    private var frame: CGRect {
-        get {
-            guard let scene = obstacle.node.scene else {
-                fatalError("obstacle has no scene")
-            }
-            guard let parent = obstacle.node.parent  else {
-                return obstacle.node.calculateAccumulatedFrame()
-            }
-            return scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: parent)
-        }
-    }
-    
     private var rowCount:Int {
         get {
             return Int(obstacle.node.calculateAccumulatedFrame().size.height/7)
@@ -38,15 +26,6 @@ class ObstacleShatterer {
 
     init (obstacle: Obstacle) {
         self.obstacle = obstacle
-    }
-    
-    
-    private class func rootParent(of obstacle:Obstacle)->Obstacle {
-        var parent = obstacle
-        while parent.parent() != nil {
-            parent = parent.parent()!
-        }
-        return parent
     }
     
     private func colCount(for obstacle:Obstacle) -> Int {
@@ -66,12 +45,12 @@ class ObstacleShatterer {
             guard let scene = obstacle.node.scene else {
                 return []
             }
-            let frame = scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: obstacle.node.parent!)  
+            let frame = scene.convertRect(obstacle.node.calculateAccumulatedFrame(), from: obstacle.node.parent!)
             let colCount = colCount(for: obstacle)
             for row in 0..<rowCount {
                 for col in 0..<colCount {
                     let atomOrigin = CGPoint(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row))
-                    let state = obstacle.state(at: atomOrigin)
+                    let state = obstacle.state(at: atomOrigin, isContactTest: false)
 
                     guard let state = state else {
                         continue
@@ -79,10 +58,6 @@ class ObstacleShatterer {
                     
                     let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))))
                     atom.state = state
-                    
-                    if (CGPointDistance(from: CGPoint(x: frame.midX, y: frame.midY), to: atomOrigin) > frame.size.width/2) {
-                        continue
-                    }
                     
                     atom.lineWidth = 0
                     atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
@@ -102,10 +77,9 @@ class ObstacleShatterer {
             return
         }
         var collisionAtoms:[SKShapeNode] = []
-        let rootParent = ObstacleShatterer.rootParent(of: obstacle)
-        let obstacleToShatter = rootParent.isSolid ? rootParent : obstacle
-        obstacleToShatter.willBeShattered()
-        let atoms = atoms(from: obstacleToShatter)
+        let firstSolidParent = obstacle.firstSolidParent
+        firstSolidParent.willBeShattered()
+        let atoms = atoms(from: firstSolidParent)
         for atom in atoms {
             scene.addChild(atom)
             let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
@@ -114,28 +88,8 @@ class ObstacleShatterer {
             }
         }
        
-        let xMultiplier: CGFloat
-        let yMultiplier: CGFloat
-        
-        switch obstacle.type {
-        case .animatedRing:
-            xMultiplier = 0.5
-            yMultiplier = 0.5
-        default:
-            xMultiplier = 3
-            yMultiplier = 1
-        }
-        
-        if case .animatedRing(segmentsCount: _) = obstacle.type  {
-            let obstacleFrame = obstacle.node.calculateAccumulatedFrame()
-            let obstacleMid = scene.convert(CGPoint(x: obstacleFrame.midX, y: obstacleFrame.midY), from: obstacle.node.parent ?? scene)
-            for atom in atoms {
-                let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
-                let vector = CGVector(CGVector(dx: obstacleFrame.width/2 * (atomMid.x>obstacleMid.x ? 0.5 :-0.5), dy: abs(atomMid.y - obstacleMid.y)), changeLenTo: 0.25)
-                atom.physicsBody?.applyImpulse(vector)
-            }
-        }
-    
+        let xMultiplier: CGFloat = 3
+        let yMultiplier: CGFloat = 1
 
         var i = 1
         for atom in collisionAtoms {
@@ -151,8 +105,6 @@ class ObstacleShatterer {
                 atom.removeFromParent()
             }
         }
-        obstacleToShatter.node.removeFromParent()
+        firstSolidParent.node.removeFromParent()
     }
-    
-    
 }

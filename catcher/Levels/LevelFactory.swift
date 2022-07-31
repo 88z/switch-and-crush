@@ -13,8 +13,11 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<30 {
             obstacleTypes.append([
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .slow),
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .slow)
+                ObstacleType.plank,
+                ObstacleType.pendulumPlank(swingSpeed: .medium),
+                ObstacleType.carouselPlank(partsCount: 3, carouselSpeed: .medium, directionRight: true),
+                ObstacleType.plankStack,
+                ObstacleType.twoStatePlank
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,

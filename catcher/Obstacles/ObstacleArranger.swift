@@ -79,7 +79,7 @@ class ObstacleArranger {
             for i in 0..<segmentsCount {
                 states.append(i % 2 == 0 ? .first : .second)
             }
-            obstacle = FragmentedRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
+            obstacle = FragmentedRingObstacle(mask: obstacleMask, radius: 96, states: states, type: type, rotationSpeed: rotationSpeed)
         }
 
         
@@ -140,7 +140,7 @@ class ObstacleArranger {
         guard let lastPlaced = lastObstacle else {
             return startPointY
         }
-        return lastPlaced.node.frame.minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
+        return lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
     }
     
     

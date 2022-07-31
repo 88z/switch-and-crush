@@ -33,7 +33,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
                 physicsBody?.velocity.dy ?? 0
             }
     }
-    
+        
     init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
         self.radius = radius
         super.init()
@@ -46,6 +46,8 @@ class FragmentedRingObstacle: MultiStateObstacle {
         physicsBody?.linearDamping = 0
         physicsBody?.angularDamping = 0
         switch rotationSpeed {
+        case .none:
+            physicsBody?.angularVelocity = 0
         case .slow:
             physicsBody?.angularVelocity = 0.5
         case .medium:
@@ -76,14 +78,14 @@ class FragmentedRingObstacle: MultiStateObstacle {
         for state in states {
             let endAngle = startAngle + partAngle - spaceAngle
         
-            let node = ArcObstacle(mask: mask, state: state, center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, type: .arcObstacle)
+            let node = ArcObstacle(mask: mask, state: .first, center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, type: .arcObstacle)
             
             addChild(node)
             startAngle = endAngle + spaceAngle
         }
     }
     
-    override func state(at point: CGPoint) -> State? {
+    override func state(at point: CGPoint, isContactTest: Bool) -> State? {
         guard let scene = scene else {
             fatalError("obstacle is not on scene")
         }

@@ -45,6 +45,8 @@ class MultistateRingObstacle: MultiStateObstacle {
         physicsBody?.linearDamping = 0
         physicsBody?.angularDamping = 0
         switch rotationSpeed {
+        case .none:
+            physicsBody?.angularVelocity = 0
         case .slow:
             physicsBody?.angularVelocity = 0.5
         case .medium:
@@ -92,7 +94,7 @@ class MultistateRingObstacle: MultiStateObstacle {
         }
     }
     
-    override func state(at point: CGPoint) -> State? {
+    override func state(at point: CGPoint, isContactTest: Bool) -> State? {
         guard let scene = scene else {
             fatalError("obstacle is not on scene")
         }

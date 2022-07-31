@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 
 class ArcObstacle: StateNode, Obstacle {
+
+    
     var isSolid: Bool = true
     
     var velocity: CGFloat {
@@ -32,7 +34,22 @@ class ArcObstacle: StateNode, Obstacle {
         
     }
     
-    func state(at point: CGPoint) -> State? {
+    func state(at point: CGPoint, isContactTest: Bool) -> State? {
+//        return state
+        if isContactTest {
+            return state
+        }
+        guard let scene = scene else {
+            fatalError("obstacle is not on scene")
+        }
+        var state: State? = nil
+        let pnt = scene.convert(point, to: self.parent()?.node ?? scene)
+        guard let path = path else {
+            return state
+        }
+        if path.contains(point) {
+            state = self.state
+        }
         return state
     }
     

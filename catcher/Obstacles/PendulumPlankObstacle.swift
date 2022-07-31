@@ -10,6 +10,12 @@ import SpriteKit
 
 class PendulumPlankObstacle: MultiStateObstacle {
     
+    override var isSolid: Bool {
+        get {
+            return true
+        }
+    }
+    
     init(mask: Mask, swingSpeed: Speed) {
         let width = UIScreen.main.bounds.size.width
         var leftPartState = State.first
@@ -30,6 +36,8 @@ class PendulumPlankObstacle: MultiStateObstacle {
         var duration:TimeInterval
         
         switch swingSpeed {
+        case .none:
+            duration = CGFloat.infinity
         case .slow:
             duration = 6
         case .medium:

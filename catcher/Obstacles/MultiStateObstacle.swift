@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
+    
     var isSolid: Bool {
         get {
             fatalError("tou should implement it in the subclass")
@@ -52,7 +53,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         }
     }
 
-    func state(at point: CGPoint) -> State? {
+    func state(at point: CGPoint, isContactTest:Bool) -> State? {
         guard let scene = scene else {
             fatalError("obstacle is not on scene")
         }
@@ -61,7 +62,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         
         for obstacle in parts() {
             if obstacle.node.scene?.contains(lPoint) ?? false {
-                return obstacle.state(at: point)
+                return obstacle.state(at: point, isContactTest: isContactTest)
             }
         }
         return nil
