@@ -24,7 +24,7 @@ class MultistateRingObstacle: MultiStateObstacle {
             return true
         }
     }
-
+    
     private let radius: CGFloat
     
     private var center: CGPoint {
@@ -32,6 +32,8 @@ class MultistateRingObstacle: MultiStateObstacle {
             return CGPoint(x: frame.midX, y: frame.midY)
         }
     }
+    
+    let width: CGFloat = 7
     
     init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
         self.radius = radius
@@ -74,30 +76,57 @@ class MultistateRingObstacle: MultiStateObstacle {
 
         for state in states {
             let endAngle = startAngle + partAngle
-            let node = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7)
+            let node = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
             node.state = state
             addChild(node)
             startAngle = endAngle
         }
     }
     
+    private func state(at angle:CGFloat)->State? {
+        let radius = radius-width/2
+        return state(at: CGPoint(x: radius*cos(angle), y: radius*sin(angle)), isContactTest: false)
+    }
+    
     override func state(at point: CGPoint, isContactTest: Bool) -> State? {
-        guard let scene = scene else {
-            fatalError("obstacle is not on scene")
-        }
         var state: State? = nil
-        let pnt = scene.convert(point, to: self)
         
         for child in children {
             guard let child = child as? StateNode,
                   let path = child.path else {
                 continue
             }
-            if path.contains(pnt) {
+            if path.contains(point) {
                 state = child.state
                 break
             }
         }
         return state
     }
+
+    override func dummyForShattering() -> SKNode {
+        let dummy = SKNode()
+        let atomsCount = 32
+        var startAngle:CGFloat = 0
+        let atomAngle = 2*CGFloat.pi/CGFloat(atomsCount)
+        
+        for _ in 0..<atomsCount {
+            let endAngle = startAngle + atomAngle
+            guard let state = state(at: startAngle+(endAngle-startAngle)/2) else {
+                continue
+            }
+            let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
+            atom.state = state
+            atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
+            atom.physicsBody?.affectedByGravity = false
+            atom.physicsBody?.categoryBitMask = 0b1000
+            atom.physicsBody?.collisionBitMask = 0b1000
+            atom.physicsBody?.restitution = 1
+            dummy.addChild(atom)
+            startAngle = endAngle
+        }
+        dummy.zRotation = zRotation
+        return dummy
+    }
+    
 }

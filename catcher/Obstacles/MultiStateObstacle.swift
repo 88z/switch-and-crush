@@ -9,10 +9,14 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
+    func dummyForShattering() -> SKNode {
+        fatalError("should implement it in the subclass")
+    }
+    
     
     var isSolid: Bool {
         get {
-            fatalError("tou should implement it in the subclass")
+            fatalError("should implement it in the subclass")
         }
     }
     

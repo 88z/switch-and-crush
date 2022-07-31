@@ -41,13 +41,14 @@ protocol Obstacle: AnyObject {
     func parent() -> Obstacle?
     func willBeShattered()
     var firstSolidParent: Obstacle { get }
+    func dummyForShattering() -> SKNode
 }
 
 extension Obstacle {
     var firstSolidParent: Obstacle {
         get {
             var parent:Obstacle = self
-            while parent.parent() != nil && parent.isSolid {
+            while parent.parent()?.isSolid ?? false {
                 parent = parent.parent()!
             }
             return parent

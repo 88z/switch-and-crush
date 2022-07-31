@@ -9,7 +9,9 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
-
+    func dummyForShattering() -> SKNode {
+        fatalError("should implement it in the subclass")
+    }
     
     var isSolid: Bool = true
     

@@ -9,7 +9,6 @@ import Foundation
 import SpriteKit
 
 class ArcObstacle: StateNode, Obstacle {
-
     
     var isSolid: Bool = true
     
@@ -67,11 +66,20 @@ class ArcObstacle: StateNode, Obstacle {
     
     func willBeShattered() {}
     
+    private var startAngle:CGFloat = 0
+    private var endAngle: CGFloat = 0
+    private var radius: CGFloat = 0
+    private let width: CGFloat = 7
+    
     convenience init(mask: Mask, state: State, center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, type: ObstacleType) {
         
         self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7)
         self.type = type
         self.state = state
+        self.startAngle = startAngle
+        self.endAngle = endAngle
+        self.radius = radius
+        
         self.name = String(describing: Obstacle.self)
         
         physicsBody = SKPhysicsBody(polygonFrom: path!)
@@ -83,6 +91,28 @@ class ArcObstacle: StateNode, Obstacle {
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
         
+    }
+    
+    func dummyForShattering() -> SKNode {
+        let dummy = SKNode()
+        let atomsPer360Count = 24
+        var startAngle:CGFloat = startAngle
+        let atomAngle = 2*CGFloat.pi/CGFloat(atomsPer360Count)
+
+        while startAngle < endAngle {
+            let endAngle = startAngle + atomAngle
+            let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
+            atom.state = state
+            atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
+            atom.physicsBody?.affectedByGravity = false
+            atom.physicsBody?.categoryBitMask = 0b1000
+            atom.physicsBody?.collisionBitMask = 0b1000
+            atom.physicsBody?.restitution = 1
+            dummy.addChild(atom)
+            startAngle = endAngle
+        }
+        dummy.zRotation = parent?.zRotation ?? 0
+        return dummy
     }
     
 }

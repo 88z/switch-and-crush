@@ -88,7 +88,7 @@ class PlankObstacleShatterer: Shatterer {
             }
         }
        
-        let xMultiplier: CGFloat = 3
+        let xMultiplier: CGFloat = 7
         let yMultiplier: CGFloat = 1
 
         var i = 1

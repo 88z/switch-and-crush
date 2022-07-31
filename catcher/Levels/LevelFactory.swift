@@ -14,7 +14,8 @@ class LevelFactory {
         for _ in 0..<30 {
             obstacleTypes.append([
                 ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium),
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium)
+                ObstacleType.plank
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium)
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,
