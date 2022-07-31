@@ -74,20 +74,7 @@ class MultistateRingObstacle: MultiStateObstacle {
 
         for state in states {
             let endAngle = startAngle + partAngle
-            let path = UIBezierPath()
-            path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            
-            let innerPath = UIBezierPath()
-            let innerRadius = radius-7
-            innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            
-            let innerCircleEnd = innerPath.currentPoint
-            
-            path.addLine(to: innerCircleEnd)
-            path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
-            path.close()
-        
-            let node = StateNode(path: path.cgPath)
+            let node = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7)
             node.state = state
             addChild(node)
             startAngle = endAngle

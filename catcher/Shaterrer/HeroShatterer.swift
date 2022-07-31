@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class HeroShatter {
+class HeroShatterer {
     private let heroRadius: CGFloat
     private let hero: Hero
     private let rowCount: Int = 10

@@ -51,7 +51,7 @@ class ObstacleArranger {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank, .thinPlank, .arcObstacle:
+        case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
         case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
@@ -80,6 +80,8 @@ class ObstacleArranger {
                 states.append(i % 2 == 0 ? .first : .second)
             }
             obstacle = FragmentedRingObstacle(mask: obstacleMask, radius: 96, states: states, type: type, rotationSpeed: rotationSpeed)
+        default:
+            fatalError("can't arrange this obstacle with no parent")
         }
 
         

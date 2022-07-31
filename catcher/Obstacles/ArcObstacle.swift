@@ -69,24 +69,12 @@ class ArcObstacle: StateNode, Obstacle {
     
     convenience init(mask: Mask, state: State, center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, type: ObstacleType) {
         
-        let path = UIBezierPath()
-        path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-        
-        let innerPath = UIBezierPath()
-        let innerRadius = radius-7
-        innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-        
-        let innerCircleEnd = innerPath.currentPoint
-        
-        path.addLine(to: innerCircleEnd)
-        path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
-        path.close()
-        self.init(path: path.cgPath)
+        self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7)
         self.type = type
         self.state = state
         self.name = String(describing: Obstacle.self)
         
-        physicsBody = SKPhysicsBody(polygonFrom: path.cgPath)
+        physicsBody = SKPhysicsBody(polygonFrom: path!)
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
         physicsBody?.friction = 0

@@ -11,11 +11,12 @@
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
 		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
+		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
 		2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* UISceneText.swift */; };
 		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
 		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
-		2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatter.swift */; };
+		2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatterer.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0678C2880997900E2A5C9 /* StackObstacle.swift */; };
@@ -86,11 +87,12 @@
 		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
+		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		2388BA77287349BE00D27DBD /* UISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneText.swift; sourceTree = "<group>"; };
 		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
 		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
-		2391E959286BA0820043BCA4 /* HeroShatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatter.swift; sourceTree = "<group>"; };
+		2391E959286BA0820043BCA4 /* HeroShatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatterer.swift; sourceTree = "<group>"; };
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -173,9 +175,10 @@
 		2348C9C028944A860096F7E4 /* Shaterrer */ = {
 			isa = PBXGroup;
 			children = (
-				2391E959286BA0820043BCA4 /* HeroShatter.swift */,
+				2391E959286BA0820043BCA4 /* HeroShatterer.swift */,
 				8087E45825446E4000340D10 /* PlankObstacleShatterer.swift */,
 				2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */,
+				2348C9C32896895D0096F7E4 /* Shatterer.swift */,
 			);
 			path = Shaterrer;
 			sourceTree = "<group>";
@@ -505,7 +508,8 @@
 				8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80890CFE2540058A00F5552B /* RectObstacle.swift in Sources */,
-				2391E95A286BA0820043BCA4 /* HeroShatter.swift in Sources */,
+				2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */,
+				2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,

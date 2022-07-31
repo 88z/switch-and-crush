@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class RingObstacleShatterer {
+class RingObstacleShatterer: Shatterer {
     
     private var atomSize: CFloat {
         get {

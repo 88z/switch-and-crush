@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class PlankObstacleShatterer {
+class PlankObstacleShatterer: Shatterer {
     
     private var atomSize: CFloat {
         get {

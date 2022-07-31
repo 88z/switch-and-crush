@@ -139,7 +139,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
-        let shatter = HeroShatter(hero: hero)
+        let shatter = HeroShatterer(hero: hero)
         shatter.shatter(contactPoint: contactPoint) {}
         dimObstacles()
         guard let delegate = delegate as? BattleFieldSceneDelegate else {
@@ -148,9 +148,17 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         delegate.crashAnimationFinished(scene: self)
     }
     
+    func shatterer(for obstacle: Obstacle) ->Shatterer {
+        switch obstacle.type {
+        case .solidRingPart, .arcObstacle, .animatedRing(segmentsCount: _, rotationSpeed: _), .fragmentedRing(segmentsCount: _, rotationSpeed: _):
+            return RingObstacleShatterer(obstacle: obstacle)
+        default:
+            return PlankObstacleShatterer(obstacle: obstacle)
+        }
+    }
+    
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
-        let shatter = PlankObstacleShatterer(obstacle: obstacle)
-        shatter.shatter(contactPoint: contactPoint)
+        shatterer(for: obstacle).shatter(contactPoint: contactPoint)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         speedUp()
@@ -164,7 +172,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                 battleDelegate?.didFinish(level: level)
             }
         }
-        
     }
     
     func obstacles() -> [SKNode] {
