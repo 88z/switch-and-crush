@@ -18,12 +18,8 @@ class PendulumPlankObstacle: MultiStateObstacle {
     
     init(mask: Mask, swingSpeed: Speed) {
         let width = UIScreen.main.bounds.size.width
-        var leftPartState = State.first
-        var rightPartState = State.second
-        if Bool.random() {
-            leftPartState = State.second
-            rightPartState = State.first
-        }
+        let leftPartState = State.random()
+        let rightPartState = State.nextState(for: leftPartState)
         
         let leftObstacle = RectObstacle(mask: mask, width: width, type: .plank)
         leftObstacle.position = CGPoint(x: -width, y: 0)
