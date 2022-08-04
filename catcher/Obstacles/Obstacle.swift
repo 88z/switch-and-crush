@@ -18,7 +18,7 @@ enum Speed {
 
 enum ObstacleType: Equatable {
     case plank
-    case twoStatePlank
+    case twoStatePlank(isStacked:Bool)
     case pendulumPlank(swingSpeed: Speed)
     case thinPlank
     case plankStack

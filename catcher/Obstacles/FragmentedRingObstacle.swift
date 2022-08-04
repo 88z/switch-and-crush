@@ -77,7 +77,6 @@ class FragmentedRingObstacle: MultiStateObstacle {
 
         for state in states {
             let endAngle = startAngle + partAngle - spaceAngle
-        
             let node = ArcObstacle(mask: mask, state: state, center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, type: .arcObstacle)
             
             addChild(node)

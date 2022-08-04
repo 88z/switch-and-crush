@@ -53,8 +53,8 @@ class ObstacleArranger {
         switch type {
         case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
-        case .twoStatePlank:
-            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width)
+        case .twoStatePlank(isStacked: let isStacked):
+            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked)
         case .pendulumPlank(swingSpeed: let swingSpeed):
             obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed)
         case .plankStack:

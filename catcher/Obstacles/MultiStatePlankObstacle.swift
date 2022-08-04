@@ -10,37 +10,48 @@ import SpriteKit
 
 class MultiStatePlankObstacle: MultiStateObstacle {
     
+    var isStacked: Bool
+    
     override var isSolid: Bool {
         get {
             return true
         }
     }
     
-    init(mask:Mask, width: CGFloat, partSizes:[CGFloat]) {
+    init(mask:Mask, width: CGFloat, partSizes:[CGFloat], isStacked: Bool) {
+        self.isStacked = isStacked
         super.init()
         var nextX:CGFloat = 0
-        var nextState = State.random()
+        var state = State.random()
         for partSize in partSizes {
             let partWidth = partSize*width
-            let obstacle = RectObstacle(mask: mask, width: partWidth, type: .plank)
-            obstacle.state = nextState
-            nextState = State.nextState(for: nextState)
-            obstacle.position = CGPoint(x: nextX, y: 0)
-            addChild(obstacle)
+            let obstacle = initPart(mask: mask, state: state, width: partWidth)
+            state = State.nextState(for: state)
+            obstacle.node.position = CGPoint(x: nextX, y: 0)
+            addChild(obstacle.node)
             nextX+=partWidth+1
         }
         name = String(describing: Obstacle.self)
     }
     
-   override convenience init(mask: Mask, width: CGFloat) {
+    convenience init(mask: Mask, width: CGFloat, isStacked: Bool) {
         var leftPartSize = CGFloat(randomBetween(25, and: 40))/100
         if Bool.random() {
             leftPartSize = 1-leftPartSize
         }
         let rightPartSize = 1-leftPartSize
         
-        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize])
+        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize], isStacked:isStacked)
     }
+    
+    private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
+        if isStacked {
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
+        } else {
+            return RectObstacle(mask: mask, width: width, type: .plank)
+        }
+    }
+    
     
     
     required init?(coder aDecoder: NSCoder) {

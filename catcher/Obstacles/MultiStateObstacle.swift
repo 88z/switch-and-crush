@@ -33,11 +33,6 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
     
     var type: ObstacleType! = nil
     
-    
-    init(mask: Mask, width: CGFloat) {
-        fatalError("tou should implement it in the subclass")
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

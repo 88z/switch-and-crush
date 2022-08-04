@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2308F72E289C555C005F3096 /* StackRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308F72D289C555C005F3096 /* StackRingObstacle.swift */; };
 		2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* RingObstacle.swift */; };
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
 		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
@@ -84,7 +83,6 @@
 
 /* Begin PBXFileReference section */
 		067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2308F72D289C555C005F3096 /* StackRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackRingObstacle.swift; sourceTree = "<group>"; };
 		2317B83B288C080700EBFDCE /* RingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 				23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */,
 				232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */,
 				232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */,
-				2308F72D289C555C005F3096 /* StackRingObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -514,7 +511,6 @@
 				2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */,
 				2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
-				2308F72E289C555C005F3096 /* StackRingObstacle.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
 				23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */,
