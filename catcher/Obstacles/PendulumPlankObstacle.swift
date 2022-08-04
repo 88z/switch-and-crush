@@ -16,19 +16,21 @@ class PendulumPlankObstacle: MultiStateObstacle {
         }
     }
     
-    init(mask: Mask, swingSpeed: Speed) {
+    let isStacked:Bool
+    
+    init(mask: Mask, swingSpeed: Speed, isStacked: Bool) {
+        self.isStacked = isStacked
+        super.init()
         let width = UIScreen.main.bounds.size.width
         let leftPartState = State.random()
         let rightPartState = State.nextState(for: leftPartState)
         
-        let leftObstacle = RectObstacle(mask: mask, width: width, type: .plank)
-        leftObstacle.position = CGPoint(x: -width, y: 0)
-        leftObstacle.state = leftPartState
-        let rightObstacle = RectObstacle(mask: mask, width: width, type: .plank)
-        rightObstacle.position = CGPoint(x: 1, y: 0)
-        rightObstacle.state = rightPartState
+        let leftObstacle = initPart(mask: mask, state: leftPartState, width: width)
+        leftObstacle.node.position = CGPoint(x: -width, y: 0)
+        let rightObstacle = initPart(mask: mask, state: rightPartState, width: width)
+        rightObstacle.node.position = CGPoint(x: 1, y: 0)
         
-        let height = rightObstacle.frame.size.height
+        let height = rightObstacle.node.frame.size.height
         var duration:TimeInterval
         
         switch swingSpeed {
@@ -49,9 +51,9 @@ class PendulumPlankObstacle: MultiStateObstacle {
         
         let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
         
-        super.init()
-        addChild(leftObstacle)
-        addChild(rightObstacle)
+        
+        addChild(leftObstacle.node)
+        addChild(rightObstacle.node)
         name = String(describing: Obstacle.self)
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height), center: CGPoint(x: width/2, y: height/2))
@@ -63,9 +65,17 @@ class PendulumPlankObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         
-        leftObstacle.run(action)
-        rightObstacle.run(action)
+        leftObstacle.node.run(action)
+        rightObstacle.node.run(action)
         
+    }
+    
+    private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
+        if isStacked {
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
+        } else {
+            return RectObstacle(mask: mask, width: width, type: .plank)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

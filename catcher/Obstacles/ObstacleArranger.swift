@@ -55,8 +55,8 @@ class ObstacleArranger {
             obstacle = RectObstacle(mask: obstacleMask, width: width, type: type)
         case .twoStatePlank(isStacked: let isStacked):
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked)
-        case .pendulumPlank(swingSpeed: let swingSpeed):
-            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed)
+        case .pendulumPlank(swingSpeed: let swingSpeed, isStacked: let isStacked):
+            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed, isStacked: isStacked)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
         case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):

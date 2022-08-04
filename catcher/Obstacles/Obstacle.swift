@@ -19,7 +19,7 @@ enum Speed {
 enum ObstacleType: Equatable {
     case plank
     case twoStatePlank(isStacked:Bool)
-    case pendulumPlank(swingSpeed: Speed)
+    case pendulumPlank(swingSpeed: Speed, isStacked:Bool)
     case thinPlank
     case plankStack
     case animatedRing(segmentsCount: Int, rotationSpeed: Speed)

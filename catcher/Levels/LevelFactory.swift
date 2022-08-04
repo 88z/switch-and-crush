@@ -14,9 +14,9 @@ class LevelFactory {
         for _ in 0..<30 {
             obstacleTypes.append([
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium),
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
 //                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true),
-                ObstacleType.twoStatePlank(isStacked: true),
+//                ObstacleType.twoStatePlank(isStacked: true),
 //                ObstacleType.plank,
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium)
             ].randomElement()! )
@@ -79,13 +79,13 @@ class LevelFactory {
         for _ in 0..<5 {
             obstacleTypes.append([
                 ObstacleType.twoStatePlank(isStacked: false),
-                ObstacleType.pendulumPlank(swingSpeed: .slow),
+                ObstacleType.pendulumPlank(swingSpeed: .slow, isStacked: false),
             ].randomElement()! )
         }
         
         for _ in 0..<5 {
             obstacleTypes.append([
-                ObstacleType.pendulumPlank(swingSpeed: .slow),
+                ObstacleType.pendulumPlank(swingSpeed: .slow, isStacked: false),
             ].randomElement()! )
         }
         
