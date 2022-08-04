@@ -17,14 +17,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
     
     let directionRight:Bool
     var shiftsCount = 0
-    init(mask: Mask, states: [State], directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
+    init(mask: Mask, partsCount: Int, directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
         let width = UIScreen.main.bounds.size.width
         self.directionRight = directionRight
         super.init()
         
         self.type = type
         name = String(describing: Obstacle.self)
-        let partWidth = width/CGFloat(states.count-1)
+        let partWidth = width/CGFloat(partsCount-1)
         var duration: CGFloat
         switch carouselSpeed {
         case .none:
@@ -39,14 +39,15 @@ class CarouselPlankObstacle: MultiStateObstacle {
             duration = 1
         }
         
-        duration = duration/CGFloat(states.count-1)
+        duration = duration/CGFloat(partsCount-1)
         
-        var i:CGFloat = 0;
-        for state in states {
+        var state = State.random()
+        for i in 0..<partsCount {
             let part = RectObstacle(mask: mask, width: partWidth-1, type: .plank)
-            let x = directionRight ? (i-1)*partWidth : i*partWidth
+            let x = directionRight ? (CGFloat(i)-1)*partWidth : CGFloat(i)*partWidth
             part.position = CGPoint(x:x, y: 0)
             part.state = state
+            state = .nextState(for: state)
             addChild(part)
             
             
@@ -75,7 +76,6 @@ class CarouselPlankObstacle: MultiStateObstacle {
                     self?.shiftsCount+=1
                 })
             ])))
-            i+=1
         }
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: PLANK_OBSTACLE_HEIGHT), center: CGPoint(x: width/2, y: PLANK_OBSTACLE_HEIGHT/2))
