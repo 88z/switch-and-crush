@@ -41,7 +41,7 @@ protocol Obstacle: AnyObject {
     func parent() -> Obstacle?
     func willBeShattered()
     var firstSolidParent: Obstacle { get }
-    func dummyForShattering() -> SKNode
+    func shatteringDummy() -> SKNode
 }
 
 extension Obstacle {

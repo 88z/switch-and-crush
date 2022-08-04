@@ -9,8 +9,30 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
-    func dummyForShattering() -> SKNode {
-        fatalError("should implement it in the subclass")
+    func shatteringDummy() -> SKNode {
+        let dummy = SKNode()
+        let atomSize = PLANK_ATOM_SIZE
+        let rowCount = Int(frame.size.height/atomSize)
+        let colCount = Int(frame.size.width / atomSize)
+        
+        for row in 0..<rowCount {
+            for col in 0..<colCount {
+                let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row))
+                
+                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))))
+                atom.state = state
+                atom.name = ATOM_NODE_NAME
+                atom.lineWidth = 0
+                atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
+                atom.physicsBody?.affectedByGravity = false
+                atom.physicsBody?.categoryBitMask = 0b1000
+                atom.physicsBody?.collisionBitMask = 0b1000
+                atom.physicsBody?.restitution = 1
+                dummy.addChild(atom)
+            }
+        }
+        
+        return dummy
     }
     
     var isSolid: Bool = true
@@ -44,9 +66,9 @@ class RectObstacle: StateNode, Obstacle {
         let height: CGFloat
         switch type {
         case .thinPlank:
-            height = 14
+            height = PLANK_OBSTACLE_HEIGHT/2
         default:
-            height = PLANK_OBSTACLE_HEIGHT
+            height = 14
         }
         
 

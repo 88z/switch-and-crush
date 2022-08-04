@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2317B83C288C080700EBFDCE /* MultistateRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */; };
+		2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* RingObstacle.swift */; };
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
 		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultistateRingObstacle.swift; sourceTree = "<group>"; };
+		2317B83B288C080700EBFDCE /* RingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */,
 				23D5CDED287DFDFC00523B8B /* PendulumPlankObstacle.swift */,
 				23C0678C2880997900E2A5C9 /* StackObstacle.swift */,
-				2317B83B288C080700EBFDCE /* MultistateRingObstacle.swift */,
+				2317B83B288C080700EBFDCE /* RingObstacle.swift */,
 				23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */,
 				232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */,
 				232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */,
@@ -516,7 +516,7 @@
 				23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */,
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
-				2317B83C288C080700EBFDCE /* MultistateRingObstacle.swift in Sources */,
+				2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */,
 				23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
 				2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */,

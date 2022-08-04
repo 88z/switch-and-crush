@@ -69,7 +69,7 @@ class ArcObstacle: StateNode, Obstacle {
     private var startAngle:CGFloat = 0
     private var endAngle: CGFloat = 0
     private var radius: CGFloat = 0
-    private let width: CGFloat = 7
+    private let width: CGFloat = OBSTACLE_ARK_THICKNESS
     
     convenience init(mask: Mask, state: State, center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, type: ObstacleType) {
         
@@ -93,9 +93,9 @@ class ArcObstacle: StateNode, Obstacle {
         
     }
     
-    func dummyForShattering() -> SKNode {
+    func shatteringDummy() -> SKNode {
         let dummy = SKNode()
-        let atomsPer360Count = 24
+        let atomsPer360Count = 48
         var startAngle:CGFloat = startAngle
         let atomAngle = 2*CGFloat.pi/CGFloat(atomsPer360Count)
 

@@ -52,7 +52,7 @@ class RingObstacleShatterer: Shatterer {
         var collisionAtoms:[SKShapeNode] = []
         let obstacleToShatter = obstacle.firstSolidParent
         obstacleToShatter.willBeShattered()
-        let dummy = obstacleToShatter.dummyForShattering()
+        let dummy = obstacleToShatter.shatteringDummy()
         dummy.position = scene.convert(obstacleToShatter.node.position, from: obstacleToShatter.node.parent ?? scene)
         scene.addChild(dummy)
         
@@ -69,7 +69,7 @@ class RingObstacleShatterer: Shatterer {
             }
             
         }
-
+        
         var i:CGFloat = 1
         for atom in collisionAtoms {
             atom.physicsBody?.applyAngularImpulse(0.002*i)

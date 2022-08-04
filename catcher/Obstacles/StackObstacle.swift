@@ -10,6 +10,8 @@ import SpriteKit
 
 class StackObstacle: MultiStateObstacle {
     
+    
+    
     override var isSolid:Bool {
         get {
             return true

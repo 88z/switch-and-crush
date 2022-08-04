@@ -9,8 +9,15 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
-    func dummyForShattering() -> SKNode {
-        fatalError("should implement it in the subclass")
+    func shatteringDummy() -> SKNode {
+        let dummy = SKNode()
+        for part in parts() {
+            let partDummy = part.shatteringDummy()
+            partDummy.position = part.node.position
+            dummy.addChild(partDummy)
+        }
+        
+        return dummy
     }
     
     

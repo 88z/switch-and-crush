@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class MultistateRingObstacle: MultiStateObstacle {
+class RingObstacle: MultiStateObstacle {
     override var velocity: CGFloat {
             set {
                 physicsBody?.velocity.dy = newValue
@@ -33,7 +33,7 @@ class MultistateRingObstacle: MultiStateObstacle {
         }
     }
     
-    let width: CGFloat = 7
+    let width: CGFloat = OBSTACLE_ARK_THICKNESS
     
     init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
         self.radius = radius
@@ -104,7 +104,7 @@ class MultistateRingObstacle: MultiStateObstacle {
         return state
     }
 
-    override func dummyForShattering() -> SKNode {
+    override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomsCount = 32
         var startAngle:CGFloat = 0

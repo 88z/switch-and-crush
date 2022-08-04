@@ -32,3 +32,14 @@ extension SKShapeNode {
         self.init(path: path.cgPath)
     }
 }
+
+extension SKNode {
+    func descendants(with name: String) -> [SKNode] {
+        var descendants:[SKNode] = []
+        descendants.append(contentsOf: self[name])
+        for child in children {
+            descendants.append(contentsOf: child.descendants(with: name))
+        }
+        return descendants
+    }
+}

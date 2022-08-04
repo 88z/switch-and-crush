@@ -65,7 +65,7 @@ class ObstacleArranger {
             for i in 0..<segmentsCount {
                 states.append(i % 2 == 0 ? .first : .second)
             }
-            obstacle = MultistateRingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
+            obstacle = RingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
         case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight):
             let partsCount = Int(round(Double(partsCount) / 2.0)) * 2
             var states:[State] = []
