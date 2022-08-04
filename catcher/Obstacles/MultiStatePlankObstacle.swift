@@ -39,13 +39,6 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         }
         let rightPartSize = 1-leftPartSize
         
-        var leftPartState = State.first
-        var rightPartState = State.second
-        if Bool.random() {
-            leftPartState = State.second
-            rightPartState = State.first
-        }
-        
         self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize])
     }
     

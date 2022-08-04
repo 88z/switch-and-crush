@@ -38,11 +38,8 @@ class ArcObstacle: StateNode, Obstacle {
         if isContactTest {
             return state
         }
-        guard let scene = scene else {
-            fatalError("obstacle is not on scene")
-        }
+
         var state: State? = nil
-        let pnt = scene.convert(point, to: self.parent()?.node ?? scene)
         guard let path = path else {
             return state
         }
