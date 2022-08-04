@@ -14,12 +14,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
             return true
         }
     }
+    let isStacked: Bool
     
     let directionRight:Bool
     var shiftsCount = 0
-    init(mask: Mask, partsCount: Int, directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
+    init(mask: Mask, partsCount: Int, directionRight:Bool, type: ObstacleType, carouselSpeed: Speed, isStacked: Bool) {
         let width = UIScreen.main.bounds.size.width
         self.directionRight = directionRight
+        self.isStacked = isStacked
         super.init()
         
         self.type = type
@@ -43,15 +45,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
         
         var state = State.random()
         for i in 0..<partsCount {
-            let part = RectObstacle(mask: mask, width: partWidth-1, type: .plank)
+            let part = initPart(mask: mask, state: state, width: partWidth-1)
             let x = directionRight ? (CGFloat(i)-1)*partWidth : CGFloat(i)*partWidth
-            part.position = CGPoint(x:x, y: 0)
-            part.state = state
+            part.node.position = CGPoint(x:x, y: 0)
             state = .nextState(for: state)
-            addChild(part)
+            addChild(part.node)
             
             
-            part.run(SKAction.repeatForever(SKAction.sequence([
+            part.node.run(SKAction.repeatForever(SKAction.sequence([
                 SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: duration),
                 SKAction.customAction(withDuration: 0, actionBlock: {[weak self] node, time in
                     guard let lastPart = self?.extremePart(right: directionRight),
@@ -63,12 +64,12 @@ class CarouselPlankObstacle: MultiStateObstacle {
                             guard let leftPart = self?.extremePart(right: false) else {
                                 return
                             }
-                            node.position = CGPoint(x: leftPart.position.x - partWidth, y:0)
+                            node.position = CGPoint(x: leftPart.node.position.x - partWidth, y:0)
                         } else {
                             guard let rightPart = self?.extremePart(right: true) else {
                                 return
                             }
-                            node.position = CGPoint(x:rightPart.position.x+partWidth, y:0)
+                            node.position = CGPoint(x:rightPart.node.position.x+partWidth, y:0)
                         }
                         
                     }
@@ -89,8 +90,8 @@ class CarouselPlankObstacle: MultiStateObstacle {
 
     }
     
-    func extremePart(right: Bool) -> RectObstacle?{
-        let parts = parts() as! [RectObstacle]
+    func extremePart(right: Bool) -> Obstacle?{
+        let parts = parts()
         guard parts.count > 0 else {
             return nil
         }
@@ -102,6 +103,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
             }
         }
         return extremePart
+    }
+    
+    private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
+        if isStacked {
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
+        } else {
+            return RectObstacle(mask: mask, width: width, type: .plank)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
