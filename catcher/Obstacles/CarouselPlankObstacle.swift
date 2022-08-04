@@ -14,6 +14,7 @@ class CarouselPlankObstacle: MultiStateObstacle {
             return true
         }
     }
+    
     let directionRight:Bool
     var shiftsCount = 0
     init(mask: Mask, states: [State], directionRight:Bool, type: ObstacleType, carouselSpeed: Speed) {
@@ -102,8 +103,6 @@ class CarouselPlankObstacle: MultiStateObstacle {
         }
         return extremePart
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
