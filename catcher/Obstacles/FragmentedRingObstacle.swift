@@ -81,13 +81,25 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var state = State.random()
         for _ in 0..<partsCount {
             let endAngle = startAngle + partAngle - spaceAngle
-            addChild (ArcObstacle(mask: mask,
-                                    state: state,
-                                    center: center,
-                                    radius: radius,
-                                    startAngle: startAngle,
-                                    endAngle: endAngle,
-                                    type: .arc))
+            
+            if isStacked {
+                addChild (StackArcObstacle(mask: mask,
+                                           states: [state, State.nextState(for: state)],
+                                           center: center,
+                                           radius: radius,
+                                           startAngle: startAngle,
+                                           endAngle: endAngle,
+                                           type: .arc))
+            } else {
+                addChild (ArcObstacle(mask: mask,
+                                      state: state,
+                                      center: center,
+                                      radius: radius,
+                                      startAngle: startAngle,
+                                      endAngle: endAngle,
+                                      type: .arc))
+            }
+            
             
             state = State.nextState(for: state)
             startAngle = endAngle + spaceAngle
@@ -115,10 +127,13 @@ class FragmentedRingObstacle: MultiStateObstacle {
     }
     
     override func onAddedToScene() {
-        for obstacle in parts() {
+        let parts = leafParts()
+        for obstacle in parts {
             let position = scene!.convert(.zero, from: self)
             scene!.physicsWorld.add(SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: obstacle.node.physicsBody!, anchor: position))
         }
     }
+    
+    
     
 }

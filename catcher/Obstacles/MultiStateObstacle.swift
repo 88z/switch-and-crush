@@ -16,7 +16,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
             partDummy.position = part.node.position
             dummy.addChild(partDummy)
         }
-        
+        dummy.zRotation = self.zRotation
         return dummy
     }
     
@@ -76,6 +76,22 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
 
     func parts() -> [Obstacle] {
         return self[String(describing: Obstacle.self)] as! [Obstacle]
+    }
+    
+    func leafParts() -> [Obstacle] {
+        return _leafParts(obstacle: self, collectedParts: [])
+    }
+    
+    private func _leafParts(obstacle: Obstacle, collectedParts: [Obstacle]) -> [Obstacle] {
+        var collectedParts = collectedParts
+        if obstacle is MultiStateObstacle {
+            for part in obstacle.parts() {
+                collectedParts = _leafParts(obstacle: part, collectedParts: collectedParts)
+            }
+            return collectedParts
+        } else {
+            return collectedParts + [obstacle]
+        }
     }
     
     func parent() -> Obstacle? {

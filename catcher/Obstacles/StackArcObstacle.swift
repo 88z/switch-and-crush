@@ -29,7 +29,6 @@ class StackArcObstacle: MultiStateObstacle {
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: .zero)
             nextRadius = nextRadius - ARC_OBSTACLE_THICKNESS - 1
-
         }
         
         

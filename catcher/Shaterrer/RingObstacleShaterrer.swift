@@ -55,8 +55,7 @@ class RingObstacleShatterer: Shatterer {
         let dummy = obstacleToShatter.shatteringDummy()
         dummy.position = scene.convert(obstacleToShatter.node.position, from: obstacleToShatter.node.parent ?? scene)
         scene.addChild(dummy)
-        
-//        let atoms = dummy.children as! [SKShapeNode]
+
         let atoms = dummy.descendants(with: ATOM_NODE_NAME)
         guard atoms.count > 0 else {
             return

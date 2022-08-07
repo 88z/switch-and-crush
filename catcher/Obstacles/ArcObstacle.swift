@@ -115,8 +115,19 @@ class ArcObstacle: StateNode, Obstacle {
             dummy.addChild(atom)
             startAngle = endAngle
         }
-        dummy.zRotation = parent?.zRotation ?? 0
+        dummy.zRotation = firstRotatedParentRortation()
         return dummy
+    }
+    
+    private func firstRotatedParentRortation() -> CGFloat {
+        var parent = parent
+        while parent != nil {
+            if parent!.zRotation != 0 {
+                return parent!.zRotation
+            }
+            parent = parent!.parent
+        }
+        return 0
     }
     
 }

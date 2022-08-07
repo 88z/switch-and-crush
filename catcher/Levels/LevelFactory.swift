@@ -18,8 +18,9 @@ class LevelFactory {
 //                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
 //                ObstacleType.twoStatePlank(isStacked: true),
 //                ObstacleType.plank,
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
-                ObstacleType.arcStack
+//                ObstacleType.arcStack
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,
