@@ -33,11 +33,7 @@ class ArcObstacle: StateNode, Obstacle {
         
     }
     
-    func state(at point: CGPoint, isContactTest: Bool) -> State? {
-        if isContactTest {
-            return state
-        }
-
+    func state(at point: CGPoint) -> State? {
         var state: State? = nil
         guard let path = path else {
             return state
@@ -46,6 +42,10 @@ class ArcObstacle: StateNode, Obstacle {
             state = self.state
         }
         return state
+    }
+    
+    func contactTest(at point: CGPoint, state: State) -> Bool {
+        return self.state == state
     }
     
     func parts() -> [Obstacle] {

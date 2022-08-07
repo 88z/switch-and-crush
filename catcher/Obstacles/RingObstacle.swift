@@ -7,6 +7,7 @@
 
 import Foundation
 import SpriteKit
+import CGPathIntersection
 
 class RingObstacle: MultiStateObstacle {
     override var velocity: CGFloat {
@@ -94,12 +95,13 @@ class RingObstacle: MultiStateObstacle {
     
     private func state(at angle:CGFloat)->State? {
         let radius = radius-width/2
-        return state(at: CGPoint(x: radius*cos(angle), y: radius*sin(angle)), isContactTest: false)
+        return state(at: CGPoint(x: radius*cos(angle), y: radius*sin(angle)))
     }
     
-    override func state(at point: CGPoint, isContactTest: Bool) -> State? {
+    override func state(at point: CGPoint) -> State? {
         var state: State? = nil
-        
+        let circle = UIBezierPath(arcCenter: point, radius: 10, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
+        var states:[State] = []
         for child in children {
             guard let child = child as? StateNode,
                   let path = child.path else {
@@ -109,8 +111,26 @@ class RingObstacle: MultiStateObstacle {
                 state = child.state
                 break
             }
+            if path.intersects(circle) {
+                states.append(child.state)
+            }
         }
         return state
+    }
+    
+    override func contactTest(at point: CGPoint, state: State) -> Bool {
+        let circle = UIBezierPath(arcCenter: point, radius: 10, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
+        var states:[State] = []
+        for child in children {
+            guard let child = child as? StateNode,
+                  let path = child.path else {
+                continue
+            }
+            if path.intersects(circle) {
+                states.append(child.state)
+            }
+        }
+        return states.contains(state)
     }
 
     override func shatteringDummy() -> SKNode {
@@ -126,6 +146,7 @@ class RingObstacle: MultiStateObstacle {
             }
             let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
             atom.state = state
+            atom.name = ATOM_NODE_NAME
             atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
             atom.physicsBody?.affectedByGravity = false
             atom.physicsBody?.categoryBitMask = 0b1000

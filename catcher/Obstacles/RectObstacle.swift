@@ -87,8 +87,12 @@ class RectObstacle: StateNode, Obstacle {
         state = State.random()
     }
     
-    func state(at point: CGPoint, isContactTest: Bool) -> State? {
+    func state(at point: CGPoint) -> State? {
         return state
+    }
+    
+    func contactTest(at point: CGPoint, state: State) -> Bool {
+        return self.state(at: point) == state
     }
     
     func parts() -> [Obstacle] {

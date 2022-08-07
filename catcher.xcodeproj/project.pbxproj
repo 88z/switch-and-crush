@@ -10,6 +10,7 @@
 		2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* RingObstacle.swift */; };
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
 		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
+		2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */ = {isa = PBXBuildFile; productRef = 2335706928A0372D004C163B /* CGPathIntersection */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
@@ -151,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */,
 				23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +380,7 @@
 			name = catcher;
 			packageProductDependencies = (
 				23FD3D1728784BF2007C178C /* LanguageManager-iOS */,
+				2335706928A0372D004C163B /* CGPathIntersection */,
 			);
 			productName = catcher;
 			productReference = 80CA5F2F2524F187003E900D /* catcher.app */;
@@ -453,6 +456,7 @@
 			mainGroup = 80CA5F262524F187003E900D;
 			packageReferences = (
 				23FD3D1628784BF2007C178C /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
+				2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */,
 			);
 			productRefGroup = 80CA5F302524F187003E900D /* Products */;
 			projectDirPath = "";
@@ -878,6 +882,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/calda/CGPathIntersection.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		23FD3D1628784BF2007C178C /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS";
@@ -889,6 +901,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2335706928A0372D004C163B /* CGPathIntersection */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */;
+			productName = CGPathIntersection;
+		};
 		23FD3D1728784BF2007C178C /* LanguageManager-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 23FD3D1628784BF2007C178C /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;

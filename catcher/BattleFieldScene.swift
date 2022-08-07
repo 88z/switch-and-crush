@@ -129,20 +129,20 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        var states:[State] = []
+        var needBreakObstacle = false
         for obstacleBody in obstacleBodies {
             let obstacle = obstacleBody.node as! Obstacle
             let contactPoint = convert(CGPoint(x: contact.contactPoint.x,
                                                y: contact.contactPoint.y-2),
                                        to: obstacle.node)
-            guard let state = obstacle.state(at: contactPoint,
-                                             isContactTest: true) else {
-                continue
+            
+            if obstacle.contactTest(at: contactPoint, state: hero.state) {
+                needBreakObstacle = true
+                break
             }
-            states.append(state)
         }
         
-        if states.contains(hero.state) {
+        if needBreakObstacle {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
             obstacleArranger?.arrangeNext()
         } else {

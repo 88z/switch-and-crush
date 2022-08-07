@@ -55,7 +55,8 @@ protocol Obstacle: AnyObject {
     var type: ObstacleType! { get }
     var isSolid: Bool { get }
     func onAddedToScene()
-    func state(at point:CGPoint, isContactTest:Bool) -> State?
+    func state(at point:CGPoint) -> State?
+    func contactTest(at point: CGPoint, state: State) -> Bool
     func parts() -> [Obstacle]
     func parent() -> Obstacle?
     func willBeShattered()

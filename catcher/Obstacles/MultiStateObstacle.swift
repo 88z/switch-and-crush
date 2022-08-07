@@ -59,7 +59,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         }
     }
 
-    func state(at point: CGPoint, isContactTest:Bool) -> State? {
+    func state(at point: CGPoint) -> State? {
         guard let scene = scene else {
             fatalError("obstacle is not on scene")
         }
@@ -68,10 +68,14 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         
         for obstacle in parts() {
             if obstacle.node.scene?.contains(lPoint) ?? false {
-                return obstacle.state(at: point, isContactTest: isContactTest)
+                return obstacle.state(at: point)
             }
         }
         return nil
+    }
+    
+    func contactTest(at point: CGPoint, state: State) -> Bool {
+        return self.state(at: point) == state
     }
 
     func parts() -> [Obstacle] {

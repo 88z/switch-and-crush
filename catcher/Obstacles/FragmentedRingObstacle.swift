@@ -106,7 +106,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
         }
     }
     
-    override func state(at point: CGPoint, isContactTest: Bool) -> State? {
+    override func state(at point: CGPoint) -> State? {
         guard let scene = scene else {
             fatalError("obstacle is not on scene")
         }
