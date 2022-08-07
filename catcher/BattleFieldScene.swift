@@ -199,7 +199,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateCounter() {
-        let text = "\(progress) / \(level?.obstacleTypes.count ?? 0)"
+        let text = "\(progress) / \(ObstacleType.points(in: level?.obstacleTypes ?? []))"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText

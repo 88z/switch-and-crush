@@ -76,7 +76,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
         }
         let partAngle = 2*CGFloat.pi/CGFloat(partsCount)
         var startAngle:CGFloat = 0
-        let spaceAngle:CGFloat = 0.3
+        let spaceAngle:CGFloat = 0.4
 
         var state = State.random()
         for _ in 0..<partsCount {
