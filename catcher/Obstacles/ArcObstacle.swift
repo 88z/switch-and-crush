@@ -34,7 +34,6 @@ class ArcObstacle: StateNode, Obstacle {
     }
     
     func state(at point: CGPoint, isContactTest: Bool) -> State? {
-//        return state
         if isContactTest {
             return state
         }

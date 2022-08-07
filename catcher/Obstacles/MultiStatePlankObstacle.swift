@@ -48,7 +48,9 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         if isStacked {
             return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
         } else {
-            return RectObstacle(mask: mask, width: width, type: .plank)
+            let part = RectObstacle(mask: mask, width: width, type: .plank)
+            part.state = state
+            return part
         }
     }
     

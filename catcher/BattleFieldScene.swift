@@ -124,10 +124,25 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         } else {
             fatalError("unknown collisions")
         }
-        let contactPoint =
-        convert(CGPoint(x: contact.contactPoint.x, y: contact.contactPoint.y-2), to: obstacle.node)
-        let obstacleState = obstacle.state(at: contactPoint, isContactTest: true)
-        if hero.state == obstacleState {
+        
+        guard let obstacleBodies = hero.physicsBody?.allContactedBodies() else {
+            return
+        }
+        
+        var states:[State] = []
+        for obstacleBody in obstacleBodies {
+            let obstacle = obstacleBody.node as! Obstacle
+            let contactPoint = convert(CGPoint(x: contact.contactPoint.x,
+                                               y: contact.contactPoint.y-2),
+                                       to: obstacle.node)
+            guard let state = obstacle.state(at: contactPoint,
+                                             isContactTest: true) else {
+                continue
+            }
+            states.append(state)
+        }
+        
+        if states.contains(hero.state) {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
             obstacleArranger?.arrangeNext()
         } else {
@@ -159,14 +174,16 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
+        guard let obstacleCount = level?.obstacleTypes.count,
+              obstacle.node.scene != nil
+        else {
+            return
+        }
         shatterer(for: obstacle).shatter(contactPoint: contactPoint)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         speedUp()
         progress += 1
-        guard let obstacleCount = level?.obstacleTypes.count else {
-            return
-        }
         updateCounter()
         if progress >= obstacleCount {
             if let level = self.level {

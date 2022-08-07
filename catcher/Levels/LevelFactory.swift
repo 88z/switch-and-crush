@@ -11,12 +11,12 @@ import SpriteKit
 class LevelFactory {
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<30 {
+        for _ in 0..<5 {
             obstacleTypes.append([
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
 //                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
 //                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
-//                ObstacleType.twoStatePlank(isStacked: true),
+//                ObstacleType.twoStatePlank(isStacked: false),
 //                ObstacleType.plank,
                 ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
