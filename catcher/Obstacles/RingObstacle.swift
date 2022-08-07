@@ -33,7 +33,7 @@ class RingObstacle: MultiStateObstacle {
         }
     }
     
-    let width: CGFloat = OBSTACLE_ARK_THICKNESS
+    let width: CGFloat = ARC_OBSTACLE_THICKNESS
     let isStacked: Bool
     
     init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {

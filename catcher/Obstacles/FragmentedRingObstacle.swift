@@ -33,9 +33,12 @@ class FragmentedRingObstacle: MultiStateObstacle {
                 physicsBody?.velocity.dy ?? 0
             }
     }
-        
-    init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
+    
+    let isStacked: Bool
+    
+    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
         self.radius = radius
+        self.isStacked = isStacked
         super.init()
         self.type = type
         name = String(describing: Obstacle.self)
@@ -60,26 +63,33 @@ class FragmentedRingObstacle: MultiStateObstacle {
         physicsBody?.density = 0.025
         physicsBody?.setZeroMask()
         
-        initParts(mask: mask, states:states)
+        initParts(mask: mask, count:partsCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initParts(mask: Mask, states: [State]){
-        guard states.count > 0 else {
+    private func initParts(mask: Mask, count partsCount: Int){
+        guard partsCount > 0 else {
             return
         }
-        let partAngle = 2*CGFloat.pi/CGFloat(states.count)
+        let partAngle = 2*CGFloat.pi/CGFloat(partsCount)
         var startAngle:CGFloat = 0
         let spaceAngle:CGFloat = 0.3
 
-        for state in states {
+        var state = State.random()
+        for _ in 0..<partsCount {
             let endAngle = startAngle + partAngle - spaceAngle
-            let node = ArcObstacle(mask: mask, state: state, center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, type: .arcObstacle)
+            addChild (ArcObstacle(mask: mask,
+                                    state: state,
+                                    center: center,
+                                    radius: radius,
+                                    startAngle: startAngle,
+                                    endAngle: endAngle,
+                                    type: .arc))
             
-            addChild(node)
+            state = State.nextState(for: state)
             startAngle = endAngle + spaceAngle
         }
     }

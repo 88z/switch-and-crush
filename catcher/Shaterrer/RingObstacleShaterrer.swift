@@ -49,20 +49,21 @@ class RingObstacleShatterer: Shatterer {
         guard let scene = obstacle.node.scene else {
             return
         }
-        var collisionAtoms:[SKShapeNode] = []
+        var collisionAtoms:[SKNode] = []
         let obstacleToShatter = obstacle.firstSolidParent
         obstacleToShatter.willBeShattered()
         let dummy = obstacleToShatter.shatteringDummy()
         dummy.position = scene.convert(obstacleToShatter.node.position, from: obstacleToShatter.node.parent ?? scene)
         scene.addChild(dummy)
         
-        let atoms = dummy.children as! [SKShapeNode]
+//        let atoms = dummy.children as! [SKShapeNode]
+        let atoms = dummy.descendants(with: ATOM_NODE_NAME)
         guard atoms.count > 0 else {
             return
         }
         let atomSize = max(atoms.first!.frame.size.width, atoms.first!.frame.size.height)
         
-        for atom in dummy.children as! [SKShapeNode] {
+        for atom in atoms {
             let atomMid = scene.convert(CGPoint(x: atom.frame.midX, y: atom.frame.midY), from: atom.parent ?? scene)
             if abs(contactPoint.x - atomMid.x) <= CGFloat(atomSize) {
                 collisionAtoms.append(atom)

@@ -23,10 +23,10 @@ enum ObstacleType: Equatable {
     case thinPlank
     case plankStack
     case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool)
-    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool)
     case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool)
-    case solidRingPart
-    case arcObstacle
+    case arc
+    case arcStack
 }
 
 

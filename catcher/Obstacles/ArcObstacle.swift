@@ -66,9 +66,15 @@ class ArcObstacle: StateNode, Obstacle {
     private var startAngle:CGFloat = 0
     private var endAngle: CGFloat = 0
     private var radius: CGFloat = 0
-    private let width: CGFloat = OBSTACLE_ARK_THICKNESS
+    private let width: CGFloat = ARC_OBSTACLE_THICKNESS
     
-    convenience init(mask: Mask, state: State, center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, type: ObstacleType) {
+    convenience init(mask: Mask,
+                     state: State,
+                     center: CGPoint,
+                     radius: CGFloat,
+                     startAngle: CGFloat,
+                     endAngle: CGFloat,
+                     type: ObstacleType) {
         
         self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7)
         self.type = type
@@ -100,6 +106,7 @@ class ArcObstacle: StateNode, Obstacle {
             let endAngle = startAngle + atomAngle
             let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
             atom.state = state
+            atom.name = ATOM_NODE_NAME
             atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
             atom.physicsBody?.affectedByGravity = false
             atom.physicsBody?.categoryBitMask = 0b1000

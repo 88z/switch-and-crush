@@ -73,15 +73,23 @@ class ObstacleArranger {
                                              type:type,
                                              carouselSpeed: carouselSpeed,
                                              isStacked: isStacked)
-        case .fragmentedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):
-            let segmentsCount = Int(round(Double(segmentsCount) / 2.0)) * 2
-            var states:[State] = []
-            for i in 0..<segmentsCount {
-                states.append(i % 2 == 0 ? .first : .second)
-            }
-            obstacle = FragmentedRingObstacle(mask: obstacleMask, radius: 96, states: states, type: type, rotationSpeed: rotationSpeed)
-        default:
-            fatalError("can't arrange this obstacle with no parent")
+        case .fragmentedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, isStacked: let isStacked):
+            obstacle = FragmentedRingObstacle(mask: obstacleMask,
+                                              radius: 96,
+                                              partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
+                                              type: type,
+                                              rotationSpeed: rotationSpeed,
+                                              isStacked: isStacked)
+        case .arc:
+            obstacle = ArcObstacle(mask: obstacleMask, state: State.random(), center: .zero, radius: 96, startAngle: 0, endAngle: CGFloat.pi, type: type)
+        case .arcStack:
+            obstacle = StackArcObstacle(mask: obstacleMask,
+                                        states: [.first, .second],
+                                        center: .zero,
+                                        radius: 96,
+                                        startAngle: 0,
+                                        endAngle: CGFloat.pi,
+                                        type: type)
         }
 
         
@@ -127,7 +135,7 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _):
+        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _):
             return CGPoint(x: scene!.frame.midX, y:nextY())
         case .carouselPlank, .pendulumPlank:
             return CGPoint(x:0, y: nextY())

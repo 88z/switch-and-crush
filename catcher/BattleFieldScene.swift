@@ -48,7 +48,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     var battleDelegate: BattleDelegate?
     private var obstacleArranger: ObstacleArranger?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
-    let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0001)
+    let obstacleMask = Mask(category: 0b0001, collision: 0b0000, contact: 0b0010)
     
     private var level: Level?
     private var progress: Int = 0
@@ -122,7 +122,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             hero = bNode as! Hero
             obstacle = aNode as! Obstacle
         } else {
-//            return
             fatalError("unknown collisions")
         }
         let contactPoint =
@@ -152,7 +151,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func shatterer(for obstacle: Obstacle) ->Shatterer {
         switch obstacle.type {
-        case .solidRingPart, .arcObstacle, .animatedRing(segmentsCount: _, rotationSpeed: _, isStacked: _), .fragmentedRing(segmentsCount: _, rotationSpeed: _):
+        case .arc, .animatedRing(segmentsCount: _, rotationSpeed: _, isStacked: _), .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _):
             return RingObstacleShatterer(obstacle: obstacle)
         default:
             return PlankObstacleShatterer(obstacle: obstacle)
