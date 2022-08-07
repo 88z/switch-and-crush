@@ -60,15 +60,18 @@ class ObstacleArranger {
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask, width: width, states: [.first, .second].shuffled(), type: type)
         case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):
-            let segmentsCount = Int(round(Double(segmentsCount) / 2.0)) * 2
-            var states:[State] = []
-            for i in 0..<segmentsCount {
-                states.append(i % 2 == 0 ? .first : .second)
-            }
-            obstacle = RingObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, states: states, type: type, rotationSpeed: rotationSpeed)
+            obstacle = RingObstacle(mask: obstacleMask,
+                                    radius: CIRCLE_OBSTACLE_RADIUS,
+                                    partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
+                                    type: type,
+                                    rotationSpeed: rotationSpeed)
         case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight, isStacked: let isStacked):
-            let partsCount = Int(round(Double(partsCount) / 2.0)) * 2
-            obstacle = CarouselPlankObstacle(mask: obstacleMask, partsCount: partsCount, directionRight: directionRight, type:type, carouselSpeed: carouselSpeed, isStacked: isStacked)
+            obstacle = CarouselPlankObstacle(mask: obstacleMask,
+                                             partsCount: Int(round(Double(partsCount) / 2.0)) * 2,
+                                             directionRight: directionRight,
+                                             type:type,
+                                             carouselSpeed: carouselSpeed,
+                                             isStacked: isStacked)
         case .fragmentedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed):
             let segmentsCount = Int(round(Double(segmentsCount) / 2.0)) * 2
             var states:[State] = []

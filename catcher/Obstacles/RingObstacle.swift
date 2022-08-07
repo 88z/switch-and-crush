@@ -35,7 +35,7 @@ class RingObstacle: MultiStateObstacle {
     
     let width: CGFloat = OBSTACLE_ARK_THICKNESS
     
-    init (mask: Mask, radius: CGFloat, states:[State], type: ObstacleType, rotationSpeed: Speed) {
+    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed) {
         self.radius = radius
         super.init()
         self.type = type
@@ -60,24 +60,26 @@ class RingObstacle: MultiStateObstacle {
         }
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
-        initParts(with: states)
+        initParts(count: partsCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initParts(with states: [State]){
-        guard states.count > 0 else {
+    private func initParts(count partsCount: Int){
+        guard partsCount > 0 else {
             return
         }
-        let partAngle = 2*CGFloat.pi/CGFloat(states.count)
+        let partAngle = 2*CGFloat.pi/CGFloat(partsCount)
         var startAngle:CGFloat = 0
 
-        for state in states {
+        var state = State.random()
+        for i in 0..<partsCount {
             let endAngle = startAngle + partAngle
             let node = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
             node.state = state
+            state = State.nextState(for: state)
             addChild(node)
             startAngle = endAngle
         }
