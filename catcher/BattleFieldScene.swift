@@ -152,7 +152,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func shatterer(for obstacle: Obstacle) ->Shatterer {
         switch obstacle.type {
-        case .solidRingPart, .arcObstacle, .animatedRing(segmentsCount: _, rotationSpeed: _), .fragmentedRing(segmentsCount: _, rotationSpeed: _):
+        case .solidRingPart, .arcObstacle, .animatedRing(segmentsCount: _, rotationSpeed: _, isStacked: _), .fragmentedRing(segmentsCount: _, rotationSpeed: _):
             return RingObstacleShatterer(obstacle: obstacle)
         default:
             return PlankObstacleShatterer(obstacle: obstacle)

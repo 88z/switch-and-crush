@@ -34,9 +34,11 @@ class RingObstacle: MultiStateObstacle {
     }
     
     let width: CGFloat = OBSTACLE_ARK_THICKNESS
+    let isStacked: Bool
     
-    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed) {
+    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
         self.radius = radius
+        self.isStacked = isStacked
         super.init()
         self.type = type
         name = String(describing: Obstacle.self)
@@ -75,12 +77,17 @@ class RingObstacle: MultiStateObstacle {
         var startAngle:CGFloat = 0
 
         var state = State.random()
-        for i in 0..<partsCount {
+        for _ in 0..<partsCount {
             let endAngle = startAngle + partAngle
-            let node = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
-            node.state = state
+            let node1 = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
+            node1.state = state
+            if isStacked {
+                let node2 = StateNode(arcWithCenter: center, radius: radius-width, startAngle: startAngle, endAngle: endAngle, width: width)
+                node2.state = State.nextState(for: state)
+                addChild(node2)
+            }
             state = State.nextState(for: state)
-            addChild(node)
+            addChild(node1)
             startAngle = endAngle
         }
     }
