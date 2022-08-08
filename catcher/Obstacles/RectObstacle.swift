@@ -19,7 +19,7 @@ class RectObstacle: StateNode, Obstacle {
             for col in 0..<colCount {
                 let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row))
                 
-                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))))
+                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state, colorScheme: colorScheme)
                 atom.state = state
                 atom.name = ATOM_NODE_NAME
                 atom.lineWidth = 0
@@ -62,7 +62,7 @@ class RectObstacle: StateNode, Obstacle {
     
     var type: ObstacleType!
     
-    convenience init(mask: Mask, width: CGFloat, type: ObstacleType) {
+    convenience init(mask: Mask, width: CGFloat, state:State, colorScheme: ColorScheme, type: ObstacleType) {
         let height: CGFloat
         switch type {
         case .thinPlank:
@@ -73,7 +73,7 @@ class RectObstacle: StateNode, Obstacle {
         
 
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        self.init(rect: rect)
+        self.init(rect: rect, state: state, colorScheme: colorScheme)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x: frame.midX, y: frame.midY))
@@ -84,7 +84,7 @@ class RectObstacle: StateNode, Obstacle {
         physicsBody?.angularDamping = 0
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
-        state = State.random()
+        self.state = state
     }
     
     func state(at point: CGPoint) -> State? {

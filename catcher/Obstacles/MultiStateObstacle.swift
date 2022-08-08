@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
+    var colorScheme: ColorScheme
+    
     func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         for part in parts() {
@@ -37,7 +39,8 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init(){
+    init(colorScheme: ColorScheme){
+        self.colorScheme = colorScheme
         super.init()
     }
     
@@ -61,7 +64,8 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
 
     func state(at point: CGPoint) -> State? {
         guard let scene = scene else {
-            fatalError("obstacle is not on scene")
+            assertionFailure("obstacle is not on scene")
+            return nil
         }
         
         let lPoint = convert(point, from: scene)

@@ -15,4 +15,5 @@ struct Level {
     let name: String
     let initialState:State
     let userInterationEnabled:Bool
+    let colorScheme: ColorScheme
 }

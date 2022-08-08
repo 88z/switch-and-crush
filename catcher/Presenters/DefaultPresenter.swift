@@ -60,14 +60,14 @@ class DefaultPresenter: BasePresenter {
     }
     
     override func uiSceneElementPressed(scene: UIScene, element: UISceneElement) {
-        guard  scene == gameOverUI else {
+        guard  scene == gameOverUI,
+        let heroState = battleFieldScene.heroState,
+        let vc = vc else {
             return
         }
-        guard let vc = vc else {
-            return
-        }
+
         vc.freezeInteraction()
-        let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: battleFieldScene.heroState)
+        let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: heroState)
         vc.set(presenter:newPresenter)
     }
     

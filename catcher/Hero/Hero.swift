@@ -11,9 +11,9 @@ import GameplayKit
 class Hero:StateNode {
     private var speedMultiplier = CGFloat(60);
 
-    convenience init(radius: CGFloat) {
-        self.init(circleOfRadius:radius)
-        state = .first
+    convenience init(radius: CGFloat, state:State, colorScheme: ColorScheme) {
+        self.init(circleOfRadius:radius, state: state, colorScheme: colorScheme)
+        self.state = .first
         name = String(describing: Hero.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody?.affectedByGravity = false

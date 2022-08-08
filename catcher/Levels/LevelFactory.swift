@@ -11,17 +11,17 @@ import SpriteKit
 class LevelFactory {
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<5 {
+        for _ in 0..<30 {
             obstacleTypes.append([
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
-//                ObstacleType.twoStatePlank(isStacked: false),
-//                ObstacleType.plank,
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
-//                ObstacleType.arcStack,
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
+                ObstacleType.twoStatePlank(isStacked: false),
+                ObstacleType.plank,
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false),
+                ObstacleType.arcStack,
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,
@@ -29,7 +29,8 @@ class LevelFactory {
                      acceleration: 0,
                      name:"default",
                      initialState: .first,
-                     userInterationEnabled: true)
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
     }
     
     func level1() -> Level {
@@ -42,7 +43,8 @@ class LevelFactory {
                      acceleration: 7,
                      name:"default",
                      initialState: .first,
-                     userInterationEnabled: true)
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
     }
     
     
@@ -63,7 +65,8 @@ class LevelFactory {
                      acceleration: 7,
                      name:"default",
                      initialState: .first,
-                     userInterationEnabled: true)
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
     }
     
     func level3() -> Level {
@@ -97,6 +100,7 @@ class LevelFactory {
                      acceleration: 5,
                      name:"default",
                      initialState: .first,
-                     userInterationEnabled: true)
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
     }
 }

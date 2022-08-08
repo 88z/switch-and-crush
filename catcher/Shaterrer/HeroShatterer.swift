@@ -33,7 +33,7 @@ class HeroShatterer {
         
         for row in 0..<rowCount {
             for col in 0..<colCount {
-                let atom = StateNode(rect:CGRect(x: 0, y: 0, width: CGFloat(atomSize), height: CGFloat(atomSize)))
+                let atom = StateNode(rect:CGRect(x: 0, y: 0, width: CGFloat(atomSize), height: CGFloat(atomSize)), state: hero.state, colorScheme: hero.colorScheme)
                 atom.position = CGPoint(x: frame.origin.x + CGFloat(atomSize)*CGFloat(col), y: frame.origin.y + CGFloat(atomSize)*CGFloat(row))
                 
                 if (CGPointDistance(from: CGPoint(x: frame.midX, y: frame.midY), to: atom.position) > heroRadius) {

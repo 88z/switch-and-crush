@@ -20,12 +20,12 @@ protocol BattleFieldSceneDelegate: SKSceneDelegate {
 
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
-    private let hero = Hero(radius: 10)
+    private var hero: Hero?
 
     private let heroTopOffset: CGFloat
 
-    var heroState: State {
-        return hero.state
+    var heroState: State? {
+        return hero?.state
     }
     
     private var fallSpeed: CGFloat {
@@ -61,6 +61,15 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
+    private func placeHero(state:State, colorScheme: ColorScheme) {
+        hero?.removeFromParent()
+        let hero = Hero(radius: 10, state: state, colorScheme: colorScheme)
+        hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
+        addChild(hero)
+        hero.physicsBody?.set(mask: heroMask)
+        self.hero = hero
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -70,9 +79,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         isUserInteractionEnabled = false
         
         backgroundColor = UIColor.background()
-        hero.position = CGPoint(x: frame.midX, y: frame.maxY-heroTopOffset)
-        addChild(hero)
-        hero.physicsBody?.set(mask: heroMask)
+        
 
         let cameraNode = SKCameraNode()
         cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -89,11 +96,22 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         self.level = level
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
-        hero.state = level.initialState
+        placeHero(state: level.initialState, colorScheme: level.colorScheme)
+        guard let hero = self.hero else {
+            assertionFailure("hero uninitialized")
+            return
+        }
         progress = 0
-        let obstacleArranger = ObstacleArranger(scene: self, obstacleTypes: level.obstacleTypes, firstObstacleState: hero.state, startPointY: frame.minY-50, leftBorderX: frame.minX, rightBorderX: frame.maxX, obstacleMask: obstacleMask, initialSpeed: level.initialSpeed)
+        let obstacleArranger = ObstacleArranger(scene: self,
+                                                obstacleTypes: level.obstacleTypes,
+                                                firstObstacleState: hero.state,
+                                                startPointY: frame.minY-50,
+                                                leftBorderX: frame.minX,
+                                                rightBorderX: frame.maxX,
+                                                obstacleMask: obstacleMask,
+                                                initialSpeed: level.initialSpeed,
+                                                colorScheme: level.colorScheme)
         obstacleArranger.arrangeFirst()
-//        obstacleArranger.arrangeAll()
         
         self.obstacleArranger = obstacleArranger
         
@@ -104,6 +122,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func adjustCameraAndBorders() {
+        guard let hero = hero else {
+            return
+        }
         let newPositionY = hero.position.y - frame.height/2 + heroTopOffset
         camera?.position.y = newPositionY
     }
@@ -205,7 +226,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        hero.toggleState()
+        hero?.toggleState()
     }
     
     func dimObstacles() {

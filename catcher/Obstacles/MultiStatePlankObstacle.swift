@@ -18,9 +18,9 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         }
     }
     
-    init(mask:Mask, width: CGFloat, partSizes:[CGFloat], isStacked: Bool) {
+    init(mask:Mask, width: CGFloat, partSizes:[CGFloat], isStacked: Bool, colorScheme: ColorScheme) {
         self.isStacked = isStacked
-        super.init()
+        super.init(colorScheme: colorScheme)
         var nextX:CGFloat = 0
         var state = State.random()
         for partSize in partSizes {
@@ -34,22 +34,21 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         name = String(describing: Obstacle.self)
     }
     
-    convenience init(mask: Mask, width: CGFloat, isStacked: Bool) {
+    convenience init(mask: Mask, width: CGFloat, isStacked: Bool, colorScheme: ColorScheme) {
         var leftPartSize = CGFloat(randomBetween(25, and: 40))/100
         if Bool.random() {
             leftPartSize = 1-leftPartSize
         }
         let rightPartSize = 1-leftPartSize
         
-        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize], isStacked:isStacked)
+        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize], isStacked:isStacked, colorScheme: colorScheme)
     }
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
         if isStacked {
-            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack)
         } else {
-            let part = RectObstacle(mask: mask, width: width, type: .plank)
-            part.state = state
+            let part = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank)
             return part
         }
     }

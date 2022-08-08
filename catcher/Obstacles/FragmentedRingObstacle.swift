@@ -36,10 +36,16 @@ class FragmentedRingObstacle: MultiStateObstacle {
     
     let isStacked: Bool
     
-    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
+    init (mask: Mask,
+          radius: CGFloat,
+          partsCount: Int,
+          type: ObstacleType,
+          rotationSpeed: Speed,
+          isStacked: Bool,
+          colorScheme: ColorScheme) {
         self.radius = radius
         self.isStacked = isStacked
-        super.init()
+        super.init(colorScheme: colorScheme)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
@@ -89,6 +95,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                            radius: radius,
                                            startAngle: startAngle,
                                            endAngle: endAngle,
+                                           colorScheme: colorScheme,
                                            type: .arc))
             } else {
                 addChild (ArcObstacle(mask: mask,
@@ -97,6 +104,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                       radius: radius,
                                       startAngle: startAngle,
                                       endAngle: endAngle,
+                                      colorScheme: colorScheme,
                                       type: .arc))
             }
             
@@ -108,7 +116,8 @@ class FragmentedRingObstacle: MultiStateObstacle {
     
     override func state(at point: CGPoint) -> State? {
         guard let scene = scene else {
-            fatalError("obstacle is not on scene")
+            assertionFailure("obstacle is not on scene")
+            return nil
         }
         var state: State? = nil
         let pnt = scene.convert(point, to: self)

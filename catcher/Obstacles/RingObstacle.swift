@@ -37,10 +37,10 @@ class RingObstacle: MultiStateObstacle {
     let width: CGFloat = ARC_OBSTACLE_THICKNESS
     let isStacked: Bool
     
-    init (mask: Mask, radius: CGFloat, partsCount: Int, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
+    init (mask: Mask, radius: CGFloat, partsCount: Int, colorScheme: ColorScheme, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
         self.radius = radius
         self.isStacked = isStacked
-        super.init()
+        super.init(colorScheme: colorScheme)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
@@ -80,10 +80,10 @@ class RingObstacle: MultiStateObstacle {
         var state = State.random()
         for _ in 0..<partsCount {
             let endAngle = startAngle + partAngle
-            let node1 = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
+            let node1 = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width, state: state, colorScheme: colorScheme)
             node1.state = state
             if isStacked {
-                let node2 = StateNode(arcWithCenter: center, radius: radius-width, startAngle: startAngle, endAngle: endAngle, width: width)
+                let node2 = StateNode(arcWithCenter: center, radius: radius-width, startAngle: startAngle, endAngle: endAngle, width: width, state: state, colorScheme: colorScheme)
                 node2.state = State.nextState(for: state)
                 addChild(node2)
             }
@@ -144,8 +144,11 @@ class RingObstacle: MultiStateObstacle {
             guard let state = state(at: startAngle+(endAngle-startAngle)/2) else {
                 continue
             }
-            let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width)
-            atom.state = state
+            let atom = StateNode(arcWithCenter: .zero,
+                                 radius: radius,
+                                 startAngle: startAngle,
+                                 endAngle: endAngle,
+                                 width: width, state: state, colorScheme: colorScheme)
             atom.name = ATOM_NODE_NAME
             atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
             atom.physicsBody?.affectedByGravity = false

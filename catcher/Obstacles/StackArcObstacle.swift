@@ -15,8 +15,8 @@ class StackArcObstacle: MultiStateObstacle {
         }
     }
     
-    init(mask:Mask, states: [State], center:CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, type: ObstacleType) {
-        super.init()
+    init(mask:Mask, states: [State], center:CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat,colorScheme: ColorScheme, type: ObstacleType) {
+        super.init(colorScheme: colorScheme)
         name = String(describing: Obstacle.self)
         self.type = type
         
@@ -24,7 +24,7 @@ class StackArcObstacle: MultiStateObstacle {
         
         var nextRadius:CGFloat = radius
         for state in states {
-            let obstacle = ArcObstacle(mask: mask, state: state, center: center, radius: nextRadius, startAngle: startAngle, endAngle: endAngle, type: partType)
+            let obstacle = ArcObstacle(mask: mask, state: state, center: center, radius: nextRadius, startAngle: startAngle, endAngle: endAngle, colorScheme: colorScheme, type: partType)
             obstacle.state = state
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: .zero)

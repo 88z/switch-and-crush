@@ -18,9 +18,9 @@ class PendulumPlankObstacle: MultiStateObstacle {
     
     let isStacked:Bool
     
-    init(mask: Mask, swingSpeed: Speed, isStacked: Bool) {
+    init(mask: Mask, swingSpeed: Speed, isStacked: Bool, colorScheme: ColorScheme) {
         self.isStacked = isStacked
-        super.init()
+        super.init(colorScheme: colorScheme)
         let width = UIScreen.main.bounds.size.width
         let leftPartState = State.random()
         let rightPartState = State.nextState(for: leftPartState)
@@ -72,9 +72,9 @@ class PendulumPlankObstacle: MultiStateObstacle {
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
         if isStacked {
-            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], type: .plankStack)
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack)
         } else {
-            return RectObstacle(mask: mask, width: width, type: .plank)
+            return RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank)
         }
     }
     

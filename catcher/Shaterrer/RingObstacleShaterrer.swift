@@ -16,7 +16,8 @@ class RingObstacleShatterer: Shatterer {
     private var frame: CGRect {
         get {
             guard let scene = obstacle.node.scene else {
-                fatalError("obstacle has no scene")
+                assertionFailure("obstacle has no scene")
+                return .zero
             }
             guard let parent = obstacle.node.parent  else {
                 return obstacle.node.calculateAccumulatedFrame()
