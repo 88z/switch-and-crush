@@ -34,7 +34,9 @@ extension ObstacleType {
     var pointNumber: Int {
         get {
             switch self {
-            case .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _):
+            case .fragmentedRing(segmentsCount: _,
+                                 rotationSpeed: _,
+                                 isStacked: _):
                 return 2
             default:
                 return 1

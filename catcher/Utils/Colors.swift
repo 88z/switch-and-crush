@@ -21,6 +21,14 @@ extension UIColor {
         return UIColor(red: 219/255, green: 41/255, blue: 85/255, alpha: 1)
     }
     
+    static func green() -> UIColor{
+        return UIColor(red: 79/255, green: 178/255, blue: 134/255, alpha: 1)
+    }
+    
+    static func isabelline() -> UIColor{
+        return UIColor(red: 242/255, green: 239/255, blue: 234/255, alpha: 1)
+    }
+    
     static func grid() -> UIColor{
         return UIColor(red: 55/255, green: 41/255, blue: 61/255, alpha: 1)
     }

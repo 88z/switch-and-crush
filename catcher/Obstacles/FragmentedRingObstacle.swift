@@ -66,7 +66,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
         case .crazy:
             physicsBody?.angularVelocity = 3
         }
-        physicsBody?.density = 0.025
+        physicsBody?.density = 0
         physicsBody?.setZeroMask()
         
         initParts(mask: mask, count:partsCount)

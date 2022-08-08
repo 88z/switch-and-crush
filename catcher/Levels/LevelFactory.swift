@@ -13,15 +13,15 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<30 {
             obstacleTypes.append([
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
-                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
-                ObstacleType.twoStatePlank(isStacked: false),
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
+//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
+//                ObstacleType.twoStatePlank(isStacked: false),
                 ObstacleType.plank,
                 ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false),
-                ObstacleType.arcStack,
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false),
+//                ObstacleType.arcStack,
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,
@@ -30,7 +30,7 @@ class LevelFactory {
                      name:"default",
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .mint)
     }
     
     func level1() -> Level {

@@ -15,23 +15,32 @@ enum State {
 
 enum ColorScheme {
     case blueRed
-    case greenYellow
+    case mint
 }
 
 extension ColorScheme {
     static func defaultScheme() -> ColorScheme {
-            return .blueRed
+        return .blueRed
     }
+    
 }
 
 extension State {
-    var color:UIColor {
-        get {
-            switch self {
-            case .first:
+    func color(for scheme:ColorScheme) -> UIColor {
+        switch self {
+        case .first:
+            switch scheme {
+            case .blueRed:
                 return UIColor.blue()
-            case .second:
+            case .mint:
+                return UIColor.green()
+            }
+        case .second:
+            switch scheme {
+            case .blueRed:
                 return UIColor.red()
+            case .mint:
+                return UIColor.isabelline()
             }
         }
     }
@@ -111,8 +120,8 @@ class StateNode: SKShapeNode {
     var state: State {
         set (newValue) {
             stateValue = newValue
-            fillColor = newValue.color
-            strokeColor = newValue.color
+            fillColor = newValue.color(for: colorScheme)
+            strokeColor = fillColor
         }
         get {
             return stateValue
