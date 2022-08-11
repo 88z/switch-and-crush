@@ -78,7 +78,6 @@ class ArcObstacle: StateNode, Obstacle {
                      type: ObstacleType) {
         self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
-        self.state = state
         self.startAngle = startAngle
         self.endAngle = endAngle
         self.radius = radius
@@ -112,7 +111,7 @@ class ArcObstacle: StateNode, Obstacle {
                                  width: width,
                                  state: state,
                                  colorScheme: colorScheme,
-                                 blinkInterval: blinkInterval)
+                                 blinkInterval: 0)
             atom.name = ATOM_NODE_NAME
             atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
             atom.physicsBody?.affectedByGravity = false

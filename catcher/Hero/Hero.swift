@@ -13,7 +13,6 @@ class Hero:StateNode {
 
     convenience init(radius: CGFloat, state:State, colorScheme: ColorScheme) {
         self.init(circleOfRadius:radius, state: state, colorScheme: colorScheme, blinkInterval: 0)
-        self.state = .first
         name = String(describing: Hero.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody?.affectedByGravity = false

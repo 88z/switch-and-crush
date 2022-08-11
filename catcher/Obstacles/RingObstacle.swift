@@ -37,10 +37,10 @@ class RingObstacle: MultiStateObstacle {
     let width: CGFloat = ARC_OBSTACLE_THICKNESS
     let isStacked: Bool
     
-    init (mask: Mask, radius: CGFloat, partsCount: Int, colorScheme: ColorScheme, blinkInterval: TimeInterval, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
+    init (mask: Mask, radius: CGFloat, partsCount: Int, colorScheme: ColorScheme, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
         self.radius = radius
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: 0)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
@@ -81,14 +81,13 @@ class RingObstacle: MultiStateObstacle {
         for _ in 0..<partsCount {
             let endAngle = startAngle + partAngle
             let node1 = StateNode(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
-            node1.state = state
+            addChild(node1)
+            state = State.nextState(for: state)
             if isStacked {
                 let node2 = StateNode(arcWithCenter: center, radius: radius-width, startAngle: startAngle, endAngle: endAngle, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
-                node2.state = State.nextState(for: state)
                 addChild(node2)
             }
-            state = State.nextState(for: state)
-            addChild(node1)
+            
             startAngle = endAngle
         }
     }

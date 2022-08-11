@@ -67,6 +67,7 @@ class StateNode: SKShapeNode {
     private var stateValue = State.first
     let colorScheme: ColorScheme
     let blinkInterval: TimeInterval
+    var blinkTimer: Timer?
     
     init(arcWithCenter center: CGPoint,
          radius: CGFloat,
@@ -94,6 +95,7 @@ class StateNode: SKShapeNode {
         self.path = path.cgPath
 
         self.state = state
+        setupBlinking() 
     }
 
     init(rect: CGRect, state: State, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
@@ -102,6 +104,7 @@ class StateNode: SKShapeNode {
         super.init()
         self.path = CGPath(rect: rect, transform: nil)
         self.state = state
+        setupBlinking()
         
     }
     init(circleOfRadius radius: CGFloat, state: State, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
@@ -110,18 +113,32 @@ class StateNode: SKShapeNode {
         super.init()
         self.path = CGPath.init(ellipseIn: CGRect(origin: CGPoint(x:-radius, y: -radius), size: CGSize(width: radius*2, height: radius*2)), transform: nil)
         self.state = state
+        setupBlinking()
     }
+    
+    private func setupBlinking() {
+        guard blinkInterval > 0 else {
+            return
+        }
+        blinkTimer?.invalidate()
+        blinkTimer = Timer.scheduledTimer(withTimeInterval: blinkInterval, repeats: true, block: { [weak self] _ in
+            guard let currentState = self?.state else {
+                return
+            }
+            self?.state = State.nextState(for: currentState)
+        })
+        blinkTimer?.fire()
+    }
+    
+    override func removeFromParent() {
+        blinkTimer?.invalidate()
+        super.removeFromParent()
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //
-//
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     var state: State {
         set (newValue) {
             stateValue = newValue
@@ -134,11 +151,7 @@ class StateNode: SKShapeNode {
     }
     
     func toggleState() {
-        if state == .first {
-            state = .second
-        } else {
-            state = .first
-        }
+        state = State.nextState(for: state)
     }
     
 }

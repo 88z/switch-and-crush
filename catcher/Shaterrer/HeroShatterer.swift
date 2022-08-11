@@ -39,7 +39,6 @@ class HeroShatterer {
                 if (CGPointDistance(from: CGPoint(x: frame.midX, y: frame.midY), to: atom.position) > heroRadius) {
                     continue
                 }
-                atom.state = hero.state
                 atom.lineWidth = 0
                 atom.physicsBody = SKPhysicsBody(circleOfRadius: atomSize/2, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
                 atom.physicsBody?.affectedByGravity = false

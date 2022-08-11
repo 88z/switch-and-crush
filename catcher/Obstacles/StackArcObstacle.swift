@@ -25,7 +25,6 @@ class StackArcObstacle: MultiStateObstacle {
         var nextRadius:CGFloat = radius
         for state in states {
             let obstacle = ArcObstacle(mask: mask, state: state, center: center, radius: nextRadius, startAngle: startAngle, endAngle: endAngle, colorScheme: colorScheme, blinkInterval: blinkInterval, type: partType)
-            obstacle.state = state
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: .zero)
             nextRadius = nextRadius - ARC_OBSTACLE_THICKNESS - 1

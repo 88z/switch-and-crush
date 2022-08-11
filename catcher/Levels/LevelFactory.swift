@@ -11,14 +11,14 @@ import SpriteKit
 class LevelFactory {
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<30 {
+        for _ in 0..<30{
             obstacleTypes.append([
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: true),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true),
-//                ObstacleType.twoStatePlank(isStacked: false),
-                ObstacleType.plank(blinkInterval: 3),
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 3),
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 1),
+//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 1),
+//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 1),
+//                ObstacleType.plank(blinkInterval: 3),
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 1),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false),
 //                ObstacleType.arcStack,
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
@@ -30,7 +30,7 @@ class LevelFactory {
                      name:"default",
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .mint)
+                     colorScheme: .blueRed)
     }
     
     func level1() -> Level {

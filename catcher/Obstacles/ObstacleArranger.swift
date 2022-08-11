@@ -71,12 +71,11 @@ class ObstacleArranger {
                                      states: [.first, .second].shuffled(),
                                      colorScheme: colorScheme, blinkInterval: blinkInterval,
                                      type: type)
-        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, let isStacked, blinkInterval: let blinkInterval):
+        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, let isStacked):
             obstacle = RingObstacle(mask: obstacleMask,
                                     radius: CIRCLE_OBSTACLE_RADIUS,
                                     partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
                                     colorScheme: colorScheme,
-                                    blinkInterval: blinkInterval,
                                     type: type,
                                     rotationSpeed: rotationSpeed,
                                     isStacked: isStacked)
@@ -145,8 +144,8 @@ class ObstacleArranger {
         }
 
         var lastPlaced = firstObstacle
-        while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 {
-            lastPlaced = arrangeOne(type: obstacleTypes[arrangedCount])
+        while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 && arrangedCount < obstacleTypes.count {
+            lastPlaced = arrangeOne(type: obstacleTypes[arrangedCount-1])
         }
     }
     

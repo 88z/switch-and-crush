@@ -22,7 +22,7 @@ enum ObstacleType: Equatable {
     case pendulumPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval)
     case thinPlank(blinkInterval: TimeInterval)
     case plankStack(blinkInterval: TimeInterval)
-    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval)
+    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool)
     case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval)
     case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval)
     case arc(blinkInterval: TimeInterval)

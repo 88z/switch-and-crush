@@ -189,8 +189,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         switch obstacle.type {
         case .arc, .animatedRing(segmentsCount: _,
                                  rotationSpeed: _,
-                                 isStacked: _,
-                                 blinkInterval: _),
+                                 isStacked: _),
                 .fragmentedRing(segmentsCount: _,
                                 rotationSpeed: _,
                                 isStacked: _,

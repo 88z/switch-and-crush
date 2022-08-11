@@ -19,8 +19,7 @@ class RectObstacle: StateNode, Obstacle {
             for col in 0..<colCount {
                 let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row))
                 
-                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
-                atom.state = state
+                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state, colorScheme: colorScheme, blinkInterval: 0)
                 atom.name = ATOM_NODE_NAME
                 atom.lineWidth = 0
                 atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
@@ -89,7 +88,6 @@ class RectObstacle: StateNode, Obstacle {
         physicsBody?.angularDamping = 0
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
-        self.state = state
     }
     
     func state(at point: CGPoint) -> State? {
