@@ -12,7 +12,7 @@ class Hero:StateNode {
     private var speedMultiplier = CGFloat(60);
 
     convenience init(radius: CGFloat, state:State, colorScheme: ColorScheme) {
-        self.init(circleOfRadius:radius, state: state, colorScheme: colorScheme)
+        self.init(circleOfRadius:radius, state: state, colorScheme: colorScheme, blinkInterval: 0)
         self.state = .first
         name = String(describing: Hero.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius)

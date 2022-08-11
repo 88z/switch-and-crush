@@ -39,13 +39,14 @@ class FragmentedRingObstacle: MultiStateObstacle {
     init (mask: Mask,
           radius: CGFloat,
           partsCount: Int,
+          blinkInterval: TimeInterval,
           type: ObstacleType,
           rotationSpeed: Speed,
           isStacked: Bool,
           colorScheme: ColorScheme) {
         self.radius = radius
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
@@ -96,7 +97,8 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                            startAngle: startAngle,
                                            endAngle: endAngle,
                                            colorScheme: colorScheme,
-                                           type: .arc))
+                                           blinkInterval: blinkInterval,
+                                           type: .arc(blinkInterval: blinkInterval)))
             } else {
                 addChild (ArcObstacle(mask: mask,
                                       state: state,
@@ -105,7 +107,8 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                       startAngle: startAngle,
                                       endAngle: endAngle,
                                       colorScheme: colorScheme,
-                                      type: .arc))
+                                      blinkInterval: blinkInterval,
+                                      type: .arc(blinkInterval: blinkInterval)))
             }
             
             

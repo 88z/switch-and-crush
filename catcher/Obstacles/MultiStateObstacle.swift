@@ -10,6 +10,7 @@ import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
     var colorScheme: ColorScheme
+    var blinkInterval: TimeInterval
     
     func shatteringDummy() -> SKNode {
         let dummy = SKNode()
@@ -39,8 +40,9 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(colorScheme: ColorScheme){
+    init(colorScheme: ColorScheme, blinkInterval: TimeInterval){
         self.colorScheme = colorScheme
+        self.blinkInterval = blinkInterval
         super.init()
     }
     

@@ -74,8 +74,9 @@ class ArcObstacle: StateNode, Obstacle {
                      startAngle: CGFloat,
                      endAngle: CGFloat,
                      colorScheme: ColorScheme,
+                     blinkInterval: TimeInterval,
                      type: ObstacleType) {
-        self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7, state: state, colorScheme: colorScheme)
+        self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
         self.state = state
         self.startAngle = startAngle
@@ -104,7 +105,14 @@ class ArcObstacle: StateNode, Obstacle {
 
         while startAngle < endAngle {
             let endAngle = startAngle + atomAngle
-            let atom = StateNode(arcWithCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, width: width, state: state, colorScheme: colorScheme)
+            let atom = StateNode(arcWithCenter: .zero,
+                                 radius: radius,
+                                 startAngle: startAngle,
+                                 endAngle: endAngle,
+                                 width: width,
+                                 state: state,
+                                 colorScheme: colorScheme,
+                                 blinkInterval: blinkInterval)
             atom.name = ATOM_NODE_NAME
             atom.physicsBody = SKPhysicsBody(polygonFrom: atom.path!)
             atom.physicsBody?.affectedByGravity = false

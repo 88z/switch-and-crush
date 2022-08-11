@@ -16,16 +16,16 @@ class StackObstacle: MultiStateObstacle {
         }
     }
 
-    init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, type: ObstacleType) {
-        super.init(colorScheme: colorScheme)
+    init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, blinkInterval: TimeInterval, type: ObstacleType) {
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         name = String(describing: Obstacle.self)
         self.type = type
         
-        let partType: ObstacleType = .thinPlank
+        let partType: ObstacleType = .thinPlank(blinkInterval: blinkInterval)
         
         var nextY:CGFloat = 0
         for state in states {
-            let obstacle = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: partType)
+            let obstacle = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval, type: partType)
             obstacle.state = state
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: nextY)

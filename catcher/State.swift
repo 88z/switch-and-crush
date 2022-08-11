@@ -66,6 +66,7 @@ extension State {
 class StateNode: SKShapeNode {
     private var stateValue = State.first
     let colorScheme: ColorScheme
+    let blinkInterval: TimeInterval
     
     init(arcWithCenter center: CGPoint,
          radius: CGFloat,
@@ -73,7 +74,8 @@ class StateNode: SKShapeNode {
          endAngle: CGFloat,
          width: CGFloat,
          state: State,
-         colorScheme: ColorScheme) {
+         colorScheme: ColorScheme,
+         blinkInterval: TimeInterval) {
         let path = UIBezierPath()
         path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
 
@@ -87,20 +89,23 @@ class StateNode: SKShapeNode {
         path.addArc(withCenter: center, radius: innerRadius, startAngle: endAngle, endAngle: startAngle, clockwise: false)
         path.close()
         self.colorScheme = colorScheme
+        self.blinkInterval = blinkInterval
         super.init()
         self.path = path.cgPath
 
         self.state = state
     }
 
-    init(rect: CGRect, state: State, colorScheme: ColorScheme) {
+    init(rect: CGRect, state: State, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
+        self.blinkInterval = blinkInterval
         self.colorScheme = colorScheme
         super.init()
         self.path = CGPath(rect: rect, transform: nil)
         self.state = state
         
     }
-    init(circleOfRadius radius: CGFloat, state: State, colorScheme: ColorScheme) {
+    init(circleOfRadius radius: CGFloat, state: State, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
+        self.blinkInterval = blinkInterval
         self.colorScheme = colorScheme
         super.init()
         self.path = CGPath.init(ellipseIn: CGRect(origin: CGPoint(x:-radius, y: -radius), size: CGSize(width: radius*2, height: radius*2)), transform: nil)

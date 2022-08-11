@@ -17,16 +17,16 @@ enum Speed {
 }
 
 enum ObstacleType: Equatable {
-    case plank
-    case twoStatePlank(isStacked:Bool)
-    case pendulumPlank(swingSpeed: Speed, isStacked:Bool)
-    case thinPlank
-    case plankStack
-    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool)
-    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool)
-    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool)
-    case arc
-    case arcStack
+    case plank(blinkInterval: TimeInterval)
+    case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval)
+    case pendulumPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval)
+    case thinPlank(blinkInterval: TimeInterval)
+    case plankStack(blinkInterval: TimeInterval)
+    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval)
+    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval)
+    case arc(blinkInterval: TimeInterval)
+    case arcStack(blinkInterval: TimeInterval)
 }
 
 
@@ -36,7 +36,8 @@ extension ObstacleType {
             switch self {
             case .fragmentedRing(segmentsCount: _,
                                  rotationSpeed: _,
-                                 isStacked: _):
+                                 isStacked: _,
+                                 blinkInterval: _):
                 return 2
             default:
                 return 1

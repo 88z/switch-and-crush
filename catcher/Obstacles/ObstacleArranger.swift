@@ -54,47 +54,53 @@ class ObstacleArranger {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank, .thinPlank:
+        case .plank(blinkInterval: let blinkInterval), .thinPlank(blinkInterval: let blinkInterval):
             obstacle = RectObstacle(mask: obstacleMask,
                                     width: width,
                                     state:.random(),
                                     colorScheme: colorScheme,
+                                    blinkInterval: blinkInterval,
                                     type: type)
-        case .twoStatePlank(isStacked: let isStacked):
-            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked, colorScheme: colorScheme)
-        case .pendulumPlank(swingSpeed: let swingSpeed, isStacked: let isStacked):
-            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed, isStacked: isStacked, colorScheme: colorScheme)
-        case .plankStack:
+        case .twoStatePlank(isStacked: let isStacked, blinkInterval: let blinkInterval):
+            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
+        case .pendulumPlank(swingSpeed: let swingSpeed, isStacked: let isStacked, blinkInterval: let blinkInterval):
+            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
+        case .plankStack(blinkInterval: let blinkInterval):
             obstacle = StackObstacle(mask: obstacleMask,
                                      width: width,
                                      states: [.first, .second].shuffled(),
-                                     colorScheme: colorScheme,
+                                     colorScheme: colorScheme, blinkInterval: blinkInterval,
                                      type: type)
-        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, let isStacked):
+        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, let isStacked, blinkInterval: let blinkInterval):
             obstacle = RingObstacle(mask: obstacleMask,
                                     radius: CIRCLE_OBSTACLE_RADIUS,
                                     partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
                                     colorScheme: colorScheme,
+                                    blinkInterval: blinkInterval,
                                     type: type,
                                     rotationSpeed: rotationSpeed,
                                     isStacked: isStacked)
-        case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight, isStacked: let isStacked):
+        case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight, isStacked: let isStacked, blinkInterval: let blinkInterval):
             obstacle = CarouselPlankObstacle(mask: obstacleMask,
                                              partsCount: Int(round(Double(partsCount) / 2.0)) * 2,
                                              directionRight: directionRight,
                                              colorScheme: colorScheme,
+                                             blinkInterval: blinkInterval,
                                              type:type,
                                              carouselSpeed: carouselSpeed,
                                              isStacked: isStacked)
-        case .fragmentedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, isStacked: let isStacked):
+        case .fragmentedRing(segmentsCount: let segmentsCount,
+                             rotationSpeed: let rotationSpeed,
+                             isStacked: let isStacked,
+                             blinkInterval: let blinkInterval):
             obstacle = FragmentedRingObstacle(mask: obstacleMask,
                                               radius: 96,
                                               partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
-                                              type: type,
+                                              blinkInterval: blinkInterval, type: type,
                                               rotationSpeed: rotationSpeed,
                                               isStacked: isStacked,
                                               colorScheme: colorScheme)
-        case .arc:
+        case .arc(blinkInterval: let blinkInterval):
             obstacle = ArcObstacle(mask: obstacleMask,
                                    state: State.random(),
                                    center: .zero,
@@ -102,8 +108,9 @@ class ObstacleArranger {
                                    startAngle: 0,
                                    endAngle: CGFloat.pi,
                                    colorScheme: colorScheme,
+                                   blinkInterval: blinkInterval,
                                    type: type)
-        case .arcStack:
+        case .arcStack(blinkInterval: let blinkInterval):
             obstacle = StackArcObstacle(mask: obstacleMask,
                                         states: [.first, .second],
                                         center: .zero,
@@ -111,6 +118,7 @@ class ObstacleArranger {
                                         startAngle: 0,
                                         endAngle: CGFloat.pi,
                                         colorScheme: colorScheme,
+                                        blinkInterval: blinkInterval,
                                         type: type)
         }
 
@@ -157,7 +165,7 @@ class ObstacleArranger {
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         switch type{
-        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _):
+        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _, blinkInterval: _):
             return CGPoint(x: scene!.frame.midX, y:nextY())
         case .carouselPlank, .pendulumPlank:
             return CGPoint(x:0, y: nextY())

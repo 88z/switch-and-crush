@@ -22,13 +22,14 @@ class CarouselPlankObstacle: MultiStateObstacle {
          partsCount: Int,
          directionRight:Bool,
          colorScheme:ColorScheme,
+         blinkInterval: TimeInterval,
          type: ObstacleType,
          carouselSpeed: Speed,
          isStacked: Bool) {
         let width = UIScreen.main.bounds.size.width
         self.directionRight = directionRight
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         
         self.type = type
         name = String(describing: Obstacle.self)
@@ -113,9 +114,9 @@ class CarouselPlankObstacle: MultiStateObstacle {
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
         if isStacked {
-            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack)
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, blinkInterval: blinkInterval, type: .plankStack(blinkInterval: blinkInterval))
         } else {
-            return RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank)
+            return RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval, type: .plank(blinkInterval: blinkInterval))
         }
     }
     
