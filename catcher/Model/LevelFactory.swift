@@ -13,9 +13,9 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<30{
             obstacleTypes.append([
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
 //                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 1),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 1),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 1),
 //                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 1),
 //                ObstacleType.plank(blinkInterval: 1),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 1),

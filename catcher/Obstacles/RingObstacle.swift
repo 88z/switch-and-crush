@@ -50,7 +50,7 @@ class RingObstacle: MultiStateObstacle {
             rotationSpeed = _rotationSpeed
             
         default:
-            assertionFailure("incorrect type for " + String(describing: MultiStateObstacle.self))
+            assertionFailure("incorrect type for " + String(describing: RingObstacle.self))
         }
         self.isStacked = isStacked
         

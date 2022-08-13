@@ -77,15 +77,10 @@ class ObstacleArranger {
                                     radius: CIRCLE_OBSTACLE_RADIUS,
                                     colorScheme: colorScheme,
                                     type: type)
-        case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight, isStacked: let isStacked, blinkInterval: let blinkInterval):
+        case .carouselPlank:
             obstacle = CarouselPlankObstacle(mask: obstacleMask,
-                                             partsCount: Int(round(Double(partsCount) / 2.0)) * 2,
-                                             directionRight: directionRight,
                                              colorScheme: colorScheme,
-                                             blinkInterval: blinkInterval,
-                                             type:type,
-                                             carouselSpeed: carouselSpeed,
-                                             isStacked: isStacked)
+                                             type:type)
         case .fragmentedRing(segmentsCount: let segmentsCount,
                              rotationSpeed: let rotationSpeed,
                              isStacked: let isStacked,

@@ -19,16 +19,28 @@ class CarouselPlankObstacle: MultiStateObstacle {
     let directionRight:Bool
     var shiftsCount = 0
     init(mask: Mask,
-         partsCount: Int,
-         directionRight:Bool,
          colorScheme:ColorScheme,
-         blinkInterval: TimeInterval,
-         type: ObstacleType,
-         carouselSpeed: Speed,
-         isStacked: Bool) {
+         type: ObstacleType) {
         let width = UIScreen.main.bounds.size.width
-        self.directionRight = directionRight
+       
+        
+        var isStacked = false
+        var partsCount = 0
+        var carouselSpeed: Speed = .none
+        var blinkInterval: TimeInterval = 0
+        var directionRight = false
+        switch type {
+        case .carouselPlank(partsCount: let _partsCount, carouselSpeed: let _carouselSpeed, directionRight: let _directionRight, isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+            isStacked = _isStacked
+            partsCount = Int(round(Double(_partsCount) / 2.0)) * 2
+            carouselSpeed = _carouselSpeed
+            blinkInterval = _blinkInterval
+            directionRight = _directionRight
+        default:
+            assertionFailure("incorrect type for " + String(describing: CarouselPlankObstacle.self))
+        }
         self.isStacked = isStacked
+        self.directionRight = directionRight
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         
         self.type = type
