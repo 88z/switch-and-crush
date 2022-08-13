@@ -23,7 +23,6 @@ class CarouselPlankObstacle: MultiStateObstacle {
          type: ObstacleType) {
         let width = UIScreen.main.bounds.size.width
        
-        
         var isStacked = false
         var partsCount = 0
         var carouselSpeed: Speed = .none
@@ -69,7 +68,6 @@ class CarouselPlankObstacle: MultiStateObstacle {
             part.node.position = CGPoint(x:x, y: 0)
             state = .nextState(for: state)
             addChild(part.node)
-            
             
             part.node.run(SKAction.repeatForever(SKAction.sequence([
                 SKAction.move(by: CGVector(dx: directionRight ? partWidth : -partWidth, dy: 0), duration: duration),

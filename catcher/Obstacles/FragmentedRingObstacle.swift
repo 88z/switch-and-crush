@@ -38,14 +38,29 @@ class FragmentedRingObstacle: MultiStateObstacle {
     
     init (mask: Mask,
           radius: CGFloat,
-          partsCount: Int,
-          blinkInterval: TimeInterval,
           type: ObstacleType,
-          rotationSpeed: Speed,
-          isStacked: Bool,
           colorScheme: ColorScheme) {
         self.radius = radius
+        
+        var isStacked = false
+        var partsCount = 0
+        var rotationSpeed: Speed = .none
+        var blinkInterval: TimeInterval = 0
+        switch type {
+        case .fragmentedRing(segmentsCount: let _segmentsCount,
+                             rotationSpeed: let _rotationSpeed,
+                             isStacked: let _isStacked,
+                             blinkInterval: let _blinkInterval):
+            isStacked = _isStacked
+            partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
+            rotationSpeed = _rotationSpeed
+            blinkInterval = _blinkInterval
+            
+        default:
+            assertionFailure("incorrect type for " + String(describing: RingObstacle.self))
+        }
         self.isStacked = isStacked
+        
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
         name = String(describing: Obstacle.self)
