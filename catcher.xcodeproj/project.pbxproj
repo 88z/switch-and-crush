@@ -244,13 +244,13 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		806B9DDB25455616003CB4EE /* Levels */ = {
+		806B9DDB25455616003CB4EE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				806B9DDC25455629003CB4EE /* Level.swift */,
 				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
 			);
-			path = Levels;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		80890CFC2540057800F5552B /* Obstacles */ = {
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				2391E95B286CDBE10043BCA4 /* Shatter */,
-				806B9DDB25455616003CB4EE /* Levels */,
+				806B9DDB25455616003CB4EE /* Model */,
 				804C3AB3254551DE0012EDD8 /* UI */,
 				2348C9C028944A860096F7E4 /* Shaterrer */,
 				80890CFC2540057800F5552B /* Obstacles */,

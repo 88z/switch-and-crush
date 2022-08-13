@@ -79,7 +79,7 @@ class StateNode: SKShapeNode {
          blinkInterval: TimeInterval) {
         let path = UIBezierPath()
         path.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-
+        
         let innerPath = UIBezierPath()
         let innerRadius = radius-width
         innerPath.addArc(withCenter: center, radius: innerRadius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
