@@ -48,7 +48,7 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         if isStacked {
             return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, blinkInterval: blinkInterval, type: .plankStack(blinkInterval: blinkInterval))
         } else {
-            let part = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval, type: .plank(blinkInterval: blinkInterval))
+            let part = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank(blinkInterval: blinkInterval))
             return part
         }
     }

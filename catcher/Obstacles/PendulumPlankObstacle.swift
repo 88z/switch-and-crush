@@ -83,7 +83,6 @@ class PendulumPlankObstacle: MultiStateObstacle {
                                 width: width,
                                 state: state,
                                 colorScheme: colorScheme,
-                                blinkInterval: blinkInterval,
                                 type: .plank(blinkInterval: blinkInterval))
         }
     }

@@ -49,17 +49,18 @@ class ObstacleArranger {
         
     }
     
+    //TODO сделать ObstacleFactory
+    //TODO брать параметры из type
     func arrangeOne(type: ObstacleType) -> Obstacle {
         
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
-        case .plank(blinkInterval: let blinkInterval), .thinPlank(blinkInterval: let blinkInterval):
+        case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask,
                                     width: width,
                                     state:.random(),
                                     colorScheme: colorScheme,
-                                    blinkInterval: blinkInterval,
                                     type: type)
         case .twoStatePlank(isStacked: let isStacked, blinkInterval: let blinkInterval):
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)

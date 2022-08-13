@@ -25,7 +25,7 @@ class StackObstacle: MultiStateObstacle {
         
         var nextY:CGFloat = 0
         for state in states {
-            let obstacle = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval, type: partType)
+            let obstacle = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: partType)
             obstacle.state = state
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: nextY)

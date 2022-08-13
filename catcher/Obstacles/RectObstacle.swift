@@ -65,7 +65,6 @@ class RectObstacle: StateNode, Obstacle {
                      width: CGFloat,
                      state:State,
                      colorScheme: ColorScheme,
-                     blinkInterval: TimeInterval,
                      type: ObstacleType) {
         let height: CGFloat
         switch type {
@@ -75,6 +74,14 @@ class RectObstacle: StateNode, Obstacle {
             height = 14
         }
         
+        var blinkInterval: TimeInterval = 0
+        switch type {
+        case .plank(blinkInterval: let _blinkInterval), .thinPlank(blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+        default:
+            assertionFailure("incorrect type for PlankObstacle")
+        }
+
 
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         self.init(rect: rect, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
