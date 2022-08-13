@@ -18,9 +18,22 @@ class PendulumPlankObstacle: MultiStateObstacle {
     
     let isStacked:Bool
     
-    init(mask: Mask, swingSpeed: Speed, isStacked: Bool, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
+    init(mask: Mask, colorScheme: ColorScheme, type: ObstacleType) {
+        var isStacked = false
+        var blinkInterval: TimeInterval = 0
+        var swingSpeed: Speed = .none
+        switch type {
+        case .pendulumPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+            isStacked = _isStacked
+            swingSpeed = _swingSpeed
+        default:
+            assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
+        }
         self.isStacked = isStacked
+
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        self.type = type
         let width = UIScreen.main.bounds.size.width
         let leftPartState = State.random()
         let rightPartState = State.nextState(for: leftPartState)
@@ -76,7 +89,6 @@ class PendulumPlankObstacle: MultiStateObstacle {
                                  width: width,
                                  states: [state, State.nextState(for: state)],
                                  colorScheme: colorScheme,
-                                 blinkInterval: blinkInterval,
                                  type: .plankStack(blinkInterval: blinkInterval))
         } else {
             return RectObstacle(mask: mask,

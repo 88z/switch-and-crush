@@ -16,7 +16,17 @@ class StackObstacle: MultiStateObstacle {
         }
     }
 
-    init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, blinkInterval: TimeInterval, type: ObstacleType) {
+    init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, type: ObstacleType) {
+        
+        var blinkInterval: TimeInterval = 0
+        switch type {
+        case .plankStack(blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+        default:
+            assertionFailure("incorrect type for " + String(describing: StackObstacle.self))
+        }
+
+        
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         name = String(describing: Obstacle.self)
         self.type = type

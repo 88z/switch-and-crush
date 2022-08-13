@@ -74,8 +74,17 @@ class ArcObstacle: StateNode, Obstacle {
                      startAngle: CGFloat,
                      endAngle: CGFloat,
                      colorScheme: ColorScheme,
-                     blinkInterval: TimeInterval,
                      type: ObstacleType) {
+        
+        var blinkInterval: TimeInterval = 0
+        switch type {
+        case .arc(blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+        default:
+            assertionFailure("incorrect type for " + String(describing: ArcObstacle.self))
+        }
+
+        
         self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
         self.startAngle = startAngle

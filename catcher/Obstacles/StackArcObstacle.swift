@@ -15,7 +15,22 @@ class StackArcObstacle: MultiStateObstacle {
         }
     }
     
-    init(mask:Mask, states: [State], center:CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat,colorScheme: ColorScheme, blinkInterval: TimeInterval, type: ObstacleType) {
+    init(mask:Mask,
+         states: [State],
+         center:CGPoint,
+         radius: CGFloat,
+         startAngle: CGFloat,
+         endAngle: CGFloat,
+         colorScheme: ColorScheme,
+         type: ObstacleType) {
+        
+        var blinkInterval: TimeInterval = 0
+        switch type {
+        case .arc(blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+        default:
+            assertionFailure("incorrect type for " + String(describing: StackObstacle.self))
+        }
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         name = String(describing: Obstacle.self)
         self.type = type
@@ -24,7 +39,7 @@ class StackArcObstacle: MultiStateObstacle {
         
         var nextRadius:CGFloat = radius
         for state in states {
-            let obstacle = ArcObstacle(mask: mask, state: state, center: center, radius: nextRadius, startAngle: startAngle, endAngle: endAngle, colorScheme: colorScheme, blinkInterval: blinkInterval, type: partType)
+            let obstacle = ArcObstacle(mask: mask, state: state, center: center, radius: nextRadius, startAngle: startAngle, endAngle: endAngle, colorScheme: colorScheme, type: partType)
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: .zero)
             nextRadius = nextRadius - ARC_OBSTACLE_THICKNESS - 1

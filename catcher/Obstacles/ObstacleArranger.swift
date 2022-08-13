@@ -64,13 +64,13 @@ class ObstacleArranger {
                                     type: type)
         case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, colorScheme: colorScheme, type: type)
-        case .pendulumPlank(swingSpeed: let swingSpeed, isStacked: let isStacked, blinkInterval: let blinkInterval):
-            obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
-        case .plankStack(blinkInterval: let blinkInterval):
+        case .pendulumPlank:
+            obstacle = PendulumPlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
+        case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask,
                                      width: width,
                                      states: [.first, .second].shuffled(),
-                                     colorScheme: colorScheme, blinkInterval: blinkInterval,
+                                     colorScheme: colorScheme,
                                      type: type)
         case .animatedRing:
             obstacle = RingObstacle(mask: obstacleMask,
@@ -86,7 +86,7 @@ class ObstacleArranger {
                                               radius: 96,
                                               type: type,
                                               colorScheme: colorScheme)
-        case .arc(blinkInterval: let blinkInterval):
+        case .arc:
             obstacle = ArcObstacle(mask: obstacleMask,
                                    state: State.random(),
                                    center: .zero,
@@ -94,9 +94,8 @@ class ObstacleArranger {
                                    startAngle: 0,
                                    endAngle: CGFloat.pi,
                                    colorScheme: colorScheme,
-                                   blinkInterval: blinkInterval,
                                    type: type)
-        case .arcStack(blinkInterval: let blinkInterval):
+        case .arcStack:
             obstacle = StackArcObstacle(mask: obstacleMask,
                                         states: [.first, .second],
                                         center: .zero,
@@ -104,7 +103,6 @@ class ObstacleArranger {
                                         startAngle: 0,
                                         endAngle: CGFloat.pi,
                                         colorScheme: colorScheme,
-                                        blinkInterval: blinkInterval,
                                         type: type)
         }
 

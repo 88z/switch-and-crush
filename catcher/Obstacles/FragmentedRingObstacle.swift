@@ -57,7 +57,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
             blinkInterval = _blinkInterval
             
         default:
-            assertionFailure("incorrect type for " + String(describing: RingObstacle.self))
+            assertionFailure("incorrect type for " + String(describing: FragmentedRingObstacle.self))
         }
         self.isStacked = isStacked
         
@@ -112,7 +112,6 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                            startAngle: startAngle,
                                            endAngle: endAngle,
                                            colorScheme: colorScheme,
-                                           blinkInterval: blinkInterval,
                                            type: .arc(blinkInterval: blinkInterval)))
             } else {
                 addChild (ArcObstacle(mask: mask,
@@ -122,7 +121,6 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                       startAngle: startAngle,
                                       endAngle: endAngle,
                                       colorScheme: colorScheme,
-                                      blinkInterval: blinkInterval,
                                       type: .arc(blinkInterval: blinkInterval)))
             }
             

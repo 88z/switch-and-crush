@@ -79,7 +79,7 @@ class RectObstacle: StateNode, Obstacle {
         case .plank(blinkInterval: let _blinkInterval), .thinPlank(blinkInterval: let _blinkInterval):
             blinkInterval = _blinkInterval
         default:
-            assertionFailure("incorrect type for PlankObstacle")
+            assertionFailure("incorrect type for" + String(describing: RectObstacle.self))
         }
 
 
