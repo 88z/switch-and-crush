@@ -37,9 +37,23 @@ class RingObstacle: MultiStateObstacle {
     let width: CGFloat = ARC_OBSTACLE_THICKNESS
     let isStacked: Bool
     
-    init (mask: Mask, radius: CGFloat, partsCount: Int, colorScheme: ColorScheme, type: ObstacleType, rotationSpeed: Speed, isStacked: Bool) {
+    init (mask: Mask, radius: CGFloat, colorScheme: ColorScheme, type: ObstacleType) {
         self.radius = radius
+        
+        var isStacked = false
+        var partsCount = 0
+        var rotationSpeed: Speed = .none
+        switch type {
+        case .animatedRing(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, isStacked: let _isStacked):
+            isStacked = _isStacked
+            partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
+            rotationSpeed = _rotationSpeed
+            
+        default:
+            assertionFailure("incorrect type for " + String(describing: MultiStateObstacle.self))
+        }
         self.isStacked = isStacked
+        
         super.init(colorScheme: colorScheme, blinkInterval: 0)
         self.type = type
         name = String(describing: Obstacle.self)

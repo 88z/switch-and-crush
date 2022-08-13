@@ -72,14 +72,11 @@ class ObstacleArranger {
                                      states: [.first, .second].shuffled(),
                                      colorScheme: colorScheme, blinkInterval: blinkInterval,
                                      type: type)
-        case .animatedRing(segmentsCount: let segmentsCount, rotationSpeed: let rotationSpeed, let isStacked):
+        case .animatedRing:
             obstacle = RingObstacle(mask: obstacleMask,
                                     radius: CIRCLE_OBSTACLE_RADIUS,
-                                    partsCount: Int(round(Double(segmentsCount) / 2.0)) * 2,
                                     colorScheme: colorScheme,
-                                    type: type,
-                                    rotationSpeed: rotationSpeed,
-                                    isStacked: isStacked)
+                                    type: type)
         case .carouselPlank(partsCount: let partsCount, carouselSpeed: let carouselSpeed, directionRight: let directionRight, isStacked: let isStacked, blinkInterval: let blinkInterval):
             obstacle = CarouselPlankObstacle(mask: obstacleMask,
                                              partsCount: Int(round(Double(partsCount) / 2.0)) * 2,
