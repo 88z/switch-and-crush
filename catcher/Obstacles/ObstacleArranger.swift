@@ -106,7 +106,6 @@ class ObstacleArranger {
                                         type: type)
         }
 
-        
         obstacle.node.position = positionFor(obstacle, type: type)
         obstacle.velocity = initialSpeed
         scene?.addChild(obstacle.node)

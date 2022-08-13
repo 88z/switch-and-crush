@@ -55,7 +55,7 @@ class OnboardingPresenter: BasePresenter {
             guard let vc = vc else {
                 return
             }
-            let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: State.second)
+            let newPresenter = DefaultPresenter(vc: vc, startState: State.second)
             vc.set(presenter:newPresenter)
         }
     }

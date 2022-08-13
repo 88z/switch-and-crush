@@ -10,13 +10,11 @@ import SpriteKit
 
 class DefaultPresenter: BasePresenter {
     
-    let showIntro: Bool
     let startState: State
     private weak var gameOverUI: UIScene?
     
     
-    init(vc: GameViewController, showIntro: Bool, startState: State) {
-        self.showIntro = showIntro
+    init(vc: GameViewController, startState: State) {
         self.startState = startState
         super.init(vc: vc)
     }
@@ -27,14 +25,7 @@ class DefaultPresenter: BasePresenter {
     
     override func present(){
         super.present()
-        if showIntro {
-            let menuScene = UIScene(size: UIScreen.main.bounds.size, elements:[])
-            menuScene.delegate = self
-            vc?.showUI(scene: menuScene)
-        } else {
-            startGame()
-        }
-       
+        startGame()
     }
     
     
@@ -67,7 +58,7 @@ class DefaultPresenter: BasePresenter {
         }
 
         vc.freezeInteraction()
-        let newPresenter = DefaultPresenter(vc: vc, showIntro: false, startState: heroState)
+        let newPresenter = DefaultPresenter(vc: vc, startState: heroState)
         vc.set(presenter:newPresenter)
     }
     

@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
         if isOnboarding {
             presenter = OnboardingPresenter(vc: self)
         } else {
-            presenter = DefaultPresenter(vc:self, showIntro: false, startState: State.first)
+            presenter = DefaultPresenter(vc:self, startState: State.first)
         }
         set(presenter: presenter)
     }
@@ -72,7 +72,6 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
     
     func freezeInteraction() {
         uiView?.isUserInteractionEnabled = false

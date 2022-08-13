@@ -17,7 +17,6 @@ class Arcade {
             progress.completedLevelsCount = newValue
         }
     }
-    
     var crushedObstaclesCount: Int {
         get{
             return progress.crushedObstaclesCount
@@ -26,7 +25,16 @@ class Arcade {
         progress.crushedObstaclesCount = newValue
         }
     }
-    init(progress: ArcadeProgress) {
+    
+    let levels: [Level]
+    init(progress: ArcadeProgress, levelFactory: LevelFactory) {
         self.progress = progress
+        self.levels = [
+            levelFactory.level0(),
+            levelFactory.level1(),
+            levelFactory.level2(),
+            levelFactory.level3(),
+        ]
+        
     }
 }
