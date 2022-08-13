@@ -62,8 +62,8 @@ class ObstacleArranger {
                                     state:.random(),
                                     colorScheme: colorScheme,
                                     type: type)
-        case .twoStatePlank(isStacked: let isStacked, blinkInterval: let blinkInterval):
-            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
+        case .twoStatePlank:
+            obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, colorScheme: colorScheme, type: type)
         case .pendulumPlank(swingSpeed: let swingSpeed, isStacked: let isStacked, blinkInterval: let blinkInterval):
             obstacle = PendulumPlankObstacle(mask: obstacleMask, swingSpeed: swingSpeed, isStacked: isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
         case .plankStack(blinkInterval: let blinkInterval):

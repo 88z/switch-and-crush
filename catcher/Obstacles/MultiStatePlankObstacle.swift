@@ -18,7 +18,17 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         }
     }
     
-    init(mask:Mask, width: CGFloat, partSizes:[CGFloat], isStacked: Bool, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
+    init(mask:Mask, width: CGFloat, partSizes:[CGFloat], colorScheme: ColorScheme, type: ObstacleType) {
+        
+        var blinkInterval: TimeInterval = 0
+        var isStacked = false
+        switch type {
+        case .twoStatePlank(isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+            blinkInterval = _blinkInterval
+            isStacked = _isStacked
+        default:
+            assertionFailure("incorrect type for " + String(describing: MultiStateObstacle.self))
+        }
         self.isStacked = isStacked
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
         var nextX:CGFloat = 0
@@ -34,14 +44,14 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         name = String(describing: Obstacle.self)
     }
     
-    convenience init(mask: Mask, width: CGFloat, isStacked: Bool, colorScheme: ColorScheme, blinkInterval: TimeInterval) {
+    convenience init(mask: Mask, width: CGFloat, colorScheme: ColorScheme, type: ObstacleType) {
         var leftPartSize = CGFloat(randomBetween(25, and: 40))/100
         if Bool.random() {
             leftPartSize = 1-leftPartSize
         }
         let rightPartSize = 1-leftPartSize
         
-        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize], isStacked:isStacked, colorScheme: colorScheme, blinkInterval: blinkInterval)
+        self.init(mask: mask, width: width, partSizes: [leftPartSize, rightPartSize], colorScheme: colorScheme, type: type)
     }
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
