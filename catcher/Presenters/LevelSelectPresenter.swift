@@ -19,9 +19,6 @@ class LevelSelectPresenter: Presenter {
 
     
     func present() {
-        let levelSelectView = UIView()
-        levelSelectView.backgroundColor = .green
-        levelSelectView.alpha = 0.5
-        vc?.show(uiView: levelSelectView)
+        vc?.show(uiView: LevelSelectView(frame: .zero))
     }
 }

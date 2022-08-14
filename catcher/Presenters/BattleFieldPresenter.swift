@@ -17,7 +17,7 @@ class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, Battl
     public weak var vc: GameViewController?
     public weak var battleFieldScene: BattleFieldScene!
     
-    public let heroTopOffset = CGFloat(250)
+    public let heroTopOffset = CGFloat(125)
     init (vc: GameViewController) {
         self.vc = vc
     }

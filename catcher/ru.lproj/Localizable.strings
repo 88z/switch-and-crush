@@ -14,4 +14,5 @@
 "switch BALL color now" = "переключи цвет шара еще раз";
 "red BALL crashes red blocks" = "красные блоки разбиваются красным шаром";
 "blue BALL crashes blue blocks" = "синие блоки разбиваются синим шаром";
-"switch BALL color to start the game" = "переключи цвет, чтобы начать игру";    
+"switch BALL color to start the game" = "переключи цвет, чтобы начать игру";
+"Select Level" = "Выбери Уровень";
