@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class UISceneButton: UISceneElement {
+class TrivialUISceneButton: TrivialUISceneElement {
     let text: String
     
     init(position: CGPoint, color: UIColor, delayBeforePresent: Int, text:String) {

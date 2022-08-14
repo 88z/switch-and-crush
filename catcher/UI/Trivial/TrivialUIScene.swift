@@ -9,17 +9,17 @@ import Foundation
 import SpriteKit
 
 
-protocol UISceneDelegate {
-    func uiScenePressed(scene: UIScene)
-    func uiSceneElementPressed(scene: UIScene, element: UISceneElement)
+protocol TrivialUISceneDelegate {
+    func uiScenePressed(scene: TrivialUIScene)
+    func uiSceneElementPressed(scene: TrivialUIScene, element: TrivialUISceneElement)
 }
 
-class UIScene:SKScene {
-    var uiSceneDelegate: UISceneDelegate?
-    let elements: [UISceneElement]
+class TrivialUIScene:SKScene {
+    var uiSceneDelegate: TrivialUISceneDelegate?
+    let elements: [TrivialUISceneElement]
     let uifreezeTime: CGFloat
     
-    init(size: CGSize, uifreezeTime: CGFloat = 0, elements: [UISceneElement]) {
+    init(size: CGSize, uifreezeTime: CGFloat = 0, elements: [TrivialUISceneElement]) {
         self.elements = elements
         self.uifreezeTime = uifreezeTime
         super.init(size: size)
@@ -31,18 +31,18 @@ class UIScene:SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func add(_ element:UISceneElement) {
+    func add(_ element:TrivialUISceneElement) {
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(element.delayBeforePresent)) {
-            if element is UISceneText {
-                self.addText(element as! UISceneText)
+            if element is TrivialUISceneText {
+                self.addText(element as! TrivialUISceneText)
             }
-            if element is UISceneButton {
-                self.addButton(element as! UISceneButton)
+            if element is TrivialUISceneButton {
+                self.addButton(element as! TrivialUISceneButton)
             }
         }
     }
     
-    func addText(_ text:UISceneText) {
+    func addText(_ text:TrivialUISceneText) {
         let node = TextTypeNode(text: text.text, font: text.font, color: text.color)
         node.preferredMaxLayoutWidth = 300
         node.numberOfLines = 10
@@ -52,7 +52,7 @@ class UIScene:SKScene {
         self.addChild(node)
     }
     
-    func addButton(_ button: UISceneButton) {
+    func addButton(_ button: TrivialUISceneButton) {
         let node = ButtonNode(text: button.text, font: button.font, color: button.color)
         node.position = button.position
         node.name = button.name

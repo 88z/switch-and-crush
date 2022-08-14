@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class UISceneElement {
+class TrivialUISceneElement {
     let color: UIColor
     let delayBeforePresent: Int
     let position: CGPoint

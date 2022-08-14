@@ -178,7 +178,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     func breakHero(_ hero: Hero, contactPoint: CGPoint) {
         let shatter = HeroShatterer(hero: hero)
         shatter.shatter(contactPoint: contactPoint) {}
-        dimObstacles()
         guard let delegate = delegate as? BattleFieldSceneDelegate else {
             return
         }
@@ -235,7 +234,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero?.toggleState()
     }
     
-    func dimObstacles() {
+    func dim() {
         let dimAction = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
         for obstacle in obstacles()  {
             obstacle.run(dimAction)

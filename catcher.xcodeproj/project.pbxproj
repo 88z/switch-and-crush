@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230D987828A8F111008D19CA /* LevelSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230D987728A8F111008D19CA /* LevelSelectPresenter.swift */; };
 		2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* RingObstacle.swift */; };
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
 		232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */; };
 		2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */ = {isa = PBXBuildFile; productRef = 2335706928A0372D004C163B /* CGPathIntersection */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
+		23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
-		2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* UISceneText.swift */; };
-		2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* UISceneButton.swift */; };
+		2388BA78287349BE00D27DBD /* TrivialUISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* TrivialUISceneText.swift */; };
+		2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* TrivialUISceneButton.swift */; };
 		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
 		23902E9C28A7AB7100D309DB /* ArcadeProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */; };
-		23902E9E28A7AE8000D309DB /* Arcade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23902E9D28A7AE8000D309DB /* Arcade.swift */; };
 		2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatterer.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -37,8 +38,8 @@
 		23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D23287D4DC6007C178C /* LevelFactory.swift */; };
 		78C0F6E39B8DC654C626DC3F /* Pods_catcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
-		8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */; };
-		8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B50625458FB400ACBCC0 /* BasePresenter.swift */; };
+		8012B4FF25458C8700ACBCC0 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* Presenter.swift */; };
+		8012B50725458FB400ACBCC0 /* BattleFieldPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B50625458FB400ACBCC0 /* BattleFieldPresenter.swift */; };
 		8012B50C2545918B00ACBCC0 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B50B2545918B00ACBCC0 /* OnboardingPresenter.swift */; };
 		8012B526254606FA00ACBCC0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B525254606FA00ACBCC0 /* Colors.swift */; };
 		8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8030890C2528893A00C51C22 /* GridGenerator.swift */; };
@@ -46,14 +47,14 @@
 		8033B22C2542B0D90050C162 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B22B2542B0D90050C162 /* Mask.swift */; };
 		8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */; };
 		806B9DDD25455629003CB4EE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B9DDC25455629003CB4EE /* Level.swift */; };
-		806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B9DE425456510003CB4EE /* DefaultPresenter.swift */; };
+		806B9DE525456510003CB4EE /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B9DE425456510003CB4EE /* GamePresenter.swift */; };
 		8087E43E25442C8B00340D10 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E43D25442C8B00340D10 /* State.swift */; };
-		8087E44925444AE500340D10 /* UIScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E44825444AE500340D10 /* UIScene.swift */; };
+		8087E44925444AE500340D10 /* TrivialUIScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E44825444AE500340D10 /* TrivialUIScene.swift */; };
 		8087E45925446E4000340D10 /* PlankObstacleShatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087E45825446E4000340D10 /* PlankObstacleShatterer.swift */; };
 		8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8087E4602544A75800340D10 /* Launch Screen.storyboard */; };
 		80890CFE2540058A00F5552B /* RectObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890CFD2540058A00F5552B /* RectObstacle.swift */; };
 		80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80890D05254006C200F5552B /* ObstacleArranger.swift */; };
-		809AD8C92561A3A00057C76E /* UISceneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809AD8C82561A3A00057C76E /* UISceneElement.swift */; };
+		809AD8C92561A3A00057C76E /* TrivialUISceneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809AD8C82561A3A00057C76E /* TrivialUISceneElement.swift */; };
 		809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DE936254F169400975BD5 /* TextTypeNode.swift */; };
 		80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4C33625396EE200EEB097 /* QuadraticSolver.swift */; };
 		80CA5F332524F187003E900D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA5F322524F187003E900D /* AppDelegate.swift */; };
@@ -87,18 +88,19 @@
 
 /* Begin PBXFileReference section */
 		067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		230D987728A8F111008D19CA /* LevelSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectPresenter.swift; sourceTree = "<group>"; };
 		2317B83B288C080700EBFDCE /* RingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
 		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
+		23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPresenter.swift; sourceTree = "<group>"; };
 		23831FC7289FC19C002624BD /* StackArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackArcObstacle.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
-		2388BA77287349BE00D27DBD /* UISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneText.swift; sourceTree = "<group>"; };
-		2388BA79287349F700D27DBD /* UISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneButton.swift; sourceTree = "<group>"; };
+		2388BA77287349BE00D27DBD /* TrivialUISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUISceneText.swift; sourceTree = "<group>"; };
+		2388BA79287349F700D27DBD /* TrivialUISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUISceneButton.swift; sourceTree = "<group>"; };
 		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeProgress.swift; sourceTree = "<group>"; };
-		23902E9D28A7AE8000D309DB /* Arcade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arcade.swift; sourceTree = "<group>"; };
 		2391E959286BA0820043BCA4 /* HeroShatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatterer.swift; sourceTree = "<group>"; };
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -114,8 +116,8 @@
 		23FD3D23287D4DC6007C178C /* LevelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFactory.swift; sourceTree = "<group>"; };
 		619FE2DCCAF04EEA0BBDACCB /* Pods_catcher_catcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcher_catcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
-		8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
-		8012B50625458FB400ACBCC0 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		8012B4FE25458C8700ACBCC0 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		8012B50625458FB400ACBCC0 /* BattleFieldPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldPresenter.swift; sourceTree = "<group>"; };
 		8012B50B2545918B00ACBCC0 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		8012B525254606FA00ACBCC0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8030890C2528893A00C51C22 /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
@@ -123,14 +125,14 @@
 		8033B22B2542B0D90050C162 /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
 		8056EF17253C91AF000D226E /* InfiniteBorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBorderManager.swift; sourceTree = "<group>"; };
 		806B9DDC25455629003CB4EE /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		806B9DE425456510003CB4EE /* DefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPresenter.swift; sourceTree = "<group>"; };
+		806B9DE425456510003CB4EE /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		8087E43D25442C8B00340D10 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		8087E44825444AE500340D10 /* UIScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScene.swift; sourceTree = "<group>"; };
+		8087E44825444AE500340D10 /* TrivialUIScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUIScene.swift; sourceTree = "<group>"; };
 		8087E45825446E4000340D10 /* PlankObstacleShatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlankObstacleShatterer.swift; sourceTree = "<group>"; };
 		8087E4602544A75800340D10 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		80890CFD2540058A00F5552B /* RectObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectObstacle.swift; sourceTree = "<group>"; };
 		80890D05254006C200F5552B /* ObstacleArranger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleArranger.swift; sourceTree = "<group>"; };
-		809AD8C82561A3A00057C76E /* UISceneElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISceneElement.swift; sourceTree = "<group>"; };
+		809AD8C82561A3A00057C76E /* TrivialUISceneElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUISceneElement.swift; sourceTree = "<group>"; };
 		809DE936254F169400975BD5 /* TextTypeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTypeNode.swift; sourceTree = "<group>"; };
 		80A4C33625396EE200EEB097 /* QuadraticSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticSolver.swift; sourceTree = "<group>"; };
 		80CA5F2F2524F187003E900D /* catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,19 @@
 			path = Shaterrer;
 			sourceTree = "<group>";
 		};
+		2367EB3228A8191700B20667 /* Trivial */ = {
+			isa = PBXGroup;
+			children = (
+				8087E44825444AE500340D10 /* TrivialUIScene.swift */,
+				809AD8C82561A3A00057C76E /* TrivialUISceneElement.swift */,
+				2388BA77287349BE00D27DBD /* TrivialUISceneText.swift */,
+				2388BA79287349F700D27DBD /* TrivialUISceneButton.swift */,
+				809DE936254F169400975BD5 /* TextTypeNode.swift */,
+				2388BA7D287351AC00D27DBD /* ButtonNode.swift */,
+			);
+			path = Trivial;
+			sourceTree = "<group>";
+		};
 		2388BA7128731AAE00D27DBD /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,10 +232,12 @@
 		8012B4F72545841000ACBCC0 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				806B9DE425456510003CB4EE /* DefaultPresenter.swift */,
-				8012B50625458FB400ACBCC0 /* BasePresenter.swift */,
-				8012B4FE25458C8700ACBCC0 /* GamePresenter.swift */,
+				806B9DE425456510003CB4EE /* GamePresenter.swift */,
+				8012B50625458FB400ACBCC0 /* BattleFieldPresenter.swift */,
+				8012B4FE25458C8700ACBCC0 /* Presenter.swift */,
 				8012B50B2545918B00ACBCC0 /* OnboardingPresenter.swift */,
+				230D987728A8F111008D19CA /* LevelSelectPresenter.swift */,
+				23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -238,12 +255,7 @@
 		804C3AB3254551DE0012EDD8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8087E44825444AE500340D10 /* UIScene.swift */,
-				809AD8C82561A3A00057C76E /* UISceneElement.swift */,
-				2388BA77287349BE00D27DBD /* UISceneText.swift */,
-				2388BA79287349F700D27DBD /* UISceneButton.swift */,
-				809DE936254F169400975BD5 /* TextTypeNode.swift */,
-				2388BA7D287351AC00D27DBD /* ButtonNode.swift */,
+				2367EB3228A8191700B20667 /* Trivial */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -254,7 +266,6 @@
 				806B9DDC25455629003CB4EE /* Level.swift */,
 				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
 				23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */,
-				23902E9D28A7AE8000D309DB /* Arcade.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,23 +526,24 @@
 				23E9F4D228903C110045651D /* SandboxScene.swift in Sources */,
 				806B9DDD25455629003CB4EE /* Level.swift in Sources */,
 				8012B526254606FA00ACBCC0 /* Colors.swift in Sources */,
-				8012B50725458FB400ACBCC0 /* BasePresenter.swift in Sources */,
+				8012B50725458FB400ACBCC0 /* BattleFieldPresenter.swift in Sources */,
 				23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */,
 				23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */,
-				8012B4FF25458C8700ACBCC0 /* GamePresenter.swift in Sources */,
+				8012B4FF25458C8700ACBCC0 /* Presenter.swift in Sources */,
 				80CA5F392524F187003E900D /* BattleFieldScene.swift in Sources */,
 				80890CFE2540058A00F5552B /* RectObstacle.swift in Sources */,
 				2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */,
 				2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
+				23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
 				23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */,
 				800609452525DFC4007DA1FA /* TestScene.swift in Sources */,
-				23902E9E28A7AE8000D309DB /* Arcade.swift in Sources */,
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
 				2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */,
 				23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */,
+				230D987828A8F111008D19CA /* LevelSelectPresenter.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
 				2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */,
 				23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */,
@@ -544,18 +556,18 @@
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
 				23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */,
 				809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */,
-				2388BA78287349BE00D27DBD /* UISceneText.swift in Sources */,
-				806B9DE525456510003CB4EE /* DefaultPresenter.swift in Sources */,
+				2388BA78287349BE00D27DBD /* TrivialUISceneText.swift in Sources */,
+				806B9DE525456510003CB4EE /* GamePresenter.swift in Sources */,
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,
 				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
 				23902E9C28A7AB7100D309DB /* ArcadeProgress.swift in Sources */,
 				232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */,
-				8087E44925444AE500340D10 /* UIScene.swift in Sources */,
+				8087E44925444AE500340D10 /* TrivialUIScene.swift in Sources */,
 				8012B50C2545918B00ACBCC0 /* OnboardingPresenter.swift in Sources */,
 				23FD3D1C2879753D007C178C /* Obstacle.swift in Sources */,
 				80CA5F332524F187003E900D /* AppDelegate.swift in Sources */,
-				2388BA7A287349F700D27DBD /* UISceneButton.swift in Sources */,
-				809AD8C92561A3A00057C76E /* UISceneElement.swift in Sources */,
+				2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */,
+				809AD8C92561A3A00057C76E /* TrivialUISceneElement.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

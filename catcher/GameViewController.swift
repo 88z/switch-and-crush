@@ -12,24 +12,21 @@ import LanguageManager_iOS
 
 class GameViewController: UIViewController {
     
-    private var uiView: SKView?
-    private var menuScene: UIScene!
-    private var isOnboarding = false
-    private var presenter: GamePresenter!
-    
+    private var uiView: UIView?
+    private var menuScene: TrivialUIScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let presenter: GamePresenter
-        if isOnboarding {
-            presenter = OnboardingPresenter(vc: self)
+        let arcadeProgress = ArcadeProgress(levelFactory: LevelFactory())
+        if arcadeProgress.isOnboardingShown {
+            BackgroundPresenter(vc:self).present()
+            LevelSelectPresenter(vc: self, progress: arcadeProgress).present()
         } else {
-            presenter = DefaultPresenter(vc:self, startState: State.first)
+            OnboardingPresenter(vc: self, progress: arcadeProgress).present()
         }
-        set(presenter: presenter)
     }
 
-    func showUI(scene: SKScene) {
+    func show(uiScene: SKScene) {
         uiView?.removeFromSuperview()
         let uiView = SKView(frame: view.bounds)
         uiView.ignoresSiblingOrder = true
@@ -39,8 +36,16 @@ class GameViewController: UIViewController {
         uiView.backgroundColor = .clear
         self.uiView = uiView
         view.addSubview(uiView)
-        uiView.presentScene(scene)
+        uiView.presentScene(uiScene)
     }
+    
+    func show(uiView: UIView) {
+        self.uiView?.removeFromSuperview()
+        uiView.frame = view.bounds
+        view.addSubview(uiView)
+        self.uiView = uiView
+    }
+    
     
     func hideUI() {
         uiView?.removeFromSuperview()
@@ -80,11 +85,6 @@ class GameViewController: UIViewController {
             uiView?.isUserInteractionEnabled = true
             view.isUserInteractionEnabled = true
         })
-    }
-    
-    func set(presenter: GamePresenter) {
-        self.presenter = presenter
-        self.presenter.present()
     }
     
 }

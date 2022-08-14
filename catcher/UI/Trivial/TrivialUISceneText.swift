@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class UISceneText: UISceneElement {
+class TrivialUISceneText: TrivialUISceneElement {
     let text: String
     init(position: CGPoint, color: UIColor, delayBeforePresent: Int, text:String) {
         self.text = text

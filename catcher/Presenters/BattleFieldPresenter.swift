@@ -10,7 +10,7 @@
 import Foundation
 import SpriteKit
 
-class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDelegate, UISceneDelegate {
+class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, BattleDelegate, TrivialUISceneDelegate {
 
     
     private var backgroundManager: InfiniteBackgroundManager?
@@ -18,7 +18,7 @@ class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDe
     public weak var battleFieldScene: BattleFieldScene!
     
     public let heroTopOffset = CGFloat(250)
-    required init (vc: GameViewController) {
+    init (vc: GameViewController) {
         self.vc = vc
     }
 
@@ -46,11 +46,11 @@ class BasePresenter: NSObject, GamePresenter, BattleFieldSceneDelegate, BattleDe
         
     }
     
-    func uiScenePressed(scene: UIScene) {
+    func uiScenePressed(scene: TrivialUIScene) {
         
     }
     
-    func uiSceneElementPressed(scene: UIScene, element: UISceneElement) {
+    func uiSceneElementPressed(scene: TrivialUIScene, element: TrivialUISceneElement) {
         
     }
     

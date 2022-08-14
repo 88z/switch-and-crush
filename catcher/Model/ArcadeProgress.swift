@@ -12,6 +12,7 @@ class ArcadeProgress {
     let userDefaults = UserDefaults.standard
     private let completedLevelsCountKey = "catcher.arcadeProgress.completedLevelsCount"
     private let crushedObstaclesCountKey = "catcher.arcadeProgress.crushedObstaclesCount"
+    private let isOnboardingShownKey = "catcher.arcadeProgress.isOnboardingShown"
     var completedLevelsCount: Int {
         get {
             return userDefaults.integer(forKey: completedLevelsCountKey)
@@ -27,6 +28,28 @@ class ArcadeProgress {
         set {
             userDefaults.set(newValue, forKey: crushedObstaclesCountKey)
         }
+    }
+    var isOnboardingShown: Bool {
+        get {
+            return userDefaults.bool(forKey: isOnboardingShownKey)
+        }
+        set {
+            userDefaults.set(newValue, forKey: isOnboardingShownKey)
+        }
+    }
+    
+    private func clean() {
+        userDefaults.removeObject(forKey: isOnboardingShownKey)
+    }
+    
+    let levels: [Level]
+    init(levelFactory: LevelFactory) {
+        self.levels = [
+            levelFactory.level1(),
+            levelFactory.level2(),
+            levelFactory.level3(),
+        ]
+//        clean()
     }
     
 }

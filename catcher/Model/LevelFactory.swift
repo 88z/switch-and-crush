@@ -11,23 +11,21 @@ import SpriteKit
 class LevelFactory {
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<30{
+        for _ in 0..<100{
             obstacleTypes.append([
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 1),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 1),
-//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 1),
-                ObstacleType.plank(blinkInterval: 1),
-//                ObstacleType.plankStack(blinkInterval: 1)
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 1),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false),
-//                ObstacleType.arcStack,
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0),
+                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0),
+                ObstacleType.plank(blinkInterval: 0),
+                ObstacleType.plankStack(blinkInterval: 0),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
             ].randomElement()! )
         }
         return Level(obstacleTypes: obstacleTypes,
-                     initialSpeed: 150,
-                     acceleration: 0,
+                     initialSpeed: 100,
+                     acceleration: 10,
                      name:"default",
                      initialState: .first,
                      userInterationEnabled: true,
