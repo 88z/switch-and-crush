@@ -9,6 +9,7 @@
 
 import Foundation
 import SpriteKit
+import PinLayout
 
 class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, BattleDelegate, TrivialUISceneDelegate {
 
@@ -17,9 +18,10 @@ class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, Battl
     public weak var vc: GameViewController?
     public weak var battleFieldScene: BattleFieldScene!
     
-    public let heroTopOffset = CGFloat(125)
+    public let heroTopOffset: CGFloat
     init (vc: GameViewController) {
         self.vc = vc
+        self.heroTopOffset = CGFloat(125) + vc.view.pin.safeArea.top
     }
 
     func present(){

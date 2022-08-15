@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
         if arcadeProgress.isOnboardingShown {
             BackgroundPresenter(vc:self).present()
             LevelSelectPresenter(vc: self, progress: arcadeProgress).present()
+//            GamePresenter(vc: self, startState: .first).present()
         } else {
             OnboardingPresenter(vc: self, progress: arcadeProgress).present()
         }
