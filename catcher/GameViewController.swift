@@ -21,8 +21,7 @@ class GameViewController: UIViewController {
         let arcadeProgress = ArcadeProgress(levelFactory: LevelFactory())
         if arcadeProgress.isOnboardingShown {
             BackgroundPresenter(vc:self).present()
-            presenter = LevelSelectPresenter(vc: self, progress: arcadeProgress)
-            presenter?.present()
+            LevelSelectPresenter(vc: self, progress: arcadeProgress).present()
         } else {
             OnboardingPresenter(vc: self, progress: arcadeProgress).present()
         }

@@ -19,6 +19,7 @@ class ArcadeProgress {
         }
         set {
             userDefaults.set(newValue, forKey: completedLevelsCountKey)
+            userDefaults.synchronize()
         }
     }
     var crushedObstaclesCount: Int {
@@ -27,6 +28,7 @@ class ArcadeProgress {
         }
         set {
             userDefaults.set(newValue, forKey: crushedObstaclesCountKey)
+            userDefaults.synchronize()
         }
     }
     var isOnboardingShown: Bool {
@@ -35,6 +37,7 @@ class ArcadeProgress {
         }
         set {
             userDefaults.set(newValue, forKey: isOnboardingShownKey)
+            userDefaults.synchronize()
         }
     }
     

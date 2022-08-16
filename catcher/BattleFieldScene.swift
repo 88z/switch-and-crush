@@ -55,6 +55,12 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     private let counterNode = SKLabelNode()
     
+    var crushedObstaclesCount: Int {
+        get {
+            return progress
+        }
+    }
+    
     init (size: CGSize, heroTopOffset: CGFloat) {
         self.heroTopOffset = heroTopOffset
         super.init(size: size)
@@ -103,7 +109,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self,
-                                                obstacleTypes: level.obstacleTypes,
+                                                obstacleTypes: level.initialObstacleTypes,
                                                 firstObstacleState: hero.state,
                                                 startPointY: frame.minY-50,
                                                 leftBorderX: frame.minX,
@@ -200,7 +206,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
-        guard let obstacleCount = level?.obstacleTypes.count,
+        guard let obstacleCount = level?.initialObstacleTypes.count,
               obstacle.node.scene != nil
         else {
             return
@@ -242,7 +248,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateCounter() {
-        let text = "\(progress) / \(ObstacleType.points(in: level?.obstacleTypes ?? []))"
+        let text = "\(progress) / \(ObstacleType.points(in: level?.initialObstacleTypes ?? []))"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText

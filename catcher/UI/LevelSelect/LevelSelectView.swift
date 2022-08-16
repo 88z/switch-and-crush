@@ -9,15 +9,10 @@ import Foundation
 import UIKit
 import PinLayout
 
-protocol LevelSelectViewDelegate: AnyObject {
-    func didSelectLevel(at index: Int, levelSelectView:LevelSelectView)
-}
-
 class LevelSelectView: UIView, LevelSelectButtonDelegate {
     private weak var title: UILabel?
     private weak var buttonsContainer: UIScrollView?
     private var buttons: [UIView] = []
-    weak var delegate:  LevelSelectViewDelegate?
     
     private let buttonsContainerWidth:CGFloat = 220
     private let buttonSide: CGFloat = 95
@@ -28,8 +23,10 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             return rowCount * buttonSide + (rowCount-1)*buttonVSpace
         }
     }
+    let levelSelectAction:(_: Int)->Void
     
-    init(frame: CGRect, buttonModels: [LevelButtonModel]) {
+    init(frame: CGRect, buttonModels: [LevelButtonModel], levelSelectAction: @escaping (_: Int)->Void) {
+        self.levelSelectAction = levelSelectAction
         super.init(frame: frame)
         backgroundColor = .clear
         
@@ -98,6 +95,6 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         guard let index = buttons.firstIndex(of: button) else {
             return
         }
-        self.delegate?.didSelectLevel(at: index, levelSelectView: self)
+        levelSelectAction(index)
     }
 }

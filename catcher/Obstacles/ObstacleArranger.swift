@@ -22,8 +22,8 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    let minYSpace: CGFloat = 200
-    let maxYSpace: CGFloat = 300
+    let minYSpace: CGFloat = 150
+    let maxYSpace: CGFloat = 250
     
     let colorScheme: ColorScheme
     
@@ -50,9 +50,7 @@ class ObstacleArranger {
     }
     
     //TODO сделать ObstacleFactory
-    //TODO брать параметры из type
     func arrangeOne(type: ObstacleType) -> Obstacle {
-        
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
@@ -117,7 +115,6 @@ class ObstacleArranger {
     }
     
     func arrangeFirst() {
-        
         guard  obstacleTypes.count > 0 else {
             return
         }
@@ -163,7 +160,8 @@ class ObstacleArranger {
         guard let lastPlaced = lastObstacle else {
             return startPointY
         }
-        return lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
+        let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
+        return nextY
     }
     
     

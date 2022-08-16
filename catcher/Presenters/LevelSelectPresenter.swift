@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class LevelSelectPresenter: Presenter, LevelSelectViewDelegate {
+class LevelSelectPresenter: Presenter {
     
     
     public weak var vc: GameViewController?
@@ -24,7 +24,7 @@ class LevelSelectPresenter: Presenter, LevelSelectViewDelegate {
                 let completionPart:CGFloat
                 if index == progress.completedLevelsCount {
                     levelButtonState = .current
-                    completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.obstacleTypes.count)
+                    completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.initialObstacleTypes.count)
                 } else if index > progress.completedLevelsCount{
                     levelButtonState = .locked
                     completionPart = 0
@@ -45,21 +45,16 @@ class LevelSelectPresenter: Presenter, LevelSelectViewDelegate {
 
     
     func present() {
-        let levelSelectView = LevelSelectView(frame: .zero, buttonModels: levelButtonModels)
-        levelSelectView.delegate = self
+        let levelSelectView = LevelSelectView(frame: .zero, buttonModels: levelButtonModels, levelSelectAction: { (index: Int) in
+            guard index < self.progress.levels.count,
+                  let vc = self.vc else {
+                return
+            }
+            let level = self.progress.levels[index]
+            
+            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
+        })
         vc?.show(uiView: levelSelectView)
     }
-    
-    func didSelectLevel(at index: Int, levelSelectView: LevelSelectView) {
-        guard index < progress.levels.count,
-              let vc = self.vc else {
-            return
-        }
-        let level = progress.levels[index]
-        
-        GamePresenter(vc: vc, startState: .first, level: level).present()
-        
-    }
-    
     
 }

@@ -23,7 +23,7 @@ class LevelFactory {
                 ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
             ].randomElement()! )
         }
-        return Level(obstacleTypes: obstacleTypes,
+        return Level(initialObstacleTypes: obstacleTypes,
                      initialSpeed: 100,
                      acceleration: 10,
                      name:"0",
@@ -37,7 +37,7 @@ class LevelFactory {
         for _ in 0..<30 {
             obstacleTypes.append(.plank(blinkInterval: 0))
         }
-        return Level(obstacleTypes: obstacleTypes,
+        return Level(initialObstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 7,
                      name:"1",
@@ -59,7 +59,7 @@ class LevelFactory {
             ].randomElement()! )
            
         }
-        return Level(obstacleTypes: obstacleTypes,
+        return Level(initialObstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 7,
                      name:"2",
@@ -94,7 +94,7 @@ class LevelFactory {
             ].randomElement()! )
         }
         
-        return Level(obstacleTypes: obstacleTypes,
+        return Level(initialObstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 5,
                      name:"3",

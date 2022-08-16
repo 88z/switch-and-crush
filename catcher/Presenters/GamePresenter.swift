@@ -13,11 +13,13 @@ class GamePresenter: BattleFieldPresenter {
     let startState: State
     private weak var gameOverUI: TrivialUIScene?
     let level: Level
+    let progress: ArcadeProgress
     
     
-    init(vc: GameViewController, startState: State, level: Level) {
+    init(vc: GameViewController, startState: State, level: Level, progress: ArcadeProgress) {
         self.startState = startState
         self.level = level
+        self.progress = progress
         super.init(vc: vc)
     }
     
@@ -59,12 +61,13 @@ class GamePresenter: BattleFieldPresenter {
         }
 
         vc.freezeInteraction()
-        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level)
+        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level, progress: progress)
         newPresenter.present()
     }
     
     override func crashAnimationFinished(scene: BattleFieldScene) {
         super.crashAnimationFinished(scene: scene)
+        progress.crushedObstaclesCount = scene.crushedObstaclesCount
         showGameOver()
     }
     
