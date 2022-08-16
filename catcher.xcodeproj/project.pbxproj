@@ -30,6 +30,7 @@
 		23E3466D28A90892005044B6 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3466C28A90892005044B6 /* LevelSelectView.swift */; };
 		23E3467028A91291005044B6 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 23E3466F28A91291005044B6 /* PinLayout */; };
 		23E3467228AA883B005044B6 /* LevelButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467128AA883B005044B6 /* LevelButtonModel.swift */; };
+		23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467328AAB712005044B6 /* LevelSelectButton.swift */; };
 		23E9F4D228903C110045651D /* SandboxScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9F4D128903C110045651D /* SandboxScene.swift */; };
 		23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 23FD3D1728784BF2007C178C /* LanguageManager-iOS */; };
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -113,6 +114,7 @@
 		23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPlankObstacle.swift; sourceTree = "<group>"; };
 		23E3466C28A90892005044B6 /* LevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectView.swift; sourceTree = "<group>"; };
 		23E3467128AA883B005044B6 /* LevelButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelButtonModel.swift; sourceTree = "<group>"; };
+		23E3467328AAB712005044B6 /* LevelSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectButton.swift; sourceTree = "<group>"; };
 		23E9F4D128903C110045651D /* SandboxScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxScene.swift; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			children = (
 				23E3466C28A90892005044B6 /* LevelSelectView.swift */,
 				23E3467128AA883B005044B6 /* LevelButtonModel.swift */,
+				23E3467328AAB712005044B6 /* LevelSelectButton.swift */,
 			);
 			path = LevelSelect;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				80CA5F332524F187003E900D /* AppDelegate.swift in Sources */,
 				2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */,
 				809AD8C92561A3A00057C76E /* TrivialUISceneElement.swift in Sources */,
+				23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

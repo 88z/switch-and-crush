@@ -14,14 +14,15 @@ class GameViewController: UIViewController {
     
     private var uiView: UIView?
     private var menuScene: TrivialUIScene!
+    private var presenter: Presenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let arcadeProgress = ArcadeProgress(levelFactory: LevelFactory())
         if arcadeProgress.isOnboardingShown {
             BackgroundPresenter(vc:self).present()
-            LevelSelectPresenter(vc: self, progress: arcadeProgress).present()
-//            GamePresenter(vc: self, startState: .first).present()
+            presenter = LevelSelectPresenter(vc: self, progress: arcadeProgress)
+            presenter?.present()
         } else {
             OnboardingPresenter(vc: self, progress: arcadeProgress).present()
         }

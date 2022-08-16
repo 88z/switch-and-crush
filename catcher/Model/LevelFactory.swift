@@ -26,7 +26,7 @@ class LevelFactory {
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 100,
                      acceleration: 10,
-                     name:"default",
+                     name:"0",
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -40,7 +40,7 @@ class LevelFactory {
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 7,
-                     name:"default",
+                     name:"1",
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -62,7 +62,7 @@ class LevelFactory {
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 7,
-                     name:"default",
+                     name:"2",
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -97,7 +97,7 @@ class LevelFactory {
         return Level(obstacleTypes: obstacleTypes,
                      initialSpeed: 200,
                      acceleration: 5,
-                     name:"default",
+                     name:"3",
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)

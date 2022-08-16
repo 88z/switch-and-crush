@@ -64,7 +64,10 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            let newPresenter = GamePresenter(vc: vc, startState: State.second)
+            guard let level = progress.levels.first else {
+                return
+            }
+            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: level)
             newPresenter.present()
         }
     }

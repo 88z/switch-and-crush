@@ -12,10 +12,12 @@ class GamePresenter: BattleFieldPresenter {
     
     let startState: State
     private weak var gameOverUI: TrivialUIScene?
+    let level: Level
     
     
-    init(vc: GameViewController, startState: State) {
+    init(vc: GameViewController, startState: State, level: Level) {
         self.startState = startState
+        self.level = level
         super.init(vc: vc)
     }
     
@@ -39,8 +41,7 @@ class GamePresenter: BattleFieldPresenter {
     
     private func startGame () {
         vc?.hideUI()
-        let levelFactory = LevelFactory()
-        battleFieldScene?.start(level: levelFactory.level0())
+        battleFieldScene?.start(level: level)
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {
@@ -58,7 +59,7 @@ class GamePresenter: BattleFieldPresenter {
         }
 
         vc.freezeInteraction()
-        let newPresenter = GamePresenter(vc: vc, startState: heroState)
+        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level)
         newPresenter.present()
     }
     

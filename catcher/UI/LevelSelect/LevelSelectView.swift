@@ -9,11 +9,15 @@ import Foundation
 import UIKit
 import PinLayout
 
-class LevelSelectView: UIView {
-    
-    weak var title: UILabel?
-    weak var buttonsContainer: UIScrollView?
-    var buttons: [UIButton] = []
+protocol LevelSelectViewDelegate: AnyObject {
+    func didSelectLevel(at index: Int, levelSelectView:LevelSelectView)
+}
+
+class LevelSelectView: UIView, LevelSelectButtonDelegate {
+    private weak var title: UILabel?
+    private weak var buttonsContainer: UIScrollView?
+    private var buttons: [UIView] = []
+    weak var delegate:  LevelSelectViewDelegate?
     
     private let buttonsContainerWidth:CGFloat = 220
     private let buttonSide: CGFloat = 95
@@ -47,11 +51,11 @@ class LevelSelectView: UIView {
     }
     
     private func initButtons(models: [LevelButtonModel]) {
-        for _ in 0..<models.count {
-            let button = UIButton(frame: .zero)
-            button.backgroundColor = .red
+        for i in 0..<models.count {
+            let button = LevelSelectButton(model: models[i])
             buttonsContainer?.addSubview(button)
             buttons.append(button)
+            button.delegate = self
         }
         buttonsContainer?.contentSize = CGSize(width: buttonsContainerWidth, height: buttonsContainerHeight)
     }
@@ -59,41 +63,41 @@ class LevelSelectView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        guard let title = title,
-              let levelButtons = buttonsContainer else {
-            return
-        }
-        title.pin
+        title?.pin
             .sizeToFit()
             .hCenter()
             .top(pin.safeArea.top + 182)
         
-        levelButtons.pin
+        buttonsContainer?.pin
             .hCenter()
             .bottom(0)
-            .top(to: title.edge.bottom)
+            .top(to: title!.edge.bottom)
             .marginTop(45)
             .width(buttonsContainerWidth)
         
         for i in 0..<buttons.count {
             let button = buttons[i]
-            button.pin.width(95)
+            button.pin.width(93)
             button.pin.height(buttonSide)
             if i < 2 {
-                button.pin.top(0)
+                button.pin.top(1)
             } else {
                 let topButton = buttons[i-2]
                 button.pin.top(to: topButton.edge.bottom).marginTop(buttonVSpace)
             }
             if i % 2 == 0{
-                button.pin.left(0)
+                button.pin.left(1)
             } else {
                 let leftButton = buttons[i-1]
                 button.pin.left(to: leftButton.edge.right).marginLeft(30)
             }
-            
         }
     }
     
-    
+    func pressed(_ button: LevelSelectButton) {
+        guard let index = buttons.firstIndex(of: button) else {
+            return
+        }
+        self.delegate?.didSelectLevel(at: index, levelSelectView: self)
+    }
 }

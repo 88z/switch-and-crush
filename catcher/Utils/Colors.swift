@@ -36,5 +36,9 @@ extension UIColor {
     static func text() -> UIColor{
         return UIColor(red: 237/255, green: 210/255, blue: 224/255, alpha: 1)
     }
+    
+    static func levelButtonBackground() ->UIColor {
+        return UIColor(red: 251/255, green: 246/255, blue: 249/255, alpha: 0.25)
+    }
 }
 
