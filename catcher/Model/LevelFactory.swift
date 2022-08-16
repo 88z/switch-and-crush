@@ -24,6 +24,8 @@ class LevelFactory {
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0)],
+                     capacity: 100,
                      initialSpeed: 100,
                      acceleration: 10,
                      name:"0",
@@ -38,6 +40,8 @@ class LevelFactory {
             obstacleTypes.append(.plank(blinkInterval: 0))
         }
         return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.twoStatePlank(isStacked: false, blinkInterval: 0)],
+                     capacity: 30,
                      initialSpeed: 200,
                      acceleration: 7,
                      name:"1",
@@ -60,6 +64,8 @@ class LevelFactory {
            
         }
         return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.plank(blinkInterval: 0)],
+                     capacity: 100,
                      initialSpeed: 200,
                      acceleration: 7,
                      name:"2",
@@ -95,6 +101,8 @@ class LevelFactory {
         }
         
         return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.plank(blinkInterval: 0)],
+                     capacity: 100,
                      initialSpeed: 200,
                      acceleration: 5,
                      name:"3",

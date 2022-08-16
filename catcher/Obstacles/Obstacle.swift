@@ -29,29 +29,6 @@ enum ObstacleType: Equatable {
     case arcStack(blinkInterval: TimeInterval)
 }
 
-
-extension ObstacleType {
-    var pointNumber: Int {
-        get {
-            switch self {
-            case .fragmentedRing(segmentsCount: _,
-                                 rotationSpeed: _,
-                                 isStacked: _,
-                                 blinkInterval: _):
-                return 2
-            default:
-                return 1
-            }
-        }
-    }
-    
-    static func points(in types:[ObstacleType]) ->Int {
-        return types.reduce(0) { partialResult, type in
-            return partialResult + type.pointNumber
-        }
-    }
-}
-
 protocol Obstacle: AnyObject {
     var velocity: CGFloat { get set }
     var node: SKNode { get }

@@ -11,14 +11,15 @@ import SpriteKit
 class ObstacleArranger {
     weak var lastObstacle: Obstacle?
     var arrangedCount:Int = 0
-    let obstacleTypes: [ObstacleType]
+    let initialObstacleTypes: [ObstacleType]
+    let obstacleTypesForTail: [ObstacleType]
+    let levelCapacity: Int
     let firstObstacleState: State
     weak var scene: SKScene?
     let startPointY: CGFloat
     let leftBorderX: CGFloat
     let rightBorderX: CGFloat
     let hPadding = CGFloat(10)
-    let initialSpeed: CGFloat
     
     let obstacleMask: Mask
     
@@ -28,29 +29,31 @@ class ObstacleArranger {
     let colorScheme: ColorScheme
     
     init(scene: SKScene,
-         obstacleTypes:[ObstacleType],
+         initialObstacleTypes:[ObstacleType],
+         obstacleTypesForTail: [ObstacleType],
+         levelCapacity: Int,
          firstObstacleState: State,
          startPointY: CGFloat,
          leftBorderX:CGFloat,
          rightBorderX: CGFloat,
          obstacleMask: Mask,
-         initialSpeed: CGFloat,
          colorScheme: ColorScheme
          ) {
         self.scene = scene
-        self.obstacleTypes = obstacleTypes
+        self.initialObstacleTypes = initialObstacleTypes
+        self.obstacleTypesForTail = obstacleTypesForTail
+        self.levelCapacity = levelCapacity
         self.firstObstacleState = firstObstacleState
         self.startPointY = startPointY
         self.leftBorderX = leftBorderX + hPadding
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
-        self.initialSpeed = initialSpeed
         self.colorScheme = colorScheme
         
     }
     
     //TODO сделать ObstacleFactory
-    func arrangeOne(type: ObstacleType) -> Obstacle {
+    func arrangeOne(type: ObstacleType, speed: CGFloat) -> Obstacle {
         var obstacle: Obstacle
         let width = rightBorderX-leftBorderX
         switch type {
@@ -105,7 +108,7 @@ class ObstacleArranger {
         }
 
         obstacle.node.position = positionFor(obstacle, type: type)
-        obstacle.velocity = initialSpeed
+        obstacle.velocity = speed
         scene?.addChild(obstacle.node)
         obstacle.onAddedToScene()
         
@@ -114,33 +117,27 @@ class ObstacleArranger {
         return obstacle
     }
     
-    func arrangeFirst() {
-        guard  obstacleTypes.count > 0 else {
+    func arrangeFirst(speed: CGFloat) {
+        guard  initialObstacleTypes.count > 0 else {
             return
         }
         
-        let firstObstacle = arrangeOne(type: obstacleTypes[0])
+        let firstObstacle = arrangeOne(type: initialObstacleTypes[0], speed: speed)
         if let firstObstacle = firstObstacle as? RectObstacle {
             firstObstacle.state = firstObstacleState
         }
 
         var lastPlaced = firstObstacle
-        while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 && arrangedCount < obstacleTypes.count {
-            lastPlaced = arrangeOne(type: obstacleTypes[arrangedCount-1])
+        while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 && arrangedCount < initialObstacleTypes.count {
+            lastPlaced = arrangeOne(type: initialObstacleTypes[arrangedCount-1], speed: speed)
         }
     }
     
-    func arrangeNext() {
-        guard arrangedCount < obstacleTypes.count else {
+    func arrangeNext(speed: CGFloat) {
+        guard let type = arrangedCount < initialObstacleTypes.count ? initialObstacleTypes[arrangedCount] : obstacleTypesForTail.randomElement() else {
             return
         }
-        _ = arrangeOne(type: obstacleTypes[arrangedCount])
-    }
-    
-    func arrangeAll() {
-        for i in arrangedCount..<obstacleTypes.count {
-            _ = arrangeOne(type: obstacleTypes[i])
-        }
+        _ = arrangeOne(type: type, speed: speed)
     }
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{

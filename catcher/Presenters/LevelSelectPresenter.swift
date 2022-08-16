@@ -24,7 +24,7 @@ class LevelSelectPresenter: Presenter {
                 let completionPart:CGFloat
                 if index == progress.completedLevelsCount {
                     levelButtonState = .current
-                    completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.initialObstacleTypes.count)
+                    completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.capacity)
                 } else if index > progress.completedLevelsCount{
                     levelButtonState = .locked
                     completionPart = 0

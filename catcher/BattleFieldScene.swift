@@ -109,15 +109,16 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self,
-                                                obstacleTypes: level.initialObstacleTypes,
+                                                initialObstacleTypes: level.initialObstacleTypes,
+                                                obstacleTypesForTail: level.obstacleTypesForTail,
+                                                levelCapacity: level.capacity,
                                                 firstObstacleState: hero.state,
                                                 startPointY: frame.minY-50,
                                                 leftBorderX: frame.minX,
                                                 rightBorderX: frame.maxX,
                                                 obstacleMask: obstacleMask,
-                                                initialSpeed: level.initialSpeed,
                                                 colorScheme: level.colorScheme)
-        obstacleArranger.arrangeFirst()
+        obstacleArranger.arrangeFirst(speed: level.initialSpeed)
         
         self.obstacleArranger = obstacleArranger
         
@@ -171,10 +172,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         
         if needBreakObstacle {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
-            obstacleArranger?.arrangeNext()
+            obstacleArranger?.arrangeNext(speed: fallSpeed)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-            obstacleArranger?.arrangeAll()
             breakHero(hero, contactPoint: contact.contactPoint)
             battleDelegate?.crashed()
         }
@@ -206,7 +206,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
-        guard let obstacleCount = level?.initialObstacleTypes.count,
+        guard let capacity = level?.capacity,
               obstacle.node.scene != nil
         else {
             return
@@ -217,10 +217,11 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         speedUp()
         progress += 1
         updateCounter()
-        if progress >= obstacleCount {
+        if progress == capacity {
             if let level = self.level {
                 battleDelegate?.didFinish(level: level)
             }
+            //level finished
         }
     }
     
@@ -248,7 +249,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateCounter() {
-        let text = "\(progress) / \(ObstacleType.points(in: level?.initialObstacleTypes ?? []))"
+        let text = "\(progress) / \(level?.capacity ?? 0)"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText
