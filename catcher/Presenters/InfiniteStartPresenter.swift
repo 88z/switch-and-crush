@@ -21,7 +21,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
             return
         }
         if element is TrivialUISceneButton {
-            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: ArcadeProgress(levelFactory: levelFactory)).present()
+            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: Progress(levelFactory: levelFactory)).present()
         }
     }
     

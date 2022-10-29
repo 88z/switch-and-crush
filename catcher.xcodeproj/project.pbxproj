@@ -20,7 +20,7 @@
 		2388BA78287349BE00D27DBD /* TrivialUISceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA77287349BE00D27DBD /* TrivialUISceneText.swift */; };
 		2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA79287349F700D27DBD /* TrivialUISceneButton.swift */; };
 		2388BA7E287351AC00D27DBD /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BA7D287351AC00D27DBD /* ButtonNode.swift */; };
-		23902E9C28A7AB7100D309DB /* ArcadeProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */; };
+		23902E9C28A7AB7100D309DB /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23902E9B28A7AB7100D309DB /* Progress.swift */; };
 		2391E95A286BA0820043BCA4 /* HeroShatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E959286BA0820043BCA4 /* HeroShatterer.swift */; };
 		23A9528F290D3D7C00B17C57 /* InfiniteStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9528E290D3D7C00B17C57 /* InfiniteStartPresenter.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
@@ -105,7 +105,7 @@
 		2388BA77287349BE00D27DBD /* TrivialUISceneText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUISceneText.swift; sourceTree = "<group>"; };
 		2388BA79287349F700D27DBD /* TrivialUISceneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrivialUISceneButton.swift; sourceTree = "<group>"; };
 		2388BA7D287351AC00D27DBD /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
-		23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeProgress.swift; sourceTree = "<group>"; };
+		23902E9B28A7AB7100D309DB /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		2391E959286BA0820043BCA4 /* HeroShatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroShatterer.swift; sourceTree = "<group>"; };
 		23A9528E290D3D7C00B17C57 /* InfiniteStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteStartPresenter.swift; sourceTree = "<group>"; };
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 			children = (
 				806B9DDC25455629003CB4EE /* Level.swift */,
 				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
-				23902E9B28A7AB7100D309DB /* ArcadeProgress.swift */,
+				23902E9B28A7AB7100D309DB /* Progress.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -586,7 +586,7 @@
 				806B9DE525456510003CB4EE /* GamePresenter.swift in Sources */,
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,
 				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
-				23902E9C28A7AB7100D309DB /* ArcadeProgress.swift in Sources */,
+				23902E9C28A7AB7100D309DB /* Progress.swift in Sources */,
 				23A9528F290D3D7C00B17C57 /* InfiniteStartPresenter.swift in Sources */,
 				232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */,
 				8087E44925444AE500340D10 /* TrivialUIScene.swift in Sources */,

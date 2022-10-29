@@ -13,9 +13,9 @@ class OnboardingPresenter: BattleFieldPresenter {
     private weak var redObstacleUI: TrivialUIScene?
     private weak var blueObstacleUI: TrivialUIScene?
     
-    let progress: ArcadeProgress
+    let progress: Progress
     
-    init(vc: GameViewController, progress: ArcadeProgress) {
+    init(vc: GameViewController, progress: Progress) {
         self.progress = progress
         super.init(vc: vc)
     }
@@ -87,10 +87,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            guard let level = progress.levels.first else {
-                return
-            }
-            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: level, progress: progress)
+            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: LevelFactory().infiniteLevel(), progress: progress)
             newPresenter.present()
         }
     }

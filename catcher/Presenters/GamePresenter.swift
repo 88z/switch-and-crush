@@ -13,10 +13,10 @@ class GamePresenter: BattleFieldPresenter {
     let startState: State
     private weak var gameOverUI: TrivialUIScene?
     let level: Level
-    let progress: ArcadeProgress
+    let progress: Progress
     
     
-    init(vc: GameViewController, startState: State, level: Level, progress: ArcadeProgress) {
+    init(vc: GameViewController, startState: State, level: Level, progress: Progress) {
         self.startState = startState
         self.level = level
         self.progress = progress

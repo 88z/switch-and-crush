@@ -8,11 +8,12 @@
 import Foundation
 
 
-class ArcadeProgress {
+class Progress {
     let userDefaults = UserDefaults.standard
-    private let completedLevelsCountKey = "catcher.arcadeProgress.completedLevelsCount"
-    private let crushedObstaclesCountKey = "catcher.arcadeProgress.crushedObstaclesCount"
-    private let isOnboardingShownKey = "catcher.arcadeProgress.isOnboardingShown"
+    private let completedLevelsCountKey = "catcher.progress.completedLevelsCount"
+    private let crushedObstaclesCountKey = "catcher.progress.crushedObstaclesCount"
+    private let isOnboardingShownKey = "catcher.progress.isOnboardingShown"
+    private let infiniteModeRecordKey = "catcher.progress.infiniteModeRecord"
     var completedLevelsCount: Int {
         get {
             return userDefaults.integer(forKey: completedLevelsCountKey)
@@ -37,6 +38,16 @@ class ArcadeProgress {
         }
         set {
             userDefaults.set(newValue, forKey: isOnboardingShownKey)
+            userDefaults.synchronize()
+        }
+    }
+    
+    var infiniteModeRecord: Int {
+        get {
+            return userDefaults.integer(forKey: infiniteModeRecordKey)
+        }
+        set {
+            userDefaults.set(newValue, forKey: infiniteModeRecordKey)
             userDefaults.synchronize()
         }
     }

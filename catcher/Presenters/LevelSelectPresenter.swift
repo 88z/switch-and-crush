@@ -12,7 +12,7 @@ class LevelSelectPresenter: Presenter {
     
     
     public weak var vc: GameViewController?
-    let progress: ArcadeProgress
+    let progress: Progress
     private var levelSelectView: UIView?
     
     private var levelButtonModels: [LevelButtonModel] {
@@ -38,7 +38,7 @@ class LevelSelectPresenter: Presenter {
         }
     }
     
-    init(vc: GameViewController, progress: ArcadeProgress) {
+    init(vc: GameViewController, progress: Progress) {
         self.progress = progress
         self.vc = vc
     }

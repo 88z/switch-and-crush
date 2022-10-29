@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let arcadeProgress = ArcadeProgress(levelFactory: LevelFactory())
+        let arcadeProgress = Progress(levelFactory: LevelFactory())
         if arcadeProgress.isOnboardingShown {
             BackgroundPresenter(vc:self).present()
             InfiniteStartPresenter(vc: self).present()
