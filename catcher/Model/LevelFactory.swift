@@ -9,9 +9,54 @@ import Foundation
 import SpriteKit
 
 class LevelFactory {
-    
+    func backgorundLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        for _ in 0..<100{
+            obstacleTypes.append([
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0),
+                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0),
+                ObstacleType.plank(blinkInterval: 0),
+                ObstacleType.plankStack(blinkInterval: 0),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
+            ].randomElement()! )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0)],
+                     capacity: -1,
+                     initialSpeed: 250,
+                     acceleration: 10,
+                     name:"0",
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
     func infiniteLevel() -> Level {
-        return level0()
+        var obstacleTypes:[ObstacleType] = []
+        for _ in 0..<100{
+            obstacleTypes.append([
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true),
+//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0),
+//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0),
+//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0),
+//                ObstacleType.plank(blinkInterval: 0),
+//                ObstacleType.plankStack(blinkInterval: 0),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .none, isStacked: true, blinkInterval: 0),
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0),
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false)
+            ].randomElement()! )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0)],
+                     capacity: -1,
+                     initialSpeed: 100,
+                     acceleration: 10,
+                     name:"0",
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
     }
     
     func level0() -> Level {

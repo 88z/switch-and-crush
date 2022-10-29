@@ -11,7 +11,7 @@ class BackgroundPresenter: BattleFieldPresenter{
     override func present(){
         super.present()
         let levelFactory = LevelFactory()
-        battleFieldScene?.start(level: levelFactory.infiniteLevel(), shouldShowCounter: false, shouldPlaceHero: false)
+        battleFieldScene?.start(level: levelFactory.backgorundLevel(), shouldShowCounter: false, shouldPlaceHero: false)
         battleFieldScene.isDimmed = true
     }
 }

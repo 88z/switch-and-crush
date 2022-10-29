@@ -109,7 +109,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         addChild(cameraNode)
         camera = cameraNode
         
-        counterNode.position = CGPoint(x: frame.midX, y: frame.maxY - 75)
+        counterNode.position = CGPoint(x: frame.midX, y: frame.maxY - 50)
         addChild(counterNode)
         
         physicsWorld.contactDelegate = self
@@ -249,9 +249,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateCounter() {
-        let text = "\(progress) / \(level?.capacity ?? 0)"
+        let text = level?.capacity ?? 0 > 0 ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
         let attributedText = NSMutableAttributedString(string: text)
-        attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
+        attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 40)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText
     }
     

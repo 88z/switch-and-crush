@@ -34,7 +34,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     func present() {
         let frame = vc?.view.frame ?? .zero
         let ui = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.midY), color: .text(), delayBeforePresent: 1, text: "Start".localiz())
+            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.midY), color: .text(), delayBeforePresent: 0, text: "STArT".localiz())
         ])
         ui.uiSceneDelegate = self
         vc?.show(uiScene: ui)
