@@ -229,7 +229,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             if let level = self.level {
                 battleDelegate?.didFinish(level: level)
             }
-            hero?.removeFromParent()
         }
     }
     
