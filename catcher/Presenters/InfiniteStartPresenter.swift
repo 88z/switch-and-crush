@@ -21,12 +21,12 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
             return
         }
         if element is TrivialUISceneButton {
-            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: Progress(levelFactory: levelFactory)).present()
+            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: progress).present()
         }
     }
     
     public weak var vc: GameViewController?
-    
+    private let progress = Progress(levelFactory: LevelFactory())
     init(vc: GameViewController) {
         self.vc = vc
     }
@@ -34,7 +34,8 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     func present() {
         let frame = vc?.view.frame ?? .zero
         let ui = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.midY), color: .text(), delayBeforePresent: 0, text: "STArT".localiz())
+            TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "best score: \(progress.infiniteModeRecord)".localiz()),
+            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "STArT".localiz())
         ])
         ui.uiSceneDelegate = self
         vc?.show(uiScene: ui)

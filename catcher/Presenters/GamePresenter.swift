@@ -67,7 +67,9 @@ class GamePresenter: BattleFieldPresenter {
     
     override func crashAnimationFinished(scene: BattleFieldScene) {
         super.crashAnimationFinished(scene: scene)
-        progress.crushedObstaclesCount = scene.crushedObstaclesCount
+        if scene.crushedObstaclesCount > progress.infiniteModeRecord {
+            progress.infiniteModeRecord = scene.crushedObstaclesCount
+        }
         showGameOver()
     }
     
