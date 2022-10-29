@@ -75,7 +75,7 @@ class GamePresenter: BattleFieldPresenter {
     func showGameOver() {
         let frame = vc?.view.frame ?? .zero
         let gameOverUI = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "Game Over".localiz()),
+            TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "GAme OVer".localiz()),
             TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz())
         ])
         gameOverUI.uiSceneDelegate = self

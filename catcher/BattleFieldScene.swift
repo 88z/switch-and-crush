@@ -189,16 +189,17 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
        
     }
     
-    func breakHero(_ hero: Hero, contactPoint: CGPoint) {
+    private func breakHero(_ hero: Hero, contactPoint: CGPoint) {
         let shatter = HeroShatterer(hero: hero)
         shatter.shatter(contactPoint: contactPoint) {}
         guard let delegate = delegate as? BattleFieldSceneDelegate else {
             return
         }
+        counterNode.isHidden = true
         delegate.crashAnimationFinished(scene: self)
     }
     
-    func shatterer(for obstacle: Obstacle) ->Shatterer {
+    private func shatterer(for obstacle: Obstacle) ->Shatterer {
         switch obstacle.type {
         case .arc, .animatedRing(segmentsCount: _,
                                  rotationSpeed: _,
@@ -213,7 +214,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
+    private func breakObstacle(_ obstacle: Obstacle, contactPoint: CGPoint) {
         guard let capacity = level?.capacity,
               obstacle.node.scene != nil
         else {
@@ -232,23 +233,22 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func obstacles() -> [SKNode] {
+    private func obstacles() -> [SKNode] {
         return self[String(describing: Obstacle.self)]
     }
     
-    func speedUp() {
+    private func speedUp() {
         guard let level = self.level else {
             return
         }
         fallSpeed = fallSpeed + level.acceleration
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         hero?.toggleState()
     }
     
-    func updateCounter() {
+    private func updateCounter() {
         let text = level?.capacity ?? 0 > 0 ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 40)], range: NSRange(location: 0, length: text.count))
