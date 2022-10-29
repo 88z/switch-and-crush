@@ -23,8 +23,8 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    let minYSpace: CGFloat = 150
-    let maxYSpace: CGFloat = 250
+    let minYSpace: CGFloat = 100
+    let maxYSpace: CGFloat = 200
     
     let colorScheme: ColorScheme
     
@@ -144,26 +144,23 @@ class ObstacleArranger {
     }
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
+        let nextY = y(for: obstacle)
         switch type{
         case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _, blinkInterval: _):
-            return CGPoint(x: scene!.frame.midX, y:nextY())
+            return CGPoint(x: scene!.frame.midX, y:nextY)
         case .carouselPlank, .pendulumPlank:
-            return CGPoint(x:0, y: nextY())
+            return CGPoint(x:0, y: nextY)
         default:
-            return CGPoint(x: leftBorderX, y:nextY())
+            return CGPoint(x: leftBorderX, y:nextY)
         }
-        
-    
     }
     
-    func nextY() -> CGFloat {
+    func y(for obstacle: Obstacle) -> CGFloat {
         guard let lastPlaced = lastObstacle else {
             return startPointY
         }
-        let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace)))
+        let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace))) -  obstacle.node.calculateAccumulatedFrame().size.height/2
         return nextY
     }
-    
-    
 }
     
