@@ -54,6 +54,7 @@ class Progress {
     
     private func clean() {
         userDefaults.removeObject(forKey: isOnboardingShownKey)
+        userDefaults.removeObject(forKey: infiniteModeRecordKey)
     }
     
     let levels: [Level]

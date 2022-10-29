@@ -67,19 +67,28 @@ class GamePresenter: BattleFieldPresenter {
     
     override func crashAnimationFinished(scene: BattleFieldScene) {
         super.crashAnimationFinished(scene: scene)
-        if scene.crushedObstaclesCount > progress.infiniteModeRecord {
-            progress.infiniteModeRecord = scene.crushedObstaclesCount
-        }
-        showGameOver()
+        showGameOver(score: scene.getProgress())
     }
     
     //TODO вынести в gameover presenter
-    func showGameOver() {
+    func showGameOver(score: Int) {
         let frame = vc?.view.frame ?? .zero
-        let gameOverUI = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "GAme OVer".localiz()),
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz())
-        ])
+        
+        var elements: [TrivialUISceneElement] = []
+        if score <= progress.infiniteModeRecord {
+            elements.append(contentsOf:
+                                [TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "score: \(score)".localiz()),
+                                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET-40), color: .text(), delayBeforePresent: 0.5, text: "best: \(progress.infiniteModeRecord)".localiz())
+                                ])
+        } else {
+            progress.infiniteModeRecord = score
+            elements.append(contentsOf:
+                                [TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "new record: \(score)".localiz())
+                                ])
+        }
+        elements.append(TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz()))
+        
+        let gameOverUI = TrivialUIScene(size: UIScreen.main.bounds.size, elements:elements)
         gameOverUI.uiSceneDelegate = self
         battleFieldScene.isDimmed = true
         vc?.show(uiScene: gameOverUI)

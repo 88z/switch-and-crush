@@ -68,6 +68,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var level: Level?
     private var progress: Int = 0
     
+    public func getProgress() -> Int {
+        return progress
+    }
+    
     private let counterNode = SKLabelNode()
     
     private weak var lastObstacle: Obstacle?
@@ -251,7 +255,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private func updateCounter() {
         let text = level?.capacity ?? 0 > 0 ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
         let attributedText = NSMutableAttributedString(string: text)
-        attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 40)], range: NSRange(location: 0, length: text.count))
+        attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 32)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText
     }
     

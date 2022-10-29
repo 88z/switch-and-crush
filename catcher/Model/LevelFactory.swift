@@ -52,7 +52,7 @@ class LevelFactory {
                      obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0)],
                      capacity: -1,
                      initialSpeed: 100,
-                     acceleration: 10,
+                     acceleration: 5,
                      name:"0",
                      initialState: .first,
                      userInterationEnabled: true,

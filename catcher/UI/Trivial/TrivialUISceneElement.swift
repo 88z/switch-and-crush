@@ -10,12 +10,12 @@ import SpriteKit
 
 class TrivialUISceneElement {
     let color: UIColor
-    let delayBeforePresent: Int
+    let delayBeforePresent: CGFloat
     let position: CGPoint
     let font = FONT(size: 24)
     let name: String
     
-    init(position: CGPoint, color: UIColor, delayBeforePresent: Int, name: String="") {
+    init(position: CGPoint, color: UIColor, delayBeforePresent: CGFloat, name: String="") {
         self.color = color
         self.delayBeforePresent = delayBeforePresent
         self.position = position

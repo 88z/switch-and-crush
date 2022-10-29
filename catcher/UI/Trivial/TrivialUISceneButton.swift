@@ -11,12 +11,12 @@ import SpriteKit
 class TrivialUISceneButton: TrivialUISceneElement {
     let text: String
     
-    init(position: CGPoint, color: UIColor, delayBeforePresent: Int, text:String) {
+    init(position: CGPoint, color: UIColor, delayBeforePresent: CGFloat, text:String) {
         self.text = text
         super.init(position: position, color: color, delayBeforePresent: delayBeforePresent, name: text)
     }
     
-    public convenience init(position: CGPoint, delayBeforePresent: Int, text:String) {
+    public convenience init(position: CGPoint, delayBeforePresent: CGFloat, text:String) {
         self.init(position: position, color: .text(), delayBeforePresent: delayBeforePresent, text: text)
     }
 }
