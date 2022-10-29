@@ -25,7 +25,7 @@ class OnboardingPresenter: BattleFieldPresenter {
         let frame = vc?.view.frame ?? .zero
         
         let thisIsBallUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
-            TrivialUISceneText(position: CGPoint(x: frame.midX - 40, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "This is BALL".localiz()),
+            TrivialUISceneText(position: CGPoint(x: frame.midX - 40, y: frame.maxY - heroTopOffset-100), delayBeforePresent: 0, text: "This is BALL".localiz()),
             TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 1, text: "Tap to switch BALL color".localiz()),
             
         ])
@@ -61,7 +61,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                     shouldPlaceHero: true)
             let frame = vc?.view.frame ?? .zero
             let redObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
-                TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "red BALL crashes red blocks".localiz()),
+                TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-100), delayBeforePresent: 0, text: "red BALL crashes red blocks".localiz()),
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color now".localiz())
             ])
             redObstacleUI.uiSceneDelegate = self
@@ -75,7 +75,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
-                TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset+100), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),
+                TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-120   ), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.minY + 200), delayBeforePresent: 3, text: "switch BALL color to start the game".localiz())
             ])
             blueObstacleUI.uiSceneDelegate = self
