@@ -79,7 +79,7 @@ class GamePresenter: BattleFieldPresenter {
             TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz())
         ])
         gameOverUI.uiSceneDelegate = self
-        battleFieldScene.dim()
+        battleFieldScene.isDimmed = true
         vc?.show(uiScene: gameOverUI)
         self.gameOverUI = gameOverUI
     }

@@ -117,27 +117,30 @@ class ObstacleArranger {
         return obstacle
     }
     
-    func arrangeFirst(speed: CGFloat) {
+    func arrangeFirst(speed: CGFloat) -> [Obstacle]{
         guard  initialObstacleTypes.count > 0 else {
-            return
+            return []
         }
-        
+        var obstacles: [Obstacle] = []
         let firstObstacle = arrangeOne(type: initialObstacleTypes[0], speed: speed)
         if let firstObstacle = firstObstacle as? RectObstacle {
             firstObstacle.state = firstObstacleState
         }
+        obstacles.append(firstObstacle)
 
         var lastPlaced = firstObstacle
         while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 && arrangedCount < initialObstacleTypes.count {
             lastPlaced = arrangeOne(type: initialObstacleTypes[arrangedCount-1], speed: speed)
+            obstacles.append(lastPlaced)
         }
+        return obstacles
     }
     
-    func arrangeNext(speed: CGFloat) {
+    func arrangeNext(speed: CGFloat) -> Obstacle? {
         guard let type = arrangedCount < initialObstacleTypes.count ? initialObstacleTypes[arrangedCount] : obstacleTypesForTail.randomElement() else {
-            return
+            return nil
         }
-        _ = arrangeOne(type: type, speed: speed)
+        return arrangeOne(type: type, speed: speed)
     }
     
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{

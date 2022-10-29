@@ -45,6 +45,21 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    private var obstacleAlpha: CGFloat = 1
+    
+    var isDimmed: Bool {
+        get {
+            return obstacleAlpha < 1
+        }
+        set {
+            obstacleAlpha = newValue ? 0.5 : 1
+            let dimAction = SKAction.fadeAlpha(to: obstacleAlpha, duration: 0.5)
+            for obstacle in obstacles()  {
+                obstacle.run(dimAction)
+            }
+        }
+    }
+    
     var battleDelegate: BattleDelegate?
     private var obstacleArranger: ObstacleArranger?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
@@ -54,6 +69,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var progress: Int = 0
     
     private let counterNode = SKLabelNode()
+    
+    private weak var lastObstacle: Obstacle?
     
     var crushedObstaclesCount: Int {
         get {
@@ -118,7 +135,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                                                 rightBorderX: frame.maxX,
                                                 obstacleMask: obstacleMask,
                                                 colorScheme: level.colorScheme)
-        obstacleArranger.arrangeFirst(speed: level.initialSpeed)
+        let obstacles = obstacleArranger.arrangeFirst(speed: level.initialSpeed)
+        lastObstacle = obstacles.last
         
         self.obstacleArranger = obstacleArranger
         
@@ -126,14 +144,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         if shouldShowCounter {
             updateCounter()
         }
-    }
-    
-    private func adjustCameraAndBorders() {
-        guard let hero = hero else {
-            return
-        }
-        let newPositionY = hero.position.y - frame.height/2 + heroTopOffset
-        camera?.position.y = newPositionY
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -172,7 +182,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         
         if needBreakObstacle {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
-            obstacleArranger?.arrangeNext(speed: fallSpeed)
         } else {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             breakHero(hero, contactPoint: contact.contactPoint)
@@ -221,7 +230,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             if let level = self.level {
                 battleDelegate?.didFinish(level: level)
             }
-            //level finished
+            hero?.removeFromParent()
         }
     }
     
@@ -241,17 +250,23 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero?.toggleState()
     }
     
-    func dim() {
-        let dimAction = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
-        for obstacle in obstacles()  {
-            obstacle.run(dimAction)
-        }
-    }
+
     
     func updateCounter() {
         let text = "\(progress) / \(level?.capacity ?? 0)"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText
+    }
+    
+    override func didFinishUpdate() {
+        guard let lastObstacle = lastObstacle else {
+            return
+        }
+
+        if lastObstacle.node.calculateAccumulatedFrame().maxY > frame.minY {
+            self.lastObstacle = obstacleArranger?.arrangeNext(speed: fallSpeed)
+            self.lastObstacle?.node.alpha = obstacleAlpha
+        }
     }
 }

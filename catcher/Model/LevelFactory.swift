@@ -37,11 +37,11 @@ class LevelFactory {
     func level1() -> Level {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<30 {
-            obstacleTypes.append(.plank(blinkInterval: 0))
+            obstacleTypes.append(.twoStatePlank(isStacked: false, blinkInterval: 0))
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.twoStatePlank(isStacked: false, blinkInterval: 0)],
-                     capacity: 30,
+                     capacity: 10,
                      initialSpeed: 200,
                      acceleration: 7,
                      name:"1",
