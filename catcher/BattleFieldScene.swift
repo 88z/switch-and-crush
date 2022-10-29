@@ -250,8 +250,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         hero?.toggleState()
     }
     
-
-    
     func updateCounter() {
         let text = "\(progress) / \(level?.capacity ?? 0)"
         let attributedText = NSMutableAttributedString(string: text)
@@ -267,6 +265,21 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         if lastObstacle.node.calculateAccumulatedFrame().maxY > frame.minY {
             self.lastObstacle = obstacleArranger?.arrangeNext(speed: fallSpeed)
             self.lastObstacle?.node.alpha = obstacleAlpha
+            
+            //удаляем улетевшие препятствия в момент добавления новых,
+            //делаю так, чтобы не дергать это слишком часто
+            //можно это запускать и по таймеру, но пусть будет тут
+            removeFlownAwayObstacles()
+        }
+    }
+    
+    private func removeFlownAwayObstacles() {
+        let obstacles = obstacles()
+        for obstacle in obstacles {
+            if obstacle.calculateAccumulatedFrame().minY  > frame.maxY {
+                obstacle.removeFromParent()
+            }
+            
         }
     }
 }
