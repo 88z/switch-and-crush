@@ -43,7 +43,7 @@ class GamePresenter: BattleFieldPresenter {
     
     private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: level)
+        battleFieldScene?.start(level: level, shouldPlaceHero: true)
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {

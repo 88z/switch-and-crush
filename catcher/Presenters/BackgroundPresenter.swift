@@ -10,10 +10,9 @@ import Foundation
 class BackgroundPresenter: BattleFieldPresenter{
     override func present(){
         super.present()
-        battleFieldScene?.start(level: Level(initialObstacleTypes: [],
-                                             obstacleTypesForTail: [],
-                                             capacity: 0,
-                                             initialSpeed: 0, acceleration: 0, name: "background", initialState: .first, userInterationEnabled: false, colorScheme: .blueRed), shouldShowCounter: false)
+        let levelFactory = LevelFactory()
+        battleFieldScene?.start(level: levelFactory.infiniteLevel(), shouldShowCounter: false, shouldPlaceHero: false)
+        battleFieldScene.isDimmed = true
     }
 }
 

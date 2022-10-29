@@ -9,6 +9,11 @@ import Foundation
 import SpriteKit
 
 class LevelFactory {
+    
+    func infiniteLevel() -> Level {
+        return level0()
+    }
+    
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<100{
@@ -26,7 +31,7 @@ class LevelFactory {
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0)],
                      capacity: 100,
-                     initialSpeed: 100,
+                     initialSpeed: 200,
                      acceleration: 10,
                      name:"0",
                      initialState: .first,

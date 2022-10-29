@@ -115,21 +115,20 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
     
-    func start(level: Level, shouldShowCounter:Bool = true) {
+    func start(level: Level, shouldShowCounter:Bool = true, shouldPlaceHero: Bool) {
         self.level = level
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
-        placeHero(state: level.initialState, colorScheme: level.colorScheme)
-        guard let hero = self.hero else {
-            assertionFailure("hero uninitialized")
-            return
+        if shouldPlaceHero {
+            placeHero(state: level.initialState, colorScheme: level.colorScheme)
         }
+        
         progress = 0
         let obstacleArranger = ObstacleArranger(scene: self,
                                                 initialObstacleTypes: level.initialObstacleTypes,
                                                 obstacleTypesForTail: level.obstacleTypesForTail,
                                                 levelCapacity: level.capacity,
-                                                firstObstacleState: hero.state,
+                                                firstObstacleState: hero?.state ?? .first,
                                                 startPointY: frame.minY-50,
                                                 leftBorderX: frame.minX,
                                                 rightBorderX: frame.maxX,
