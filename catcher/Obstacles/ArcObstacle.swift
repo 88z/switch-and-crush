@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 class ArcObstacle: StateNode, Obstacle {
+    var acceleration: Int = 0
     
     var isSolid: Bool = true
     
@@ -77,9 +78,11 @@ class ArcObstacle: StateNode, Obstacle {
                      type: ObstacleType) {
         
         var blinkInterval: TimeInterval = 0
+        var acceleration = 0
         switch type {
-        case .arc(blinkInterval: let _blinkInterval):
+        case .arc(blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: ArcObstacle.self))
         }
@@ -87,6 +90,7 @@ class ArcObstacle: StateNode, Obstacle {
         
         self.init(arcWithCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, width: 7, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
+        self.acceleration = acceleration
         self.startAngle = startAngle
         self.endAngle = endAngle
         self.radius = radius

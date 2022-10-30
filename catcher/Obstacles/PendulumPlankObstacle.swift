@@ -22,18 +22,21 @@ class PendulumPlankObstacle: MultiStateObstacle {
         var isStacked = false
         var blinkInterval: TimeInterval = 0
         var swingSpeed: Speed = .none
+        var acceleration = 0
         switch type {
-        case .pendulumPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+        case .pendulumPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceletation):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
             swingSpeed = _swingSpeed
+            acceleration = _acceletation
         default:
             assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
         }
         self.isStacked = isStacked
 
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         self.type = type
+        self.acceleration = acceleration
         let width = UIScreen.main.bounds.size.width
         let leftPartState = State.random()
         let rightPartState = State.nextState(for: leftPartState)
@@ -89,13 +92,13 @@ class PendulumPlankObstacle: MultiStateObstacle {
                                  width: width,
                                  states: [state, State.nextState(for: state)],
                                  colorScheme: colorScheme,
-                                 type: .plankStack(blinkInterval: blinkInterval))
+                                 type: .plankStack(blinkInterval: blinkInterval, acceleration: acceleration))
         } else {
             return RectObstacle(mask: mask,
                                 width: width,
                                 state: state,
                                 colorScheme: colorScheme,
-                                type: .plank(blinkInterval: blinkInterval))
+                                type: .plank(blinkInterval: blinkInterval, acceleration: acceleration))
         }
     }
     

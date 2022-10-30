@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
+    var acceleration: Int = 10
+    
     func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomSize = PLANK_ATOM_SIZE
@@ -21,7 +23,7 @@ class RectObstacle: StateNode, Obstacle {
                 
                 let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state, colorScheme: colorScheme, blinkInterval: 0)
                 atom.name = ATOM_NODE_NAME
-                atom.lineWidth = 0
+                atom.glowWidth = 2
                 atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
                 atom.physicsBody?.affectedByGravity = false
                 atom.physicsBody?.categoryBitMask = 0b1000
@@ -75,9 +77,11 @@ class RectObstacle: StateNode, Obstacle {
         }
         
         var blinkInterval: TimeInterval = 0
+        var acceleration = 0
         switch type {
-        case .plank(blinkInterval: let _blinkInterval), .thinPlank(blinkInterval: let _blinkInterval):
+        case .plank(blinkInterval: let _blinkInterval, acceleration: let _acceleration), .thinPlank(blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for" + String(describing: RectObstacle.self))
         }
@@ -86,6 +90,7 @@ class RectObstacle: StateNode, Obstacle {
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         self.init(rect: rect, state: state, colorScheme: colorScheme, blinkInterval: blinkInterval)
         self.type = type
+        self.acceleration = acceleration
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x: frame.midX, y: frame.midY))
         physicsBody?.affectedByGravity = false

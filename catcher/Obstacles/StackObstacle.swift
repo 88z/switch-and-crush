@@ -19,19 +19,21 @@ class StackObstacle: MultiStateObstacle {
     init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, type: ObstacleType) {
         
         var blinkInterval: TimeInterval = 0
+        var acceleration: Int = 0
         switch type {
-        case .plankStack(blinkInterval: let _blinkInterval):
+        case .plankStack(blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: StackObstacle.self))
         }
 
         
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         name = String(describing: Obstacle.self)
         self.type = type
         
-        let partType: ObstacleType = .thinPlank(blinkInterval: blinkInterval)
+        let partType: ObstacleType = .thinPlank(blinkInterval: blinkInterval, acceleration: acceleration)
         
         var nextY:CGFloat = 0
         for state in states {

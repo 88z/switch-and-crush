@@ -25,17 +25,20 @@ class StackArcObstacle: MultiStateObstacle {
          type: ObstacleType) {
         
         var blinkInterval: TimeInterval = 0
+        var acceleration = 0
         switch type {
-        case .arc(blinkInterval: let _blinkInterval):
+        case .arc(blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: StackObstacle.self))
         }
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         name = String(describing: Obstacle.self)
         self.type = type
+        self.acceleration = acceleration
         
-        let partType: ObstacleType = .arc(blinkInterval: blinkInterval)
+        let partType: ObstacleType = .arc(blinkInterval: blinkInterval, acceleration: acceleration)
         
         var nextRadius:CGFloat = radius
         for state in states {

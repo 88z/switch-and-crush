@@ -22,15 +22,17 @@ class MultiStatePlankObstacle: MultiStateObstacle {
         
         var blinkInterval: TimeInterval = 0
         var isStacked = false
+        var acceleration = 0
         switch type {
-        case .twoStatePlank(isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+        case .twoStatePlank(isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: MultiStateObstacle.self))
         }
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         var nextX:CGFloat = 0
         var state = State.random()
         for partSize in partSizes {
@@ -56,9 +58,9 @@ class MultiStatePlankObstacle: MultiStateObstacle {
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
         if isStacked {
-            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack(blinkInterval: blinkInterval))
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack(blinkInterval: blinkInterval, acceleration: acceleration))
         } else {
-            let part = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank(blinkInterval: blinkInterval))
+            let part = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank(blinkInterval: blinkInterval, acceleration: acceleration))
             return part
         }
     }

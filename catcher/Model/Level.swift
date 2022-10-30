@@ -13,7 +13,6 @@ struct Level {
     let obstacleTypesForTail: [ObstacleType]
     let capacity: Int
     let initialSpeed: CGFloat
-    let acceleration: CGFloat
     let name: String
     let initialState:State
     let userInterationEnabled:Bool

@@ -207,11 +207,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         switch obstacle.type {
         case .arc, .animatedRing(segmentsCount: _,
                                  rotationSpeed: _,
-                                 isStacked: _),
+                                 isStacked: _,
+                                 acceleration: _),
                 .fragmentedRing(segmentsCount: _,
                                 rotationSpeed: _,
                                 isStacked: _,
-                                blinkInterval: _):
+                                blinkInterval: _,
+                                acceleration: _):
             return RingObstacleShatterer(obstacle: obstacle)
         default:
             return PlankObstacleShatterer(obstacle: obstacle)
@@ -227,7 +229,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         shatterer(for: obstacle).shatter(contactPoint: contactPoint)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
-        speedUp()
+        fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
         progress += 1
         updateCounter()
         if progress == capacity {
@@ -239,13 +241,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     private func obstacles() -> [SKNode] {
         return self[String(describing: Obstacle.self)]
-    }
-    
-    private func speedUp() {
-        guard let level = self.level else {
-            return
-        }
-        fallSpeed = fallSpeed + level.acceleration
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

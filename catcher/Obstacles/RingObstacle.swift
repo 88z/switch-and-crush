@@ -42,19 +42,21 @@ class RingObstacle: MultiStateObstacle {
         
         var isStacked = false
         var partsCount = 0
+        var acceleration = 0
         var rotationSpeed: Speed = .none
         switch type {
-        case .animatedRing(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, isStacked: let _isStacked):
+        case .animatedRing(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, isStacked: let _isStacked, acceleration: let _acceleration):
             isStacked = _isStacked
             partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
+            acceleration = _acceleration
             
         default:
             assertionFailure("incorrect type for " + String(describing: RingObstacle.self))
         }
         self.isStacked = isStacked
         
-        super.init(colorScheme: colorScheme, blinkInterval: 0)
+        super.init(colorScheme: colorScheme, blinkInterval: 0, acceleration: acceleration)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)

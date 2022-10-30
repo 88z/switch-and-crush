@@ -33,7 +33,6 @@ class OnboardingPresenter: BattleFieldPresenter {
                                              obstacleTypesForTail: [],
                                              capacity: 100,
                                              initialSpeed: 200,
-                                             acceleration: 0.00,
                                              name:"1",
                                              initialState: State.first,
                                              userInterationEnabled: false,
@@ -48,11 +47,10 @@ class OnboardingPresenter: BattleFieldPresenter {
     override func uiScenePressed(scene: TrivialUIScene) {
         if scene == switchColorUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0)],
+            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 200,
-                                                 acceleration: 0.00,
                                                  name:"1",
                                                  initialState: State.second,
                                                  userInterationEnabled: false,
@@ -69,10 +67,11 @@ class OnboardingPresenter: BattleFieldPresenter {
             self.redObstacleUI = redObstacleUI
         } else if scene == redObstacleUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0)],
+            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
-                                                 initialSpeed: 200, acceleration: 0.00, name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
+                                                 initialSpeed: 200,
+                                                 name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-120   ), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),

@@ -28,19 +28,21 @@ class CarouselPlankObstacle: MultiStateObstacle {
         var carouselSpeed: Speed = .none
         var blinkInterval: TimeInterval = 0
         var directionRight = false
+        var acceleration = 0
         switch type {
-        case .carouselPlank(partsCount: let _partsCount, carouselSpeed: let _carouselSpeed, directionRight: let _directionRight, isStacked: let _isStacked, blinkInterval: let _blinkInterval):
+        case .carouselPlank(partsCount: let _partsCount, carouselSpeed: let _carouselSpeed, directionRight: let _directionRight, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             isStacked = _isStacked
             partsCount = Int(round(Double(_partsCount) / 2.0)) * 2
             carouselSpeed = _carouselSpeed
             blinkInterval = _blinkInterval
             directionRight = _directionRight
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: CarouselPlankObstacle.self))
         }
         self.isStacked = isStacked
         self.directionRight = directionRight
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         
         self.type = type
         name = String(describing: Obstacle.self)
@@ -124,9 +126,9 @@ class CarouselPlankObstacle: MultiStateObstacle {
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{
         if isStacked {
-            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack(blinkInterval: blinkInterval))
+            return StackObstacle(mask: mask, width: width, states: [state, State.nextState(for: state)], colorScheme: colorScheme, type: .plankStack(blinkInterval: blinkInterval, acceleration: acceleration))
         } else {
-            return RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank(blinkInterval: blinkInterval))
+            return RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: .plank(blinkInterval: blinkInterval, acceleration: acceleration))
         }
     }
     

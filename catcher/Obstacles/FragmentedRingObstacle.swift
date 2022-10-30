@@ -46,22 +46,25 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var partsCount = 0
         var rotationSpeed: Speed = .none
         var blinkInterval: TimeInterval = 0
+        var acceleration = 0
         switch type {
         case .fragmentedRing(segmentsCount: let _segmentsCount,
                              rotationSpeed: let _rotationSpeed,
                              isStacked: let _isStacked,
-                             blinkInterval: let _blinkInterval):
+                             blinkInterval: let _blinkInterval,
+                             acceleration: let _acceleration):
             isStacked = _isStacked
             partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
             blinkInterval = _blinkInterval
+            acceleration = _acceleration
             
         default:
             assertionFailure("incorrect type for " + String(describing: FragmentedRingObstacle.self))
         }
         self.isStacked = isStacked
         
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
@@ -112,7 +115,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                            startAngle: startAngle,
                                            endAngle: endAngle,
                                            colorScheme: colorScheme,
-                                           type: .arc(blinkInterval: blinkInterval)))
+                                           type: .arc(blinkInterval: blinkInterval, acceleration: acceleration)))
             } else {
                 addChild (ArcObstacle(mask: mask,
                                       state: state,
@@ -121,7 +124,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
                                       startAngle: startAngle,
                                       endAngle: endAngle,
                                       colorScheme: colorScheme,
-                                      type: .arc(blinkInterval: blinkInterval)))
+                                      type: .arc(blinkInterval: blinkInterval, acceleration: acceleration)))
             }
             
             
