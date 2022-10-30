@@ -23,6 +23,18 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var hero: Hero?
 
     private let heroTopOffset: CGFloat
+    private var safeAreaHeight: CGFloat {
+        var height: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            height = window?.safeAreaInsets.top ?? 0
+        }
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.first
+            height = window?.safeAreaInsets.top ?? 0
+        }
+        return height
+    }
 
     var heroState: State? {
         return hero?.state
@@ -113,7 +125,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         addChild(cameraNode)
         camera = cameraNode
         
-        counterNode.position = CGPoint(x: frame.midX, y: frame.maxY - 50)
+        counterNode.position = CGPoint(x: frame.midX, y: frame.maxY - safeAreaHeight - 50)
         addChild(counterNode)
         
         physicsWorld.contactDelegate = self
@@ -279,4 +291,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
+
+    
 }
