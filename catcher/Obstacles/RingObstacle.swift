@@ -133,21 +133,6 @@ class RingObstacle: MultiStateObstacle {
         return state
     }
     
-    override func contactTest(at point: CGPoint, state: State) -> Bool {
-        let circle = UIBezierPath(arcCenter: point, radius: 10, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
-        var states:[State] = []
-        for child in children {
-            guard let child = child as? StateNode,
-                  let path = child.path else {
-                continue
-            }
-            if path.intersects(circle) {
-                states.append(child.state)
-            }
-        }
-        return states.contains(state)
-    }
-
     override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomsCount = 32
