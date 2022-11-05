@@ -77,6 +77,11 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             .top(to: title!.edge.bottom)
             .marginTop(45)
             .width(buttonsContainerWidth)
+        backButton?.pin
+            .sizeToFit()
+            .bottom(to:title!.edge.top)
+            .marginBottom(73)
+            .left(34)
         
         for i in 0..<buttons.count {
             let button = buttons[i]
@@ -96,7 +101,7 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             }
         }
         
-        backButton?.pin.sizeToFit().top(100).left(100)
+        
     }
     
     func pressed(_ button: LevelSelectButton) {
