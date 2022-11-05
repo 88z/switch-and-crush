@@ -11,6 +11,7 @@ import PinLayout
 
 class LevelSelectView: UIView, LevelSelectButtonDelegate {
     private weak var title: UILabel?
+    private weak var backButton: UIButton?
     private weak var buttonsContainer: UIScrollView?
     private var buttons: [UIView] = []
     
@@ -41,6 +42,11 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         addSubview(buttonsContainer)
         self.buttonsContainer = buttonsContainer
         initButtons(models: buttonModels)
+        
+        let backButton = UIButton(frame: .zero)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
+        addSubview(backButton)
+        self.backButton = backButton
     }
     
     required init?(coder: NSCoder) {
@@ -89,6 +95,8 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
                 button.pin.left(to: leftButton.edge.right).marginLeft(30)
             }
         }
+        
+        backButton?.pin.sizeToFit().top(100).left(100)
     }
     
     func pressed(_ button: LevelSelectButton) {
