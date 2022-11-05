@@ -64,7 +64,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return obstacleAlpha < 1
         }
         set {
-            obstacleAlpha = newValue ? 0.5 : 1
+            obstacleAlpha = newValue ? 0.3 : 1
             let dimAction = SKAction.fadeAlpha(to: obstacleAlpha, duration: 0.5)
             for obstacle in obstacles()  {
                 obstacle.run(dimAction)
