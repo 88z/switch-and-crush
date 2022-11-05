@@ -10,15 +10,14 @@ import SpriteKit
 
 class TrivialUISceneButton: TrivialUISceneElement {
     let text: String
+    let width: CGFloat
     
-    init(position: CGPoint, color: UIColor, delayBeforePresent: CGFloat, text:String, name:String="") {
+    init(position: CGPoint, color: UIColor, delayBeforePresent: CGFloat, text:String, width:CGFloat=0, name:String="") {
         self.text = text
+        self.width = width
         super.init(position: position, color: color, delayBeforePresent: delayBeforePresent, name: name)
     }
     
-    public convenience init(position: CGPoint, delayBeforePresent: CGFloat, text:String, name:String="") {
-        self.init(position: position, color: .text(), delayBeforePresent: delayBeforePresent, text: text)
-    }
 }
 
 

@@ -11,7 +11,7 @@ import SpriteKit
 class ButtonNode: SKNode {
     let finalColor: UIColor
     let padding:CGFloat = 20
-    init (text: String, font: UIFont, color: UIColor) {
+    init (text: String, font: UIFont, color: UIColor, width:CGFloat = 0) {
         self.finalColor = color
         super.init()
         
@@ -22,7 +22,8 @@ class ButtonNode: SKNode {
         labelNode.horizontalAlignmentMode = .center
         self.addChild(labelNode)
         
-        let borderNode = SKShapeNode(rect:CGRect(x: labelNode.frame.minX-padding, y: labelNode.frame.minY-padding, width: labelNode.frame.width+2*padding, height: labelNode.frame.height+2*padding))
+        let wdth = width > 0 ? width : labelNode.frame.width+2*padding
+        let borderNode = SKShapeNode(rect:CGRect(x: 0-wdth/2, y: labelNode.frame.minY-padding, width: wdth, height: labelNode.frame.height+2*padding))
         borderNode.strokeColor = finalColor
         self.addChild(borderNode)
         

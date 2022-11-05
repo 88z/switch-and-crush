@@ -53,7 +53,7 @@ class TrivialUIScene:SKScene {
     }
     
     func addButton(_ button: TrivialUISceneButton) {
-        let node = ButtonNode(text: button.text, font: button.font, color: button.color)
+        let node = ButtonNode(text: button.text, font: button.font, color: button.color, width: button.width)
         node.position = button.position
         node.name = button.name
         self.addChild(node)

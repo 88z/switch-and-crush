@@ -18,8 +18,8 @@ class ModeSelectPresenter: Presenter, TrivialUISceneDelegate {
     func present() {
         let frame = vc?.view.frame ?? .zero
         let ui = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "INFINITE".localiz(), name:infiniteButtonName),
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET+UI_VERTICAL_SPACE_BETWEEN_BUTTONS), color: .text(), delayBeforePresent: 1, text: "ARCADE".localiz(), name:aracadeButtonName),
+            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "Endless mOde".localiz(), width:250, name:infiniteButtonName),
+            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET+UI_VERTICAL_SPACE_BETWEEN_BUTTONS), color: .text(), delayBeforePresent: 1, text: "arCade mOde".localiz(), width:250, name:aracadeButtonName),
 
         ])
         ui.uiSceneDelegate = self
