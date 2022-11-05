@@ -25,9 +25,11 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         }
     }
     let levelSelectAction:(_: Int)->Void
+    let backButtonAction: ()->Void
     
-    init(frame: CGRect, buttonModels: [LevelButtonModel], levelSelectAction: @escaping (_: Int)->Void) {
+    init(frame: CGRect, buttonModels: [LevelButtonModel], backButtonAction:@escaping ()->Void, levelSelectAction: @escaping (_: Int)->Void) {
         self.levelSelectAction = levelSelectAction
+        self.backButtonAction = backButtonAction
         super.init(frame: frame)
         backgroundColor = .clear
         
@@ -46,6 +48,7 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         let backButton = UIButton(frame: .zero)
         backButton.setImage(UIImage(named: "back"), for: .normal)
         addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
         self.backButton = backButton
     }
     
@@ -109,5 +112,9 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             return
         }
         levelSelectAction(index)
+    }
+    
+    @IBAction private func backButtonPressed(_ sender: UIButton) {
+        backButtonAction()
     }
 }

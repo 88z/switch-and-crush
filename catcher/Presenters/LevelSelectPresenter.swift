@@ -45,7 +45,12 @@ class LevelSelectPresenter: Presenter {
 
     
     func present() {
-        let levelSelectView = LevelSelectView(frame: .zero, buttonModels: levelButtonModels, levelSelectAction: { (index: Int) in
+        let levelSelectView = LevelSelectView(frame: .zero, buttonModels: levelButtonModels, backButtonAction: {
+            guard let vc = self.vc else {
+                return
+            }
+            ModeSelectPresenter(vc:vc, progress: self.progress).present()
+        }, levelSelectAction: { (index: Int) in
             guard index < self.progress.levels.count,
                   let vc = self.vc else {
                 return
