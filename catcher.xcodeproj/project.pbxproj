@@ -14,6 +14,7 @@
 		2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */ = {isa = PBXBuildFile; productRef = 2335706928A0372D004C163B /* CGPathIntersection */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
+		2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442629158B8300C3320F /* ModeSelectPresenter.swift */; };
 		23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
@@ -99,6 +100,7 @@
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
 		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
+		2379442629158B8300C3320F /* ModeSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectPresenter.swift; sourceTree = "<group>"; };
 		23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPresenter.swift; sourceTree = "<group>"; };
 		23831FC7289FC19C002624BD /* StackArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackArcObstacle.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				230D987728A8F111008D19CA /* LevelSelectPresenter.swift */,
 				23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */,
 				23A9528E290D3D7C00B17C57 /* InfiniteStartPresenter.swift */,
+				2379442629158B8300C3320F /* ModeSelectPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				8033B22C2542B0D90050C162 /* Mask.swift in Sources */,
 				80CA5F7425251221003E900D /* CGUtils.swift in Sources */,
 				23902E9C28A7AB7100D309DB /* Progress.swift in Sources */,
+				2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */,
 				23A9528F290D3D7C00B17C57 /* InfiniteStartPresenter.swift in Sources */,
 				232E1B2E2892FA4F00F38DA2 /* ArcObstacle.swift in Sources */,
 				8087E44925444AE500340D10 /* TrivialUIScene.swift in Sources */,

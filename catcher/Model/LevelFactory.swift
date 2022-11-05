@@ -9,6 +9,33 @@ import Foundation
 import SpriteKit
 
 class LevelFactory {
+    
+    func infiniteLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        for _ in 0..<100{
+            obstacleTypes.append([
+//                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, acceleration: acceleration),
+//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, acceleration: acceleration)
+            ].randomElement()! )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0, acceleration: 0)],
+                     capacity: -1,
+                     initialSpeed: 100,
+                     name:"0",
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
     func backgorundLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         for _ in 0..<100{
@@ -32,31 +59,7 @@ class LevelFactory {
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
-    func infiniteLevel() -> Level {
-        var obstacleTypes:[ObstacleType] = []
-        let acceleration = 50
-        for _ in 0..<100{
-            obstacleTypes.append([
-//                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, acceleration: acceleration),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, acceleration: acceleration)
-            ].randomElement()! )
-        }
-        return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0, acceleration: 0)],
-                     capacity: -1,
-                     initialSpeed: 100,
-                     name:"0",
-                     initialState: .first,
-                     userInterationEnabled: true,
-                     colorScheme: .blueRed)
-    }
+
     
     func level0() -> Level {
         var obstacleTypes:[ObstacleType] = []

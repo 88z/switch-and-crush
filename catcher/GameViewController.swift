@@ -18,12 +18,13 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let arcadeProgress = Progress(levelFactory: LevelFactory())
-        if arcadeProgress.isOnboardingShown {
+        let progress = Progress(levelFactory: LevelFactory())
+        if progress.isOnboardingShown {
             BackgroundPresenter(vc:self).present()
-            InfiniteStartPresenter(vc: self).present()
+            ModeSelectPresenter(vc:self, progress: progress).present()
+//            InfiniteStartPresenter(vc: self).present()
         } else {
-            OnboardingPresenter(vc: self, progress: arcadeProgress).present()
+            OnboardingPresenter(vc: self, progress: progress).present()
         }
     }
 

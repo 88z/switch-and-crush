@@ -86,7 +86,7 @@ class GamePresenter: BattleFieldPresenter {
                                 [TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "new record: \(score)".localiz())
                                 ])
         }
-        elements.append(TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz()))
+        elements.append(TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz(), name: "over"))
         
         let gameOverUI = TrivialUIScene(size: UIScreen.main.bounds.size, elements:elements)
         gameOverUI.uiSceneDelegate = self
