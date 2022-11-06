@@ -15,6 +15,8 @@
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
 		2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442629158B8300C3320F /* ModeSelectPresenter.swift */; };
+		2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442E2918154E00C3320F /* TitleButtonsView.swift */; };
+		237944322918158600C3320F /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944312918158600C3320F /* ButtonViewModel.swift */; };
 		23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
@@ -101,6 +103,8 @@
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
 		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
 		2379442629158B8300C3320F /* ModeSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectPresenter.swift; sourceTree = "<group>"; };
+		2379442E2918154E00C3320F /* TitleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleButtonsView.swift; sourceTree = "<group>"; };
+		237944312918158600C3320F /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
 		23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPresenter.swift; sourceTree = "<group>"; };
 		23831FC7289FC19C002624BD /* StackArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackArcObstacle.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
@@ -218,6 +222,15 @@
 			path = Trivial;
 			sourceTree = "<group>";
 		};
+		237944302918155200C3320F /* TitleButtonsView */ = {
+			isa = PBXGroup;
+			children = (
+				2379442E2918154E00C3320F /* TitleButtonsView.swift */,
+				237944312918158600C3320F /* ButtonViewModel.swift */,
+			);
+			path = TitleButtonsView;
+			sourceTree = "<group>";
+		};
 		2388BA7128731AAE00D27DBD /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +292,7 @@
 		804C3AB3254551DE0012EDD8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				237944302918155200C3320F /* TitleButtonsView */,
 				23E3466B28A90882005044B6 /* LevelSelect */,
 				2367EB3228A8191700B20667 /* Trivial */,
 			);
@@ -555,6 +569,7 @@
 				23E3466D28A90892005044B6 /* LevelSelectView.swift in Sources */,
 				23E3467228AA883B005044B6 /* LevelButtonModel.swift in Sources */,
 				8012B526254606FA00ACBCC0 /* Colors.swift in Sources */,
+				237944322918158600C3320F /* ButtonViewModel.swift in Sources */,
 				8012B50725458FB400ACBCC0 /* BattleFieldPresenter.swift in Sources */,
 				23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */,
 				23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */,
@@ -565,6 +580,7 @@
 				2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */,
 				80CA5F3B2524F187003E900D /* GameViewController.swift in Sources */,
 				8030892F2528B78800C51C22 /* InfiniteBackgroundManager.swift in Sources */,
+				2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */,
 				23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */,
 				8030890D2528893A00C51C22 /* GridGenerator.swift in Sources */,
 				23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */,
