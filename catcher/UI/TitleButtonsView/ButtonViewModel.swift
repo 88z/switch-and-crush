@@ -7,7 +7,11 @@
 
 import Foundation
 
-class ButtonViewModel {
+class ButtonViewModel: Equatable {
+    static func == (lhs: ButtonViewModel, rhs: ButtonViewModel) -> Bool {
+        return lhs.text == rhs.text
+    }
+    
     let text: String
     let action:()->Void
     

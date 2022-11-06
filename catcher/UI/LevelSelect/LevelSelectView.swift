@@ -24,8 +24,8 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             return rowCount * buttonSide + (rowCount-1)*buttonVSpace
         }
     }
-    let levelSelectAction:(_: Int)->Void
-    let backButtonAction: ()->Void
+    private let levelSelectAction:(_: Int)->Void
+    private let backButtonAction: ()->Void
     
     init(frame: CGRect, buttonModels: [LevelButtonModel], backButtonAction:@escaping ()->Void, levelSelectAction: @escaping (_: Int)->Void) {
         self.levelSelectAction = levelSelectAction

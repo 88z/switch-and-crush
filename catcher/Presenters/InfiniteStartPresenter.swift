@@ -42,7 +42,15 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     }
     
     func present() {
-        let infiniteStartView = TitleButtonsView(frame: .zero, buttonModels: [], title: "best score: \(progress.infiniteModeRecord)") {
+        let infiniteStartView = TitleButtonsView(frame: .zero, buttonModels: [
+            ButtonViewModel(text: "Start", action: {
+                guard let vc = self.vc else {
+                    assertionFailure("viewController not found")
+                    return
+                }
+                GamePresenter(vc: vc, startState: .first, level: LevelFactory().infiniteLevel(), progress: self.progress).present()
+            })
+            ], title: "best score: \(progress.infiniteModeRecord)") {
             guard let vc = self.vc else {
                 return
             }

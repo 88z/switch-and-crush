@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 import UIKit
 
+let UI_BUTTON_HEIGHT:CGFloat = 61
+let UI_BUTTON_WIDTH:CGFloat = 252
 let UI_BUTTON_BOTTOM_OFFSET:CGFloat = 154
 let UI_VERTICAL_SPACE_BETWEEN_BUTTONS:CGFloat = 87
 let UI_TITLE_TOP_OFFSET:CGFloat = 200

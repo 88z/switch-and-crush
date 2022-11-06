@@ -13,9 +13,16 @@ class TitleButtonsView: UIView {
     
     let backButtonAction: (()->Void)?
     private weak var backButton: UIButton?
+    private weak var titleLabel: UILabel?
+    private var buttons: [UIButton] = []
+    private var buttonBorders: [CAShapeLayer] = []
+    
+    private var actions:[()->Void] = []
+    
     
     init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, backButtonAction: (()->Void)?) {
         self.backButtonAction = backButtonAction
+        
         super.init(frame: frame)
         if backButtonAction != nil {
             let backButton = UIButton(frame: .zero)
@@ -24,16 +31,62 @@ class TitleButtonsView: UIView {
             backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
             self.backButton = backButton
         }
+        if title != nil {
+            let titleLabel = UILabel(frame: .zero)
+            titleLabel.text = title
+            titleLabel.font = FONT(size: 24)
+            titleLabel.textColor = .text()
+            addSubview(titleLabel)
+            self.titleLabel = titleLabel
+        }
+        
+        for model in buttonModels {
+            let button = UIButton(frame: .zero)
+            button.setTitle(model.text, for: .normal)
+            let attributedText = NSMutableAttributedString(string: model.text)
+            attributedText.addAttributes([.foregroundColor: UIColor.text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: model.text.count))
+            button.setAttributedTitle(attributedText, for: .normal)
+            let border = CAShapeLayer()
+            border.strokeColor = UIColor.text().cgColor
+            border.lineWidth = 1
+            border.fillColor = nil
+            button.layer.addSublayer(border)
+            button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+            buttonBorders.append(border)
+            addSubview(button)
+            buttons.append(button)
+            actions.append(model.action)
+        }
+         
         
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-    
+        
+        titleLabel?.pin
+            .sizeToFit()
+            .hCenter()
+            .top(pin.safeArea.top + 182)
+        
         backButton?.pin
             .sizeToFit()
-            .top(pin.safeArea.top + 109)
+            .bottom(to:titleLabel!.edge.top)
+            .marginBottom(73)
             .left(34)
+        
+        for i in 0..<buttons.count {
+            let button = buttons[i]
+            button.pin
+                .width(UI_BUTTON_WIDTH)
+                .height(UI_BUTTON_HEIGHT)
+                .bottom(pin.safeArea.bottom)
+                .marginBottom(UI_BUTTON_BOTTOM_OFFSET)
+                .hCenter()
+            let borderRect = CGRect(x: 0, y: 0, width: button.bounds.size.width, height: button.bounds.size.height)
+            buttonBorders[i].path = UIBezierPath(rect: borderRect).cgPath
+            buttonBorders[i].frame = borderRect
+        }
     }
     
     @IBAction private func backButtonPressed(_ sender: UIButton) {
@@ -44,6 +97,13 @@ class TitleButtonsView: UIView {
         backButtonAction()
     }
     
+    @IBAction private func buttonPressed(_ sender: UIButton) {
+        guard let index = buttons.firstIndex(of:sender) else {
+            assertionFailure("button not found")
+            return
+        }
+        actions[index]()
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
