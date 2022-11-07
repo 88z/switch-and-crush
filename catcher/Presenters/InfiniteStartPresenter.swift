@@ -31,16 +31,6 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
         self.vc = vc
     }
     
-    func present1() {
-        let frame = vc?.view.frame ?? .zero
-        let ui = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "best score: \(progress.infiniteModeRecord)".localiz()),
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "Start".localiz(), name: "start")
-        ])
-        ui.uiSceneDelegate = self
-        vc?.show(uiScene: ui)
-    }
-    
     func present() {
         let infiniteStartView = TitleButtonsView(frame: .zero, buttonModels: [
             ButtonViewModel(text: "Start", action: {

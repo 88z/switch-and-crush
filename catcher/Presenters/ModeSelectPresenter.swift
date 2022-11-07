@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class ModeSelectPresenter: Presenter, TrivialUISceneDelegate {
+class ModeSelectPresenter: Presenter {
     public weak var vc: GameViewController?
     let progress: Progress
     
@@ -16,30 +16,26 @@ class ModeSelectPresenter: Presenter, TrivialUISceneDelegate {
     private let aracadeButtonName = "arcade"
     
     func present() {
-        let frame = vc?.view.frame ?? .zero
-        let ui = TrivialUIScene(size: UIScreen.main.bounds.size, elements:[
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 0, text: "Endless mOde".localiz(), width:250, name:infiniteButtonName),
-            TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET+UI_VERTICAL_SPACE_BETWEEN_BUTTONS), color: .text(), delayBeforePresent: 0, text: "arCade mOde".localiz(), width:250, name:aracadeButtonName),
-
-        ])
-        ui.uiSceneDelegate = self
-        vc?.show(uiScene: ui)
-    }
-    
-    func uiScenePressed(scene: TrivialUIScene) {
-        
-    }
-    
-    func uiSceneElementPressed(scene: TrivialUIScene, element: TrivialUISceneElement) {
-        guard let vc = vc else {
-            assertionFailure("viewController no found")
-            return
-        }
-        if element.name == infiniteButtonName {
-            InfiniteStartPresenter(vc: vc).present()
-        } else if element.name == aracadeButtonName {
-            LevelSelectPresenter(vc: vc, progress: progress).present()
-        }
+        let modeSelectView = TitleButtonsView(frame: .zero,
+                                              buttonModels: [
+                                                ButtonViewModel(text: "arCade mOde", action: {
+                                                    guard let vc = self.vc else {
+                                                        assertionFailure("viewController no found")
+                                                        return
+                                                    }
+                                                    LevelSelectPresenter(vc: vc, progress: self.progress).present()
+                                                }),
+                                                ButtonViewModel(text: "Endless mOde", action: {
+                                                    guard let vc = self.vc else {
+                                                        assertionFailure("viewController no found")
+                                                        return
+                                                    }
+                                                    InfiniteStartPresenter(vc: vc).present()
+                                                }),
+                                              ],
+                                              title: nil,
+                                              backButtonAction: nil)
+        vc?.show(uiView: modeSelectView)
     }
     
     init(vc: GameViewController, progress: Progress) {

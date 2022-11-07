@@ -77,12 +77,17 @@ class TitleButtonsView: UIView {
         
         for i in 0..<buttons.count {
             let button = buttons[i]
+            let prevButton = i == 0 ? nil : buttons[i-1]
             button.pin
                 .width(UI_BUTTON_WIDTH)
                 .height(UI_BUTTON_HEIGHT)
-                .bottom(pin.safeArea.bottom)
                 .marginBottom(UI_BUTTON_BOTTOM_OFFSET)
                 .hCenter()
+            if prevButton != nil {
+                button.pin.bottom(to:prevButton!.edge.top).marginBottom(26)
+            } else {
+                button.pin.bottom(pin.safeArea.bottom).marginBottom(62)
+            }
             let borderRect = CGRect(x: 0, y: 0, width: button.bounds.size.width, height: button.bounds.size.height)
             buttonBorders[i].path = UIBezierPath(rect: borderRect).cgPath
             buttonBorders[i].frame = borderRect
