@@ -38,7 +38,7 @@ class GamePresenter: BattleFieldPresenter {
     }
     
     override func didFinish(level:Level) {
-        
+        //TODO didFinishPresenter
     }
     
     private func startGame () {
@@ -67,7 +67,15 @@ class GamePresenter: BattleFieldPresenter {
     
     override func crashAnimationFinished(scene: BattleFieldScene) {
         super.crashAnimationFinished(scene: scene)
-        showGameOver(score: scene.getProgress())
+        //TODO разный гейм овер для разных режимов игры
+        guard let vc = self.vc else {
+            assertionFailure("viewController no found")
+            return
+        }
+        GameOverPresenter(vc: vc, title: "game over", level: level, progress: progress).present()
+        
+        
+//        showGameOver(score: scene.getProgress())
     }
     
     //TODO вынести в gameover presenter

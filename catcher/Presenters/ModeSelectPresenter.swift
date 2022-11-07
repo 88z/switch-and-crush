@@ -12,9 +12,6 @@ class ModeSelectPresenter: Presenter {
     public weak var vc: GameViewController?
     let progress: Progress
     
-    private let infiniteButtonName = "infinite"
-    private let aracadeButtonName = "arcade"
-    
     func present() {
         let modeSelectView = TitleButtonsView(frame: .zero,
                                               buttonModels: [
