@@ -75,33 +75,7 @@ class GamePresenter: BattleFieldPresenter {
             return
         }
         GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: scene.getProgress()).present()
-        
-        
-//        showGameOver(score: scene.getProgress())
-    }
-    
-    //TODO вынести в gameover presenter
-    func showGameOver(score: Int) {
-        let frame = vc?.view.frame ?? .zero
-        
-        var elements: [TrivialUISceneElement] = []
-        if score <= progress.infiniteModeRecord {
-            elements.append(contentsOf:
-                                [TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "score: \(score)".localiz()),
-                                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET-40), color: .text(), delayBeforePresent: 0.5, text: "best: \(progress.infiniteModeRecord)".localiz())
-                                ])
-        } else {
-            progress.infiniteModeRecord = score
-            elements.append(contentsOf:
-                                [TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY-UI_TITLE_TOP_OFFSET), color: .text(), delayBeforePresent: 0, text: "new record: \(score)".localiz())
-                                ])
-        }
-        elements.append(TrivialUISceneButton(position: CGPoint(x: frame.midX, y: frame.minY+UI_BUTTON_BOTTOM_OFFSET), color: .text(), delayBeforePresent: 1, text: "play again".localiz(), name: "over"))
-        
-        let gameOverUI = TrivialUIScene(size: UIScreen.main.bounds.size, elements:elements)
-        gameOverUI.uiSceneDelegate = self
         battleFieldScene.isDimmed = true
-        vc?.show(uiScene: gameOverUI)
-        self.gameOverUI = gameOverUI
+        
     }
 }

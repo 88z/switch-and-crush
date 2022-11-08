@@ -38,8 +38,6 @@ class TitleButtonsView: UIView {
             paragraphStyle.lineSpacing = 36
             attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 
-            
-            
             titleLabel.attributedText = attributedString
             titleLabel.font = FONT(size: 24)
             titleLabel.textColor = .text()
