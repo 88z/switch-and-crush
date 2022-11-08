@@ -74,7 +74,7 @@ class GamePresenter: BattleFieldPresenter {
             assertionFailure("viewController no found")
             return
         }
-        GameOverPresenter(vc: vc, title: "game over", level: level, progress: progress, gameMode: self.gameMode).present()
+        GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: scene.getProgress()).present()
         
         
 //        showGameOver(score: scene.getProgress())

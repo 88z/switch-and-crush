@@ -57,7 +57,7 @@ class LevelSelectPresenter: Presenter {
             }
             let level = self.progress.levels[index]
             
-            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .endless).present()
+            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .arcade).present()
         })
         vc?.show(uiView: levelSelectView)
     }

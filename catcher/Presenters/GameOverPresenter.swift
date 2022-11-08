@@ -15,12 +15,17 @@ class GameOverPresenter:Presenter {
     private let progress: Progress
     private let gameMode: GameMode
     
-    init(vc: GameViewController, title: String, level:Level, progress: Progress, gameMode: GameMode) {
+    init(vc: GameViewController, level:Level, progress: Progress, gameMode: GameMode, score: Int) {
         self.vc = vc
-        self.title = title
         self.level = level
         self.progress = progress
         self.gameMode = gameMode
+        
+        if gameMode == .arcade {
+            self.title = "level failed"
+        } else {
+            self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
+        }
     }
     
     func present() {

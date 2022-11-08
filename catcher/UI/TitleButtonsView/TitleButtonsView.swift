@@ -33,9 +33,18 @@ class TitleButtonsView: UIView {
         }
         if title != nil {
             let titleLabel = UILabel(frame: .zero)
-            titleLabel.text = title
+            let attributedString = NSMutableAttributedString(string: title ?? "")
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 36
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+
+            
+            
+            titleLabel.attributedText = attributedString
             titleLabel.font = FONT(size: 24)
             titleLabel.textColor = .text()
+            titleLabel.numberOfLines = 2
+            
             addSubview(titleLabel)
             self.titleLabel = titleLabel
         }
