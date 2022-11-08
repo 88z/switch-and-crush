@@ -38,7 +38,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                              userInterationEnabled: false,
                                              colorScheme: .defaultScheme()),
                                 shouldShowCounter: false,
-                                shouldPlaceHero: true)
+                                shouldPlaceHero: true, mode: .arcade)
         thisIsBallUI.uiSceneDelegate = self
         vc?.show(uiScene: thisIsBallUI)
         self.switchColorUI = thisIsBallUI
@@ -56,7 +56,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  userInterationEnabled: false,
                                                  colorScheme: .defaultScheme()),
                                     shouldShowCounter: false,
-                                    shouldPlaceHero: true)
+                                    shouldPlaceHero: true, mode: .arcade)
             let frame = vc?.view.frame ?? .zero
             let redObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-100), delayBeforePresent: 0, text: "red BALL crashes red blocks".localiz()),
@@ -71,7 +71,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 200,
-                                                 name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
+                                                 name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true, mode:.arcade)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-120   ), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),
@@ -86,7 +86,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: LevelFactory().infiniteLevel(), progress: progress)
+            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: LevelFactory().level1(), progress: progress, gameMode: .arcade)
             newPresenter.present()
         }
     }

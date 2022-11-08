@@ -18,6 +18,7 @@
 		2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442E2918154E00C3320F /* TitleButtonsView.swift */; };
 		237944322918158600C3320F /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944312918158600C3320F /* ButtonViewModel.swift */; };
 		237944342919884300C3320F /* GameOverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944332919884300C3320F /* GameOverPresenter.swift */; };
+		23794436291ABF1700C3320F /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23794435291ABF1700C3320F /* GameMode.swift */; };
 		23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
 		2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */; };
@@ -107,6 +108,7 @@
 		2379442E2918154E00C3320F /* TitleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleButtonsView.swift; sourceTree = "<group>"; };
 		237944312918158600C3320F /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
 		237944332919884300C3320F /* GameOverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverPresenter.swift; sourceTree = "<group>"; };
+		23794435291ABF1700C3320F /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPresenter.swift; sourceTree = "<group>"; };
 		23831FC7289FC19C002624BD /* StackArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackArcObstacle.swift; sourceTree = "<group>"; };
 		2388BA7328731D7700D27DBD /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				806B9DDC25455629003CB4EE /* Level.swift */,
 				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
 				23902E9B28A7AB7100D309DB /* Progress.swift */,
+				23794435291ABF1700C3320F /* GameMode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23794436291ABF1700C3320F /* GameMode.swift in Sources */,
 				23B33AC5287813AF00827535 /* Config.swift in Sources */,
 				23E9F4D228903C110045651D /* SandboxScene.swift in Sources */,
 				806B9DDD25455629003CB4EE /* Level.swift in Sources */,

@@ -21,7 +21,8 @@ protocol BattleFieldSceneDelegate: SKSceneDelegate {
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var hero: Hero?
-
+    
+    private var gameMode: GameMode?
     private let heroTopOffset: CGFloat
     private var safeAreaHeight: CGFloat {
         var height: CGFloat = 0
@@ -131,8 +132,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
     
-    func start(level: Level, shouldShowCounter:Bool = true, shouldPlaceHero: Bool) {
+    func start(level: Level, shouldShowCounter:Bool = true, shouldPlaceHero: Bool, mode: GameMode) {
         self.level = level
+        self.gameMode = mode
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
         if shouldPlaceHero {
@@ -260,7 +262,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func updateCounter() {
-        let text = level?.capacity ?? 0 > 0 ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
+        let text = gameMode == .arcade ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 32)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText

@@ -13,13 +13,16 @@ class GameOverPresenter:Presenter {
     private let title: String
     private let level: Level
     private let progress: Progress
+    private let gameMode: GameMode
     
-    init(vc: GameViewController, title: String, level:Level, progress: Progress) {
+    init(vc: GameViewController, title: String, level:Level, progress: Progress, gameMode: GameMode) {
         self.vc = vc
         self.title = title
         self.level = level
         self.progress = progress
+        self.gameMode = gameMode
     }
+    
     func present() {
         let gameOverView = TitleButtonsView(frame: .zero, buttonModels: [
             ButtonViewModel(text: "try again".localiz(), action: {
@@ -28,7 +31,7 @@ class GameOverPresenter:Presenter {
                     return 
                 }
                 vc.freezeInteraction()
-                GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress).present()
+                GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress, gameMode: self.gameMode).present()
             })
             
         ], title: title, backButtonAction: nil)

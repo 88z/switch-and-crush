@@ -7,7 +7,7 @@
 
 import Foundation
 import SpriteKit
-
+//TODO переименовать в endless
 class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     
     func uiScenePressed(scene: TrivialUIScene) {
@@ -21,7 +21,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
             return
         }
         if element is TrivialUISceneButton {
-            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: progress).present()
+            GamePresenter(vc: vc, startState: .first, level: levelFactory.infiniteLevel(), progress: progress, gameMode: .endless).present()
         }
     }
     
@@ -38,7 +38,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
                     assertionFailure("viewController not found")
                     return
                 }
-                GamePresenter(vc: vc, startState: .first, level: LevelFactory().infiniteLevel(), progress: self.progress).present()
+                GamePresenter(vc: vc, startState: .first, level: LevelFactory().infiniteLevel(), progress: self.progress, gameMode: .endless).present()
             })
             ], title: "best score: \(progress.infiniteModeRecord)") {
             guard let vc = self.vc else {

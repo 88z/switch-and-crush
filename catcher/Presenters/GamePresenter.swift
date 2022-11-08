@@ -14,12 +14,14 @@ class GamePresenter: BattleFieldPresenter {
     private weak var gameOverUI: TrivialUIScene?
     let level: Level
     let progress: Progress
+    let gameMode: GameMode
     
     
-    init(vc: GameViewController, startState: State, level: Level, progress: Progress) {
+    init(vc: GameViewController, startState: State, level: Level, progress: Progress, gameMode: GameMode) {
         self.startState = startState
         self.level = level
         self.progress = progress
+        self.gameMode = gameMode
         super.init(vc: vc)
     }
     
@@ -43,7 +45,7 @@ class GamePresenter: BattleFieldPresenter {
     
     private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: level, shouldPlaceHero: true)
+        battleFieldScene?.start(level: level, shouldPlaceHero: true, mode: self.gameMode)
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {
@@ -61,7 +63,7 @@ class GamePresenter: BattleFieldPresenter {
         }
 
         vc.freezeInteraction()
-        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level, progress: progress)
+        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level, progress: progress, gameMode: gameMode)
         newPresenter.present()
     }
     
@@ -72,7 +74,7 @@ class GamePresenter: BattleFieldPresenter {
             assertionFailure("viewController no found")
             return
         }
-        GameOverPresenter(vc: vc, title: "game over", level: level, progress: progress).present()
+        GameOverPresenter(vc: vc, title: "game over", level: level, progress: progress, gameMode: self.gameMode).present()
         
         
 //        showGameOver(score: scene.getProgress())
