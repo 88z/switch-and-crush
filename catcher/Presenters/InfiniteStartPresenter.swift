@@ -40,7 +40,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
                 }
                 GamePresenter(vc: vc, startState: .first, level: LevelFactory().infiniteLevel(), progress: self.progress, gameMode: .endless).present()
             })
-            ], title: "best score: \(progress.infiniteModeRecord)") {
+        ], title: "best score: \(progress.infiniteModeRecord)", backButtonIcon: .back) {
             guard let vc = self.vc else {
                 return
             }

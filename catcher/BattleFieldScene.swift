@@ -213,7 +213,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             guard let delegate = self.delegate as? BattleFieldSceneDelegate else {
                 return
             }
-            self.counterNode.isHidden = self.gameMode == .endless
+            self.counterNode.isHidden = true
             delegate.crashAnimationFinished(scene: self)
         }
     }

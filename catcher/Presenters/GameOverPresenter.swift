@@ -38,7 +38,7 @@ class GameOverPresenter:Presenter {
                 vc.freezeInteraction()
                 GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress, gameMode: self.gameMode).present()
             }),
-        ], title: title, backButtonAction: {
+        ], title: title, backButtonIcon: .home, backButtonAction: {
             guard let vc = self.vc else {
                 assertionFailure("viewController no found")
                 return

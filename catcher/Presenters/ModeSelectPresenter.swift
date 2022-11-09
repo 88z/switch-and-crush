@@ -30,7 +30,7 @@ class ModeSelectPresenter: Presenter {
                                                     InfiniteStartPresenter(vc: vc).present()
                                                 }),
                                               ],
-                                              title: nil,
+                                              title: nil, backButtonIcon: nil,
                                               backButtonAction: nil)
         vc?.show(uiView: modeSelectView)
     }

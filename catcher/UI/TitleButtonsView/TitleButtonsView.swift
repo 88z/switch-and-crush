@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 import PinLayout
 
+enum BackButtonIcon {
+    case back
+    case home
+}
+
 class TitleButtonsView: UIView {
     
     let backButtonAction: (()->Void)?
@@ -20,13 +25,20 @@ class TitleButtonsView: UIView {
     private var actions:[()->Void] = []
     
     
-    init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, backButtonAction: (()->Void)?) {
+    init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, backButtonIcon: BackButtonIcon?, backButtonAction: (()->Void)?) {
         self.backButtonAction = backButtonAction
-        
         super.init(frame: frame)
         if backButtonAction != nil {
             let backButton = UIButton(frame: .zero)
-            backButton.setImage(UIImage(named: "back"), for: .normal)
+            var backButtonImageName: String? = nil
+            if backButtonIcon == .back {
+                backButtonImageName = "back"
+            } else if backButtonIcon == .home {
+                backButtonImageName = "home"
+            }
+            if backButtonImageName != nil {
+                backButton.setImage(UIImage(named: backButtonImageName!), for: .normal)
+            }
             addSubview(backButton)
             backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
             self.backButton = backButton
