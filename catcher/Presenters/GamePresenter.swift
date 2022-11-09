@@ -76,6 +76,5 @@ class GamePresenter: BattleFieldPresenter {
         }
         GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: scene.getProgress()).present()
         battleFieldScene.isDimmed = true
-        
     }
 }

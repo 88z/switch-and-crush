@@ -59,10 +59,10 @@ class TitleButtonsView: UIView {
             border.fillColor = nil
             button.layer.addSublayer(border)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-            buttonBorders.append(border)
+            buttonBorders.insert(border, at: 0)
             addSubview(button)
-            buttons.append(button)
-            actions.append(model.action)
+            buttons.insert(button, at: 0)
+            actions.insert(model.action, at: 0)
         }
          
         
@@ -88,12 +88,11 @@ class TitleButtonsView: UIView {
             button.pin
                 .width(UI_BUTTON_WIDTH)
                 .height(UI_BUTTON_HEIGHT)
-                .marginBottom(UI_BUTTON_BOTTOM_OFFSET)
                 .hCenter()
             if prevButton != nil {
                 button.pin.bottom(to:prevButton!.edge.top).marginBottom(26)
             } else {
-                button.pin.bottom(pin.safeArea.bottom).marginBottom(62)
+                button.pin.bottom(pin.safeArea.bottom).marginBottom(UI_BUTTON_BOTTOM_OFFSET)
             }
             let borderRect = CGRect(x: 0, y: 0, width: button.bounds.size.width, height: button.bounds.size.height)
             buttonBorders[i].path = UIBezierPath(rect: borderRect).cgPath
