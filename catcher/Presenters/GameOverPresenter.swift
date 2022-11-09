@@ -11,11 +11,16 @@ import SpriteKit
 class GameOverPresenter:Presenter {
     public weak var vc: GameViewController?
     private let title: String
+    private let topText: String?
     private let level: Level
     private let progress: Progress
     private let gameMode: GameMode
     
-    init(vc: GameViewController, level:Level, progress: Progress, gameMode: GameMode, score: Int) {
+    init(vc: GameViewController,
+         level:Level,
+         progress: Progress,
+         gameMode: GameMode,
+         score: Int) {
         self.vc = vc
         self.level = level
         self.progress = progress
@@ -26,6 +31,7 @@ class GameOverPresenter:Presenter {
         } else {
             self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
         }
+        topText =  gameMode == .arcade ? "\(score) / \(level.capacity)" : nil
     }
     
     func present() {
@@ -38,7 +44,7 @@ class GameOverPresenter:Presenter {
                 vc.freezeInteraction()
                 GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress, gameMode: self.gameMode).present()
             }),
-        ], title: title, backButtonIcon: .home, backButtonAction: {
+        ], title: title, topText: topText, backButtonIcon: .home, backButtonAction: {
             guard let vc = self.vc else {
                 assertionFailure("viewController no found")
                 return

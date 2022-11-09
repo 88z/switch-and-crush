@@ -19,13 +19,14 @@ class TitleButtonsView: UIView {
     let backButtonAction: (()->Void)?
     private weak var backButton: UIButton?
     private weak var titleLabel: UILabel?
+    private weak var topTextLabel: UILabel?
     private var buttons: [UIButton] = []
     private var buttonBorders: [CAShapeLayer] = []
     
     private var actions:[()->Void] = []
     
     
-    init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, backButtonIcon: BackButtonIcon?, backButtonAction: (()->Void)?) {
+    init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, topText:String? = nil, backButtonIcon: BackButtonIcon?, backButtonAction: (()->Void)?) {
         self.backButtonAction = backButtonAction
         super.init(frame: frame)
         if backButtonAction != nil {
@@ -59,6 +60,22 @@ class TitleButtonsView: UIView {
             self.titleLabel = titleLabel
         }
         
+        if topText != nil {
+            let topTextLabel = UILabel(frame: .zero)
+            let attributedString = NSMutableAttributedString(string: topText ?? "")
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 36
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+
+            topTextLabel.attributedText = attributedString
+            topTextLabel.font = FONT(size: 32)
+            topTextLabel.textColor = .text()
+            topTextLabel.numberOfLines = 1
+            
+            addSubview(topTextLabel)
+            self.topTextLabel = topTextLabel
+        }
+        
         for model in buttonModels {
             let button = UIButton(frame: .zero)
             button.setTitle(model.text, for: .normal)
@@ -87,6 +104,11 @@ class TitleButtonsView: UIView {
             .sizeToFit()
             .hCenter()
             .top(pin.safeArea.top + 182)
+        
+        topTextLabel?.pin
+            .sizeToFit()
+            .hCenter()
+            .top(pin.safeArea.top + 20)
         
         backButton?.pin
             .sizeToFit()
