@@ -20,7 +20,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         let progress = Progress(levelFactory: LevelFactory())
         if progress.isOnboardingShown {
-            BackgroundPresenter(vc:self).present()
+            BackgroundPresenter(vc:self, progress: progress).present()
             ModeSelectPresenter(vc:self, progress: progress).present()
 //            InfiniteStartPresenter(vc: self).present()
         } else {

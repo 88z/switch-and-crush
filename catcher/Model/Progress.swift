@@ -52,6 +52,12 @@ class Progress {
         }
     }
     
+    var lastCompletedLevel: Level {
+        get {
+            return levels[completedLevelsCount-1]
+        }
+    }
+    
     private func clean() {
         userDefaults.removeObject(forKey: isOnboardingShownKey)
         userDefaults.removeObject(forKey: infiniteModeRecordKey)
@@ -80,5 +86,7 @@ class Progress {
             return levels[i+1]
         }
     }
+    
+    
     
 }

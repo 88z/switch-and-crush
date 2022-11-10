@@ -8,10 +8,17 @@
 import Foundation
 
 class BackgroundPresenter: BattleFieldPresenter{
+    
+    let progress: Progress
+    
+    init (vc: GameViewController, progress: Progress) {
+        self.progress = progress
+        super.init(vc: vc)
+    }
+    
     override func present(){
         super.present()
-        let levelFactory = LevelFactory()
-        battleFieldScene?.start(level: levelFactory.backgorundLevel(), shouldShowCounter: false, shouldPlaceHero: false, mode: .endless)
+        battleFieldScene?.start(level: progress.lastCompletedLevel, shouldShowCounter: false, shouldPlaceHero: false, mode: .endless)
         battleFieldScene.isDimmed = true
     }
 }
