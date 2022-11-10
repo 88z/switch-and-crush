@@ -67,4 +67,18 @@ class Progress {
 //        clean()
     }
     
+    func levelAfter(_ level:Level) -> Level? {
+        guard let i = (levels.firstIndex { l in
+            l.name == level.name
+        }) else {
+            return nil
+        }
+        
+        if i >= levels.count-1 {
+            return nil
+        } else {
+            return levels[i+1]
+        }
+    }
+    
 }

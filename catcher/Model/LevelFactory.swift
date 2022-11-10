@@ -10,7 +10,7 @@ import SpriteKit
 
 class LevelFactory {
     
-    func infiniteLevel() -> Level {
+    func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
         for _ in 0..<100{
@@ -30,7 +30,7 @@ class LevelFactory {
                      obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0, acceleration: 0)],
                      capacity: -1,
                      initialSpeed: 100,
-                     name:"0",
+                     name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -54,7 +54,7 @@ class LevelFactory {
                      obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0, acceleration: 0)],
                      capacity: -1,
                      initialSpeed: 250,
-                     name:"0",
+                     name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -69,7 +69,7 @@ class LevelFactory {
                      obstacleTypesForTail: [.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: 0)],
                      capacity: 10,
                      initialSpeed: 200,
-                     name:"1",
+                     name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -90,9 +90,9 @@ class LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.plank(blinkInterval: 0, acceleration: 0)],
-                     capacity: 100,
+                     capacity: 10,
                      initialSpeed: 200,
-                     name:"2",
+                     name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -126,9 +126,9 @@ class LevelFactory {
         
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.plank(blinkInterval: 0, acceleration: 0)],
-                     capacity: 100,
+                     capacity: 10,
                      initialSpeed: 200,
-                     name:"3",
+                     name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)

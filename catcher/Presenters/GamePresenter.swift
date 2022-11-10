@@ -40,7 +40,14 @@ class GamePresenter: BattleFieldPresenter {
     }
     
     override func didFinish(level:Level) {
-        //TODO didFinishPresenter
+        guard let vc = vc else {
+            return
+        }
+        battleFieldScene.isDimmed = true
+        battleFieldScene.removeHero()
+        
+        LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
+        
     }
     
     private func startGame () {

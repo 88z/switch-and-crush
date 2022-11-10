@@ -110,6 +110,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         self.hero = hero
     }
     
+    func removeHero() {
+        hero?.removeFromParent()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -247,8 +251,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
         progress += 1
         updateCounter()
+        
         if progress == capacity {
             if let level = self.level {
+                counterNode.isHidden = true
                 battleDelegate?.didFinish(level: level)
             }
         }
