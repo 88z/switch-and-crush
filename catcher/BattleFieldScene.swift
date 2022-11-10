@@ -21,7 +21,6 @@ protocol BattleFieldSceneDelegate: SKSceneDelegate {
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var hero: Hero?
-    
     private var gameMode: GameMode?
     private let heroTopOffset: CGFloat
     private var safeAreaHeight: CGFloat {
@@ -60,17 +59,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     private var obstacleAlpha: CGFloat = 1
     
-    var isDimmed: Bool {
-        get {
-            return obstacleAlpha < 1
-        }
-        set {
-            obstacleAlpha = newValue ? 0.3 : 1
-            let dimAction = SKAction.fadeAlpha(to: obstacleAlpha, duration: 1)
-            for obstacle in obstacles()  {
-                obstacle.run(dimAction)
-            }
-        }
+    func dim() {
+        let dimAction = SKAction.fadeAlpha(to: 0.3, duration: 1)
+        run(dimAction)
     }
     
     var battleDelegate: BattleDelegate?
@@ -112,6 +103,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func removeHero() {
         hero?.removeFromParent()
+    }
+    
+    func startImmortal() {
+        hero?.state = .immortal
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -188,18 +183,21 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        var needBreakObstacle = false
-        for obstacleBody in obstacleBodies {
-            let obstacle = obstacleBody.node as! Obstacle
-            let contactPoint = convert(CGPoint(x: contact.contactPoint.x,
-                                               y: contact.contactPoint.y-2),
-                                       to: obstacle.node)
-            
-            if obstacle.contactTest(at: contactPoint, state: hero.state) {
-                needBreakObstacle = true
-                break
+        var needBreakObstacle = hero.state == .immortal
+        if !needBreakObstacle {
+            for obstacleBody in obstacleBodies {
+                let obstacle = obstacleBody.node as! Obstacle
+                let contactPoint = convert(CGPoint(x: contact.contactPoint.x,
+                                                   y: contact.contactPoint.y-2),
+                                           to: obstacle.node)
+                
+                if obstacle.contactTest(at: contactPoint, state: hero.state) {
+                    needBreakObstacle = true
+                    break
+                }
             }
         }
+        
         
         if needBreakObstacle {
             breakObstacle(obstacle, contactPoint: contact.contactPoint)
@@ -282,7 +280,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
 
         if lastObstacle.node.calculateAccumulatedFrame().maxY > frame.minY {
             self.lastObstacle = obstacleArranger?.arrangeNext(speed: fallSpeed)
-            self.lastObstacle?.node.alpha = obstacleAlpha
             
             //удаляем улетевшие препятствия в момент добавления новых,
             //делаю так, чтобы не дергать это слишком часто
@@ -297,7 +294,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             if obstacle.calculateAccumulatedFrame().minY  > frame.maxY {
                 obstacle.removeFromParent()
             }
-            
         }
     }
 

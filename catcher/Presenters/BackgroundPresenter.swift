@@ -19,7 +19,7 @@ class BackgroundPresenter: BattleFieldPresenter{
     override func present(){
         super.present()
         battleFieldScene?.start(level: progress.lastCompletedLevel, shouldShowCounter: false, shouldPlaceHero: false, mode: .endless)
-        battleFieldScene.isDimmed = true
+        battleFieldScene.dim()
     }
 }
 

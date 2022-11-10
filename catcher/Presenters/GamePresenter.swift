@@ -43,9 +43,8 @@ class GamePresenter: BattleFieldPresenter {
         guard let vc = vc else {
             return
         }
-        
-        battleFieldScene.isDimmed = true
-        battleFieldScene.removeHero()
+        battleFieldScene.startImmortal()
+        battleFieldScene.dim()
         LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
         
         guard let levelIndex = (progress.levels.firstIndex { l in
@@ -91,7 +90,7 @@ class GamePresenter: BattleFieldPresenter {
         }
         let score = scene.getProgress()
         GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
-        battleFieldScene.isDimmed = true
+        battleFieldScene.dim()
         
         guard let levelIndex = (progress.levels.firstIndex { l in
            return l.name == level.name

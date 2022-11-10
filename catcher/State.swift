@@ -11,6 +11,7 @@ import SpriteKit
 enum State {
     case first
     case second
+    case immortal
 }
 
 enum ColorScheme {
@@ -42,6 +43,8 @@ extension State {
             case .mint:
                 return UIColor.isabelline()
             }
+        case .immortal:
+            return UIColor.immortal()
         }
     }
     
