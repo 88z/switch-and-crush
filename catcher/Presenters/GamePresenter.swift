@@ -89,7 +89,17 @@ class GamePresenter: BattleFieldPresenter {
             assertionFailure("viewController no found")
             return
         }
-        GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: scene.getProgress()).present()
+        let score = scene.getProgress()
+        GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
         battleFieldScene.isDimmed = true
+        
+        guard let levelIndex = (progress.levels.firstIndex { l in
+           return l.name == level.name
+        }) else {
+            return
+        }
+        if levelIndex == progress.completedLevelsCount {
+            progress.crushedObstaclesCount = score
+        }
     }
 }
