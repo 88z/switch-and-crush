@@ -43,11 +43,19 @@ class GamePresenter: BattleFieldPresenter {
         guard let vc = vc else {
             return
         }
+        
         battleFieldScene.isDimmed = true
         battleFieldScene.removeHero()
-        
         LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
         
+        guard let levelIndex = (progress.levels.firstIndex { l in
+           return l.name == level.name
+        }) else {
+            return
+        }
+        if levelIndex + 1 > progress.completedLevelsCount {
+            progress.completedLevelsCount = levelIndex + 1
+        }
     }
     
     private func startGame () {
