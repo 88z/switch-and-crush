@@ -28,8 +28,8 @@ class LevelFinishPresenter: Presenter {
                     assertionFailure("viewController no found")
                     return
                 }
+                LevelSelectPresenter(vc: vc, progress: self.progress).present()
                 vc.freezeInteraction()
-                GamePresenter(vc: vc, startState: .first, level: nextLevel!, progress: self.progress, gameMode: .arcade).present()
             }))
         }
         let levelFinishView = TitleButtonsView(frame: .zero, buttonModels: buttonModels, title: "levEl Finished", topText: nil, backButtonIcon: .home, backButtonAction: {
