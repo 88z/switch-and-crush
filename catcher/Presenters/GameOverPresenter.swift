@@ -27,7 +27,7 @@ class GameOverPresenter:Presenter {
         self.gameMode = gameMode
         
         if gameMode == .arcade {
-            self.title = "level failed"
+            self.title = "levEl Failed"
         } else {
             self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
         }

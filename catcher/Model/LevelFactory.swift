@@ -12,18 +12,18 @@ class LevelFactory {
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration = 0
         for _ in 0..<100{
             obstacleTypes.append([
-//                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
                 ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, acceleration: acceleration),
-//                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, acceleration: acceleration)
+                ObstacleType.pendulumPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, acceleration: acceleration)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
