@@ -57,7 +57,9 @@ extension State {
     }
     
     static func nextState(for state:State) -> State {
-        if state == .first {
+        if state == .immortal {
+            return .immortal
+        } else if state == .first {
             return .second
         } else {
             return .first
