@@ -23,7 +23,7 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    let minYSpace: CGFloat = 100
+    let minYSpace: CGFloat = 150
     let maxYSpace: CGFloat = 200
     
     let colorScheme: ColorScheme

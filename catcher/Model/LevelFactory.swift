@@ -62,13 +62,14 @@ class LevelFactory {
     
     func level1() -> Level {
         var obstacleTypes:[ObstacleType] = []
+        let acceleration = 25
         for _ in 0..<15 {
-            obstacleTypes.append(.plank(blinkInterval: 0, acceleration: 30))
+            obstacleTypes.append(.plank(blinkInterval: 0, acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.plank(blinkInterval: 0, acceleration: 0)],
                      capacity: 15,
-                     initialSpeed: 250,
+                     initialSpeed: 200,
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
@@ -78,19 +79,19 @@ class LevelFactory {
     
     func level2() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<5 {
-            obstacleTypes.append(.plank(blinkInterval: 0, acceleration: 0))
-        }
-        for _ in 0..<25 {
+        let acceleration = 25
+
+        for _ in 0..<10 {
             obstacleTypes.append([
-                ObstacleType.plank(blinkInterval: 0, acceleration: 0),
-                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: 0)
-            ].randomElement()! )
-           
+                .twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
+            ].randomElement()!)
         }
+        
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.plank(blinkInterval: 0, acceleration: 0)],
-                     capacity: 10,
+                     obstacleTypesForTail: [[
+                        .twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: 0)
+                     ].randomElement()!],
+                     capacity: 15,
                      initialSpeed: 200,
                      name:#function,
                      initialState: .first,

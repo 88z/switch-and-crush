@@ -68,7 +68,6 @@ class Progress {
         self.levels = [
             levelFactory.level1(),
             levelFactory.level2(),
-            levelFactory.level3(),
         ]
 //        clean()
     }
