@@ -296,6 +296,4 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-
-    
 }
