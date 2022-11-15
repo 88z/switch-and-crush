@@ -52,8 +52,11 @@ class Progress {
         }
     }
     
-    var lastCompletedLevel: Level {
+    var lastCompletedLevel: Level? {
         get {
+            guard completedLevelsCount > 0 else {
+                return nil
+            }
             return levels[completedLevelsCount-1]
         }
     }
@@ -61,6 +64,8 @@ class Progress {
     private func clean() {
         userDefaults.removeObject(forKey: isOnboardingShownKey)
         userDefaults.removeObject(forKey: infiniteModeRecordKey)
+        userDefaults.removeObject(forKey: crushedObstaclesCountKey)
+        userDefaults.removeObject(forKey: completedLevelsCountKey)
     }
     
     let levels: [Level]

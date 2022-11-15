@@ -32,7 +32,13 @@ class LevelFinishPresenter: Presenter {
                 vc.freezeInteraction()
             }))
         }
-        let levelFinishView = TitleButtonsView(frame: .zero, buttonModels: buttonModels, title: "levEl Finished", topText: nil, backButtonIcon: .home, backButtonAction: {
+        let levelFinishView = TitleButtonsView(frame: .zero,
+                                               buttonModels: buttonModels,
+                                               title: "levEl Finished",
+                                               topText: nil,
+                                               imageName: "happyFace",
+                                               backButtonIcon: .home,
+                                               backButtonAction: {
             guard let vc = self.vc else {
                 assertionFailure("viewController no found")
                 return

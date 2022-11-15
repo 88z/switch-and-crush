@@ -20,13 +20,21 @@ class TitleButtonsView: UIView {
     private weak var backButton: UIButton?
     private weak var titleLabel: UILabel?
     private weak var topTextLabel: UILabel?
+    private weak var imageView: UIImageView?
+    private weak var imageContainerView: UIView?
     private var buttons: [UIButton] = []
     private var buttonBorders: [CAShapeLayer] = []
     
     private var actions:[()->Void] = []
     
     
-    init(frame: CGRect, buttonModels: [ButtonViewModel], title:String?, topText:String? = nil, backButtonIcon: BackButtonIcon?, backButtonAction: (()->Void)?) {
+    init(frame: CGRect,
+         buttonModels: [ButtonViewModel],
+         title:String?,
+         topText:String? = nil,
+         imageName:String? = nil,
+         backButtonIcon: BackButtonIcon?,
+         backButtonAction: (()->Void)?) {
         self.backButtonAction = backButtonAction
         super.init(frame: frame)
         if backButtonAction != nil {
@@ -76,6 +84,17 @@ class TitleButtonsView: UIView {
             self.topTextLabel = topTextLabel
         }
         
+        if imageName != nil {
+            let imageContainerView = UIView(frame: .zero)
+            addSubview(imageContainerView)
+            self.imageContainerView = imageContainerView
+            
+            let imageView = UIImageView(image: UIImage(named: imageName!))
+            imageView.alpha = 0.8
+            imageContainerView.addSubview(imageView)
+            self.imageView = imageView
+        }
+        
         for model in buttonModels {
             let button = UIButton(frame: .zero)
             button.setTitle(model.text, for: .normal)
@@ -93,8 +112,6 @@ class TitleButtonsView: UIView {
             buttons.insert(button, at: 0)
             actions.insert(model.action, at: 0)
         }
-         
-        
     }
     
     override func layoutSubviews() {
@@ -132,6 +149,18 @@ class TitleButtonsView: UIView {
             buttonBorders[i].path = UIBezierPath(rect: borderRect).cgPath
             buttonBorders[i].frame = borderRect
         }
+        
+        imageContainerView?.pin
+            .left()
+            .right()
+            .top(to:titleLabel!.edge.bottom)
+            .height(220)
+
+        imageView?.pin
+            .hCenter()
+            .vCenter()
+            .sizeToFit()
+            
     }
     
     @IBAction private func backButtonPressed(_ sender: UIButton) {

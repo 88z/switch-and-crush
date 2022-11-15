@@ -35,7 +35,8 @@ class GameOverPresenter:Presenter {
     }
     
     func present() {
-        let gameOverView = TitleButtonsView(frame: .zero, buttonModels: [
+        let gameOverView = TitleButtonsView(frame: .zero,
+                                            buttonModels: [
             ButtonViewModel(text: "try again".localiz(), action: {
                 guard let vc = self.vc else {
                     assertionFailure("viewController no found")
@@ -44,7 +45,7 @@ class GameOverPresenter:Presenter {
                 vc.freezeInteraction()
                 GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress, gameMode: self.gameMode).present()
             }),
-        ], title: title, topText: topText, backButtonIcon: .home, backButtonAction: {
+        ], title: title, topText: topText, imageName: "deadFace", backButtonIcon: .home, backButtonAction: {
             guard let vc = self.vc else {
                 assertionFailure("viewController no found")
                 return
