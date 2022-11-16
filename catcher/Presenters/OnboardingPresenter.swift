@@ -32,7 +32,7 @@ class OnboardingPresenter: BattleFieldPresenter {
         battleFieldScene?.start(level: Level(initialObstacleTypes: [],
                                              obstacleTypesForTail: [],
                                              capacity: 100,
-                                             initialSpeed: 200,
+                                             initialSpeed: 300,
                                              name:"1",
                                              initialState: State.first,
                                              userInterationEnabled: false,
@@ -50,7 +50,7 @@ class OnboardingPresenter: BattleFieldPresenter {
             battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
-                                                 initialSpeed: 200,
+                                                 initialSpeed: 300,
                                                  name:"1",
                                                  initialState: State.second,
                                                  userInterationEnabled: false,
@@ -70,7 +70,7 @@ class OnboardingPresenter: BattleFieldPresenter {
             battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
-                                                 initialSpeed: 200,
+                                                 initialSpeed: 300,
                                                  name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true, mode:.arcade)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
