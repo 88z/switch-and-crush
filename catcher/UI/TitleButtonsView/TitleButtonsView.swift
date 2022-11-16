@@ -47,9 +47,11 @@ class TitleButtonsView: UIView {
             }
             if backButtonImageName != nil {
                 backButton.setImage(UIImage(named: backButtonImageName!), for: .normal)
+                backButton.imageView?.tintColor = .red
             }
             addSubview(backButton)
             backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
+            
             self.backButton = backButton
         }
         if title != nil {
@@ -90,7 +92,6 @@ class TitleButtonsView: UIView {
             self.imageContainerView = imageContainerView
             
             let imageView = UIImageView(image: UIImage(named: imageName!))
-            imageView.alpha = 0.8
             imageContainerView.addSubview(imageView)
             self.imageView = imageView
         }
