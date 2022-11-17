@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     
     private var uiView: UIView?
     private var menuScene: TrivialUIScene!
-    private var presenter: Presenter?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,6 @@ class GameViewController: UIViewController {
         if progress.isOnboardingShown {
             BackgroundPresenter(vc:self, progress: progress).present()
             ModeSelectPresenter(vc:self, progress: progress).present()
-//            InfiniteStartPresenter(vc: self).present()
         } else {
             OnboardingPresenter(vc: self, progress: progress).present()
         }
