@@ -17,6 +17,7 @@ class PendulumPlankObstacle: MultiStateObstacle {
     }
     
     let isStacked:Bool
+    let numberOfParts = 2
     
     init(mask: Mask, colorScheme: ColorScheme, type: ObstacleType) {
         var isStacked = false
@@ -37,16 +38,19 @@ class PendulumPlankObstacle: MultiStateObstacle {
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         self.type = type
         self.acceleration = acceleration
-        let width = UIScreen.main.bounds.size.width
-        let leftPartState = State.random()
-        let rightPartState = State.nextState(for: leftPartState)
+        let width = CGFloat(UIScreen.main.bounds.size.width/CGFloat(numberOfParts-1))
         
-        let leftObstacle = initPart(mask: mask, state: leftPartState, width: width)
-        leftObstacle.node.position = CGPoint(x: -width, y: 0)
-        let rightObstacle = initPart(mask: mask, state: rightPartState, width: width)
-        rightObstacle.node.position = CGPoint(x: 1, y: 0)
+        var parts:[Obstacle] = []
+        var state = State.random()
+        for i in 0..<numberOfParts {
+            let part = initPart(mask: mask, state: state, width: width)
+            let x = width*CGFloat(i-1)+CGFloat(i)
+            part.node.position = CGPoint(x:x, y:0)
+            parts.append(part)
+            state = State.nextState(for: state)
+        }
         
-        let height = rightObstacle.node.frame.size.height
+        let height = parts.first?.node.frame.size.height ?? 0
         var duration:TimeInterval
         
         switch swingSpeed {
@@ -67,9 +71,6 @@ class PendulumPlankObstacle: MultiStateObstacle {
         
         let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
         
-        
-        addChild(leftObstacle.node)
-        addChild(rightObstacle.node)
         name = String(describing: Obstacle.self)
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height), center: CGPoint(x: width/2, y: height/2))
@@ -81,8 +82,11 @@ class PendulumPlankObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         
-        leftObstacle.node.run(action)
-        rightObstacle.node.run(action)
+        for part in parts {
+            addChild(part.node)
+            part.node.run(action)
+            
+        }
         
     }
     
