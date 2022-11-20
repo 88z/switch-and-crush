@@ -31,6 +31,7 @@
 		23A9528F290D3D7C00B17C57 /* InfiniteStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9528E290D3D7C00B17C57 /* InfiniteStartPresenter.swift */; };
 		23B33AC5287813AF00827535 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B33AC4287813AF00827535 /* Config.swift */; };
 		23B33AC828782E2E00827535 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
+		23B5F89D292A06DE006726FC /* PingPongPlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B5F89C292A06DE006726FC /* PingPongPlankObstacle.swift */; };
 		23C0678D2880997900E2A5C9 /* StackObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0678C2880997900E2A5C9 /* StackObstacle.swift */; };
 		23D5CDEE287DFDFC00523B8B /* PendulumPlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5CDED287DFDFC00523B8B /* PendulumPlankObstacle.swift */; };
 		23DF8F5F2891ACBE00B43541 /* CarouselPlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */; };
@@ -123,6 +124,7 @@
 		23B33AC4287813AF00827535 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		23B33AC928782E2E00827535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23B33ACD28782E7F00827535 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		23B5F89C292A06DE006726FC /* PingPongPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPongPlankObstacle.swift; sourceTree = "<group>"; };
 		23C0678C2880997900E2A5C9 /* StackObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackObstacle.swift; sourceTree = "<group>"; };
 		23D5CDED287DFDFC00523B8B /* PendulumPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendulumPlankObstacle.swift; sourceTree = "<group>"; };
 		23DF8F5E2891ACBE00B43541 /* CarouselPlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPlankObstacle.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */,
 				232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */,
 				23831FC7289FC19C002624BD /* StackArcObstacle.swift */,
+				23B5F89C292A06DE006726FC /* PingPongPlankObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				23FD3D1C2879753D007C178C /* Obstacle.swift in Sources */,
 				80CA5F332524F187003E900D /* AppDelegate.swift in Sources */,
 				2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */,
+				23B5F89D292A06DE006726FC /* PingPongPlankObstacle.swift in Sources */,
 				809AD8C92561A3A00057C76E /* TrivialUISceneElement.swift in Sources */,
 				23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,

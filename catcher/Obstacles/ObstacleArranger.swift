@@ -67,6 +67,8 @@ class ObstacleArranger {
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, colorScheme: colorScheme, type: type)
         case .pendulumPlank:
             obstacle = PendulumPlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
+        case .pingPongPlank:
+            obstacle = PingPongPlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
         case .plankStack:
             obstacle = StackObstacle(mask: obstacleMask,
                                      width: width,
@@ -148,7 +150,7 @@ class ObstacleArranger {
         switch type{
         case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _, blinkInterval: _, acceleration: _):
             return CGPoint(x: scene!.frame.midX, y:nextY)
-        case .carouselPlank, .pendulumPlank:
+        case .carouselPlank, .pendulumPlank, .pingPongPlank:
             return CGPoint(x:0, y: nextY)
         default:
             return CGPoint(x: leftBorderX, y:nextY)
