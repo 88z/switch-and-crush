@@ -17,32 +17,35 @@ class PendulumPlankObstacle: MultiStateObstacle {
     }
     
     let isStacked:Bool
-    let numberOfParts = 2
+    let partsCount: Int
     
     init(mask: Mask, colorScheme: ColorScheme, type: ObstacleType) {
         var isStacked = false
         var blinkInterval: TimeInterval = 0
         var swingSpeed: Speed = .none
         var acceleration = 0
+        var partsCount = 0
         switch type {
-        case .pendulumPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceletation):
+        case .pendulumPlank(partsCount: let _partsCount, swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceletation):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
             swingSpeed = _swingSpeed
             acceleration = _acceletation
+            partsCount = _partsCount
         default:
             assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
         }
         self.isStacked = isStacked
+        self.partsCount = partsCount
 
         super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
         self.type = type
         self.acceleration = acceleration
-        let width = CGFloat(UIScreen.main.bounds.size.width/CGFloat(numberOfParts-1))
+        let width = CGFloat(UIScreen.main.bounds.size.width/CGFloat(partsCount-1))
         
         var parts:[Obstacle] = []
         var state = State.random()
-        for i in 0..<numberOfParts {
+        for i in 0..<partsCount {
             let part = initPart(mask: mask, state: state, width: width)
             let x = width*CGFloat(i-1)+CGFloat(i)
             part.node.position = CGPoint(x:x, y:0)
