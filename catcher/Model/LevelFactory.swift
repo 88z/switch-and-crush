@@ -17,7 +17,8 @@ class LevelFactory {
             obstacleTypes.append([
 //                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, acceleration: acceleration),
-                ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+//                ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.gatePlank(blinkInterval: 0, acceleration: 0)
 //                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),

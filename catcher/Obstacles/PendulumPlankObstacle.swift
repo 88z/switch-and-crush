@@ -84,13 +84,10 @@ class PendulumPlankObstacle: MultiStateObstacle {
         physicsBody?.restitution = 0
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
-        
         for part in parts {
             addChild(part.node)
             part.node.run(action)
-            
         }
-        
     }
     
     private func initPart(mask:Mask, state: State, width: CGFloat) -> Obstacle{

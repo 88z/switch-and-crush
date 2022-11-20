@@ -19,7 +19,7 @@ class ObstacleArranger {
     let startPointY: CGFloat
     let leftBorderX: CGFloat
     let rightBorderX: CGFloat
-    let hPadding = CGFloat(10)
+    let hPadding = CGFloat(0)
     
     let obstacleMask: Mask
     
@@ -107,6 +107,8 @@ class ObstacleArranger {
                                         endAngle: CGFloat.pi,
                                         colorScheme: colorScheme,
                                         type: type)
+        case .gatePlank:
+            obstacle = GatePlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
         }
 
         obstacle.node.position = positionFor(obstacle, type: type)
