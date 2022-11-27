@@ -90,9 +90,9 @@ class GatePlankObstacle: MultiStateObstacle {
             
     }
     
-    private func states(at point: CGPoint) -> [State] {
+    private func states(at point: CGPoint, isContactTest: Bool) -> [State] {
         var states:[State] = []
-        let circle = UIBezierPath(arcCenter: point, radius: 4, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
+        let circle = UIBezierPath(arcCenter: point, radius: 5, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
         
         var childrenAtPoint:[StateNode] = []
         for child in children {
@@ -102,7 +102,8 @@ class GatePlankObstacle: MultiStateObstacle {
                 continue
             }
             let path = CGPathFrom(cgPath: childPath, movedTo: child.position)
-            if path.intersects(circle) {
+            
+            if isContactTest ? path.intersects(circle) : path.contains(point) {
                 childrenAtPoint.append(child)
             }
         }
@@ -120,24 +121,27 @@ class GatePlankObstacle: MultiStateObstacle {
     }
     
     override func contactTest(at point: CGPoint, state: State) -> Bool {
-        return states(at: point).contains(state)
+        return states(at: point, isContactTest: true).contains(state)
     }
     
     override func state(at point: CGPoint) -> State? {
-        return states(at: point).first
+        return states(at: point, isContactTest: false).first
     }
     
     override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomSize = PLANK_ATOM_SIZE
         let frame = calculateAccumulatedFrame()
-        let rowCount = Int(frame.size.height/atomSize)
-        let colCount = Int(frame.size.width / atomSize)
+        let rowCount = Int(height/atomSize)
+        let colCount = Int(width/atomSize)
         
         for row in 0..<rowCount {
             for col in 0..<colCount {
                 let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row))
-                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state(at: atomOrigin) ?? .immortal, colorScheme: colorScheme, blinkInterval: 0)
+                guard let state = state(at: atomOrigin) else {
+                    continue
+                }
+                let atom = StateNode(rect:CGRect(origin: atomOrigin, size: CGSize(width: CGFloat(atomSize), height: CGFloat(atomSize))), state: state, colorScheme: colorScheme, blinkInterval: 0)
                 atom.name = ATOM_NODE_NAME
                 atom.glowWidth = 2
                 atom.physicsBody = SKPhysicsBody(rectangleOf: atom.frame.size, center: CGPoint(x: atom.frame.midX, y: atom.frame.midY))
