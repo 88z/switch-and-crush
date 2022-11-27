@@ -80,3 +80,4 @@ func CGPathFrom(cgPath: CGPath, movedTo point: CGPoint) -> CGPath {
     bezeirPath.apply(CGAffineTransform(translationX: point.x, y: point.y))
     return bezeirPath.cgPath
 }
+

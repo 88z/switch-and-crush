@@ -42,4 +42,14 @@ extension SKNode {
         }
         return descendants
     }
+    
+    func absoluteZPosition() -> CGFloat {
+        var node = self
+        var zPosition = node.zPosition
+        while node.parent != nil {
+            zPosition+=node.parent!.zPosition
+            node = node.parent!
+        }
+        return zPosition
+    }
 }

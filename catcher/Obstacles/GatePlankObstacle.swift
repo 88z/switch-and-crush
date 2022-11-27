@@ -108,26 +108,51 @@ class GatePlankObstacle: MultiStateObstacle {
         
     }
     
-    private func initPart(mask:Mask, state: State, width: CGFloat) -> StateNode{
-            return StateNode(rect: CGRect(x: 0, y: 0, width: width, height: height),
+    private func initPart(mask:Mask, state: State, width: CGFloat) -> SKNode{
+        let node: SKNode
+        if isStacked {
+            node = SKNode()
+            let height = height/2
+            let subPart1 = StateNode(rect: CGRect(x: 0, y: 0, width: width, height: height),
+                               state: state,
+                               colorScheme: colorScheme,
+                               blinkInterval: blinkInterval)
+            subPart1.name = String(describing: StateNode.self)
+            node.addChild(subPart1)
+            let subPart2 = StateNode(rect: CGRect(x: 0, y: height+1, width: width, height: height),
+                               state: State.nextState(for: state),
+                               colorScheme: colorScheme,
+                               blinkInterval: blinkInterval)
+            subPart2.name = String(describing: StateNode.self)
+            node.addChild(subPart2)
+            return node
+        } else {
+            node = StateNode(rect: CGRect(x: 0, y: 0, width: width, height: height),
                              state: state,
                              colorScheme: colorScheme,
                              blinkInterval: blinkInterval)
-            
+            node.name = String(describing: StateNode.self)
+        }
+        return node
     }
     
     private func states(at point: CGPoint, isContactTest: Bool) -> [State] {
         var states:[State] = []
-        let circle = UIBezierPath(arcCenter: point, radius: 5, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
+        let circle = UIBezierPath(arcCenter: point, radius:5, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
         
         var childrenAtPoint:[StateNode] = []
+        let children = descendants(with: String(describing: StateNode.self))
         for child in children {
             guard let child = child as? StateNode,
                   let childPath = child.path
             else {
                 continue
             }
-            let path = CGPathFrom(cgPath: childPath, movedTo: child.position)
+            var position = child.position
+            if isStacked {
+                position = child.parent?.convert(child.position, to: self) ?? .zero
+            }
+            let path = CGPathFrom(cgPath: childPath, movedTo: position)
             
             if isContactTest ? path.intersects(circle) : path.contains(point) {
                 childrenAtPoint.append(child)
@@ -135,11 +160,13 @@ class GatePlankObstacle: MultiStateObstacle {
         }
         
         let maxZPozition = (childrenAtPoint.max { child1, child2 in
-            child1.zPosition < child2.zPosition
-        })?.zPosition ?? 0
+            let zp1 = child1.absoluteZPosition()
+            let zp2 = child2.absoluteZPosition()
+            return zp1 < zp2
+        })?.absoluteZPosition() ?? 0
         
         for child in childrenAtPoint {
-            if child.zPosition == maxZPozition {
+            if child.absoluteZPosition() == maxZPozition {
                 states.append(child.state)
             }
         }
