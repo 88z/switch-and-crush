@@ -20,11 +20,37 @@ class GatePlankObstacle: MultiStateObstacle {
     
     let isStacked:Bool
     init(mask: Mask, colorScheme: ColorScheme, type: ObstacleType) {
-        self.isStacked = false
-        super.init(colorScheme: colorScheme, blinkInterval: 0, acceleration: 0)
+        var isStacked = false
+        var blinkInterval: TimeInterval = 0
+        var swingSpeed: Speed = .none
+        var acceleration = 0
+        switch type {
+        case .gatePlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
+            blinkInterval = _blinkInterval
+            isStacked = _isStacked
+            swingSpeed = _swingSpeed
+            acceleration = _acceleration
+        default:
+            assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
+        }
+        self.isStacked = isStacked
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
+        let state = State.random()
         
-        let state = State.first
-        let duration: TimeInterval = 2
+        var swingDuration: TimeInterval
+        switch swingSpeed {
+        case .none:
+            swingDuration = CGFloat.infinity
+        case .slow:
+            swingDuration = 4
+        case .medium:
+            swingDuration = 2
+        case .fast:
+            swingDuration = 1
+        case .crazy:
+            swingDuration = 0.5
+        }
+        
         
         let part1Left = initPart(mask: mask, state: state, width: width/2)
         part1Left.position = CGPoint(x: -width/2, y: 0)
@@ -54,7 +80,7 @@ class GatePlankObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         
-        let leftCloseAction = SKAction.moveBy(x: width/2-1, y: 0, duration: duration)
+        let leftCloseAction = SKAction.moveBy(x: width/2-1, y: 0, duration: swingDuration)
         let diveAction = SKAction.run {
             part1Left.zPosition = 0
             part1Right.zPosition = 0
@@ -63,10 +89,10 @@ class GatePlankObstacle: MultiStateObstacle {
             part1Left.zPosition = 2
             part1Right.zPosition = 2
         }
-        let waitAction = SKAction.wait(forDuration: duration)
+        let waitAction = SKAction.wait(forDuration: swingDuration)
         let leftOpenAction = SKAction.moveBy(x: -width/2+1, y: 0, duration: 0)
         
-        let rightCloseAction = SKAction.moveBy(x: -width/2, y: 0, duration: duration)
+        let rightCloseAction = SKAction.moveBy(x: -width/2, y: 0, duration: swingDuration)
         let rightOpenAction = SKAction.moveBy(x: width/2, y: 0, duration: 0)
         
         let part1LeftAction = SKAction.repeatForever(SKAction.sequence([surfaceAction, leftCloseAction, diveAction, waitAction, leftOpenAction]))
@@ -131,7 +157,6 @@ class GatePlankObstacle: MultiStateObstacle {
     override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomSize = PLANK_ATOM_SIZE
-        let frame = calculateAccumulatedFrame()
         let rowCount = Int(height/atomSize)
         let colCount = Int(width/atomSize)
         

@@ -23,11 +23,11 @@ class PingPongPlankObstacle: MultiStateObstacle {
         var swingSpeed: Speed = .none
         var acceleration = 0
         switch type {
-        case .pingPongPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceletation):
+        case .pingPongPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
             swingSpeed = _swingSpeed
-            acceleration = _acceletation
+            acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
         }

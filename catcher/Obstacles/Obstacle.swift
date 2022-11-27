@@ -28,7 +28,7 @@ enum ObstacleType: Equatable {
     case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, acceleration: Int)
     case arc(blinkInterval: TimeInterval, acceleration: Int)
     case arcStack(blinkInterval: TimeInterval, acceleration: Int)
-    case gatePlank(blinkInterval: TimeInterval, acceleration: Int)
+    case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, acceleration: Int)
 }
 
 protocol Obstacle: AnyObject {
