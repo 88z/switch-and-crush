@@ -115,8 +115,6 @@ class RingObstacle: MultiStateObstacle {
     
     override func state(at point: CGPoint) -> State? {
         var state: State? = nil
-        let circle = UIBezierPath(arcCenter: point, radius: 10, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
-        var states:[State] = []
         for child in children {
             guard let child = child as? StateNode,
                   let path = child.path else {
@@ -125,9 +123,6 @@ class RingObstacle: MultiStateObstacle {
             if path.contains(point) {
                 state = child.state
                 break
-            }
-            if path.intersects(circle) {
-                states.append(child.state)
             }
         }
         return state

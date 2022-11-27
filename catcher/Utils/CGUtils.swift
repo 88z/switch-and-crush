@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreGraphics
+import UIKit
 
 func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
     return sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y))
@@ -75,3 +75,8 @@ func randomPointOnCircleWith(center: CGPoint, radius: CGFloat) -> CGPoint {
         return CGPoint(x:x+center.x,y: y+center.y)
 }
 
+func CGPathFrom(cgPath: CGPath, movedTo point: CGPoint) -> CGPath {
+    let bezeirPath = UIBezierPath(cgPath: cgPath)
+    bezeirPath.apply(CGAffineTransform(translationX: point.x, y: point.y))
+    return bezeirPath.cgPath
+}

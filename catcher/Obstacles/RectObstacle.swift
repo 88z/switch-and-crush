@@ -73,7 +73,7 @@ class RectObstacle: StateNode, Obstacle {
         case .thinPlank:
             height = PLANK_OBSTACLE_HEIGHT/2
         default:
-            height = 14
+            height = PLANK_OBSTACLE_HEIGHT
         }
         
         var blinkInterval: TimeInterval = 0
