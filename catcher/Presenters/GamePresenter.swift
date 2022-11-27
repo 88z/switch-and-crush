@@ -44,7 +44,6 @@ class GamePresenter: BattleFieldPresenter {
             return
         }
         battleFieldScene.startImmortal()
-        battleFieldScene.dim()
         LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
         
         guard let levelIndex = (progress.levels.firstIndex { l in
@@ -90,8 +89,7 @@ class GamePresenter: BattleFieldPresenter {
         }
         let score = scene.getProgress()
         GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
-        battleFieldScene.dim()
-        
+
         guard let levelIndex = (progress.levels.firstIndex { l in
            return l.name == level.name
         }) else {

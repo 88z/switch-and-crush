@@ -59,11 +59,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     private var obstacleAlpha: CGFloat = 1
     
-    func dim() {
-        let dimAction = SKAction.fadeAlpha(to: 0.3, duration: 1)
-        run(dimAction)
-    }
-    
     var battleDelegate: BattleDelegate?
     private var obstacleArranger: ObstacleArranger?
     let heroMask = Mask(category: 0b0011, collision: 0b0010, contact: 0b0011)
