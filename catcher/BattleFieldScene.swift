@@ -23,6 +23,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var hero: Hero?
     private var gameMode: GameMode?
     private let heroTopOffset: CGFloat
+    private let shatterSoundAction = SKAction.playSoundFileNamed("shatter.mp3", waitForCompletion: false)
     private var safeAreaHeight: CGFloat {
         var height: CGFloat = 0
         if #available(iOS 11.0, *) {
@@ -244,6 +245,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
         progress += 1
         updateCounter()
+//        run(shatterSoundAction)
         
         if progress == capacity {
             if let level = self.level {

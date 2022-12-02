@@ -41,6 +41,7 @@
 		23E3467228AA883B005044B6 /* LevelButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467128AA883B005044B6 /* LevelButtonModel.swift */; };
 		23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467328AAB712005044B6 /* LevelSelectButton.swift */; };
 		23E9F4D228903C110045651D /* SandboxScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9F4D128903C110045651D /* SandboxScene.swift */; };
+		23F97A7E293A82620055F709 /* shatter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 23F97A7D293A82620055F709 /* shatter.mp3 */; };
 		23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 23FD3D1728784BF2007C178C /* LanguageManager-iOS */; };
 		23FD3D1928784D3D007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
 		23FD3D1A28784D3E007C178C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23B33ACA28782E2E00827535 /* Localizable.strings */; };
@@ -134,6 +135,7 @@
 		23E3467128AA883B005044B6 /* LevelButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelButtonModel.swift; sourceTree = "<group>"; };
 		23E3467328AAB712005044B6 /* LevelSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectButton.swift; sourceTree = "<group>"; };
 		23E9F4D128903C110045651D /* SandboxScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxScene.swift; sourceTree = "<group>"; };
+		23F97A7D293A82620055F709 /* shatter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shatter.mp3; sourceTree = "<group>"; };
 		23FD3D1B2879753D007C178C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStatePlankObstacle.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		2348C9C028944A860096F7E4 /* Shaterrer */ = {
 			isa = PBXGroup;
 			children = (
+				23F97A7D293A82620055F709 /* shatter.mp3 */,
 				2391E959286BA0820043BCA4 /* HeroShatterer.swift */,
 				8087E45825446E4000340D10 /* PlankObstacleShatterer.swift */,
 				2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */,
@@ -255,13 +258,6 @@
 				80CA5F662524F711003E900D /* Hero.swift */,
 			);
 			path = Hero;
-			sourceTree = "<group>";
-		};
-		2391E95B286CDBE10043BCA4 /* Shatter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Shatter;
 			sourceTree = "<group>";
 		};
 		23E3466B28A90882005044B6 /* LevelSelect */ = {
@@ -380,7 +376,6 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
-				2391E95B286CDBE10043BCA4 /* Shatter */,
 				806B9DDB25455616003CB4EE /* Model */,
 				804C3AB3254551DE0012EDD8 /* UI */,
 				2348C9C028944A860096F7E4 /* Shaterrer */,
@@ -548,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8087E4612544A75900340D10 /* Launch Screen.storyboard in Resources */,
+				23F97A7E293A82620055F709 /* shatter.mp3 in Resources */,
 				23B33AC828782E2E00827535 /* Localizable.strings in Resources */,
 				2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */,
 				80CA5F3E2524F187003E900D /* Main.storyboard in Resources */,
