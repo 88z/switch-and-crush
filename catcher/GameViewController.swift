@@ -13,7 +13,7 @@ import LanguageManager_iOS
 class GameViewController: UIViewController {
     
     private var uiView: UIView?
-    private var menuScene: TrivialUIScene!
+    private var battleFieldScene: SKScene?
 
     
     override func viewDidLoad() {
@@ -45,12 +45,14 @@ class GameViewController: UIViewController {
         uiView.frame = view.bounds
         view.addSubview(uiView)
         self.uiView = uiView
+        battleFieldScene?.alpha = 0.5
     }
     
     
     func hideUI() {
         uiView?.removeFromSuperview()
         uiView = nil
+        battleFieldScene?.alpha = 1
     }
     
     func showBattleField(scene: SKScene) {
@@ -60,6 +62,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
             view.showsPhysics = false
+            battleFieldScene = scene
         }
     }
     

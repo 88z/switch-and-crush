@@ -73,38 +73,44 @@ class LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .mint)
+                     colorScheme: .blueRed)
     }
     
     func level3() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        for _ in 0..<3 {
-            obstacleTypes.append(.plank(blinkInterval: 0, acceleration: 0))
+        let acceleration = 10
+        obstacleTypes.append([.pendulumPlank(partsCount: 2,
+                                             swingSpeed: .slow,
+                                             isStacked: false,
+                                             blinkInterval: 0,
+                                             acceleration: acceleration)].randomElement()!)
+        
+        for _ in 0..<2 {
+            obstacleTypes.append([.plank(blinkInterval: 0,
+                                         acceleration: acceleration)].randomElement()!)
         }
         
-        for _ in 0..<10 {
-            obstacleTypes.append([
-                ObstacleType.plank(blinkInterval: 0, acceleration: 0),
-                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: 0),
-            ].randomElement()! )
+        for _ in 0..<25 {
+            obstacleTypes.append([.pendulumPlank(partsCount: 2,
+                                                swingSpeed: .medium,
+                                                isStacked: false,
+                                                blinkInterval: 0,
+                                                 acceleration: acceleration),
+                                  .twoStatePlank(isStacked: false,
+                                                 blinkInterval: 0,
+                                                 acceleration: acceleration),
+                                  .plank(blinkInterval: 0,
+                                        acceleration: acceleration)].randomElement()!)
         }
         
-        for _ in 0..<5 {
-            obstacleTypes.append([
-                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: 0),
-                ObstacleType.pendulumPlank(partsCount: 2, swingSpeed: .slow, isStacked: false, blinkInterval: 0, acceleration: 0),
-            ].randomElement()! )
-        }
-        
-        for _ in 0..<5 {
-            obstacleTypes.append([
-                ObstacleType.pendulumPlank(partsCount: 2, swingSpeed: .slow, isStacked: false, blinkInterval: 0, acceleration: 0),
-            ].randomElement()! )
-        }
         
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.plank(blinkInterval: 0, acceleration: 0)],
-                     capacity: 10,
+                     obstacleTypesForTail: [.pendulumPlank(partsCount: 2,
+                                                           swingSpeed: .medium,
+                                                           isStacked: false,
+                                                           blinkInterval: 0,
+                                                           acceleration: 0)],
+                     capacity: 20,
                      initialSpeed: 200,
                      name:#function,
                      initialState: .first,

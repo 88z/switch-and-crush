@@ -37,7 +37,6 @@ class TitleButtonsView: UIView {
          backButtonAction: (()->Void)?) {
         self.backButtonAction = backButtonAction
         super.init(frame: frame)
-        self.backgroundColor = .background().withAlphaComponent(0.5)
         if backButtonAction != nil {
             let backButton = UIButton(frame: .zero)
             var backButtonImageName: String? = nil

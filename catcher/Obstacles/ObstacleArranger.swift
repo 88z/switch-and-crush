@@ -134,7 +134,7 @@ class ObstacleArranger {
 
         var lastPlaced = firstObstacle
         while lastPlaced.node.position.y - startPointY + UIScreen.main.bounds.height > 0 && arrangedCount < initialObstacleTypes.count {
-            lastPlaced = arrangeOne(type: initialObstacleTypes[arrangedCount-1], speed: speed)
+            lastPlaced = arrangeOne(type: initialObstacleTypes[arrangedCount], speed: speed)
             obstacles.append(lastPlaced)
         }
         return obstacles

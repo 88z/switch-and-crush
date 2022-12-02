@@ -21,7 +21,7 @@ class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, Battl
     public let heroTopOffset: CGFloat
     init (vc: GameViewController) {
         self.vc = vc
-        self.heroTopOffset = CGFloat(300) + vc.view.pin.safeArea.top
+        self.heroTopOffset = CGFloat(150) + vc.view.pin.safeArea.top
     }
 
     func present(){
