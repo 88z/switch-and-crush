@@ -96,9 +96,9 @@ class LevelFactory {
                                                 isStacked: false,
                                                 blinkInterval: 0,
                                                  acceleration: acceleration),
-                                  .twoStatePlank(isStacked: false,
-                                                 blinkInterval: 0,
-                                                 acceleration: acceleration),
+//                                  .twoStatePlank(isStacked: false,
+//                                                 blinkInterval: 0,
+//                                                 acceleration: acceleration),
                                   .plank(blinkInterval: 0,
                                         acceleration: acceleration)].randomElement()!)
         }
