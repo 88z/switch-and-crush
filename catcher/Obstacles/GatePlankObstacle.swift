@@ -138,7 +138,7 @@ class GatePlankObstacle: MultiStateObstacle {
     
     private func states(at point: CGPoint, isContactTest: Bool) -> [State] {
         var states:[State] = []
-        let circle = UIBezierPath(arcCenter: point, radius:5, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
+        let circle = UIBezierPath(arcCenter: point, radius:1    , startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true).cgPath
         
         var childrenAtPoint:[StateNode] = []
         let children = descendants(with: String(describing: StateNode.self))
@@ -189,7 +189,7 @@ class GatePlankObstacle: MultiStateObstacle {
         
         for row in 0..<rowCount {
             for col in 0..<colCount {
-                let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row))
+                let atomOrigin = CGPoint(x: CGFloat(atomSize)*CGFloat(col), y: CGFloat(atomSize)*CGFloat(row)+1)
                 guard let state = state(at: atomOrigin) else {
                     continue
                 }
