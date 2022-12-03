@@ -45,9 +45,10 @@ class PendulumPlankObstacle: MultiStateObstacle {
         
         var parts:[Obstacle] = []
         var state = State.random()
+        let rand = CGFloat(randomBetween(0, and: Int(width)))
         for i in 0..<partsCount {
             let part = initPart(mask: mask, state: state, width: width)
-            let x = width*CGFloat(i-1)+CGFloat(i)
+            let x = width*CGFloat(i-1)+CGFloat(i) + rand
             part.node.position = CGPoint(x:x, y:0)
             parts.append(part)
             state = State.nextState(for: state)
@@ -69,10 +70,13 @@ class PendulumPlankObstacle: MultiStateObstacle {
             duration = 1
         }
 
+        
+        let firstMoveRight = SKAction.moveBy(x: width-rand, y:0, duration: duration*(width-rand)/width)
         let moveRightAction = SKAction.moveBy(x: width, y:0, duration: duration)
         let moveLeftAction = SKAction.moveBy(x: -width, y:0, duration: duration)
         
-        let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
+        let repeatable = SKAction.repeatForever(SKAction.sequence([moveLeftAction, moveRightAction]))
+        let action = SKAction.sequence([firstMoveRight, repeatable])
         
         name = String(describing: Obstacle.self)
         

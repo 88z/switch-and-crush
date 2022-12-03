@@ -125,4 +125,32 @@ class LevelFactory {
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
+    func level4() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        
+        for _ in 0..<10 {
+            obstacleTypes.append([.pendulumPlank(partsCount: 2,
+                                                swingSpeed: .fast,
+                                                isStacked: false,
+                                                blinkInterval: 0,
+                                                 acceleration: acceleration)].randomElement()!)
+        }
+        
+        
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.pendulumPlank(partsCount: 2,
+                                                           swingSpeed: .fast,
+                                                           isStacked: false,
+                                                           blinkInterval: 0,
+                                                           acceleration: 0)],
+                     capacity: 10,
+                     initialSpeed: 200,
+                     minYSpace: 100,
+                     maxYSpace: 150,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
 }
