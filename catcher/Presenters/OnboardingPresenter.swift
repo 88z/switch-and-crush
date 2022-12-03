@@ -33,6 +33,8 @@ class OnboardingPresenter: BattleFieldPresenter {
                                              obstacleTypesForTail: [],
                                              capacity: 100,
                                              initialSpeed: 300,
+                                             minYSpace: 150,
+                                             maxYSpace: 200,
                                              name:"1",
                                              initialState: State.first,
                                              userInterationEnabled: false,
@@ -51,6 +53,8 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 300,
+                                                 minYSpace: 150,
+                                                 maxYSpace: 200,
                                                  name:"1",
                                                  initialState: State.second,
                                                  userInterationEnabled: false,
@@ -71,6 +75,8 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 300,
+                                                 minYSpace: 150,
+                                                 maxYSpace: 200,
                                                  name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true, mode:.arcade)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[

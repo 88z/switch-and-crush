@@ -145,6 +145,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                                                 startPointY: frame.minY-50,
                                                 leftBorderX: frame.minX,
                                                 rightBorderX: frame.maxX,
+                                                minYSpace: level.minYSpace,
+                                                maxYSPace: level.maxYSpace,
                                                 obstacleMask: obstacleMask,
                                                 colorScheme: level.colorScheme)
         let obstacles = obstacleArranger.arrangeFirst(speed: level.initialSpeed)

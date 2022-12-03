@@ -23,8 +23,8 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    let minYSpace: CGFloat = 150
-    let maxYSpace: CGFloat = 200
+    let minYSpace: CGFloat
+    let maxYSpace: CGFloat
     
     let colorScheme: ColorScheme
     
@@ -36,6 +36,8 @@ class ObstacleArranger {
          startPointY: CGFloat,
          leftBorderX:CGFloat,
          rightBorderX: CGFloat,
+         minYSpace: CGFloat,
+         maxYSPace: CGFloat,
          obstacleMask: Mask,
          colorScheme: ColorScheme
          ) {
@@ -49,7 +51,8 @@ class ObstacleArranger {
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
         self.colorScheme = colorScheme
-        
+        self.maxYSpace = maxYSPace
+        self.minYSpace = minYSpace
     }
     
     //TODO сделать ObstacleFactory

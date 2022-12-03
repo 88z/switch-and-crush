@@ -13,6 +13,8 @@ struct Level {
     let obstacleTypesForTail: [ObstacleType]
     let capacity: Int
     let initialSpeed: CGFloat
+    let minYSpace: CGFloat
+    let maxYSpace: CGFloat
     let name: String
     let initialState:State
     let userInterationEnabled:Bool
