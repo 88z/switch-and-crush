@@ -47,24 +47,27 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var rotationSpeed: Speed = .none
         var blinkInterval: TimeInterval = 0
         var acceleration = 0
+        var spaceAfter: CGFloat = 0
         switch type {
         case .fragmentedRing(segmentsCount: let _segmentsCount,
                              rotationSpeed: let _rotationSpeed,
                              isStacked: let _isStacked,
                              blinkInterval: let _blinkInterval,
+                             spaceAfter: let _spaceAfter,
                              acceleration: let _acceleration):
             isStacked = _isStacked
             partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
             blinkInterval = _blinkInterval
             acceleration = _acceleration
+            spaceAfter = _spaceAfter
             
         default:
             assertionFailure("incorrect type for " + String(describing: FragmentedRingObstacle.self))
         }
         self.isStacked = isStacked
         
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, spaceAfter: spaceAfter, acceleration: acceleration)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)

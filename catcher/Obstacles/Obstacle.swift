@@ -17,22 +17,23 @@ enum Speed {
 }
 
 enum ObstacleType: Equatable {
-    case plank(blinkInterval: TimeInterval, acceleration: Int)
-    case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval, acceleration: Int)
-    case pendulumPlank(partsCount: Int, swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, acceleration: Int)
-    case pingPongPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, acceleration: Int)
-    case thinPlank(blinkInterval: TimeInterval, acceleration: Int)
-    case plankStack(blinkInterval: TimeInterval, acceleration: Int)
-    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, acceleration: Int)
-    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval, acceleration: Int)
-    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, acceleration: Int)
+    case plank(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case pendulumPlank(partsCount: Int, swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case pingPongPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case thinPlank(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case plankStack(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case arc(blinkInterval: TimeInterval, acceleration: Int)
     case arcStack(blinkInterval: TimeInterval, acceleration: Int)
-    case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, acceleration: Int)
+    case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
 }
 
 protocol Obstacle: AnyObject {
     var velocity: CGFloat { get set }
+    var spaceAfter: CGFloat { get }
     var node: SKNode { get }
     var type: ObstacleType! { get }
     var isSolid: Bool { get }

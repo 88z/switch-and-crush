@@ -33,7 +33,7 @@ class StackArcObstacle: MultiStateObstacle {
         default:
             assertionFailure("incorrect type for " + String(describing: StackObstacle.self))
         }
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration)
         name = String(describing: Obstacle.self)
         self.type = type
         self.acceleration = acceleration

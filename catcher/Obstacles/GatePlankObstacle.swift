@@ -23,18 +23,24 @@ class GatePlankObstacle: MultiStateObstacle {
         var isStacked = false
         var blinkInterval: TimeInterval = 0
         var swingSpeed: Speed = .none
+        var spaceAfter: CGFloat = 0
         var acceleration = 0
         switch type {
-        case .gatePlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
+        case .gatePlank(swingSpeed: let _swingSpeed,
+                        isStacked: let _isStacked,
+                        blinkInterval: let _blinkInterval,
+                        spaceAfter: let _spaceAfter,
+                        acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
             swingSpeed = _swingSpeed
+            spaceAfter = _spaceAfter
             acceleration = _acceleration
         default:
             assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
         }
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, spaceAfter: spaceAfter, acceleration: acceleration)
         let state = State.random()
         
         var swingDuration: TimeInterval

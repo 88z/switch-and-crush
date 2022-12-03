@@ -145,8 +145,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                                                 startPointY: frame.minY-50,
                                                 leftBorderX: frame.minX,
                                                 rightBorderX: frame.maxX,
-                                                minYSpace: level.minYSpace,
-                                                maxYSPace: level.maxYSpace,
                                                 obstacleMask: obstacleMask,
                                                 colorScheme: level.colorScheme)
         let obstacles = obstacleArranger.arrangeFirst(speed: level.initialSpeed)
@@ -223,11 +221,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         case .arc, .animatedRing(segmentsCount: _,
                                  rotationSpeed: _,
                                  isStacked: _,
+                                 spaceAfter: _,
                                  acceleration: _),
                 .fragmentedRing(segmentsCount: _,
                                 rotationSpeed: _,
                                 isStacked: _,
                                 blinkInterval: _,
+                                spaceAfter: _,
                                 acceleration: _):
             return RingObstacleShatterer(obstacle: obstacle)
         default:

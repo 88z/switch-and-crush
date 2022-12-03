@@ -22,17 +22,23 @@ class PingPongPlankObstacle: MultiStateObstacle {
         var blinkInterval: TimeInterval = 0
         var swingSpeed: Speed = .none
         var acceleration = 0
+        var spaceAfter: CGFloat = 0
         switch type {
-        case .pingPongPlank(swingSpeed: let _swingSpeed, isStacked: let _isStacked, blinkInterval: let _blinkInterval, acceleration: let _acceleration):
+        case .pingPongPlank(swingSpeed: let _swingSpeed,
+                            isStacked: let _isStacked,
+                            blinkInterval: let _blinkInterval,
+                            spaceAfter: let _spaceAfer,
+                            acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             isStacked = _isStacked
             swingSpeed = _swingSpeed
             acceleration = _acceleration
+            spaceAfter = _spaceAfer
         default:
             assertionFailure("incorrect type for " + String(describing: PendulumPlankObstacle.self))
         }
         self.isStacked = isStacked
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, acceleration: acceleration)
+        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, spaceAfter: spaceAfter, acceleration: acceleration)
         self.type = type
         self.acceleration = acceleration
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
@@ -99,13 +105,13 @@ class PingPongPlankObstacle: MultiStateObstacle {
                                  width: width,
                                  states: [state, State.nextState(for: state)],
                                  colorScheme: colorScheme,
-                                 type: .plankStack(blinkInterval: blinkInterval, acceleration: acceleration))
+                                 type: .plankStack(blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration))
         } else {
             return RectObstacle(mask: mask,
                                 width: width,
                                 state: state,
                                 colorScheme: colorScheme,
-                                type: .plank(blinkInterval: blinkInterval, acceleration: acceleration))
+                                type: .plank(blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration))
         }
     }
     

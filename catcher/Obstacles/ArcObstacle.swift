@@ -13,6 +13,8 @@ class ArcObstacle: StateNode, Obstacle {
     
     var isSolid: Bool = true
     
+    var spaceAfter: CGFloat = 0
+    
     var velocity: CGFloat {
             set {
                 physicsBody?.velocity.dy = newValue

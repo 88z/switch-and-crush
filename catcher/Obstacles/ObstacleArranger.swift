@@ -23,9 +23,6 @@ class ObstacleArranger {
     
     let obstacleMask: Mask
     
-    let minYSpace: CGFloat
-    let maxYSpace: CGFloat
-    
     let colorScheme: ColorScheme
     
     init(scene: SKScene,
@@ -36,8 +33,6 @@ class ObstacleArranger {
          startPointY: CGFloat,
          leftBorderX:CGFloat,
          rightBorderX: CGFloat,
-         minYSpace: CGFloat,
-         maxYSPace: CGFloat,
          obstacleMask: Mask,
          colorScheme: ColorScheme
          ) {
@@ -51,8 +46,6 @@ class ObstacleArranger {
         self.rightBorderX = rightBorderX - hPadding
         self.obstacleMask = obstacleMask
         self.colorScheme = colorScheme
-        self.maxYSpace = maxYSPace
-        self.minYSpace = minYSpace
     }
     
     //TODO сделать ObstacleFactory
@@ -153,7 +146,12 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _, rotationSpeed: _, isStacked: _, blinkInterval: _, acceleration: _):
+        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _,
+                                                             rotationSpeed: _,
+                                                             isStacked: _,
+                                                             blinkInterval: _,
+                                                             spaceAfter: _,
+                                                             acceleration: _):
             return CGPoint(x: scene!.frame.midX, y:nextY)
         case .carouselPlank, .pendulumPlank, .pingPongPlank:
             return CGPoint(x:0, y: nextY)
@@ -166,7 +164,7 @@ class ObstacleArranger {
         guard let lastPlaced = lastObstacle else {
             return startPointY
         }
-        let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(randomBetween(Int(minYSpace), and: Int(maxYSpace))) -  obstacle.node.calculateAccumulatedFrame().size.height/2
+        let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(lastPlaced.spaceAfter) -  obstacle.node.calculateAccumulatedFrame().size.height/2
         return nextY
     }
 }

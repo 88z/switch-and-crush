@@ -13,6 +13,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
     
     var colorScheme: ColorScheme
     var blinkInterval: TimeInterval
+    var spaceAfter: CGFloat
     
     func shatteringDummy() -> SKNode {
         let dummy = SKNode()
@@ -42,10 +43,11 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(colorScheme: ColorScheme, blinkInterval: TimeInterval, acceleration: Int){
+    init(colorScheme: ColorScheme, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int){
         self.colorScheme = colorScheme
         self.blinkInterval = blinkInterval
         self.acceleration = acceleration
+        self.spaceAfter = spaceAfter
         super.init()
     }
     
