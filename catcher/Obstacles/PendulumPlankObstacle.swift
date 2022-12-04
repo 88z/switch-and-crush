@@ -111,9 +111,8 @@ class PendulumPlankObstacle: MultiStateObstacle {
         } else {
             return RectObstacle(mask: mask,
                                 width: width,
-                                state: state,
                                 colorScheme: colorScheme,
-                                type: .plank(blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration))
+                                type: .plank(state: state, blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration))
         }
     }
     

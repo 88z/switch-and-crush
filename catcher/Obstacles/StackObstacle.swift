@@ -37,11 +37,10 @@ class StackObstacle: MultiStateObstacle {
         name = String(describing: Obstacle.self)
         self.type = type
         
-        let partType: ObstacleType = .thinPlank(blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration)
-        
         var nextY:CGFloat = 0
         for state in states {
-            let obstacle = RectObstacle(mask: mask, width: width, state: state, colorScheme: colorScheme, type: partType)
+            let partType: ObstacleType = .thinPlank(state: state, blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration)
+            let obstacle = RectObstacle(mask: mask, width: width, colorScheme: colorScheme, type: partType)
             obstacle.state = state
             addChild(obstacle)
             obstacle.position = CGPoint(x: 0, y: nextY)

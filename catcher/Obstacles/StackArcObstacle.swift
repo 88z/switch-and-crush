@@ -23,7 +23,6 @@ class StackArcObstacle: MultiStateObstacle {
          endAngle: CGFloat,
          colorScheme: ColorScheme,
          type: ObstacleType) {
-        
         var blinkInterval: TimeInterval = 0
         var acceleration = 0
         switch type {

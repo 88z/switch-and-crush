@@ -75,6 +75,7 @@ class Progress {
             levelFactory.level2(),
             levelFactory.level3(),
             levelFactory.level4(),
+            levelFactory.level5()
         ]
 //        clean()
     }

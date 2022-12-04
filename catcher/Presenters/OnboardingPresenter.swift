@@ -47,7 +47,7 @@ class OnboardingPresenter: BattleFieldPresenter {
     override func uiScenePressed(scene: TrivialUIScene) {
         if scene == switchColorUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 300,
@@ -67,7 +67,10 @@ class OnboardingPresenter: BattleFieldPresenter {
             self.redObstacleUI = redObstacleUI
         } else if scene == redObstacleUI {
             vc?.hideUI()
-            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+            battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(state: State.random(),
+                                                                               blinkInterval: 0,
+                                                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                                               acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
                                                  initialSpeed: 300,                                                 name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true, mode:.arcade)

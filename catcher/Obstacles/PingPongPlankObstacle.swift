@@ -48,14 +48,16 @@ class PingPongPlankObstacle: MultiStateObstacle {
         let ballPartState = State.random()
         let sidePartState = State.nextState(for: ballPartState)
         
+        let startPosition = CGFloat(randomBetween(0, and: Int(sidePartWidth)))
+        
         let leftPart = initPart(mask: mask, state: sidePartState, width: sidePartWidth)
-        leftPart.node.position = CGPoint(x: -sidePartWidth, y: 0)
+        leftPart.node.position = CGPoint(x: -sidePartWidth+startPosition, y: 0)
         
         let ballPart = initPart(mask: mask, state: ballPartState, width: ballPartWidth)
-        ballPart.node.position = CGPoint(x: 1, y: 0)
+        ballPart.node.position = CGPoint(x: startPosition+1, y: 0)
         
         let rightPart = initPart(mask: mask, state: sidePartState, width: sidePartWidth)
-        rightPart.node.position = CGPoint(x: ballPartWidth+1, y: 0)
+        rightPart.node.position = CGPoint(x: startPosition+ballPartWidth+1, y: 0)
         
         
         let height = ballPart.node.frame.size.height
@@ -74,10 +76,13 @@ class PingPongPlankObstacle: MultiStateObstacle {
             duration = 1
         }
 
-        let moveRightAction = SKAction.moveBy(x: sidePartWidth, y:0, duration: duration)
+        let firstMoveRight = SKAction.moveBy(x:sidePartWidth-startPosition, y:0, duration: duration*(sidePartWidth-startPosition)/sidePartWidth)
         let moveLeftAction = SKAction.moveBy(x: -sidePartWidth, y:0, duration: duration)
+        let moveRightAction = SKAction.moveBy(x: sidePartWidth, y:0, duration: duration)
         
-        let action = SKAction.repeatForever(SKAction.sequence([moveRightAction, moveLeftAction]))
+        
+        let repeatable = SKAction.repeatForever(SKAction.sequence([moveLeftAction, moveRightAction]))
+        let action = SKAction.sequence([firstMoveRight, repeatable])
         
         name = String(describing: Obstacle.self)
         
@@ -109,9 +114,11 @@ class PingPongPlankObstacle: MultiStateObstacle {
         } else {
             return RectObstacle(mask: mask,
                                 width: width,
-                                state: state,
                                 colorScheme: colorScheme,
-                                type: .plank(blinkInterval: blinkInterval, spaceAfter: 0, acceleration: acceleration))
+                                type: .plank(state: state,
+                                             blinkInterval: blinkInterval,
+                                             spaceAfter: 0,
+                                             acceleration: acceleration))
         }
     }
     

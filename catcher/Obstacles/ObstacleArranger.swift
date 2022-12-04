@@ -56,7 +56,6 @@ class ObstacleArranger {
         case .plank, .thinPlank:
             obstacle = RectObstacle(mask: obstacleMask,
                                     width: width,
-                                    state:.random(),
                                     colorScheme: colorScheme,
                                     type: type)
         case .twoStatePlank:

@@ -15,20 +15,19 @@ class LevelFactory {
         let acceleration = 0
         for _ in 0..<100{
             obstacleTypes.append([
-//                ObstacleType.plank(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, acceleration: acceleration),
-//                ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-                ObstacleType.gatePlank(swingSpeed: .slow, isStacked: true, blinkInterval: 0, spaceAfter: 0, acceleration: acceleration)
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, acceleration: acceleration),
+                ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.gatePlank(swingSpeed: .slow, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, acceleration: acceleration)
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [ObstacleType.plank(blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     obstacleTypesForTail: [ObstacleType.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                      capacity: -1,
                      initialSpeed: 100,
                      name:#function,
@@ -41,10 +40,10 @@ class LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 25
         for _ in 0..<15 {
-            obstacleTypes.append(.plank(blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
+            obstacleTypes.append(.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.plank(blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     obstacleTypesForTail: [.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                      capacity: 15,
                      initialSpeed: 200,
                      name:#function,
@@ -79,32 +78,19 @@ class LevelFactory {
     func level3() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
-        obstacleTypes.append([.pendulumPlank(partsCount: 2,
-                                             swingSpeed: .slow,
-                                             isStacked: false,
-                                             blinkInterval: 0,
-                                             spaceAfter: CGFloat(randomBetween(150, and: 200)),
-                                             acceleration: acceleration)].randomElement()!)
+        let spaceShrinkValue = 3
         
-        for _ in 0..<2 {
-            obstacleTypes.append([.plank(blinkInterval: 0,
-                                         spaceAfter: CGFloat(randomBetween(150, and: 200)),
-                                         acceleration: acceleration)].randomElement()!)
-        }
-        
-        for _ in 0..<25 {
+        for i in 0..<15 {
             obstacleTypes.append([.pendulumPlank(partsCount: 2,
                                                  swingSpeed: .medium,
                                                  isStacked: false,
                                                  blinkInterval: 0,
-                                                 spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                 spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrinkValue),
                                                  acceleration: acceleration),
-//                                  .twoStatePlank(isStacked: false,
-//                                                 blinkInterval: 0,
-//                                                 acceleration: acceleration),
-                                  .plank(blinkInterval: 0,
-                                         spaceAfter: CGFloat(randomBetween(150, and: 200)),
-                                         acceleration: acceleration)].randomElement()!)
+                                  .twoStatePlank(isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrinkValue),
+                                                 acceleration: acceleration)].randomElement()!)
         }
         
         
@@ -113,15 +99,16 @@ class LevelFactory {
                                                            swingSpeed: .medium,
                                                            isStacked: false,
                                                            blinkInterval: 0,
-                                                           spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                           spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                            acceleration: 0)],
-                     capacity: 20,
+                     capacity: 15,
                      initialSpeed: 200,
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
+    
     func level4() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
@@ -143,6 +130,22 @@ class LevelFactory {
                                                            blinkInterval: 0,
                                                            spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                            acceleration: 0)],
+                     capacity: 10,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    func level5() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 15
+        let spaceShrink = 5
+        for i in 0..<10 {
+            obstacleTypes.append(.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink), acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.pingPongPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,

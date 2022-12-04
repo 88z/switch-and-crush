@@ -66,7 +66,6 @@ class RectObstacle: StateNode, Obstacle {
     
     convenience init(mask: Mask,
                      width: CGFloat,
-                     state:State,
                      colorScheme: ColorScheme,
                      type: ObstacleType) {
         let height: CGFloat
@@ -80,11 +79,13 @@ class RectObstacle: StateNode, Obstacle {
         var blinkInterval: TimeInterval = 0
         var acceleration = 0
         var spaceAfter: CGFloat = 0
+        var state: State = .random()
         switch type {
-        case .plank(blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration), .thinPlank(blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
+        case .plank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration), .thinPlank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             spaceAfter = _spaceAfter
             acceleration = _acceleration
+            state = _state
         default:
             assertionFailure("incorrect type for" + String(describing: RectObstacle.self))
         }

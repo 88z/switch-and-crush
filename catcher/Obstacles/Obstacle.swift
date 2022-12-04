@@ -17,11 +17,11 @@ enum Speed {
 }
 
 enum ObstacleType: Equatable {
-    case plank(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case plank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case pendulumPlank(partsCount: Int, swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case pingPongPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case thinPlank(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case thinPlank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case plankStack(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case animatedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
