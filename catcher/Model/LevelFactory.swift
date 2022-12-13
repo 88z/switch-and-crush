@@ -155,7 +155,7 @@ class LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level6() -> Level {
+    func  level6() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
         let spaceShrink = 5
@@ -165,6 +165,24 @@ class LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level7() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let spaceShrink = 5
+        let capacity = 10
+        for i in 0..<capacity {
+            obstacleTypes.append(.carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: Bool.random(), isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrink), acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
