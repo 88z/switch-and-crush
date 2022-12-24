@@ -56,21 +56,22 @@ class GatePlankObstacle: MultiStateObstacle {
         case .crazy:
             swingDuration = 0.5
         }
+        let leftWidth: CGFloat = ceil(width/2)
+        let rightWidth: CGFloat = floor(width/2)
         
-        
-        let part1Left = initPart(mask: mask, state: state, width: width/2)
-        part1Left.position = CGPoint(x: -width/2, y: 0)
+        let part1Left = initPart(mask: mask, state: state, width: leftWidth)
+        part1Left.position = CGPoint(x: -leftWidth, y: 0)
         part1Left.zPosition = 2
-        let part1Right = initPart(mask: mask, state: state, width: width/2)
-        part1Right.position = CGPoint(x: width, y: 0)
+        let part1Right = initPart(mask: mask, state: state, width: rightWidth)
+        part1Right.position = CGPoint(x: leftWidth+rightWidth  , y: 0)
         part1Right.zPosition = 2
         addChild(part1Left)
         addChild(part1Right)
         
-        let part2Left = initPart(mask: mask, state: State.nextState(for: state), width: width/2)
+        let part2Left = initPart(mask: mask, state: State.nextState(for: state), width: leftWidth)
         part2Left.position = CGPoint(x: 0, y: 0)
         part2Left.zPosition = 1
-        let part2Right = initPart(mask: mask, state: State.nextState(for: state), width: width/2)
+        let part2Right = initPart(mask: mask, state: State.nextState(for: state), width: rightWidth)
         part2Right.position = CGPoint(x: width/2, y: 0)
         part2Right.zPosition = 1
         addChild(part2Left)
@@ -86,7 +87,9 @@ class GatePlankObstacle: MultiStateObstacle {
         physicsBody?.friction = 0
         physicsBody?.linearDamping = 0
         
-        let leftCloseAction = SKAction.moveBy(x: width/2-1, y: 0, duration: swingDuration)
+        
+        
+        let leftCloseAction = SKAction.moveBy(x: leftWidth, y: 0, duration: swingDuration)
         let diveAction = SKAction.run {
             part1Left.zPosition = 0
             part1Right.zPosition = 0
@@ -96,10 +99,10 @@ class GatePlankObstacle: MultiStateObstacle {
             part1Right.zPosition = 2
         }
         let waitAction = SKAction.wait(forDuration: swingDuration)
-        let leftOpenAction = SKAction.moveBy(x: -width/2+1, y: 0, duration: 0)
+        let leftOpenAction = SKAction.moveBy(x: -leftWidth, y: 0, duration: 0)
         
-        let rightCloseAction = SKAction.moveBy(x: -width/2, y: 0, duration: swingDuration)
-        let rightOpenAction = SKAction.moveBy(x: width/2, y: 0, duration: 0)
+        let rightCloseAction = SKAction.moveBy(x: -rightWidth, y: 0, duration: swingDuration)
+        let rightOpenAction = SKAction.moveBy(x: rightWidth, y: 0, duration: 0)
         
         let part1LeftAction = SKAction.repeatForever(SKAction.sequence([surfaceAction, leftCloseAction, diveAction, waitAction, leftOpenAction]))
         part1Left.run(part1LeftAction)
