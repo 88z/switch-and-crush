@@ -220,11 +220,13 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         switch obstacle.type {
         case .arc, .animatedRing(segmentsCount: _,
                                  rotationSpeed: _,
+                                 directionClockwise: _,
                                  isStacked: _,
                                  spaceAfter: _,
                                  acceleration: _),
                 .fragmentedRing(segmentsCount: _,
                                 rotationSpeed: _,
+                                directionClockwise: _,
                                 isStacked: _,
                                 blinkInterval: _,
                                 spaceAfter: _,

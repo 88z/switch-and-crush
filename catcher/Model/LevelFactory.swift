@@ -16,14 +16,14 @@ class LevelFactory {
         for _ in 0..<100{
             obstacleTypes.append([
                 ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
                 ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
                 ObstacleType.gatePlank(swingSpeed: .slow, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
                 ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
-                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration)
+                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
+                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
@@ -157,9 +157,9 @@ class LevelFactory {
     
     func  level6() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
-        let spaceShrink = 5
-        let capacity = 10
+        let acceleration = 8
+        let spaceShrink = 4
+        let capacity = 15
         for i in 0..<capacity {
             obstacleTypes.append(.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: Bool.random(), isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrink), acceleration: acceleration))
         }
@@ -183,6 +183,97 @@ class LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level8() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 3
+        let spaceShrink = 2
+        let capacity = 30
+        for i in 0..<capacity {
+            let spaceAfter = CGFloat(randomBetween(150, and: 200) - i*spaceShrink)
+            obstacleTypes.append([.carouselPlank(partsCount: 4,
+                                                 carouselSpeed: .medium,
+                                                 directionRight: Bool.random(),
+                                                 isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: spaceAfter,
+                                                 acceleration: acceleration),
+                                  .pendulumPlank(partsCount: 2,
+                                                 swingSpeed: .medium,
+                                                 isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: spaceAfter,
+                                                 acceleration: acceleration),
+                                  .gatePlank(swingSpeed: .slow,
+                                             isStacked: false,
+                                             blinkInterval: 0,
+                                             spaceAfter: spaceAfter,
+                                             acceleration: acceleration),
+                                  .twoStatePlank(isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: spaceAfter,
+                                                 acceleration: acceleration),
+                                  .plank(state: .random(),
+                                         blinkInterval: 0,
+                                         spaceAfter: spaceAfter,
+                                         acceleration: acceleration)
+                                  
+            ].randomElement()!)
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.carouselPlank(partsCount: 4,
+                                                         carouselSpeed: .medium,
+                                                         directionRight: Bool.random(),
+                                                         isStacked: false,
+                                                         blinkInterval: 0,
+                                                         spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                         acceleration: 0),
+                                          .pendulumPlank(partsCount: 2,
+                                                         swingSpeed: .medium,
+                                                         isStacked: false,
+                                                         blinkInterval: 0,
+                                                         spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                         acceleration: 0),
+                                          .gatePlank(swingSpeed: .slow,
+                                                     isStacked: false,
+                                                     blinkInterval: 0,
+                                                     spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                     acceleration: 0),
+                     ],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func ringLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 10
+        for _ in 0..<capacity {
+            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .fast,
+                                               directionClockwise: true,
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                               acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .fast,
+                                                          directionClockwise: true,
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,

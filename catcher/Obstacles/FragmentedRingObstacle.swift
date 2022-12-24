@@ -45,12 +45,14 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var isStacked = false
         var partsCount = 0
         var rotationSpeed: Speed = .none
+        var directionClockwise = true
         var blinkInterval: TimeInterval = 0
         var acceleration = 0
         var spaceAfter: CGFloat = 0
         switch type {
         case .fragmentedRing(segmentsCount: let _segmentsCount,
                              rotationSpeed: let _rotationSpeed,
+                             directionClockwise: let _directionClockwise,
                              isStacked: let _isStacked,
                              blinkInterval: let _blinkInterval,
                              spaceAfter: let _spaceAfter,
@@ -58,6 +60,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
             isStacked = _isStacked
             partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
+            directionClockwise = _directionClockwise
             blinkInterval = _blinkInterval
             acceleration = _acceleration
             spaceAfter = _spaceAfter
@@ -87,6 +90,10 @@ class FragmentedRingObstacle: MultiStateObstacle {
             physicsBody?.angularVelocity = 2
         case .crazy:
             physicsBody?.angularVelocity = 3
+        }
+        
+        if !directionClockwise {
+            physicsBody?.angularVelocity = -(physicsBody?.angularVelocity ?? 0)
         }
         physicsBody?.density = 0
         physicsBody?.setZeroMask()

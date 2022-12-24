@@ -147,6 +147,7 @@ class ObstacleArranger {
         switch type{
         case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
+                                                             directionClockwise: _,
                                                              isStacked: _,
                                                              blinkInterval: _,
                                                              spaceAfter: _,

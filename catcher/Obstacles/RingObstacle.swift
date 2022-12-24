@@ -44,10 +44,12 @@ class RingObstacle: MultiStateObstacle {
         var partsCount = 0
         var acceleration = 0
         var rotationSpeed: Speed = .none
+        var directionClockwise = true
         var spaceAfter: CGFloat = 0
         switch type {
         case .animatedRing(segmentsCount: let _segmentsCount,
                            rotationSpeed: let _rotationSpeed,
+                           directionClockwise: let _directionClockwise,
                            isStacked: let _isStacked,
                            spaceAfter: let _spaceAfter,
                            acceleration: let _acceleration):
@@ -56,6 +58,7 @@ class RingObstacle: MultiStateObstacle {
             rotationSpeed = _rotationSpeed
             acceleration = _acceleration
             spaceAfter = _spaceAfter
+            directionClockwise = _directionClockwise
         default:
             assertionFailure("incorrect type for " + String(describing: RingObstacle.self))
         }
@@ -80,6 +83,9 @@ class RingObstacle: MultiStateObstacle {
             physicsBody?.angularVelocity = 2
         case .crazy:
             physicsBody?.angularVelocity = 3
+        }
+        if !directionClockwise {
+            physicsBody?.angularVelocity = -(physicsBody?.angularVelocity ?? 0)
         }
         physicsBody?.density = 0.025
         physicsBody?.set(mask: mask)
