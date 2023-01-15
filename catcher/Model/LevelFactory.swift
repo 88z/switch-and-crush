@@ -436,7 +436,7 @@ class LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
-                                                          rotationSpeed: .fast,
+                                                          rotationSpeed: .crazy,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
                                                           spaceAfter: CGFloat(randomBetween(200, and: 300)),
