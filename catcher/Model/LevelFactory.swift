@@ -191,7 +191,7 @@ class LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level8() -> Level {
+    func bigRandomLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 3
         let spaceShrink = 2
@@ -247,33 +247,6 @@ class LevelFactory {
                                                      spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                      acceleration: 0),
                      ],
-                     capacity: capacity,
-                     initialSpeed: 200,
-                     name:#function,
-                     initialState: .first,
-                     userInterationEnabled: true,
-                     colorScheme: .blueRed)
-    }
-    
-    func ringLevel() -> Level {
-        var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
-        let capacity = 10
-        for _ in 0..<capacity {
-            obstacleTypes.append(.animatedRing(segmentsCount: 4,
-                                               rotationSpeed: .fast,
-                                               directionClockwise: Bool.random(),
-                                               isStacked: false,
-                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
-                                               acceleration: acceleration))
-        }
-        return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
-                                                          rotationSpeed: .fast,
-                                                          directionClockwise: Bool.random(),
-                                                          isStacked: false,
-                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
-                                                          acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
@@ -378,6 +351,97 @@ class LevelFactory {
                                                          spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                          acceleration: acceleration)],
                      capacity: 10,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level12() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 5
+        let capacity = 25
+        for _ in 0..<capacity {
+            obstacleTypes.append([.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .medium,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                               acceleration: acceleration),
+                                  .plank(state: .random(),
+                                         blinkInterval: 0,
+                                         spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                         acceleration: acceleration)]
+                                 
+                .randomElement()!)
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .medium,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0),
+                                            .plank(state: .random(),
+                                                   blinkInterval: 0,
+                                                   spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                   acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func ringLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 10
+        for _ in 0..<capacity {
+            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .fast,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                               acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .fast,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func crazyRingLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 0
+        let capacity = 7
+        for _ in 0..<capacity {
+            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .crazy,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(200, and: 300)),
+                                               acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .fast,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(200, and: 300)),
+                                                          acceleration: 0)],
+                     capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
                      initialState: .first,

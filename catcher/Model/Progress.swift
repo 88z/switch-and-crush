@@ -78,11 +78,13 @@ class Progress {
             levelFactory.level5(),
             levelFactory.level6(),
             levelFactory.level7(),
-            levelFactory.level8(),
+            levelFactory.bigRandomLevel(),
             levelFactory.pingPongLevel(),
             levelFactory.level10(),
             levelFactory.level11(),
-            levelFactory.ringLevel()
+            levelFactory.level12(),
+            levelFactory.ringLevel(),
+            levelFactory.crazyRingLevel(),
         ]
 //        clean()
     }

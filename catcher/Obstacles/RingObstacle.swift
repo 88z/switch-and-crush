@@ -82,7 +82,7 @@ class RingObstacle: MultiStateObstacle {
         case .fast:
             physicsBody?.angularVelocity = 2
         case .crazy:
-            physicsBody?.angularVelocity = 3
+            physicsBody?.angularVelocity = 4
         }
         if !directionClockwise {
             physicsBody?.angularVelocity = -(physicsBody?.angularVelocity ?? 0)
