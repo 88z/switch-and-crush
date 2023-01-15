@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 import PinLayout
 
-class LevelSelectView: UIView, LevelSelectButtonDelegate {
+class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     private weak var title: UILabel?
     private weak var backButton: UIButton?
-    private weak var buttonsContainer: UIScrollView?
+    private weak var buttonsContainer: UIView?
     private var buttons: [UIView] = []
     
     private let buttonsContainerWidth:CGFloat = 220
@@ -40,7 +40,7 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         addSubview(title)
         self.title = title
         
-        let buttonsContainer = UIScrollView(frame: .zero)
+        let buttonsContainer = UIView(frame: .zero)
         addSubview(buttonsContainer)
         self.buttonsContainer = buttonsContainer
         initButtons(models: buttonModels)
@@ -63,7 +63,7 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
             buttons.append(button)
             button.delegate = self
         }
-        buttonsContainer?.contentSize = CGSize(width: buttonsContainerWidth, height: buttonsContainerHeight)
+//        buttonsContainer?.contentSize = CGSize(width: buttonsContainerWidth, height: buttonsContainerHeight)
     }
     
     
@@ -76,10 +76,10 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
         
         buttonsContainer?.pin
             .hCenter()
-            .bottom(0)
             .top(to: title!.edge.bottom)
             .marginTop(45)
             .width(buttonsContainerWidth)
+            .height(buttonsContainerHeight)
         backButton?.pin
             .sizeToFit()
             .bottom(to:title!.edge.top)
@@ -103,7 +103,7 @@ class LevelSelectView: UIView, LevelSelectButtonDelegate {
                 button.pin.left(to: leftButton.edge.right).marginLeft(30)
             }
         }
-        
+        contentSize = CGSize(width:bounds.size.width, height: buttonsContainer?.frame.maxY ?? 0)
         
     }
     
