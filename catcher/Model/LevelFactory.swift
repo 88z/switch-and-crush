@@ -262,7 +262,7 @@ class LevelFactory {
         for _ in 0..<capacity {
             obstacleTypes.append(.animatedRing(segmentsCount: 4,
                                                rotationSpeed: .fast,
-                                               directionClockwise: true,
+                                               directionClockwise: Bool.random(),
                                                isStacked: false,
                                                spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                acceleration: acceleration))
@@ -270,7 +270,7 @@ class LevelFactory {
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
                                                           rotationSpeed: .fast,
-                                                          directionClockwise: true,
+                                                          directionClockwise: Bool.random(),
                                                           isStacked: false,
                                                           spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                           acceleration: 0)],
@@ -327,6 +327,56 @@ class LevelFactory {
                                                        blinkInterval: 0,
                                                        spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                        acceleration: 0)],
+                     capacity: 10,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level11() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 15
+        let spaceShrink = 7
+        for i in 0..<10 {
+            obstacleTypes.append([.carouselPlank(partsCount: 6,
+                                                 carouselSpeed: .medium,
+                                                 directionRight: Bool.random(),
+                                                 isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink),
+                                                 acceleration: acceleration),
+                                  .pingPongPlank(swingSpeed: .fast,
+                                                 isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink),
+                                                 acceleration: acceleration),
+                                  .gatePlank(swingSpeed: .slow,
+                                             isStacked: false,
+                                             blinkInterval: 0,
+                                             spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink),
+                                             acceleration: acceleration)]
+                .randomElement()!)
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.pingPongPlank(swingSpeed: .medium,
+                                                           isStacked: false,
+                                                           blinkInterval: 0,
+                                                           spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                           acceleration: 0),
+                                            .gatePlank(swingSpeed: .slow,
+                                                       isStacked: false,
+                                                       blinkInterval: 0,
+                                                       spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                       acceleration: 0),
+                                            .carouselPlank(partsCount: 6,
+                                                         carouselSpeed: .medium,
+                                                         directionRight: Bool.random(),
+                                                         isStacked: false,
+                                                         blinkInterval: 0,
+                                                         spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                         acceleration: acceleration)],
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,
