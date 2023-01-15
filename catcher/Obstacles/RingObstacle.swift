@@ -138,6 +138,34 @@ class RingObstacle: MultiStateObstacle {
         return state
     }
     
+    func states(at point: CGPoint) -> [State] {
+        var states: [State] = []
+        for child in children {
+            guard let child = child as? StateNode,
+                  let path = child.path else {
+                continue
+            }
+            let delta = 3.0
+            let leftBottomPoint = CGPoint(x: point.x-delta, y: point.y-delta)
+            let rightBottomPoint = CGPoint(x: point.x+delta, y: point.y-delta)
+            if path.contains(point)
+                || path.contains(leftBottomPoint)
+                || path.contains(rightBottomPoint) {
+                states.append(child.state)
+            }
+
+        }
+        if states.count == 0 {
+            return [.first, .second]
+        }
+
+        return states
+    }
+    
+    override func contactTest(at point: CGPoint, state: State) -> Bool {
+        return self.states(at: point).contains(state)
+    }
+    
     override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
         let atomsCount = 32
