@@ -13,6 +13,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     private weak var title: UILabel?
     private weak var backButton: UIButton?
     private weak var buttonsContainer: UIView?
+    private weak var scrollView: UIScrollView?
     private var buttons: [UIView] = []
     
     private let buttonsContainerWidth:CGFloat = 220
@@ -40,8 +41,11 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         addSubview(title)
         self.title = title
         
+        let scrollView = UIScrollView(frame: .zero)
+        addSubview(scrollView)
+        self.scrollView = scrollView
         let buttonsContainer = UIView(frame: .zero)
-        addSubview(buttonsContainer)
+        scrollView.addSubview(buttonsContainer)
         self.buttonsContainer = buttonsContainer
         initButtons(models: buttonModels)
         
@@ -63,7 +67,6 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
             buttons.append(button)
             button.delegate = self
         }
-//        buttonsContainer?.contentSize = CGSize(width: buttonsContainerWidth, height: buttonsContainerHeight)
     }
     
     
@@ -73,13 +76,19 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
             .sizeToFit()
             .hCenter()
             .top(pin.safeArea.top + 182)
-        
+        scrollView?.pin
+            .top(to: title!.edge.bottom)
+            .left()
+            .right()
+            .bottom()
+            .hCenter()
+            .marginTop(25)
         buttonsContainer?.pin
             .hCenter()
-            .top(to: title!.edge.bottom)
-            .marginTop(45)
-            .width(buttonsContainerWidth)
             .height(buttonsContainerHeight)
+            .top()
+            .width(buttonsContainerWidth)
+            .marginTop(25)
         backButton?.pin
             .sizeToFit()
             .bottom(to:title!.edge.top)
@@ -103,8 +112,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
                 button.pin.left(to: leftButton.edge.right).marginLeft(30)
             }
         }
-        contentSize = CGSize(width:bounds.size.width, height: buttonsContainer?.frame.maxY ?? 0)
-        
+        scrollView?.contentSize = CGSize(width: bounds.size.width, height: buttonsContainerHeight + 100)
     }
     
     func pressed(_ button: LevelSelectButton) {
