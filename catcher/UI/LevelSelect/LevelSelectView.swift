@@ -12,6 +12,7 @@ import PinLayout
 class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     private weak var title: UILabel?
     private weak var backButton: UIButton?
+    private weak var buttonToScroll: UIView?
     private weak var buttonsContainer: UIView?
     private weak var scrollView: UIScrollView?
     private var buttons: [UIView] = []
@@ -54,6 +55,14 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
         self.backButton = backButton
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let buttonToScroll = self?.buttonToScroll else {
+                return
+            }
+            let frameToScroll = buttonToScroll.convert(buttonToScroll.bounds, to: scrollView)
+            self?.scrollView?.scrollRectToVisible(frameToScroll, animated: true)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -61,11 +70,17 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     }
     
     private func initButtons(models: [LevelButtonModel]) {
-        for i in 0..<models.count {
-            let button = LevelSelectButton(model: models[i])
+        for model in models {
+            let button = LevelSelectButton(model: model)
             buttonsContainer?.addSubview(button)
             buttons.append(button)
             button.delegate = self
+            if model.state == .current {
+                buttonToScroll = button
+            }
+        }
+        if buttonToScroll == nil && models.last?.state == .completed {
+            buttonToScroll = buttons.last
         }
     }
     
