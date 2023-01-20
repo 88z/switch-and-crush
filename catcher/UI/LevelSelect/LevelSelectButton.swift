@@ -21,7 +21,6 @@ class LevelSelectButton: UIView {
     weak var background: UIView?
     weak var button: UIButton?
     weak var border: CAShapeLayer?
-    weak var shadow: CAShapeLayer?
     weak var delegate: LevelSelectButtonDelegate?
     
     var backgroundWidthPart: CGFloat
@@ -38,41 +37,6 @@ class LevelSelectButton: UIView {
         self.border = border
         if model.state == .locked {
             border.lineDashPattern = [1, 4]
-        } else if model.state == .current {
-            let shadow = CAShapeLayer()
-            shadow.shadowOffset = .zero
-            shadow.shadowColor = border.strokeColor
-            shadow.shadowRadius = 5
-            shadow.shadowOpacity = 1
-            shadow.borderWidth = 1
-            shadow.borderColor = border.strokeColor
-            shadow.strokeColor = border.strokeColor
-            shadow.lineWidth = 1
-            shadow.fillColor = UIColor(white: 0, alpha: 0).cgColor
-    
-            // Fade in animation
-            let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
-            fadeInAnimation.fromValue = 0.0
-            fadeInAnimation.toValue = 1.0
-            fadeInAnimation.duration = 1.0
-            fadeInAnimation.beginTime = 1.0
-
-            // Fade out animation
-            let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
-            fadeOutAnimation.fromValue = 1.0
-            fadeOutAnimation.toValue = 0.0
-            fadeOutAnimation.duration = 1.0
-
-            // Animation group
-            let animationGroup = CAAnimationGroup()
-            animationGroup.animations = [fadeOutAnimation, fadeInAnimation]
-            animationGroup.duration = 2.0
-            animationGroup.repeatCount = .infinity
-            
-            shadow.add(animationGroup, forKey: "fadeLoop")
-            
-            layer.addSublayer(shadow)
-            self.shadow = shadow
         }
         if model.completionPart > 0 {
             let background = UIView(frame: .zero)
@@ -132,8 +96,6 @@ class LevelSelectButton: UIView {
         let borderRect = CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height)
         border?.path = UIBezierPath(rect: borderRect).cgPath
         border?.frame = borderRect
-        shadow?.frame = borderRect
-        shadow?.path = border?.path
 
         title?.pin.hCenter().top(15).sizeToFit()
         background?.pin.left(0).top(0).bottom(0).width(bounds.size.width*backgroundWidthPart)
