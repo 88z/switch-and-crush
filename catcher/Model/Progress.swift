@@ -103,6 +103,11 @@ class Progress {
         }
     }
     
+    func index(of level: Level) -> Int? {
+        return levels.firstIndex { l in
+            l.name == level.name
+        }
+    }
     
     
 }

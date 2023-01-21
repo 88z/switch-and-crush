@@ -12,12 +12,18 @@ class LevelFinishPresenter: Presenter {
     public weak var vc: GameViewController?
     private let progress: Progress
     private let level: Level
+    private let indexStr: String
     init(vc: GameViewController,
          progress: Progress,
          level: Level) {
         self.vc = vc
         self.progress = progress
         self.level = level
+        if let index = progress.index(of: level) {
+            indexStr = String(index+1)
+        } else {
+            indexStr = ""
+        }
     }
     func present() {
         var buttonModels: [ButtonViewModel] = []
@@ -34,7 +40,7 @@ class LevelFinishPresenter: Presenter {
         }
         let levelFinishView = TitleButtonsView(frame: .zero,
                                                buttonModels: buttonModels,
-                                               title: "levEl Finished",
+                                               title: "levEl \(indexStr) Finished",
                                                topText: nil,
                                                imageName: "happyFace",
                                                backButtonIcon: .home,
