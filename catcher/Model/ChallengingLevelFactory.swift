@@ -8,7 +8,26 @@
 import Foundation
 import SpriteKit
 
-class LevelFactory {
+class ChallengingLevelFactory {
+    
+    func levels() -> [Level] {
+        return [
+            level1(),
+            level2(),
+            level3(),
+            level4(),
+            level5(),
+            level6(),
+            level7(),
+            bigRandomLevel(),
+            pingPongLevel(),
+            level10(),
+            level11(),
+            level12(),
+            ringLevel(),
+            crazyRingLevel(),
+        ]
+    }
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []

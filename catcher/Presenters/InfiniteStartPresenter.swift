@@ -15,7 +15,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     }
     
     func uiSceneElementPressed(scene: TrivialUIScene, element: TrivialUISceneElement) {
-        let levelFactory = LevelFactory()
+        let levelFactory = ChallengingLevelFactory()
         guard let vc = vc else {
             assertionFailure("viewController not found")
             return
@@ -26,7 +26,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
     }
     
     public weak var vc: GameViewController?
-    private let progress = Progress(levelFactory: LevelFactory())
+    private let progress = Progress(levelFactory: ChallengingLevelFactory())
     init(vc: GameViewController) {
         self.vc = vc
     }
@@ -38,7 +38,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
                     assertionFailure("viewController not found")
                     return
                 }
-                GamePresenter(vc: vc, startState: .first, level: LevelFactory().endlessLevel(), progress: self.progress, gameMode: .endless).present()
+                GamePresenter(vc: vc, startState: .first, level: ChallengingLevelFactory().endlessLevel(), progress: self.progress, gameMode: .endless).present()
             })
         ], title: "best score: \(progress.infiniteModeRecord)", backButtonIcon: .back) {
             guard let vc = self.vc else {

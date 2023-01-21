@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let progress = Progress(levelFactory: LevelFactory())
+        let progress = Progress(levelFactory: ChallengingLevelFactory())
         if progress.isOnboardingShown {
             BackgroundPresenter(vc:self, progress: progress).present()
             ModeSelectPresenter(vc:self, progress: progress).present()

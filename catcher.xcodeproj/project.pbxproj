@@ -49,7 +49,7 @@
 		23FD3D1E28797A0A007C178C /* MultiStateObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */; };
 		23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */; };
 		23FD3D22287CBFE4007C178C /* SKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D21287CBFE4007C178C /* SKHelper.swift */; };
-		23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D23287D4DC6007C178C /* LevelFactory.swift */; };
+		23FD3D24287D4DC6007C178C /* ChallengingLevelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FD3D23287D4DC6007C178C /* ChallengingLevelFactory.swift */; };
 		78C0F6E39B8DC654C626DC3F /* Pods_catcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */; };
 		800609452525DFC4007DA1FA /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800609442525DFC4007DA1FA /* TestScene.swift */; };
 		8012B4FF25458C8700ACBCC0 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012B4FE25458C8700ACBCC0 /* Presenter.swift */; };
@@ -140,7 +140,7 @@
 		23FD3D1D28797A0A007C178C /* MultiStateObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStateObstacle.swift; sourceTree = "<group>"; };
 		23FD3D1F287C8B08007C178C /* MultiStatePlankObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStatePlankObstacle.swift; sourceTree = "<group>"; };
 		23FD3D21287CBFE4007C178C /* SKHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKHelper.swift; sourceTree = "<group>"; };
-		23FD3D23287D4DC6007C178C /* LevelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFactory.swift; sourceTree = "<group>"; };
+		23FD3D23287D4DC6007C178C /* ChallengingLevelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengingLevelFactory.swift; sourceTree = "<group>"; };
 		619FE2DCCAF04EEA0BBDACCB /* Pods_catcher_catcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcher_catcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		800609442525DFC4007DA1FA /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		8012B4FE25458C8700ACBCC0 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				806B9DDC25455629003CB4EE /* Level.swift */,
-				23FD3D23287D4DC6007C178C /* LevelFactory.swift */,
+				23FD3D23287D4DC6007C178C /* ChallengingLevelFactory.swift */,
 				23902E9B28A7AB7100D309DB /* Progress.swift */,
 				23794435291ABF1700C3320F /* GameMode.swift */,
 			);
@@ -614,7 +614,7 @@
 				2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */,
 				232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */,
 				80890D06254006C200F5552B /* ObstacleArranger.swift in Sources */,
-				23FD3D24287D4DC6007C178C /* LevelFactory.swift in Sources */,
+				23FD3D24287D4DC6007C178C /* ChallengingLevelFactory.swift in Sources */,
 				809DE937254F169400975BD5 /* TextTypeNode.swift in Sources */,
 				2388BA78287349BE00D27DBD /* TrivialUISceneText.swift in Sources */,
 				806B9DE525456510003CB4EE /* GamePresenter.swift in Sources */,

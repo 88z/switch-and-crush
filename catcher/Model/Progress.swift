@@ -69,23 +69,8 @@ class Progress {
     }
     
     let levels: [Level]
-    init(levelFactory: LevelFactory) {
-        self.levels = [
-            levelFactory.level1(),
-            levelFactory.level2(),
-            levelFactory.level3(),
-            levelFactory.level4(),
-            levelFactory.level5(),
-            levelFactory.level6(),
-            levelFactory.level7(),
-            levelFactory.bigRandomLevel(),
-            levelFactory.pingPongLevel(),
-            levelFactory.level10(),
-            levelFactory.level11(),
-            levelFactory.level12(),
-            levelFactory.ringLevel(),
-            levelFactory.crazyRingLevel(),
-        ]
+    init(levelFactory: ChallengingLevelFactory) {
+        self.levels = levelFactory.levels()
 //        clean()
     }
     
