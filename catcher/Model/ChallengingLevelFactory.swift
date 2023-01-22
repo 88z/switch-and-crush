@@ -381,7 +381,7 @@ class ChallengingLevelFactory: LevelFactory {
     func level12() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 5
-        let capacity = 20
+        let capacity = 25
         for _ in 0..<capacity {
             obstacleTypes.append([.animatedRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
