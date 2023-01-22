@@ -139,6 +139,9 @@ class RingObstacle: MultiStateObstacle {
     }
     
     func states(at point: CGPoint) -> [State] {
+        guard let parent = parent else {
+            return []
+        }
         var states: [State] = []
         for child in children {
             guard let child = child as? StateNode,
@@ -146,17 +149,23 @@ class RingObstacle: MultiStateObstacle {
                 continue
             }
             
-            let deltaAngle = 0.3
+            let deltaAngle = 0.1
             let xDelta = radius*sin(deltaAngle)
             let yDelta = radius*(1-cos(deltaAngle))
             
-            let leftBottomPoint = CGPoint(x: point.x-xDelta+1, y: point.y-1-yDelta)
-            let rightBottomPoint = CGPoint(x: point.x+xDelta-1, y: point.y-1-yDelta)
+            let pointInParentCoordinates = convert(point, to: parent)
+            
+            let leftBottomPointInParentCoordinates = CGPoint(x: pointInParentCoordinates.x-xDelta+0, y: pointInParentCoordinates.y-0-yDelta)
+            let rightBottomPointInParentCoordinates = CGPoint(x: pointInParentCoordinates.x+xDelta-0, y: pointInParentCoordinates.y-0-yDelta)
+            let leftBottomPoint = parent.convert(leftBottomPointInParentCoordinates, to: self)
+            let rightBottomPoint = parent.convert(rightBottomPointInParentCoordinates, to: self)
             if path.contains(point)
                 || path.contains(leftBottomPoint)
                 || path.contains(rightBottomPoint) {
                 states.append(child.state)
             }
+            
+            
 
         }
         if states.count == 0 {
