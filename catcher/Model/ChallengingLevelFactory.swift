@@ -27,6 +27,7 @@ class ChallengingLevelFactory: LevelFactory {
             ringLevel(),
             crazyRingLevel(),
             level15(),
+            level16(),
         ]
     }
     
@@ -514,6 +515,36 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    //10, пинг понг, кольца
+    func level16() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 10
+        
+        for _ in 0..<capacity/2 {
+            obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .medium,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                               acceleration: acceleration),
+                                  .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration)]
+                                 )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .fast,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0),
+                                            .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
     //20 пинг понг, карусель, ворота, кольца
 }
