@@ -161,10 +161,27 @@ class ObstacleArranger {
     }
     
     func y(for obstacle: Obstacle) -> CGFloat {
+        
+        
         guard let lastPlaced = lastObstacle else {
             return startPointY
         }
+        
+        let zRotation = lastPlaced.node.zRotation
+        switch lastPlaced.type {
+        case .animatedRing(segmentsCount: _,
+                           rotationSpeed: _,
+                           directionClockwise: _,
+                           isStacked: _,
+                           spaceAfter: _,
+                           acceleration: _):
+            lastPlaced.node.zRotation = 0
+        default:
+            break
+        }
+        
         let nextY = lastPlaced.node.calculateAccumulatedFrame().minY - CGFloat(lastPlaced.spaceAfter) -  obstacle.node.calculateAccumulatedFrame().size.height/2
+        lastPlaced.node.zRotation = zRotation
         return nextY
     }
 }

@@ -549,11 +549,11 @@ class ChallengingLevelFactory: LevelFactory {
     
     func chainLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 3
+        let acceleration = 5
         let capacity = 10
         for _ in 0..<capacity {
             obstacleTypes.append(.animatedRing(segmentsCount: 4,
-                                               rotationSpeed: .medium,
+                                               rotationSpeed: .slow,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
                                                spaceAfter: -1,
@@ -561,7 +561,7 @@ class ChallengingLevelFactory: LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
-                                                          rotationSpeed: .medium,
+                                                          rotationSpeed: .slow,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
                                                           spaceAfter: -1,
