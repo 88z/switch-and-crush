@@ -28,6 +28,7 @@ class ChallengingLevelFactory: LevelFactory {
             crazyRingLevel(),
             level15(),
             level16(),
+            chainLevel()
         ]
     }
     
@@ -519,15 +520,15 @@ class ChallengingLevelFactory: LevelFactory {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
         let capacity = 10
-        
-        for _ in 0..<capacity/2 {
+        let spaceShrink = 10
+        for i in 0..<capacity/2 {
             obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
-                                               rotationSpeed: .medium,
+                                               rotationSpeed: .fast,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
                                                spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                acceleration: acceleration),
-                                  .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration)]
+                                  .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)-spaceShrink*i), acceleration: acceleration)]
                                  )
         }
         return Level(initialObstacleTypes: obstacleTypes,
@@ -537,9 +538,36 @@ class ChallengingLevelFactory: LevelFactory {
                                                           isStacked: false,
                                                           spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                           acceleration: 0),
-                                            .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                                            .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func chainLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 3
+        let capacity = 10
+        for _ in 0..<capacity {
+            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .medium,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: -1,
+                                               acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .medium,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: -1,
+                                                          acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 175,
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
