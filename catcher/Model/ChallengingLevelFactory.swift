@@ -24,11 +24,13 @@ class ChallengingLevelFactory: LevelFactory {
             level10(),
             level11(),
             level12(),
+            level13(),
             ringLevel(),
             crazyRingLevel(),
-            level15(),
             level16(),
-            chainLevel()
+            level17(),
+            chainLevel(),
+            level19(),
         ]
     }
     
@@ -380,7 +382,43 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level12() -> Level {
+    func level12() -> Level{
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 5
+        let capacity = 14
+        let spaceShrink = 5
+        for i in 0..<capacity/2 {
+            obstacleTypes.append(contentsOf:[
+                                             .gatePlank(swingSpeed: .slow,
+                                                        isStacked: false,
+                                                        blinkInterval: 0,
+                                                        spaceAfter: 50,
+                                                        acceleration: 0),
+                                             .plank(state: .random(),
+                                                    blinkInterval: 0,
+                                                    spaceAfter: CGFloat(randomBetween(200, and: 250) - i*spaceShrink),
+                                                    acceleration: acceleration)]
+                                 )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.gatePlank(swingSpeed: .slow,
+                                                       isStacked: false,
+                                                       blinkInterval: 0,
+                                                       spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                       acceleration: 0),
+                                            .plank(state: .random(),
+                                                   blinkInterval: 0,
+                                                   spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                   acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level13() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 5
         let capacity = 25
@@ -471,7 +509,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level15() -> Level {
+    func level16() -> Level {
         //10
         //карусель + кольца
         var obstacleTypes:[ObstacleType] = []
@@ -516,7 +554,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level16() -> Level {
+    func level17() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
         let capacity = 10
@@ -553,7 +591,7 @@ class ChallengingLevelFactory: LevelFactory {
         let capacity = 10
         for _ in 0..<capacity {
             obstacleTypes.append(.animatedRing(segmentsCount: 4,
-                                               rotationSpeed: .slow,
+                                               rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
                                                spaceAfter: -1,
@@ -561,7 +599,7 @@ class ChallengingLevelFactory: LevelFactory {
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
-                                                          rotationSpeed: .slow,
+                                                          rotationSpeed: .medium,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
                                                           spaceAfter: -1,
@@ -573,6 +611,42 @@ class ChallengingLevelFactory: LevelFactory {
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
+    
+    func level19() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 12
+        let spaceShrink = 10
+        for i in 0..<capacity/3 {
+            obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
+                                               rotationSpeed: .medium,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: 50,
+                                               acceleration: acceleration),
+                                             .pingPongPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, spaceAfter: 100, acceleration: acceleration),
+                                             .carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(200, and: 250)-spaceShrink*i), acceleration: acceleration)]
+                                 )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                                                          rotationSpeed: .medium,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0),
+                                            .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0),
+                                            .carouselPlank(partsCount: 6, carouselSpeed: .fast, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    
+    
     
     //20 пинг понг, карусель, ворота, кольца
 }
