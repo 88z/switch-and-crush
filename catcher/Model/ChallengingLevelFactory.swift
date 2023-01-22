@@ -679,9 +679,9 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level21() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration = 7
         let capacity = 12
-        let spaceShrink = 10
+        let spaceShrink = 5
         for i in 0..<capacity/3 {
             obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
@@ -690,7 +690,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                spaceAfter: 50,
                                                acceleration: acceleration),
                                              .pingPongPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, spaceAfter: 100, acceleration: acceleration),
-                                             .carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(200, and: 250)-spaceShrink*i), acceleration: acceleration)]
+                                             .carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(200, and: 250)-spaceShrink*i), acceleration: acceleration)]
                                  )
         }
         return Level(initialObstacleTypes: obstacleTypes,
