@@ -23,7 +23,7 @@ class ChallengingLevelFactory: LevelFactory {
             pingPongLevel(),
             level10(),
             level11(),
-            level12(),
+            plankAndGateLevel(),
             level13(),
             ringLevel(),
             crazyRingLevel(),
@@ -382,7 +382,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level12() -> Level{
+    func plankAndGateLevel() -> Level{
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 5
         let capacity = 14
