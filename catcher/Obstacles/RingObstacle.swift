@@ -146,12 +146,12 @@ class RingObstacle: MultiStateObstacle {
                 continue
             }
             
-            let deltaAngle = 0.2
+            let deltaAngle = 0.3
             let xDelta = radius*sin(deltaAngle)
             let yDelta = radius*(1-cos(deltaAngle))
             
-            let leftBottomPoint = CGPoint(x: point.x-xDelta, y: point.y-yDelta)
-            let rightBottomPoint = CGPoint(x: point.x+xDelta, y: point.y-yDelta)
+            let leftBottomPoint = CGPoint(x: point.x-xDelta+1, y: point.y-1-yDelta)
+            let rightBottomPoint = CGPoint(x: point.x+xDelta-1, y: point.y-1-yDelta)
             if path.contains(point)
                 || path.contains(leftBottomPoint)
                 || path.contains(rightBottomPoint) {

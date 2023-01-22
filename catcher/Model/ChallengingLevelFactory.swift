@@ -500,7 +500,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                           spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                           acceleration: 0),
                                             .carouselPlank(partsCount: 4,
-                                                           carouselSpeed: .medium,
+                                                           carouselSpeed: .fast,
                                                            directionRight: Bool.random(),
                                                            isStacked: false,
                                                            blinkInterval: 0,
