@@ -69,8 +69,8 @@ class Progress {
     }
     
     let levels: [Level]
-    init(levelFactory: ChallengingLevelFactory) {
-        self.levels = levelFactory.levels()
+    init(levelFactory: LevelFactory) {
+        self.levels = levelFactory.levels
 //        clean()
     }
     

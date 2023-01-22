@@ -6,14 +6,14 @@
   
 */
 
-"This is BALL" = "Это шар";
+"This is BALL" = "ЭТО ШАР";
 "Tap to continue" = "Нажми на экран для продолжения";
-"Tap to switch BALL color" = "Нажми на экран, чтобы переключить его цвет";
+"Tap to switch BALL color" = "НАЖМИ НА ЭКРАН, ЧТОБЫ ПЕРЕКЛЮЧИТЬ ЕГО ЦВЕТ";
 "Game Over" = "Ты разбился";
 "play again" = "Сыграть еще раз";
 "switch BALL color now" = "переключи цвет шара еще раз";
-"red BALL crashes red blocks" = "красные блоки разбиваются красным шаром";
-"blue BALL crashes blue blocks" = "синие блоки разбиваются синим шаром";
-"switch BALL color to start the game" = "переключи цвет, чтобы начать игру";
-"Select Level" = "Выбери Уровень";
+"red BALL crashes red blocks" = "КРАСНЫЕ БЛОКИ РАЗБИВАЮТСЯ КРАСНЫМ ШАРОМ";
+"blue BALL crashes blue blocks" = "СИНИЕ БЛОКИ РАЗБИВАЮТСЯ СИНИМ ШАРОМ";
+"switch BALL color to start the game" = "ПЕРЕКЛЮЧИ ЦВЕТ, ЧТОБЫ НАЧАТЬ ИГРУ";
+"Select Level" = "ВЫБЕРИ УРОВЕНЬ";
 "play" = "играть";
