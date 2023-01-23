@@ -249,7 +249,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
         progress += 1
         updateCounter()
-//        run(shatterSoundAction)
+        run(shatterSoundAction)
         
         if progress == capacity {
             if let level = self.level {

@@ -53,6 +53,7 @@ class GamePresenter: BattleFieldPresenter {
         }
         if levelIndex + 1 > progress.completedLevelsCount {
             progress.completedLevelsCount = levelIndex + 1
+            progress.crushedObstaclesCount = 0
         }
     }
     
@@ -95,7 +96,7 @@ class GamePresenter: BattleFieldPresenter {
         }) else {
             return
         }
-        if levelIndex == progress.completedLevelsCount {
+        if levelIndex == progress.completedLevelsCount && progress.crushedObstaclesCount < score{
             progress.crushedObstaclesCount = score
         }
     }

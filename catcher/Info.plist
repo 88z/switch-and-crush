@@ -24,8 +24,6 @@
 	<array>
 		<string>AlegreyaSansSC-Light.ttf</string>
 		<string>MajorMonoDisplay-Regular.ttf</string>
-		<string>AdventPro_Expanded-Light.ttf</string>
-		<string>AdventPro-Light.ttf</string>
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
