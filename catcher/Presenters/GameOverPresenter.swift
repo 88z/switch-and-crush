@@ -26,8 +26,15 @@ class GameOverPresenter:Presenter {
         self.progress = progress
         self.gameMode = gameMode
         
+        let indexStr: String
+        if let index = progress.index(of: level) {
+            indexStr = String(index+1)
+        } else {
+            indexStr = ""
+        }
+        
         if gameMode == .arcade {
-            self.title = "levEl Failed"
+            self.title = "levEl \(indexStr) Failed"
         } else {
             self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
         }
