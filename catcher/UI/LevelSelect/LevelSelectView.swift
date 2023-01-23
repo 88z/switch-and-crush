@@ -79,9 +79,6 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
                 buttonToScroll = button
             }
         }
-        if buttonToScroll == nil && models.last?.state == .completed {
-            buttonToScroll = buttons.last
-        }
     }
     
     
