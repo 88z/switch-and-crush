@@ -34,13 +34,14 @@ class ChallengingLevelFactory: LevelFactory {
             level20(),
             chainLevel(),
             level22(),
+            endlessLevel()
         ]
     }
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 0
-        for _ in 0..<100{
+        for _ in 0..<10{
             obstacleTypes.append([
 //                ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
@@ -54,7 +55,14 @@ class ChallengingLevelFactory: LevelFactory {
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [ObstacleType.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     obstacleTypesForTail: [ObstacleType.plank(state: .first,
+                                                               blinkInterval: 0,
+                                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                               acceleration: 0),
+                                            ObstacleType.plank(state: .second,
+                                                               blinkInterval: 0,
+                                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                               acceleration: 0)],
                      capacity: -1,
                      initialSpeed: 100,
                      name:#function,

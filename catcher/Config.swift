@@ -32,3 +32,8 @@ let PLANK_ATOM_SIZE: CGFloat = 7
 
 let ATOM_NODE_NAME = "atom"
 
+let ENDLESS_LEVEL_TITLE = "∞"
+
+func ENDLESS_LEVEL_TITLE_FONT(size: CGFloat) -> UIFont {
+    return UIFont(name: "NotoSansJP-Thin", size: size)!
+}

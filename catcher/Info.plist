@@ -23,6 +23,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>AlegreyaSansSC-Light.ttf</string>
+		<string>NotoSansJP-Thin.otf</string>
 		<string>MajorMonoDisplay-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

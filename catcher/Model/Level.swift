@@ -17,4 +17,7 @@ struct Level {
     let initialState:State
     let userInterationEnabled:Bool
     let colorScheme: ColorScheme
+    var isEndless:Bool {
+        return capacity < 0
+    }
 }

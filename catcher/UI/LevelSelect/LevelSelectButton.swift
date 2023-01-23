@@ -76,10 +76,18 @@ class LevelSelectButton: UIView {
         let title = UILabel(frame: .zero)
         title.text = model.title
         title.textColor = .text()
+        title.textAlignment = .center
         if model.state == .locked {
             title.alpha = 0.65
         }
-        title.font = FONT(size: 36)
+        
+        if title.text == ENDLESS_LEVEL_TITLE {
+            title.font = ENDLESS_LEVEL_TITLE_FONT(size: 40)
+        } else {
+            title.font = FONT(size: 36)
+        }
+        
+        
         addSubview(title)
         self.title = title
         
@@ -97,7 +105,13 @@ class LevelSelectButton: UIView {
         border?.path = UIBezierPath(rect: borderRect).cgPath
         border?.frame = borderRect
 
-        title?.pin.hCenter().top(15).sizeToFit()
+        title?.pin.hCenter().top(15)
+        if title?.text == ENDLESS_LEVEL_TITLE {
+            title?.pin.height(36)
+            title?.pin.left().right()
+        } else {
+            title?.pin.sizeToFit()
+        }
         background?.pin.left(0).top(0).bottom(0).width(bounds.size.width*backgroundWidthPart)
         playLabel?.pin.bottom(14).hCenter().sizeToFit()
         padlockImageView?.pin.sizeToFit().hCenter().bottom(10)

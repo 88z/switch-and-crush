@@ -24,16 +24,26 @@ class LevelSelectPresenter: Presenter {
                 let completionPart:CGFloat
                 if index == progress.completedLevelsCount {
                     levelButtonState = .current
-                    completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.capacity)
+                    if level.isEndless {
+                        completionPart = 0
+                    } else {
+                        completionPart = CGFloat(progress.crushedObstaclesCount) / CGFloat(level.capacity)
+                    }
+                    
                 } else if index > progress.completedLevelsCount{
                     levelButtonState = .locked
                     completionPart = 0
-                } else {
+                } else  {
                     levelButtonState = .completed
                     completionPart = 1
                 }
-                
-                return LevelButtonModel(isEnabled: index < progress.completedLevelsCount, title: String(index+1), state: levelButtonState, completionPart: completionPart)
+                let title: String
+                if level.isEndless {
+                    title = ENDLESS_LEVEL_TITLE
+                } else {
+                    title = String(index+1)
+                }
+                return LevelButtonModel(isEnabled: index < progress.completedLevelsCount, title: title, state: levelButtonState, completionPart: completionPart)
             }
         }
     }
