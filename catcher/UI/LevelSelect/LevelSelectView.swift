@@ -56,7 +56,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
         self.backButton = backButton
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
             guard let buttonToScroll = self?.buttonToScroll else {
                 return
             }
