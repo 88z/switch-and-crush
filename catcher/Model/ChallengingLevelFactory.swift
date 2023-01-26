@@ -21,22 +21,21 @@ class ChallengingLevelFactory: LevelFactory {
             level7(),
             pendulumAndPlankLevel(),
             level9(),
-            crazyCarouselLevel(),
             bigRandomLevel(),
             pingPongLevel(),
             plankAndCarouselLevel(),
+            level13(),
             level14(),
-            level15(),
             plankAndGateLevel(),
-            level17(),
+            level16(),
             ringLevel(),
             crazyRingLevel(),
             plankAndRingLevel(),
+            level20(),
             level21(),
-            level22(),
             pendulumAndCarouselLevel(),
             chainLevel(),
-            level25(),
+            level24(),
             endlessLevel()
         ]
     }
@@ -422,7 +421,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level14() -> Level {
+    func level13() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 15
         let spaceShrink = 5
@@ -458,7 +457,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level15() -> Level {
+    func level14() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 15
         let spaceShrink = 7
@@ -544,7 +543,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level17() -> Level {
+    func level16() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 5
         let capacity = 25
@@ -671,7 +670,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level21() -> Level {
+    func level20() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 5
         let capacity = 15
@@ -714,7 +713,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level22() -> Level {
+    func level21() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
         let capacity = 10
@@ -807,7 +806,7 @@ class ChallengingLevelFactory: LevelFactory {
                      colorScheme: .blueRed)
     }
     
-    func level25() -> Level {
+    func level24() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 7
         let capacity = 12
