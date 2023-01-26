@@ -15,6 +15,7 @@
 		2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */ = {isa = PBXBuildFile; productRef = 2335706928A0372D004C163B /* CGPathIntersection */; };
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
+		235778FF2982D4FD00AB56E7 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 235778FE2982D4FD00AB56E7 /* Amplitude */; };
 		2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442629158B8300C3320F /* ModeSelectPresenter.swift */; };
 		2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442E2918154E00C3320F /* TitleButtonsView.swift */; };
 		237944322918158600C3320F /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944312918158600C3320F /* ButtonViewModel.swift */; };
@@ -193,6 +194,7 @@
 			files = (
 				23E3467028A91291005044B6 /* PinLayout in Frameworks */,
 				2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */,
+				235778FF2982D4FD00AB56E7 /* Amplitude in Frameworks */,
 				23FD3D1828784BF2007C178C /* LanguageManager-iOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +459,7 @@
 				23FD3D1728784BF2007C178C /* LanguageManager-iOS */,
 				2335706928A0372D004C163B /* CGPathIntersection */,
 				23E3466F28A91291005044B6 /* PinLayout */,
+				235778FE2982D4FD00AB56E7 /* Amplitude */,
 			);
 			productName = catcher;
 			productReference = 80CA5F2F2524F187003E900D /* catcher.app */;
@@ -534,6 +537,7 @@
 				23FD3D1628784BF2007C178C /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
 				2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */,
 				23E3466E28A91291005044B6 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				235778FD2982D4FD00AB56E7 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = 80CA5F302524F187003E900D /* Products */;
 			projectDirPath = "";
@@ -830,6 +834,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = zhuravlev.catcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -849,6 +854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = zhuravlev.catcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -986,6 +992,14 @@
 				kind = branch;
 			};
 		};
+		235778FD2982D4FD00AB56E7 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		23E3466E28A91291005044B6 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/layoutBox/PinLayout";
@@ -1009,6 +1023,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */;
 			productName = CGPathIntersection;
+		};
+		235778FE2982D4FD00AB56E7 /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 235778FD2982D4FD00AB56E7 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
 		};
 		23E3466F28A91291005044B6 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -7,6 +7,7 @@
 
 import Foundation
 import SpriteKit
+import Amplitude
 
 class OnboardingPresenter: BattleFieldPresenter {
     private weak var switchColorUI: TrivialUIScene?
@@ -42,6 +43,8 @@ class OnboardingPresenter: BattleFieldPresenter {
         thisIsBallUI.uiSceneDelegate = self
         vc?.show(uiScene: thisIsBallUI)
         self.switchColorUI = thisIsBallUI
+        
+        Amplitude.instance().logEvent("Onboarding_opened")
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {

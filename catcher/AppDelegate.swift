@@ -7,6 +7,7 @@
 
 import UIKit
 import LanguageManager_iOS
+import Amplitude
 
 
 @main
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LanguageManager.shared.defaultLanguage = .en
+        Amplitude.instance().initializeApiKey("0fdbe63201f1a299bbc9c9ccec214476")
         return true
     }
 
