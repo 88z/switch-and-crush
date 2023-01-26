@@ -88,7 +88,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         title?.pin
             .sizeToFit()
             .hCenter()
-            .top(pin.safeArea.top + 182)
+            .top(pin.safeArea.top + 82)
         scrollView?.pin
             .top(to: title!.edge.bottom)
             .left()
