@@ -88,8 +88,8 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            let newPresenter = GamePresenter(vc: vc, startState: State.second, level: ChallengingLevelFactory().level1(), progress: progress, gameMode: .arcade)
-            newPresenter.present()
+            BackgroundPresenter(vc: vc, progress: progress).present()
+            LevelSelectPresenter(vc: vc, progress: progress).present()
         }
     }
 }
