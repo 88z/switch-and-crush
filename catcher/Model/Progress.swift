@@ -71,7 +71,7 @@ class Progress {
     let levels: [Level]
     init(levelFactory: LevelFactory) {
         self.levels = levelFactory.levels
-        clean()
+//        clean()
     }
     
     func levelAfter(_ level:Level) -> Level? {
