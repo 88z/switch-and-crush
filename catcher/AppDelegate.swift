@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LanguageManager.shared.defaultLanguage = .en
-        Amplitude.instance().initializeApiKey("119095cc486bf1b926c95e1153ddc426")
+        if let amplitudeKey:String = Bundle.main.object(forInfoDictionaryKey: "AMPLITUDE_KEY") as? String {
+            Amplitude.instance().initializeApiKey(amplitudeKey)
+        }
+        
         return true
     }
 
