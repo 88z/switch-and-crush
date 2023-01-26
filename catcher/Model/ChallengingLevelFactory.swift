@@ -107,7 +107,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .greenYellow)
     }
     
     func level3() -> Level {
@@ -141,7 +141,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .enigma)
     }
     
     func pendulumLevel() -> Level {
@@ -170,7 +170,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .darkorangeCornflower)
     }
     
     func plankAndPlankLevel() -> Level {

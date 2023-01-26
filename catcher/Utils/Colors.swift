@@ -22,11 +22,19 @@ extension UIColor {
     }
     
     static func green() -> UIColor{
-        return UIColor(red: 79/255, green: 178/255, blue: 134/255, alpha: 1)
+        return UIColor(red: 0/255, green: 204/255, blue: 153/255, alpha: 1)
     }
     
-    static func isabelline() -> UIColor{
-        return UIColor(red: 242/255, green: 239/255, blue: 234/255, alpha: 1)
+    static func yellow() -> UIColor{
+        return UIColor(red: 255/255, green: 238/255, blue: 136/255, alpha: 1)
+    }
+    
+    static func violet() -> UIColor{
+        return UIColor(red: 157/255, green: 78/255, blue: 221/255, alpha: 1)
+    }
+    
+    static func kellyGreen() -> UIColor{
+        return UIColor(red: 56/255, green: 176/255, blue: 0/255, alpha: 1)
     }
     
     static func grid() -> UIColor{
@@ -44,5 +52,14 @@ extension UIColor {
     static func levelButtonBackground() ->UIColor {
         return UIColor(red: 251/255, green: 246/255, blue: 249/255, alpha: 0.25)
     }
+    
+    static func darkOrnage() ->UIColor {
+        return UIColor(red: 255/255, green: 134/255, blue: 0/255, alpha: 1)
+    }
+    
+    static func cornflower() ->UIColor {
+        return UIColor(red: 117/255, green: 139/255, blue: 253/255, alpha: 1)
+    }
+    
 }
 
