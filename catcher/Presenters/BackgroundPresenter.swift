@@ -20,6 +20,12 @@ class BackgroundPresenter: BattleFieldPresenter{
         super.present()
         battleFieldScene?.start(level: progress.lastCompletedLevel ?? progress.levels.first!, shouldShowCounter: false, shouldPlaceHero: false, mode: .endless)
     }
+    
+    func presentEmpty() {
+        super.present()
+        let emptyLevel = Level(initialObstacleTypes: [], obstacleTypesForTail: [], capacity: 0, initialSpeed: 0, name: "empty", initialState: .random(), userInterationEnabled: false, colorScheme: .blueRed)
+        battleFieldScene?.start(level: emptyLevel, shouldShowCounter: false, shouldPlaceHero: false, mode: .endless)
+    }
 }
 
 
