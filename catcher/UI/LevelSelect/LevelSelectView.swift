@@ -54,6 +54,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         backButton.setImage(UIImage(named: "back"), for: .normal)
         addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
+        backButton.isHidden = true
         self.backButton = backButton
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in

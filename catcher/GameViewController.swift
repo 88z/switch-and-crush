@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
         let progress = Progress(levelFactory: ChallengingLevelFactory())
         if progress.isOnboardingShown {
             BackgroundPresenter(vc:self, progress: progress).present()
-            ModeSelectPresenter(vc:self, progress: progress).present()
+            LevelSelectPresenter(vc:self, progress: progress).present()
         } else {
             OnboardingPresenter(vc: self, progress: progress).present()
         }

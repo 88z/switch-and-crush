@@ -58,7 +58,7 @@ class GameOverPresenter:Presenter {
                 return
             }
             vc.freezeInteraction()
-            ModeSelectPresenter(vc: vc, progress: self.progress).present()
+            LevelSelectPresenter(vc: vc, progress: self.progress).present()
         })
         vc?.show(uiView: gameOverView)
         
