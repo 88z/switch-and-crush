@@ -57,7 +57,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         backButton.isHidden = true
         self.backButton = backButton
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) { [weak self] in
             guard let buttonToScroll = self?.buttonToScroll else {
                 return
             }
