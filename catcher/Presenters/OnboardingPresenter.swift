@@ -88,7 +88,6 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            BackgroundPresenter(vc: vc, progress: progress).present()
             LevelSelectPresenter(vc: vc, progress: progress).present()
         }
     }
