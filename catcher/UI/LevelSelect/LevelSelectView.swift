@@ -94,7 +94,6 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
             .left()
             .right()
             .bottom()
-            .hCenter()
             .marginTop(25)
         buttonsContainer?.pin
             .hCenter()
