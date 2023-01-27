@@ -21,7 +21,6 @@ protocol BattleFieldSceneDelegate: SKSceneDelegate {
 
 class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     private var hero: Hero?
-    private var gameMode: GameMode?
     private let heroTopOffset: CGFloat
     private let shatterSoundAction = SKAction.playSoundFileNamed("shatter.mp3", waitForCompletion: false)
     private var safeAreaHeight: CGFloat {
@@ -127,9 +126,8 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
     
-    func start(level: Level, shouldShowCounter:Bool = true, shouldPlaceHero: Bool, mode: GameMode) {
+    func start(level: Level, shouldShowCounter:Bool = true, shouldPlaceHero: Bool) {
         self.level = level
-        self.gameMode = mode
         self.fallSpeed = level.initialSpeed
         self.isUserInteractionEnabled = level.userInterationEnabled
         if shouldPlaceHero {
@@ -268,7 +266,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func updateCounter() {
-        let text = gameMode == .arcade ? "\(progress) / \(level?.capacity ?? 0)" : "\(progress)"
+        let text = level?.isEndless ?? true ? "\(progress)" : "\(progress) / \(level?.capacity ?? 0)" 
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttributes([.foregroundColor: UIColor .text(), .font: FONT(size: 32)], range: NSRange(location: 0, length: text.count))
         counterNode.attributedText = attributedText

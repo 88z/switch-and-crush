@@ -15,19 +15,16 @@ class LevelFailedPresenter:Presenter {
     private let topText: String?
     private let level: Level
     private let progress: Progress
-    private let gameMode: GameMode
     private let index: Int?
     private let score:Int
     
     init(vc: GameViewController,
          level:Level,
          progress: Progress,
-         gameMode: GameMode,
          score: Int) {
         self.vc = vc
         self.level = level
         self.progress = progress
-        self.gameMode = gameMode
         self.score = score
         
         let indexStr: String
@@ -39,12 +36,12 @@ class LevelFailedPresenter:Presenter {
             self.index = nil
         }
         
-        if gameMode == .arcade {
-            self.title = "levEl \(indexStr) Failed"
-        } else {
+        if level.isEndless {
             self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
+        } else {
+            self.title = "levEl \(indexStr) Failed"
         }
-        topText =  gameMode == .arcade ? "\(score) / \(level.capacity)" : nil
+        topText =  level.isEndless ? nil : "\(score) / \(level.capacity)"
     }
     
     func present() {
@@ -66,7 +63,7 @@ class LevelFailedPresenter:Presenter {
                     return 
                 }
                 vc.freezeInteraction()
-                GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress, gameMode: self.gameMode).present()
+                GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress).present()
             }),
         ], title: title, topText: topText, imageName: "deadFace", backButtonIcon: .home, backButtonAction: {
             Amplitude.instance().logEvent("LevelFailed_Back_Taped",

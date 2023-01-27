@@ -21,7 +21,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
             return
         }
         if element is TrivialUISceneButton {
-            GamePresenter(vc: vc, startState: .first, level: levelFactory.endlessLevel(), progress: progress, gameMode: .endless).present()
+            GamePresenter(vc: vc, startState: .first, level: levelFactory.endlessLevel(), progress: progress).present()
         }
     }
     
@@ -38,7 +38,7 @@ class InfiniteStartPresenter: Presenter, TrivialUISceneDelegate {
                     assertionFailure("viewController not found")
                     return
                 }
-                GamePresenter(vc: vc, startState: .first, level: ChallengingLevelFactory().endlessLevel(), progress: self.progress, gameMode: .endless).present()
+                GamePresenter(vc: vc, startState: .first, level: ChallengingLevelFactory().endlessLevel(), progress: self.progress).present()
             })
         ], title: "best score: \(progress.infiniteModeRecord)", backButtonIcon: .back) {
             guard let vc = self.vc else {

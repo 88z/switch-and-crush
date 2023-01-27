@@ -14,14 +14,12 @@ class GamePresenter: BattleFieldPresenter {
     private weak var gameOverUI: TrivialUIScene?
     let level: Level
     let progress: Progress
-    let gameMode: GameMode
     
     
-    init(vc: GameViewController, startState: State, level: Level, progress: Progress, gameMode: GameMode) {
+    init(vc: GameViewController, startState: State, level: Level, progress: Progress) {
         self.startState = startState
         self.level = level
         self.progress = progress
-        self.gameMode = gameMode
         super.init(vc: vc)
     }
     
@@ -59,7 +57,7 @@ class GamePresenter: BattleFieldPresenter {
     
     private func startGame () {
         vc?.hideUI()
-        battleFieldScene?.start(level: level, shouldPlaceHero: true, mode: self.gameMode)
+        battleFieldScene?.start(level: level, shouldPlaceHero: true)
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {
@@ -77,7 +75,7 @@ class GamePresenter: BattleFieldPresenter {
         }
 
         vc.freezeInteraction()
-        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level, progress: progress, gameMode: gameMode)
+        let newPresenter = GamePresenter(vc: vc, startState: heroState, level: level, progress: progress)
         newPresenter.present()
     }
     
@@ -89,7 +87,7 @@ class GamePresenter: BattleFieldPresenter {
             return
         }
         let score = scene.getProgress()
-        LevelFailedPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
+        LevelFailedPresenter(vc: vc, level: level, progress: progress, score: score).present()
 
         guard let levelIndex = (progress.levels.firstIndex { l in
            return l.name == level.name

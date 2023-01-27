@@ -73,7 +73,7 @@ class LevelSelectPresenter: Presenter {
                                           withEventProperties: ["level_index": index,
                                                                 "level_name": level.name,
                                                                 "is_endless": level.isEndless])
-            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .arcade).present()
+            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
             
         })
         vc?.show(uiView: levelSelectView)
