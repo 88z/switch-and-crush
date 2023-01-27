@@ -89,7 +89,7 @@ class GamePresenter: BattleFieldPresenter {
             return
         }
         let score = scene.getProgress()
-        GameOverPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
+        LevelFailedPresenter(vc: vc, level: level, progress: progress, gameMode: self.gameMode, score: score).present()
 
         guard let levelIndex = (progress.levels.firstIndex { l in
            return l.name == level.name

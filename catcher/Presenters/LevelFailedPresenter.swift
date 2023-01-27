@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class GameOverPresenter:Presenter {
+class LevelFailedPresenter:Presenter {
     public weak var vc: GameViewController?
     private let title: String
     private let topText: String?

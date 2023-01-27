@@ -19,7 +19,7 @@
 		2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442629158B8300C3320F /* ModeSelectPresenter.swift */; };
 		2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442E2918154E00C3320F /* TitleButtonsView.swift */; };
 		237944322918158600C3320F /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944312918158600C3320F /* ButtonViewModel.swift */; };
-		237944342919884300C3320F /* GameOverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944332919884300C3320F /* GameOverPresenter.swift */; };
+		237944342919884300C3320F /* LevelFailedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944332919884300C3320F /* LevelFailedPresenter.swift */; };
 		23794436291ABF1700C3320F /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23794435291ABF1700C3320F /* GameMode.swift */; };
 		23825AB028A8FB5C005E8273 /* BackgroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */; };
 		23831FC8289FC19C002624BD /* StackArcObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23831FC7289FC19C002624BD /* StackArcObstacle.swift */; };
@@ -116,7 +116,7 @@
 		2379442629158B8300C3320F /* ModeSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectPresenter.swift; sourceTree = "<group>"; };
 		2379442E2918154E00C3320F /* TitleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleButtonsView.swift; sourceTree = "<group>"; };
 		237944312918158600C3320F /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
-		237944332919884300C3320F /* GameOverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverPresenter.swift; sourceTree = "<group>"; };
+		237944332919884300C3320F /* LevelFailedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFailedPresenter.swift; sourceTree = "<group>"; };
 		23794435291ABF1700C3320F /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPresenter.swift; sourceTree = "<group>"; };
 		23831FC7289FC19C002624BD /* StackArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackArcObstacle.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 				23825AAF28A8FB5C005E8273 /* BackgroundPresenter.swift */,
 				23A9528E290D3D7C00B17C57 /* InfiniteStartPresenter.swift */,
 				2379442629158B8300C3320F /* ModeSelectPresenter.swift */,
-				237944332919884300C3320F /* GameOverPresenter.swift */,
+				237944332919884300C3320F /* LevelFailedPresenter.swift */,
 				232440B4291C3D7500B3CB8D /* LevelFinishPresenter.swift */,
 			);
 			path = Presenters;
@@ -616,7 +616,7 @@
 				80A4C33725396EE200EEB097 /* QuadraticSolver.swift in Sources */,
 				2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */,
 				23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */,
-				237944342919884300C3320F /* GameOverPresenter.swift in Sources */,
+				237944342919884300C3320F /* LevelFailedPresenter.swift in Sources */,
 				230D987828A8F111008D19CA /* LevelSelectPresenter.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
 				232440B5291C3D7500B3CB8D /* LevelFinishPresenter.swift in Sources */,
