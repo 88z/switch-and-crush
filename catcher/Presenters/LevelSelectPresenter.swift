@@ -7,6 +7,7 @@
 
 import Foundation
 import SpriteKit
+import Amplitude
 
 class LevelSelectPresenter: Presenter {
     
@@ -55,6 +56,7 @@ class LevelSelectPresenter: Presenter {
 
     
     func present() {
+        Amplitude.instance().logEvent("LevelSelect_Opened")
         let levelSelectView = LevelSelectView(frame: .zero, buttonModels: levelButtonModels, backButtonAction: {
             guard let vc = self.vc else {
                 return
@@ -68,8 +70,13 @@ class LevelSelectPresenter: Presenter {
             let level = self.progress.levels[index]
             
             GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .arcade).present()
+            Amplitude.instance().logEvent("LevelSelect_LevelButton_Taped",
+                                          withEventProperties: ["level_index": index,
+                                                                "level_name": level.name,
+                                                                "is_endless": level.isEndless])
         })
         vc?.show(uiView: levelSelectView)
+        
     }
     
 }
