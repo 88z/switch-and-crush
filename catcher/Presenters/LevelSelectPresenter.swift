@@ -63,17 +63,18 @@ class LevelSelectPresenter: Presenter {
             }
             ModeSelectPresenter(vc:vc, progress: self.progress).present()
         }, levelSelectAction: { (index: Int) in
+            
             guard index < self.progress.levels.count,
                   let vc = self.vc else {
                 return
             }
             let level = self.progress.levels[index]
-            
-            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .arcade).present()
-            Amplitude.instance().logEvent("LevelSelect_LevelButton_Taped",
+            Amplitude.instance().logEvent("LevelSelect_Level_Taped",
                                           withEventProperties: ["level_index": index,
                                                                 "level_name": level.name,
                                                                 "is_endless": level.isEndless])
+            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress, gameMode: .arcade).present()
+            
         })
         vc?.show(uiView: levelSelectView)
         

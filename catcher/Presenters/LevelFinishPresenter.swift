@@ -7,12 +7,14 @@
 
 import Foundation
 import SpriteKit
+import Amplitude
 
 class LevelFinishPresenter: Presenter {
     public weak var vc: GameViewController?
     private let progress: Progress
     private let level: Level
     private let indexStr: String
+    private let index: Int?
     init(vc: GameViewController,
          progress: Progress,
          level: Level) {
@@ -21,15 +23,25 @@ class LevelFinishPresenter: Presenter {
         self.level = level
         if let index = progress.index(of: level) {
             indexStr = String(index+1)
+            self.index = index
         } else {
             indexStr = ""
+            self.index = nil
         }
+        
     }
     func present() {
+        Amplitude.instance().logEvent("LevelFinished_Opened",
+                                      withEventProperties: ["level_index": self.index ?? "",
+                                                            "level_name": self.level.name])
         var buttonModels: [ButtonViewModel] = []
         let nextLevel = progress.levelAfter(level)
         if nextLevel != nil {
             buttonModels.append(ButtonViewModel(text: "nexT lEvel".localiz(), action: {
+                Amplitude.instance().logEvent("LevelFinished_NextLevel_Taped",
+                                              withEventProperties: ["level_index": self.index ?? "",
+                                                                    "level_name": self.level.name,
+                                                                    "is_endless": self.level.isEndless])
                 guard let vc = self.vc else {
                     assertionFailure("viewController no found")
                     return
@@ -43,15 +55,8 @@ class LevelFinishPresenter: Presenter {
                                                title: "levEl \(indexStr) Finished",
                                                topText: nil,
                                                imageName: "happyFace",
-                                               backButtonIcon: .home,
-                                               backButtonAction: {
-            guard let vc = self.vc else {
-                assertionFailure("viewController no found")
-                return
-            }
-            vc.freezeInteraction()
-            LevelSelectPresenter(vc: vc, progress: self.progress).present()
-        })
+                                               backButtonIcon: nil,
+                                               backButtonAction: nil)
         vc?.show(uiView: levelFinishView)
     }
 }
