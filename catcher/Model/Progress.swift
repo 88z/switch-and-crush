@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Amplitude
 
 
 class Progress {
@@ -19,6 +20,9 @@ class Progress {
             return userDefaults.integer(forKey: completedLevelsCountKey)
         }
         set {
+            let identify = AMPIdentify()
+                .set("completedLevelsCount", value: NSNumber(value: newValue))
+            Amplitude.instance().identify(identify!)
             userDefaults.set(newValue, forKey: completedLevelsCountKey)
             userDefaults.synchronize()
         }
@@ -28,6 +32,9 @@ class Progress {
             return userDefaults.integer(forKey: crushedObstaclesCountKey)
         }
         set {
+            let identify = AMPIdentify()
+                .set("crushedObstaclesCount", value: NSNumber(value: newValue))
+            Amplitude.instance().identify(identify!)
             userDefaults.set(newValue, forKey: crushedObstaclesCountKey)
             userDefaults.synchronize()
         }
@@ -47,6 +54,9 @@ class Progress {
             return userDefaults.integer(forKey: infiniteModeRecordKey)
         }
         set {
+            let identify = AMPIdentify()
+                .set("infiniteModeRecord", value: NSNumber(value: newValue))
+            Amplitude.instance().identify(identify!)
             userDefaults.set(newValue, forKey: infiniteModeRecordKey)
             userDefaults.synchronize()
         }
