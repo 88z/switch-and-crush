@@ -838,10 +838,5 @@ class ChallengingLevelFactory: LevelFactory {
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
-    
-    
-    
-    
-
 }
 

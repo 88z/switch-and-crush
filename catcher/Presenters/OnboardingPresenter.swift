@@ -43,12 +43,12 @@ class OnboardingPresenter: BattleFieldPresenter {
         thisIsBallUI.uiSceneDelegate = self
         vc?.show(uiScene: thisIsBallUI)
         self.switchColorUI = thisIsBallUI
-        
-        Amplitude.instance().logEvent("Onboarding_opened")
+        Amplitude.instance().logEvent("Onboarding_Opened")
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {
         if scene == switchColorUI {
+            
             vc?.hideUI()
             battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                                                  obstacleTypesForTail: [],
@@ -68,6 +68,7 @@ class OnboardingPresenter: BattleFieldPresenter {
             redObstacleUI.uiSceneDelegate = self
             vc?.show(uiScene: redObstacleUI)
             self.redObstacleUI = redObstacleUI
+            Amplitude.instance().logEvent("Onboarding_RedBallStep_Opened")
         } else if scene == redObstacleUI {
             vc?.hideUI()
             battleFieldScene?.start(level: Level(initialObstacleTypes: [.plank(state: State.random(),
@@ -85,6 +86,7 @@ class OnboardingPresenter: BattleFieldPresenter {
             blueObstacleUI.uiSceneDelegate = self
             vc?.show(uiScene: blueObstacleUI)
             self.blueObstacleUI = redObstacleUI
+            Amplitude.instance().logEvent("Onboarding_BlueBallStep_Opened")
         } else {
             vc?.hideUI()
             guard let vc = vc else {
@@ -93,6 +95,7 @@ class OnboardingPresenter: BattleFieldPresenter {
             progress.isOnboardingShown = true
             BackgroundPresenter(vc: vc, progress: progress).presentEmpty()
             LevelSelectPresenter(vc: vc, progress: progress).present()
+            Amplitude.instance().logEvent("Onboarding_Finished")
         }
     }
 }
