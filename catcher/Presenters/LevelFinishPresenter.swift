@@ -49,7 +49,9 @@ class LevelFinishPresenter: Presenter {
                 }
                 LevelSelectPresenter(vc: vc, progress: self.progress).present()
                 vc.freezeInteraction()
-                SKStoreReviewController.requestReview()
+                if self.index ?? 0 >= 7 {
+                    SKStoreReviewController.requestReview()
+                }
             }))
         }
         let levelFinishView = TitleButtonsView(frame: .zero,
