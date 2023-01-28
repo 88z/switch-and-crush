@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 import Amplitude
+import StoreKit
 
 class LevelFinishPresenter: Presenter {
     public weak var vc: GameViewController?
@@ -48,6 +49,7 @@ class LevelFinishPresenter: Presenter {
                 }
                 LevelSelectPresenter(vc: vc, progress: self.progress).present()
                 vc.freezeInteraction()
+                SKStoreReviewController.requestReview()
             }))
         }
         let levelFinishView = TitleButtonsView(frame: .zero,
