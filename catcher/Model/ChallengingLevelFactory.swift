@@ -37,6 +37,7 @@ class ChallengingLevelFactory: LevelFactory {
             chainLevel(),
             level24(),
             fragmentedRingLevel(),
+            pingPongAndPendulumLevel(),
             endlessLevel()
         ]
     }
@@ -410,7 +411,11 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 15
         let spaceShrink = 5
         for i in 0..<10 {
-            obstacleTypes.append(.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink), acceleration: acceleration))
+            obstacleTypes.append(.pingPongPlank(swingSpeed: .fast,
+                                                isStacked: false,
+                                                blinkInterval: 0,
+                                                spaceAfter: CGFloat(randomBetween(150, and: 200)-i*spaceShrink),
+                                                acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.pingPongPlank(swingSpeed: .medium, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
@@ -861,6 +866,39 @@ class ChallengingLevelFactory: LevelFactory {
                                                             blinkInterval: 0,
                                                             spaceAfter: CGFloat(randomBetween(75, and: 125)),
                                                             acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func pingPongAndPendulumLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 5
+        let capacity = 12
+        let spaceShrink = 10
+        for i in 0..<capacity/2 {
+            obstacleTypes.append(contentsOf:[.pendulumPlank(partsCount: 2,
+                                                            swingSpeed: .fast,
+                                                            isStacked: false,
+                                                            blinkInterval: 0,
+                                                            spaceAfter: 50,
+                                                            acceleration: 0),
+                                            .pingPongPlank(swingSpeed: .fast,
+                                                            isStacked: false,
+                                                            blinkInterval: 0,
+                                                            spaceAfter: CGFloat(randomBetween(200, and: 250) - i*spaceShrink),
+                                                            acceleration: acceleration),
+                                             ]
+                                 )
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.plank(state: .random(),
+                                                   blinkInterval: 0,
+                                                   spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                   acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
