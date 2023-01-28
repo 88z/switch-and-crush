@@ -41,7 +41,8 @@ class GamePresenter: BattleFieldPresenter {
         guard let vc = vc else {
             return
         }
-        battleFieldScene.startImmortal()
+//        battleFieldScene.startImmortal()
+        battleFieldScene.removeHero()
         LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
         
         guard let levelIndex = (progress.levels.firstIndex { l in
