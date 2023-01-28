@@ -242,8 +242,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         shatterer(for: obstacle).shatter(contactPoint: contactPoint)
-        let generator = UIImpactFeedbackGenerator(style: .heavy)
-        generator.impactOccurred()
+        if hero?.state != .immortal {
+            let generator = UIImpactFeedbackGenerator(style: .heavy)
+            generator.impactOccurred()
+        }
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
         progress += 1
         updateCounter()
