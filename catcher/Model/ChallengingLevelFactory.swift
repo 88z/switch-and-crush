@@ -36,6 +36,7 @@ class ChallengingLevelFactory: LevelFactory {
             pendulumAndCarouselLevel(),
             chainLevel(),
             level24(),
+            fragmentedRingLevel(),
             endlessLevel()
         ]
     }
@@ -831,6 +832,35 @@ class ChallengingLevelFactory: LevelFactory {
                                                           acceleration: 0),
                                             .pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0),
                                             .carouselPlank(partsCount: 6, carouselSpeed: .fast, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func fragmentedRingLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 10
+        for _ in 0..<capacity {
+            obstacleTypes.append(.fragmentedRing(segmentsCount: 4,
+                                                 rotationSpeed: .fast,
+                                                 directionClockwise: Bool.random(),
+                                                 isStacked: false,
+                                                 blinkInterval: 0,
+                                                 spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                 acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.fragmentedRing(segmentsCount: 4,
+                                                            rotationSpeed: .medium,
+                                                            directionClockwise: Bool.random(),
+                                                            isStacked: false,
+                                                            blinkInterval: 0,
+                                                            spaceAfter: CGFloat(randomBetween(75, and: 125)),
+                                                            acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
