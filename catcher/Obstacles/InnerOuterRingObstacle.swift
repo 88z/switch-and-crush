@@ -17,10 +17,6 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     
     private let outerRadius: CGFloat
     private let innerRadius: CGFloat
-    private let outerSegmentsCount: Int
-    private let outerRotationSpeed: Speed
-    private let outerDirectionClockwise: Bool
-    private let outerIsStacked: Bool
     
     private var center: CGPoint {
         get {
@@ -29,71 +25,67 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     }
     
     private let innerType: ObstacleType
+    private let outerType: ObstacleType
     
     
     init (mask: Mask, outerRadius: CGFloat, innerRadius: CGFloat, colorScheme: ColorScheme, outerType: ObstacleType, innerType: ObstacleType, type: ObstacleType) {
         
-        var outerIsStacked = false
-        var outerSegmentsCount = 0
         var acceleration = 0
-        var outerRotationSpeed: Speed = .none
-        var outerDirectionClockwise = true
         var spaceAfter: CGFloat = 0
         switch outerType {
-        case .animatedRing(segmentsCount: let _segmentsCount,
-                                rotationSpeed: let _rotationSpeed,
-                                directionClockwise: let _directionClockwise,
-                                isStacked: let _isStacked,
+        case .animatedRing(segmentsCount: _,
+                                rotationSpeed: _,
+                                directionClockwise: _,
+                                isStacked: _,
                                 spaceAfter: let _spaceAfter,
+                                acceleration: let _acceleration),
+                .fragmentedRing(segmentsCount: _,
+                                rotationSpeed: _,
+                                directionClockwise: _,
+                                isStacked: _, spaceAfter: let _spaceAfter,
                                 acceleration: let _acceleration):
-                 outerIsStacked = _isStacked
-                 outerSegmentsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
-                 outerRotationSpeed = _rotationSpeed
                  acceleration = _acceleration
                  spaceAfter = _spaceAfter
-                 outerDirectionClockwise = _directionClockwise
         default:
             assertionFailure("incorrect outer type for " + String(describing: InnerOuterRingObstacle.self))
         }
 
+        self.outerType = outerType
         self.outerRadius = outerRadius
         self.innerRadius = innerRadius
-        self.outerSegmentsCount = outerSegmentsCount
-        self.outerRotationSpeed = outerRotationSpeed
-        self.outerIsStacked = outerIsStacked
-        self.outerDirectionClockwise = outerDirectionClockwise
         self.innerType = innerType
         super.init(colorScheme: colorScheme, blinkInterval: 0, spaceAfter: spaceAfter, acceleration: acceleration)
         self.type = type
         initParts(mask: mask)
         name = String(describing: Obstacle.self)
-        physicsBody = SKPhysicsBody(circleOfRadius: outerRadius, center: center)
-        physicsBody?.affectedByGravity = false
-        physicsBody?.restitution = 0
-        physicsBody?.friction = 0
-        physicsBody?.linearDamping = 0
-        physicsBody?.angularDamping = 0
-        physicsBody?.density = 0
-        physicsBody?.setZeroMask()
+//        physicsBody = SKPhysicsBody(circleOfRadius: outerRadius, center: center)
+//        physicsBody?.affectedByGravity = false
+//        physicsBody?.restitution = 0
+//        physicsBody?.friction = 0
+//        physicsBody?.linearDamping = 0
+//        physicsBody?.angularDamping = 0
+//        physicsBody?.density = 0
+//        physicsBody?.setZeroMask()
         
     }
     
     private func initParts(mask:Mask) {
-        let ringObstacleType = ObstacleType.animatedRing(segmentsCount: outerSegmentsCount,
-                                                         rotationSpeed: outerRotationSpeed,
-                                                         directionClockwise: outerDirectionClockwise,
-                                                         isStacked: outerIsStacked,
-                                                         spaceAfter: 0,
-                                                         acceleration: acceleration)
-        addChild(RingObstacle(mask: mask, radius: outerRadius, colorScheme: colorScheme, type: ringObstacleType))
+        switch outerType {
+        case .animatedRing:
+            addChild(RingObstacle(mask: mask, radius: outerRadius, colorScheme: colorScheme, type: outerType))
+        case .fragmentedRing:
+            addChild(FragmentedRingObstacle(mask: mask, radius: outerRadius, type: outerType, colorScheme: colorScheme))
+        default:
+            assertionFailure("incorrect stone type for " + String(describing: InnerOuterRingObstacle.self))
+        }
         
-        guard let stone = initStone(mask: mask) else {
+        guard let stone = initInnerPart(mask: mask) else {
             return
         }
         addChild(stone.node)
     }
     
-    private func initStone(mask: Mask) -> Obstacle? {
+    private func initInnerPart(mask: Mask) -> Obstacle? {
         switch innerType {
         case .brick:
             let stone =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: innerType)

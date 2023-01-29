@@ -35,7 +35,11 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
     
     func willBeShattered() {}
     
-    func onAddedToScene() {}
+    func onAddedToScene() {
+        for obstacle in parts() {
+            obstacle.onAddedToScene()
+        }
+    }
     
     var type: ObstacleType! = nil
     

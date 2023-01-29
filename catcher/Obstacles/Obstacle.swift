@@ -24,7 +24,7 @@ enum ObstacleType: Equatable {
     case thinPlank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case plankStack(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case animatedRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case arc(blinkInterval: TimeInterval, acceleration: Int)
     case arcStack(blinkInterval: TimeInterval, acceleration: Int)
@@ -33,7 +33,7 @@ enum ObstacleType: Equatable {
     case ringWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
     case doubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-//    case fragmentedRingWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
+    case fragmentedRingWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     
 }
 

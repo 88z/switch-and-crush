@@ -57,8 +57,8 @@ class ChallengingLevelFactory: LevelFactory {
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.ringWithStone(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: acceleration)
-                ObstacleType.doubleRingWithBrick(outerSegmentsCount: 12, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: Bool.random(), innerDirectionClockwise: Bool.random(), spaceAfter: 200, acceleration: acceleration)
+                ObstacleType.fragmentedRingWithBrick(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: acceleration)
+//                ObstacleType.doubleRingWithBrick(outerSegmentsCount: 12, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: Bool.random(), innerDirectionClockwise: Bool.random(), spaceAfter: 200, acceleration: acceleration)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
@@ -850,7 +850,6 @@ class ChallengingLevelFactory: LevelFactory {
                                                  rotationSpeed: .fast,
                                                  directionClockwise: Bool.random(),
                                                  isStacked: false,
-                                                 blinkInterval: 0,
                                                  spaceAfter: CGFloat(randomBetween(150, and: 200)),
                                                  acceleration: acceleration))
         }
@@ -859,7 +858,6 @@ class ChallengingLevelFactory: LevelFactory {
                                                             rotationSpeed: .medium,
                                                             directionClockwise: Bool.random(),
                                                             isStacked: false,
-                                                            blinkInterval: 0,
                                                             spaceAfter: CGFloat(randomBetween(75, and: 125)),
                                                             acceleration: 0)],
                      capacity: capacity,

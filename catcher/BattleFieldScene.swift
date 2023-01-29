@@ -226,7 +226,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                                 rotationSpeed: _,
                                 directionClockwise: _,
                                 isStacked: _,
-                                blinkInterval: _,
                                 spaceAfter: _,
                                 acceleration: _):
             return RingObstacleShatterer(obstacle: obstacle)

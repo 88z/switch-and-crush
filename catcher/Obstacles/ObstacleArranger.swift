@@ -127,6 +127,27 @@ class ObstacleArranger {
                                                                spaceAfter: 0,
                                                                acceleration: 0),
                                               type: type)
+        case .fragmentedRingWithBrick(segmentsCount: let _segmentsCount,
+                            rotationSpeed: let _rotationSpeed,
+                            directionClockwise: let _directionClockwise,
+                            isStacked: let _isStacked,
+                            spaceAfter: let _spaceAfter,
+                            acceleration: let _acceleration):
+            obstacle = InnerOuterRingObstacle(mask: obstacleMask,
+                                             outerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                             innerRadius: 0,
+                                             colorScheme: colorScheme,
+                                              outerType: .fragmentedRing(segmentsCount: _segmentsCount,
+                                                                                  rotationSpeed: _rotationSpeed,
+                                                                                  directionClockwise: _directionClockwise,
+                                                                                  isStacked: _isStacked,
+                                                                                  spaceAfter: _spaceAfter,
+                                                                                  acceleration: _acceleration),
+                                             innerType: .brick(state: .random(),
+                                                               blinkInterval: 0,
+                                                               spaceAfter: 0,
+                                                               acceleration: 0),
+                                              type: type)
         case .doubleRing(outerSegmentsCount: let outerSegmentsCount,
                          innerSegmentsCount: let innerSegmentsCount,
                          outerRotationSpeed: let outerRotationSpeed,
@@ -223,11 +244,10 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .arcStack, .animatedRing, .doubleRing, .doubleRingWithBrick, .ringWithBrick, .fragmentedRing(segmentsCount: _,
+        case .arc, .fragmentedRingWithBrick, .arcStack, .animatedRing, .doubleRing, .doubleRingWithBrick, .ringWithBrick, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
                                                              directionClockwise: _,
                                                              isStacked: _,
-                                                             blinkInterval: _,
                                                              spaceAfter: _,
                                                              acceleration: _):
             return CGPoint(x: scene!.frame.midX, y:nextY)

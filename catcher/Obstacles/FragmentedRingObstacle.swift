@@ -46,7 +46,6 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var partsCount = 0
         var rotationSpeed: Speed = .none
         var directionClockwise = true
-        var blinkInterval: TimeInterval = 0
         var acceleration = 0
         var spaceAfter: CGFloat = 0
         switch type {
@@ -54,14 +53,12 @@ class FragmentedRingObstacle: MultiStateObstacle {
                              rotationSpeed: let _rotationSpeed,
                              directionClockwise: let _directionClockwise,
                              isStacked: let _isStacked,
-                             blinkInterval: let _blinkInterval,
                              spaceAfter: let _spaceAfter,
                              acceleration: let _acceleration):
             isStacked = _isStacked
             partsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
             directionClockwise = _directionClockwise
-            blinkInterval = _blinkInterval
             acceleration = _acceleration
             spaceAfter = _spaceAfter
             
@@ -70,7 +67,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
         }
         self.isStacked = isStacked
         
-        super.init(colorScheme: colorScheme, blinkInterval: blinkInterval, spaceAfter: spaceAfter, acceleration: acceleration)
+        super.init(colorScheme: colorScheme, blinkInterval: 0, spaceAfter: spaceAfter, acceleration: acceleration)
         self.type = type
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
