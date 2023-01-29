@@ -247,7 +247,6 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             generator.impactOccurred()
         }
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
-        print(fallSpeed)
         progress += 1
         updateCounter()
 //        run(shatterSoundAction)
