@@ -45,7 +45,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 15
+        let acceleration = 5
         for _ in 0..<10{
             obstacleTypes.append([
 //                ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),

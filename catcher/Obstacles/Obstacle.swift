@@ -33,6 +33,8 @@ enum ObstacleType: Equatable {
     case ringWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
     case doubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
+//    case fragmentedRingWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
+    
 }
 
 protocol Obstacle: AnyObject {
