@@ -8,14 +8,15 @@
 import Foundation
 import SpriteKit
 
-class RingWithStoneObstacle: MultiStateObstacle {
+class InnerOuterRingObstacle: MultiStateObstacle {
     override var isSolid: Bool {
         get {
             return false
         }
     }
     
-    private let radius: CGFloat
+    private let outerRadius: CGFloat
+    private let innerRadius: CGFloat
     
     private var center: CGPoint {
         get {
@@ -23,16 +24,16 @@ class RingWithStoneObstacle: MultiStateObstacle {
         }
     }
     
-    private let stoneType: ObstacleType
+    private let innerType: ObstacleType
     
-    init (mask: Mask, radius: CGFloat, colorScheme: ColorScheme, type: ObstacleType, stoneType: ObstacleType) {
+    init (mask: Mask, outerRadius: CGFloat, innerRadius: CGFloat, colorScheme: ColorScheme, outerType: ObstacleType, innerType: ObstacleType) {
         var isStacked = false
         var segmentsCount = 0
         var acceleration = 0
         var rotationSpeed: Speed = .none
         var directionClockwise = true
         var spaceAfter: CGFloat = 0
-        switch type {
+        switch outerType {
         case .ringWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
             isStacked = _isStacked
             segmentsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
@@ -67,15 +68,16 @@ class RingWithStoneObstacle: MultiStateObstacle {
             spaceAfter = _spaceAfter
             directionClockwise = _outerDirectionClockwise
         default:
-            assertionFailure("incorrect type for " + String(describing: RingWithStoneObstacle.self))
+            assertionFailure("incorrect type for " + String(describing: InnerOuterRingObstacle.self))
         }
 
-        self.radius = radius
-        self.stoneType = stoneType
+        self.outerRadius = outerRadius
+        self.innerRadius = innerRadius
+        self.innerType = innerType
         super.init(colorScheme: colorScheme, blinkInterval: 0, spaceAfter: spaceAfter, acceleration: acceleration)
         initParts(mask: mask, segmentsCount: segmentsCount, rotationSpeed: rotationSpeed, directionClockwise: directionClockwise, isStacked: isStacked)
         name = String(describing: Obstacle.self)
-        physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
+        physicsBody = SKPhysicsBody(circleOfRadius: outerRadius, center: center)
         physicsBody?.affectedByGravity = false
         physicsBody?.restitution = 0
         physicsBody?.friction = 0
@@ -88,7 +90,7 @@ class RingWithStoneObstacle: MultiStateObstacle {
     
     private func initParts(mask:Mask, segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool) {
         let ringObstacldType = ObstacleType.animatedRing(segmentsCount: segmentsCount, rotationSpeed: rotationSpeed, directionClockwise: directionClockwise, isStacked: isStacked, spaceAfter: 0, acceleration: acceleration)
-        addChild(RingObstacle(mask: mask, radius: radius, colorScheme: colorScheme, type: ringObstacldType))
+        addChild(RingObstacle(mask: mask, radius: outerRadius, colorScheme: colorScheme, type: ringObstacldType))
         
         guard let stone = initStone(mask: mask) else {
             return
@@ -97,19 +99,19 @@ class RingWithStoneObstacle: MultiStateObstacle {
     }
     
     private func initStone(mask: Mask) -> Obstacle? {
-        switch stoneType {
+        switch innerType {
         case .brick:
-            let stone =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: stoneType)
+            let stone =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: innerType)
             stone.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
             return stone
         case .animatedRing:
-            let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: stoneType)
+            let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
             return stone
         case .ringWithBrick:
-            let stone = RingWithStoneObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: stoneType, stoneType: .brick(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
+            let stone = InnerOuterRingObstacle(mask: mask, outerRadius: innerRadius, innerRadius: 0, colorScheme: colorScheme, outerType: innerType, innerType: .brick(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
             return stone
         default:
-            assertionFailure("incorrect stone type for " + String(describing: RingWithStoneObstacle.self))
+            assertionFailure("incorrect stone type for " + String(describing: InnerOuterRingObstacle.self))
             return nil
         }
         

@@ -107,11 +107,12 @@ class ObstacleArranger {
         case .gatePlank:
             obstacle = GatePlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
         case .ringWithBrick:
-            obstacle = RingWithStoneObstacle(mask: obstacleMask,
-                                             radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+            obstacle = InnerOuterRingObstacle(mask: obstacleMask,
+                                             outerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                             innerRadius: 0,
                                              colorScheme: colorScheme,
-                                             type: type,
-                                             stoneType: .brick(state: .random(),
+                                             outerType: type,
+                                             innerType: .brick(state: .random(),
                                                                blinkInterval: 0,
                                                                spaceAfter: 0,
                                                                acceleration: 0))
@@ -125,11 +126,12 @@ class ObstacleArranger {
                          innerDirectionClockwise: let innerDirectionClockwise,
                          spaceAfter: _,
                          acceleration: _):
-            obstacle = RingWithStoneObstacle(mask: obstacleMask,
-                                             radius: CIRCLE_OBSTACLE_BIG_RADIUS,
-                                             colorScheme: colorScheme,
-                                             type: type,
-                                             stoneType: .animatedRing(segmentsCount: innerSegmentsCount,
+            obstacle = InnerOuterRingObstacle(mask: obstacleMask,
+                                              outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
+                                              innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                              colorScheme: colorScheme,
+                                              outerType: type,
+                                              innerType: .animatedRing(segmentsCount: innerSegmentsCount,
                                                                       rotationSpeed: innerRotationSpeed,
                                                                       directionClockwise: innerDirectionClockwise,
                                                                       isStacked: false,
@@ -145,11 +147,12 @@ class ObstacleArranger {
                          innerDirectionClockwise: let innerDirectionClockwise,
                          spaceAfter: _,
                          acceleration: _):
-            obstacle = RingWithStoneObstacle(mask: obstacleMask,
-                                             radius: CIRCLE_OBSTACLE_BIG_RADIUS,
-                                             colorScheme: colorScheme,
-                                             type: type,
-                                             stoneType: .ringWithBrick(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: 0))
+            obstacle = InnerOuterRingObstacle(mask: obstacleMask,
+                                              outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
+                                              innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                              colorScheme: colorScheme,
+                                              outerType: type,
+                                              innerType: .ringWithBrick(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: 0))
         
         }
 
