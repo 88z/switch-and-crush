@@ -57,7 +57,7 @@ class ChallengingLevelFactory: LevelFactory {
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-                ObstacleType.stone(state: .random(), blinkInterval: 0, spaceAfter: 50, acceleration: 0)
+                ObstacleType.ringWithStone(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: 0)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,

@@ -106,6 +106,8 @@ class ObstacleArranger {
                                         type: type)
         case .gatePlank:
             obstacle = GatePlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
+        case .ringWithStone:
+            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, colorScheme: colorScheme, type: type)
         }
 
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -147,7 +149,7 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .arcStack, .animatedRing, .fragmentedRing(segmentsCount: _,
+        case .arc, .arcStack, .animatedRing, .ringWithStone, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
                                                              directionClockwise: _,
                                                              isStacked: _,

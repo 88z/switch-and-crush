@@ -30,6 +30,7 @@ enum ObstacleType: Equatable {
     case arcStack(blinkInterval: TimeInterval, acceleration: Int)
     case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case stone(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case ringWithStone(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
 }
 
 protocol Obstacle: AnyObject {
