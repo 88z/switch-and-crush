@@ -40,7 +40,26 @@ class RingWithStoneObstacle: MultiStateObstacle {
             acceleration = _acceleration
             spaceAfter = _spaceAfter
             directionClockwise = _directionClockwise
-        case .doubleRing(outerSegmentsCount: let _outerSegmentsCount, innerSegmentsCount: _, outerRotationSpeed: let _outerRotationSpeed, innerRotationSpeed: _, outerIsStacked: let _outerIsStacked, innerIsStacked: _, outerDirectionClockwise: let _outerDirectionClockwise, innerDirectionClockwise: _, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
+        case .doubleRing(outerSegmentsCount: let _outerSegmentsCount,
+                         innerSegmentsCount: _,
+                         outerRotationSpeed: let _outerRotationSpeed,
+                         innerRotationSpeed: _,
+                         outerIsStacked: let _outerIsStacked,
+                         innerIsStacked: _,
+                         outerDirectionClockwise: let _outerDirectionClockwise,
+                         innerDirectionClockwise: _,
+                         spaceAfter: let _spaceAfter,
+                         acceleration: let _acceleration),
+                .doubleRingWithBrick(outerSegmentsCount: let _outerSegmentsCount,
+                                 innerSegmentsCount: _,
+                                 outerRotationSpeed: let _outerRotationSpeed,
+                                 innerRotationSpeed: _,
+                                 outerIsStacked: let _outerIsStacked,
+                                 innerIsStacked: _,
+                                 outerDirectionClockwise: let _outerDirectionClockwise,
+                                 innerDirectionClockwise: _,
+                                 spaceAfter: let _spaceAfter,
+                                 acceleration: let _acceleration):
             isStacked = _outerIsStacked
             segmentsCount = Int(round(Double(_outerSegmentsCount) / 2.0)) * 2
             rotationSpeed = _outerRotationSpeed
@@ -85,6 +104,9 @@ class RingWithStoneObstacle: MultiStateObstacle {
             return stone
         case .animatedRing:
             let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: stoneType)
+            return stone
+        case .ringWithBrick:
+            let stone = RingWithStoneObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: stoneType, stoneType: .brick(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
             return stone
         default:
             assertionFailure("incorrect stone type for " + String(describing: RingWithStoneObstacle.self))
