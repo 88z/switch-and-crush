@@ -19,6 +19,7 @@ enum ColorScheme {
     case greenYellow
     case enigma
     case darkorangeCornflower
+    case deepBlueDarkGrey
 }
 
 extension ColorScheme {
@@ -41,6 +42,8 @@ extension State {
                 return UIColor.kellyGreen()
             case .darkorangeCornflower:
                 return UIColor.darkOrnage()
+            case .deepBlueDarkGrey:
+                return UIColor.darkGrey()
             }
         case .second:
             switch scheme {
@@ -52,6 +55,8 @@ extension State {
                 return UIColor.violet()
             case .darkorangeCornflower:
                 return UIColor.cornflower()
+            case .deepBlueDarkGrey:
+                return UIColor.deepBlue()
             }
         case .immortal:
             return UIColor.immortal()

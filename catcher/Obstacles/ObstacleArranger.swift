@@ -58,6 +58,8 @@ class ObstacleArranger {
                                     width: width,
                                     colorScheme: colorScheme,
                                     type: type)
+        case .stone:
+            obstacle = RectObstacle(mask: obstacleMask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: type)
         case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, colorScheme: colorScheme, type: type)
         case .pendulumPlank:
@@ -155,6 +157,8 @@ class ObstacleArranger {
             return CGPoint(x: scene!.frame.midX, y:nextY)
         case .carouselPlank, .pendulumPlank, .pingPongPlank:
             return CGPoint(x:0, y: nextY)
+        case .stone:
+            return CGPoint(x: scene!.frame.midX-STONE_OBSTACLE_HEIGHT/2, y:nextY)
         default:
             return CGPoint(x: leftBorderX, y:nextY)
         }

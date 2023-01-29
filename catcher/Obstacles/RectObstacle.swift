@@ -72,6 +72,8 @@ class RectObstacle: StateNode, Obstacle {
         switch type {
         case .thinPlank:
             height = PLANK_OBSTACLE_HEIGHT/2
+        case .stone:
+            height = STONE_OBSTACLE_HEIGHT
         default:
             height = PLANK_OBSTACLE_HEIGHT
         }
@@ -81,7 +83,7 @@ class RectObstacle: StateNode, Obstacle {
         var spaceAfter: CGFloat = 0
         var state: State = .random()
         switch type {
-        case .plank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration), .thinPlank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
+        case .plank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration), .thinPlank(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration), .stone(state: let _state, blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
             blinkInterval = _blinkInterval
             spaceAfter = _spaceAfter
             acceleration = _acceleration

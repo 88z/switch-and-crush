@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		230D987828A8F111008D19CA /* LevelSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230D987728A8F111008D19CA /* LevelSelectPresenter.swift */; };
+		2310D37429868F3B001168B7 /* StonedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2310D37329868F3B001168B7 /* StonedRingObstacle.swift */; };
 		2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317B83B288C080700EBFDCE /* RingObstacle.swift */; };
 		232440B5291C3D7500B3CB8D /* LevelFinishPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232440B4291C3D7500B3CB8D /* LevelFinishPresenter.swift */; };
 		232E1B2C2892F53C00F38DA2 /* FragmentedRingObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */; };
@@ -106,6 +107,7 @@
 /* Begin PBXFileReference section */
 		067F0302B13A1BADBBE48596 /* Pods_catcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		230D987728A8F111008D19CA /* LevelSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectPresenter.swift; sourceTree = "<group>"; };
+		2310D37329868F3B001168B7 /* StonedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StonedRingObstacle.swift; sourceTree = "<group>"; };
 		2317B83B288C080700EBFDCE /* RingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacle.swift; sourceTree = "<group>"; };
 		232440B4291C3D7500B3CB8D /* LevelFinishPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFinishPresenter.swift; sourceTree = "<group>"; };
 		232E1B2B2892F53C00F38DA2 /* FragmentedRingObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentedRingObstacle.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				23831FC7289FC19C002624BD /* StackArcObstacle.swift */,
 				23B5F89C292A06DE006726FC /* PingPongPlankObstacle.swift */,
 				23B5F89E292A15A1006726FC /* GatePlankObstacle.swift */,
+				2310D37329868F3B001168B7 /* StonedRingObstacle.swift */,
 			);
 			path = Obstacles;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				2388BA7A287349F700D27DBD /* TrivialUISceneButton.swift in Sources */,
 				23B5F89D292A06DE006726FC /* PingPongPlankObstacle.swift in Sources */,
 				809AD8C92561A3A00057C76E /* TrivialUISceneElement.swift in Sources */,
+				2310D37429868F3B001168B7 /* StonedRingObstacle.swift in Sources */,
 				23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */,
 				80CA5F672524F711003E900D /* Hero.swift in Sources */,
 			);

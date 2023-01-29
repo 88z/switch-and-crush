@@ -39,12 +39,24 @@ class PlankObstacleShatterer: Shatterer {
             }
         }
        
-        let xMultiplier: CGFloat = 5
-        let yMultiplier: CGFloat = 1
+        let xMultiplier: CGFloat
+        let yMultiplier: CGFloat
+        let angularMultiplier: CGFloat
+        switch obstacle.type {
+        case .stone:
+            angularMultiplier = 0.0002
+            xMultiplier = 1.0
+            yMultiplier = 1.0
+        default:
+            angularMultiplier = 0.002
+            xMultiplier = 5
+            yMultiplier = 1
+        }
+        
 
         var i:CGFloat = 1
         for atom in collisionAtoms {
-            atom.physicsBody?.applyAngularImpulse(0.002*i)
+            atom.physicsBody?.applyAngularImpulse(angularMultiplier*i)
             atom.physicsBody?.applyImpulse(CGVector(dx: xMultiplier*CGFloat(i), dy: yMultiplier))
             i = i * -1
         }
