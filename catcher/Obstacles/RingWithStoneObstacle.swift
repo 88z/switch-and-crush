@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class RingWithStoneObstacle: MultiStateObstacle {
     override var isSolid: Bool {
@@ -23,6 +24,7 @@ class RingWithStoneObstacle: MultiStateObstacle {
     }
     
     init (mask: Mask, radius: CGFloat, colorScheme: ColorScheme, type: ObstacleType) {
+        
         var isStacked = false
         var segmentsCount = 0
         var acceleration = 0
@@ -44,14 +46,23 @@ class RingWithStoneObstacle: MultiStateObstacle {
         self.radius = radius
         super.init(colorScheme: colorScheme, blinkInterval: 0, spaceAfter: spaceAfter, acceleration: acceleration)
         initParts(mask: mask, segmentsCount: segmentsCount, rotationSpeed: rotationSpeed, directionClockwise: directionClockwise, isStacked: isStacked)
+        name = String(describing: Obstacle.self)
+        physicsBody = SKPhysicsBody(circleOfRadius: radius, center: center)
+        physicsBody?.affectedByGravity = false
+        physicsBody?.restitution = 0
+        physicsBody?.friction = 0
+        physicsBody?.linearDamping = 0
+        physicsBody?.angularDamping = 0
+        physicsBody?.density = 0
+        physicsBody?.setZeroMask()
         
     }
     
     private func initParts(mask:Mask, segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool) {
-        let ringObstacldType = ObstacleType.animatedRing(segmentsCount: segmentsCount, rotationSpeed: rotationSpeed, directionClockwise: directionClockwise, isStacked: isStacked, spaceAfter: 0, acceleration: 0)
+        let ringObstacldType = ObstacleType.animatedRing(segmentsCount: segmentsCount, rotationSpeed: rotationSpeed, directionClockwise: directionClockwise, isStacked: isStacked, spaceAfter: 0, acceleration: acceleration)
         addChild(RingObstacle(mask: mask, radius: radius, colorScheme: colorScheme, type: ringObstacldType))
         
-        let stoneObstacleType = ObstacleType.stone(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0)
+        let stoneObstacleType = ObstacleType.stone(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: acceleration)
         let stone = RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: stoneObstacleType)
         stone.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
         addChild(stone)

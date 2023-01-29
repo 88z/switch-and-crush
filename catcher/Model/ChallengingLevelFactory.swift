@@ -45,7 +45,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 0
+        let acceleration = 15
         for _ in 0..<10{
             obstacleTypes.append([
 //                ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
@@ -57,18 +57,11 @@ class ChallengingLevelFactory: LevelFactory {
 //                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
 //                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
 //                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-                ObstacleType.ringWithStone(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: 0)
+                ObstacleType.ringWithStone(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: acceleration)
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [ObstacleType.plank(state: .first,
-                                                               blinkInterval: 0,
-                                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
-                                                               acceleration: 0),
-                                            ObstacleType.plank(state: .second,
-                                                               blinkInterval: 0,
-                                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
-                                                               acceleration: 0)],
+                     obstacleTypesForTail: [ObstacleType.ringWithStone(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: 0)],
                      capacity: -1,
                      initialSpeed: 100,
                      name:#function,
