@@ -125,7 +125,7 @@ class ObstacleArranger {
                          outerDirectionClockwise: _,
                          innerDirectionClockwise: let innerDirectionClockwise,
                          spaceAfter: _,
-                         acceleration: _):
+                         acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
                                               outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
                                               innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
@@ -136,7 +136,7 @@ class ObstacleArranger {
                                                                       directionClockwise: innerDirectionClockwise,
                                                                       isStacked: false,
                                                                       spaceAfter: 0,
-                                                                      acceleration: 0))
+                                                                      acceleration: acceleration))
         case .doubleRingWithBrick(outerSegmentsCount: _,
                          innerSegmentsCount: let innerSegmentsCount,
                          outerRotationSpeed: _,
@@ -146,13 +146,13 @@ class ObstacleArranger {
                          outerDirectionClockwise: _,
                          innerDirectionClockwise: let innerDirectionClockwise,
                          spaceAfter: _,
-                         acceleration: _):
+                         acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
                                               outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
                                               innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: type,
-                                              innerType: .ringWithBrick(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: 0))
+                                              innerType: .ringWithBrick(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: acceleration))
         
         }
 

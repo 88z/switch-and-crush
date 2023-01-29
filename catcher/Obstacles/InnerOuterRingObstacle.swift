@@ -108,7 +108,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
             let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
             return stone
         case .ringWithBrick:
-            let stone = InnerOuterRingObstacle(mask: mask, outerRadius: innerRadius, innerRadius: 0, colorScheme: colorScheme, outerType: innerType, innerType: .brick(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
+            let stone = InnerOuterRingObstacle(mask: mask, outerRadius: innerRadius, innerRadius: 0, colorScheme: colorScheme, outerType: innerType, innerType: .brick(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: acceleration))
             return stone
         default:
             assertionFailure("incorrect stone type for " + String(describing: InnerOuterRingObstacle.self))
