@@ -31,6 +31,7 @@ enum ObstacleType: Equatable {
     case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case stone(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
     case ringWithStone(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
+    case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
 }
 
 protocol Obstacle: AnyObject {

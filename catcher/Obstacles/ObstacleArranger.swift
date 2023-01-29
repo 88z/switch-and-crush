@@ -107,7 +107,9 @@ class ObstacleArranger {
         case .gatePlank:
             obstacle = GatePlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
         case .ringWithStone:
-            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, colorScheme: colorScheme, type: type)
+            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, colorScheme: colorScheme, type: type, stoneType: .stone(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
+        case .doubleRing(outerSegmentsCount: _, innerSegmentsCount: let innerSegmentsCount, outerRotationSpeed: _, innerRotationSpeed: let innerRotationSpeed, outerIsStacked: _, innerIsStacked: _, outerDirectionClockwise: _, innerDirectionClockwise: let innerDirectionClockwise, spaceAfter: _, acceleration: _):
+            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: 140, colorScheme: colorScheme, type: type, stoneType: .animatedRing(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: 0))
         }
 
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -149,7 +151,7 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .arcStack, .animatedRing, .ringWithStone, .fragmentedRing(segmentsCount: _,
+        case .arc, .arcStack, .animatedRing, .doubleRing, .ringWithStone, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
                                                              directionClockwise: _,
                                                              isStacked: _,
