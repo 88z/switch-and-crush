@@ -125,7 +125,8 @@ class ObstacleArranger {
                                              innerType: .brick(state: .random(),
                                                                blinkInterval: 0,
                                                                spaceAfter: 0,
-                                                               acceleration: 0))
+                                                               acceleration: 0),
+                                              type: type)
         case .doubleRing(outerSegmentsCount: let outerSegmentsCount,
                          innerSegmentsCount: let innerSegmentsCount,
                          outerRotationSpeed: let outerRotationSpeed,
@@ -151,7 +152,8 @@ class ObstacleArranger {
                                                                        directionClockwise: innerDirectionClockwise,
                                                                        isStacked: innerIsStacked,
                                                                        spaceAfter: 0,
-                                                                       acceleration: acceleration))
+                                                                       acceleration: acceleration),
+                                              type: type)
         case .doubleRingWithBrick(outerSegmentsCount: let outerSegmentsCount,
                          innerSegmentsCount: let innerSegmentsCount,
                          outerRotationSpeed: let outerRotationSpeed,
@@ -177,7 +179,8 @@ class ObstacleArranger {
                                                                         directionClockwise: innerDirectionClockwise,
                                                                         isStacked: innerIsStacked,
                                                                         spaceAfter: 0,
-                                                                        acceleration: acceleration))
+                                                                        acceleration: acceleration),
+                                              type: type)
         
         }
 

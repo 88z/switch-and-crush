@@ -31,7 +31,8 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     private let innerType: ObstacleType
     
     
-    init (mask: Mask, outerRadius: CGFloat, innerRadius: CGFloat, colorScheme: ColorScheme, outerType: ObstacleType, innerType: ObstacleType) {
+    init (mask: Mask, outerRadius: CGFloat, innerRadius: CGFloat, colorScheme: ColorScheme, outerType: ObstacleType, innerType: ObstacleType, type: ObstacleType) {
+        
         var outerIsStacked = false
         var outerSegmentsCount = 0
         var acceleration = 0
@@ -63,6 +64,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
         self.outerDirectionClockwise = outerDirectionClockwise
         self.innerType = innerType
         super.init(colorScheme: colorScheme, blinkInterval: 0, spaceAfter: spaceAfter, acceleration: acceleration)
+        self.type = type
         initParts(mask: mask)
         name = String(describing: Obstacle.self)
         physicsBody = SKPhysicsBody(circleOfRadius: outerRadius, center: center)
@@ -114,7 +116,8 @@ class InnerOuterRingObstacle: MultiStateObstacle {
                                                innerType: .brick(state: .random(),
                                                                  blinkInterval: 0,
                                                                  spaceAfter: 0,
-                                                                 acceleration: acceleration))
+                                                                 acceleration: acceleration),
+                                               type: innerType)
             return stone
         default:
             assertionFailure("incorrect stone type for " + String(describing: InnerOuterRingObstacle.self))
