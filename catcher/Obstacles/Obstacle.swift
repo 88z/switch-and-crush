@@ -29,8 +29,8 @@ enum ObstacleType: Equatable {
     case arc(blinkInterval: TimeInterval, acceleration: Int)
     case arcStack(blinkInterval: TimeInterval, acceleration: Int)
     case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case stone(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case ringWithStone(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
+    case brick(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
+    case ringWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
     case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
 }
 

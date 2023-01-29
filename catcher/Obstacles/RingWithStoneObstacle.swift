@@ -33,7 +33,7 @@ class RingWithStoneObstacle: MultiStateObstacle {
         var directionClockwise = true
         var spaceAfter: CGFloat = 0
         switch type {
-        case .ringWithStone(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
+        case .ringWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
             isStacked = _isStacked
             segmentsCount = Int(round(Double(_segmentsCount) / 2.0)) * 2
             rotationSpeed = _rotationSpeed
@@ -74,18 +74,17 @@ class RingWithStoneObstacle: MultiStateObstacle {
         guard let stone = initStone(mask: mask) else {
             return
         }
-        
         addChild(stone.node)
     }
     
     private func initStone(mask: Mask) -> Obstacle? {
         switch stoneType {
-        case .stone:
+        case .brick:
             let stone =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: stoneType)
             stone.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
             return stone
         case .animatedRing:
-            let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_RADIUS, colorScheme: colorScheme, type: stoneType)
+            let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: stoneType)
             return stone
         default:
             assertionFailure("incorrect stone type for " + String(describing: RingWithStoneObstacle.self))

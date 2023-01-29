@@ -43,7 +43,7 @@ class PlankObstacleShatterer: Shatterer {
         let yMultiplier: CGFloat
         let angularMultiplier: CGFloat
         switch obstacle.type {
-        case .stone:
+        case .brick:
             angularMultiplier = 0.0002
             xMultiplier = 1.0
             yMultiplier = 1.0

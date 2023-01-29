@@ -58,7 +58,7 @@ class ObstacleArranger {
                                     width: width,
                                     colorScheme: colorScheme,
                                     type: type)
-        case .stone:
+        case .brick:
             obstacle = RectObstacle(mask: obstacleMask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: type)
         case .twoStatePlank:
             obstacle = MultiStatePlankObstacle(mask: obstacleMask, width: width, colorScheme: colorScheme, type: type)
@@ -74,7 +74,7 @@ class ObstacleArranger {
                                      type: type)
         case .animatedRing:
             obstacle = RingObstacle(mask: obstacleMask,
-                                    radius: CIRCLE_OBSTACLE_RADIUS,
+                                    radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                     colorScheme: colorScheme,
                                     type: type)
         case .carouselPlank:
@@ -83,7 +83,7 @@ class ObstacleArranger {
                                              type:type)
         case .fragmentedRing:
             obstacle = FragmentedRingObstacle(mask: obstacleMask,
-                                              radius: 96,
+                                              radius: FRAGMENTED_RING_RADIUS,
                                               type: type,
                                               colorScheme: colorScheme)
         case .arc:
@@ -106,10 +106,35 @@ class ObstacleArranger {
                                         type: type)
         case .gatePlank:
             obstacle = GatePlankObstacle(mask: obstacleMask, colorScheme: colorScheme, type: type)
-        case .ringWithStone:
-            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: CIRCLE_OBSTACLE_RADIUS, colorScheme: colorScheme, type: type, stoneType: .stone(state: .random(), blinkInterval: 0, spaceAfter: 0, acceleration: 0))
-        case .doubleRing(outerSegmentsCount: _, innerSegmentsCount: let innerSegmentsCount, outerRotationSpeed: _, innerRotationSpeed: let innerRotationSpeed, outerIsStacked: _, innerIsStacked: _, outerDirectionClockwise: _, innerDirectionClockwise: let innerDirectionClockwise, spaceAfter: _, acceleration: _):
-            obstacle = RingWithStoneObstacle(mask: obstacleMask, radius: 140, colorScheme: colorScheme, type: type, stoneType: .animatedRing(segmentsCount: innerSegmentsCount, rotationSpeed: innerRotationSpeed, directionClockwise: innerDirectionClockwise, isStacked: false, spaceAfter: 0, acceleration: 0))
+        case .ringWithBrick:
+            obstacle = RingWithStoneObstacle(mask: obstacleMask,
+                                             radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                             colorScheme: colorScheme,
+                                             type: type,
+                                             stoneType: .brick(state: .random(),
+                                                               blinkInterval: 0,
+                                                               spaceAfter: 0,
+                                                               acceleration: 0))
+        case .doubleRing(outerSegmentsCount: _,
+                         innerSegmentsCount: let innerSegmentsCount,
+                         outerRotationSpeed: _,
+                         innerRotationSpeed: let innerRotationSpeed,
+                         outerIsStacked: _,
+                         innerIsStacked: _,
+                         outerDirectionClockwise: _,
+                         innerDirectionClockwise: let innerDirectionClockwise,
+                         spaceAfter: _,
+                         acceleration: _):
+            obstacle = RingWithStoneObstacle(mask: obstacleMask,
+                                             radius: CIRCLE_OBSTACLE_BIG_RADIUS,
+                                             colorScheme: colorScheme,
+                                             type: type,
+                                             stoneType: .animatedRing(segmentsCount: innerSegmentsCount,
+                                                                      rotationSpeed: innerRotationSpeed,
+                                                                      directionClockwise: innerDirectionClockwise,
+                                                                      isStacked: false,
+                                                                      spaceAfter: 0,
+                                                                      acceleration: 0))
         }
 
         obstacle.node.position = positionFor(obstacle, type: type)
@@ -151,7 +176,7 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .arcStack, .animatedRing, .doubleRing, .ringWithStone, .fragmentedRing(segmentsCount: _,
+        case .arc, .arcStack, .animatedRing, .doubleRing, .ringWithBrick, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
                                                              directionClockwise: _,
                                                              isStacked: _,
@@ -161,7 +186,7 @@ class ObstacleArranger {
             return CGPoint(x: scene!.frame.midX, y:nextY)
         case .carouselPlank, .pendulumPlank, .pingPongPlank:
             return CGPoint(x:0, y: nextY)
-        case .stone:
+        case .brick:
             return CGPoint(x: scene!.frame.midX-STONE_OBSTACLE_HEIGHT/2, y:nextY)
         default:
             return CGPoint(x: leftBorderX, y:nextY)
