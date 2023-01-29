@@ -88,12 +88,15 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     private func initInnerPart(mask: Mask) -> Obstacle? {
         switch innerType {
         case .brick:
-            let stone =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: innerType)
-            stone.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
-            return stone
+            let innerPart =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: innerType)
+            innerPart.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
+            return innerPart
         case .animatedRing:
-            let stone = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
-            return stone
+            let innerPart = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
+            return innerPart
+        case .fragmentedRing:
+            let innerPart = FragmentedRingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, type: innerType, colorScheme: colorScheme)
+            return innerPart
         case .ringWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: _, acceleration: _):
             let stone = InnerOuterRingObstacle(mask: mask,
                                                outerRadius: innerRadius,
