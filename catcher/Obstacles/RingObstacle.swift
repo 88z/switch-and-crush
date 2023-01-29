@@ -181,7 +181,7 @@ class RingObstacle: MultiStateObstacle {
     
     override func shatteringDummy() -> SKNode {
         let dummy = SKNode()
-        let atomsCount = 32
+        let atomsCount = Int(32*radius/64)
         var startAngle:CGFloat = 0
         let atomAngle = 2*CGFloat.pi/CGFloat(atomsCount)
         
