@@ -73,7 +73,7 @@ class RingObstacleShatterer: Shatterer {
         
         var i:CGFloat = 1
         for atom in collisionAtoms {
-            atom.physicsBody?.applyAngularImpulse(0.002*i)
+            atom.physicsBody?.applyAngularImpulse(0.002*(frame.size.width/128)*i)
             i = i * -1
         }
 
