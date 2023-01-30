@@ -19,6 +19,7 @@ class BackgroundPresenter: BattleFieldPresenter{
     override func present(){
         super.present()
         battleFieldScene?.start(level: progress.lastCompletedLevel ?? progress.levels.first!, shouldShowCounter: false, shouldPlaceHero: false)
+        battleFieldScene?.alpha = 0.5
     }
     
     func presentEmpty() {
