@@ -7,7 +7,7 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
+import GameKit
 import LanguageManager_iOS
 
 class GameViewController: UIViewController {
@@ -21,7 +21,9 @@ class GameViewController: UIViewController {
         let progress = Progress(levelFactory: ChallengingLevelFactory())
         if progress.isOnboardingShown {
             BackgroundPresenter(vc:self, progress: progress).present()
-            LevelSelectPresenter(vc:self, progress: progress).present()
+            GKLocalPlayer.local.authenticateHandler = { viewController, error in
+                LevelSelectPresenter(vc:self, progress: progress).present()
+            }
         } else {
             OnboardingPresenter(vc: self, progress: progress).present()
         }

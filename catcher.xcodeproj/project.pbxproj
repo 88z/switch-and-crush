@@ -114,6 +114,7 @@
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
 		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
+		236130042988167900C4CAE2 /* catcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = catcher.entitlements; sourceTree = "<group>"; };
 		2379442629158B8300C3320F /* ModeSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectPresenter.swift; sourceTree = "<group>"; };
 		2379442E2918154E00C3320F /* TitleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleButtonsView.swift; sourceTree = "<group>"; };
 		237944312918158600C3320F /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
@@ -387,6 +388,7 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
+				236130042988167900C4CAE2 /* catcher.entitlements */,
 				806B9DDB25455616003CB4EE /* Model */,
 				804C3AB3254551DE0012EDD8 /* UI */,
 				2348C9C028944A860096F7E4 /* Shaterrer */,
@@ -830,6 +832,7 @@
 				AMPLITUDE_KEY = 4c79b0134c6ca8e4db63f5f21a030fa0;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = catcher/catcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8QJ3BBF95;
 				INFOPLIST_FILE = catcher/Info.plist;
@@ -851,6 +854,7 @@
 				AMPLITUDE_KEY = 3df06fb3d6f8e229e567e72fdcdd1bc8;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = catcher/catcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8QJ3BBF95;
 				INFOPLIST_FILE = catcher/Info.plist;

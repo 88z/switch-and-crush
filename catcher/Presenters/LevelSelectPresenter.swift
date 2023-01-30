@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 import Amplitude
+import GameKit
 
 class LevelSelectPresenter: Presenter {
     
