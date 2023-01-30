@@ -15,6 +15,8 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     private weak var buttonToScroll: UIView?
     private weak var buttonsContainer: UIView?
     private weak var scrollView: UIScrollView?
+    private weak var leaderBoardButton: UIButton?
+    private weak var leaderBoardButtonBorder: CAShapeLayer?
     private var buttons: [UIView] = []
     
     private let buttonsContainerWidth:CGFloat = 220
@@ -48,6 +50,29 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
         let buttonsContainer = UIView(frame: .zero)
         scrollView.addSubview(buttonsContainer)
         self.buttonsContainer = buttonsContainer
+        
+        let leaderBoardButton = UIButton(frame: .zero)
+        let leaderBoardButtonTItle = "Leaderboard"
+        leaderBoardButton.setTitle(leaderBoardButtonTItle, for: .normal)
+        let attributedText = NSMutableAttributedString(string: leaderBoardButtonTItle)
+        attributedText.addAttributes([.foregroundColor: UIColor.text(), .font: FONT(size: 24)], range: NSRange(location: 0, length: leaderBoardButtonTItle.count))
+        leaderBoardButton.setAttributedTitle(attributedText, for: .normal)
+        let border = CAShapeLayer()
+        border.strokeColor = UIColor.text().cgColor
+        border.lineWidth = 1
+        border.fillColor = nil
+        self.leaderBoardButtonBorder = border
+        leaderBoardButton.layer.addSublayer(border)
+        scrollView.addSubview(leaderBoardButton)
+        self.leaderBoardButton = leaderBoardButton
+        
+        if buttonModels.last?.state == .locked {
+            border.lineDashPattern = [1, 4]
+            leaderBoardButton.titleLabel?.alpha = 0.65
+        } else {
+            leaderBoardButton.addTarget(self, action: #selector(leaderBoardPressed(_:)), for: .touchUpInside)
+        }
+        
         initButtons(models: buttonModels)
         
         let backButton = UIButton(frame: .zero)
@@ -71,6 +96,8 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     }
     
     private func initButtons(models: [LevelButtonModel]) {
+        var i = 0
+        var buttonToScrollIndex = 0
         for model in models {
             let button = LevelSelectButton(model: model)
             buttonsContainer?.addSubview(button)
@@ -78,8 +105,15 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
             button.delegate = self
             if model.state == .current {
                 buttonToScroll = button
+                buttonToScrollIndex = i
             }
+            i+=1
         }
+        
+        if buttonToScrollIndex == i-1 {
+            buttonToScroll = leaderBoardButton
+        }
+        
     }
     
     
@@ -124,7 +158,20 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
                 button.pin.left(to: leftButton.edge.right).marginLeft(30)
             }
         }
-        scrollView?.contentSize = CGSize(width: bounds.size.width, height: buttonsContainerHeight + 100)
+        let lastButton = buttons.last!
+        
+        leaderBoardButton?.pin
+            .height(UI_BUTTON_HEIGHT)
+            .width(UI_BUTTON_WIDTH)
+            .top(to: lastButton.edge.bottom)
+            .hCenter()
+            .marginTop(50)
+        
+        let borderRect = CGRect(x: 0, y: 0, width: leaderBoardButton?.bounds.size.width ?? 0, height: leaderBoardButton?.bounds.size.height ?? 0)
+        leaderBoardButtonBorder?.path = UIBezierPath(rect: borderRect).cgPath
+        leaderBoardButtonBorder?.frame = borderRect
+        
+        scrollView?.contentSize = CGSize(width: bounds.size.width, height: buttonsContainerHeight + 100 + borderRect.height + 100)
     }
     
     func pressed(_ button: LevelSelectButton) {
@@ -136,5 +183,10 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     
     @IBAction private func backButtonPressed(_ sender: UIButton) {
         backButtonAction()
+    }
+    
+    
+    @IBAction private func leaderBoardPressed(_ sender: UIButton) {
+        
     }
 }

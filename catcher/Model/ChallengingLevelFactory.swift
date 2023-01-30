@@ -12,7 +12,6 @@ class ChallengingLevelFactory: LevelFactory {
     
     var levels: [Level] {
         return [
-            endlessLevel(),
             level1(),
             level2(),
             level3(),
