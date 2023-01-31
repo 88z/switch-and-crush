@@ -216,7 +216,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     private func shatterer(for obstacle: Obstacle) ->Shatterer {
         switch obstacle.type {
-        case .arc, .animatedRing(segmentsCount: _,
+        case .arc, .solidRing(segmentsCount: _,
                                  rotationSpeed: _,
                                  directionClockwise: _,
                                  isStacked: _,

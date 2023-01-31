@@ -33,7 +33,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
         var acceleration = 0
         var spaceAfter: CGFloat = 0
         switch outerType {
-        case .animatedRing(segmentsCount: _,
+        case .solidRing(segmentsCount: _,
                                 rotationSpeed: _,
                                 directionClockwise: _,
                                 isStacked: _,
@@ -71,7 +71,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     
     private func initParts(mask:Mask) {
         switch outerType {
-        case .animatedRing:
+        case .solidRing:
             addChild(RingObstacle(mask: mask, radius: outerRadius, colorScheme: colorScheme, type: outerType))
         case .fragmentedRing:
             addChild(FragmentedRingObstacle(mask: mask, radius: outerRadius, type: outerType, colorScheme: colorScheme))
@@ -91,7 +91,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
             let innerPart =  RectObstacle(mask: mask, width: STONE_OBSTACLE_HEIGHT, colorScheme: colorScheme, type: innerType)
             innerPart.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
             return innerPart
-        case .animatedRing:
+        case .solidRing:
             let innerPart = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
             return innerPart
         case .fragmentedRing:
@@ -102,7 +102,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
                                                outerRadius: innerRadius,
                                                innerRadius: 0,
                                                colorScheme: colorScheme,
-                                               outerType: .animatedRing(segmentsCount: _segmentsCount,
+                                               outerType: .solidRing(segmentsCount: _segmentsCount,
                                                                         rotationSpeed: _rotationSpeed,
                                                                         directionClockwise: _directionClockwise,
                                                                         isStacked: _isStacked,

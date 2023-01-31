@@ -47,7 +47,7 @@ class RingObstacle: MultiStateObstacle {
         var directionClockwise = true
         var spaceAfter: CGFloat = 0
         switch type {
-        case .animatedRing(segmentsCount: let _segmentsCount,
+        case .solidRing(segmentsCount: let _segmentsCount,
                            rotationSpeed: let _rotationSpeed,
                            directionClockwise: let _directionClockwise,
                            isStacked: let _isStacked,

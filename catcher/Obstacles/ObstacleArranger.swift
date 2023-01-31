@@ -72,7 +72,7 @@ class ObstacleArranger {
                                      states: [.first, .second].shuffled(),
                                      colorScheme: colorScheme,
                                      type: type)
-        case .animatedRing:
+        case .solidRing:
             obstacle = RingObstacle(mask: obstacleMask,
                                     radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                     colorScheme: colorScheme,
@@ -116,7 +116,7 @@ class ObstacleArranger {
                                              outerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                              innerRadius: 0,
                                              colorScheme: colorScheme,
-                                              outerType: .animatedRing(segmentsCount: _segmentsCount,
+                                              outerType: .solidRing(segmentsCount: _segmentsCount,
                                                                        rotationSpeed: _rotationSpeed,
                                                                        directionClockwise: _directionClockwise,
                                                                        isStacked: _isStacked,
@@ -162,13 +162,13 @@ class ObstacleArranger {
                                               outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
                                               innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                               colorScheme: colorScheme,
-                                              outerType: .animatedRing(segmentsCount: outerSegmentsCount,
+                                              outerType: .solidRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,
                                                                        directionClockwise: outerDirectionClockwise,
                                                                        isStacked: outerIsStacked,
                                                                        spaceAfter: spaceAfter,
                                                                        acceleration: acceleration),
-                                              innerType: .animatedRing(segmentsCount: innerSegmentsCount,
+                                              innerType: .solidRing(segmentsCount: innerSegmentsCount,
                                                                        rotationSpeed: innerRotationSpeed,
                                                                        directionClockwise: innerDirectionClockwise,
                                                                        isStacked: innerIsStacked,
@@ -189,7 +189,7 @@ class ObstacleArranger {
                                               outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
                                               innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
                                               colorScheme: colorScheme,
-                                              outerType: .animatedRing(segmentsCount: outerSegmentsCount,
+                                              outerType: .solidRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,
                                                                        directionClockwise: outerDirectionClockwise,
                                                                        isStacked: outerIsStacked,
@@ -270,7 +270,7 @@ class ObstacleArranger {
     func positionFor(_ obstacle:Obstacle, type: ObstacleType) -> CGPoint{
         let nextY = y(for: obstacle)
         switch type{
-        case .arc, .fragmentedRingWithBrick, .fragmentedDoubleRing, .arcStack, .animatedRing, .doubleRing, .doubleRingWithBrick, .ringWithBrick, .fragmentedRing(segmentsCount: _,
+        case .arc, .fragmentedRingWithBrick, .fragmentedDoubleRing, .arcStack, .solidRing, .doubleRing, .doubleRingWithBrick, .ringWithBrick, .fragmentedRing(segmentsCount: _,
                                                              rotationSpeed: _,
                                                              directionClockwise: _,
                                                              isStacked: _,
@@ -295,7 +295,7 @@ class ObstacleArranger {
         
         let zRotation = lastPlaced.node.zRotation
         switch lastPlaced.type {
-        case .animatedRing(segmentsCount: _,
+        case .solidRing(segmentsCount: _,
                            rotationSpeed: _,
                            directionClockwise: _,
                            isStacked: _,

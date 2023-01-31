@@ -550,7 +550,7 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 5
         let capacity = 25
         for _ in 0..<capacity {
-            obstacleTypes.append([.animatedRing(segmentsCount: 4,
+            obstacleTypes.append([.solidRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -564,7 +564,7 @@ class ChallengingLevelFactory: LevelFactory {
                 .randomElement()!)
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .medium,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -587,7 +587,7 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 10
         let capacity = 10
         for _ in 0..<capacity {
-            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(.solidRing(segmentsCount: 4,
                                                rotationSpeed: .fast,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -595,7 +595,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .fast,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -614,7 +614,7 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 0
         let capacity = 7
         for _ in 0..<capacity {
-            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(.solidRing(segmentsCount: 4,
                                                rotationSpeed: .crazy,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -622,7 +622,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .crazy,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -642,7 +642,7 @@ class ChallengingLevelFactory: LevelFactory {
         let capacity = 20
         let shrinkValue = 10
         for i in 0..<capacity/2 {
-            obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(contentsOf:[.solidRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -654,7 +654,7 @@ class ChallengingLevelFactory: LevelFactory {
                                          acceleration: acceleration)])
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .fast,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -677,7 +677,7 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 5
         let capacity = 15
         for _ in 0..<capacity {
-            obstacleTypes.append([.animatedRing(segmentsCount: 4,
+            obstacleTypes.append([.solidRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -694,7 +694,7 @@ class ChallengingLevelFactory: LevelFactory {
                 .randomElement()!)
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .fast,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -721,7 +721,7 @@ class ChallengingLevelFactory: LevelFactory {
         let capacity = 10
         let spaceShrink = 10
         for i in 0..<capacity/2 {
-            obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(contentsOf:[.solidRing(segmentsCount: 4,
                                                rotationSpeed: .fast,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -731,7 +731,7 @@ class ChallengingLevelFactory: LevelFactory {
                                  )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .fast,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -786,7 +786,7 @@ class ChallengingLevelFactory: LevelFactory {
         let acceleration = 5
         let capacity = 10
         for _ in 0..<capacity {
-            obstacleTypes.append(.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(.solidRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -794,7 +794,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .medium,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
@@ -814,7 +814,7 @@ class ChallengingLevelFactory: LevelFactory {
         let capacity = 12
         let spaceShrink = 5
         for i in 0..<capacity/3 {
-            obstacleTypes.append(contentsOf:[.animatedRing(segmentsCount: 4,
+            obstacleTypes.append(contentsOf:[.solidRing(segmentsCount: 4,
                                                rotationSpeed: .medium,
                                                directionClockwise: Bool.random(),
                                                isStacked: false,
@@ -825,7 +825,7 @@ class ChallengingLevelFactory: LevelFactory {
                                  )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.animatedRing(segmentsCount: 4,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
                                                           rotationSpeed: .medium,
                                                           directionClockwise: Bool.random(),
                                                           isStacked: false,
