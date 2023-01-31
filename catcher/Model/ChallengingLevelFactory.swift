@@ -170,7 +170,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .aquaMauve)
     }
     
     func plankAndPlankLevel() -> Level {
