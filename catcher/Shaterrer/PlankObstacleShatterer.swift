@@ -64,6 +64,6 @@ class PlankObstacleShatterer: Shatterer {
         dummy.run(SKAction.fadeOut(withDuration: 0.5)) {
             dummy.removeFromParent()
         }
-        firstSolidParent.node.removeFromParent()
+        firstSolidParent.remove()
     }
 }

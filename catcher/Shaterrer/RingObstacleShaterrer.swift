@@ -80,7 +80,9 @@ class RingObstacleShatterer: Shatterer {
         dummy.run(SKAction.fadeOut(withDuration: 0.5)) {
             dummy.removeFromParent()
         }
-        obstacleToShatter.node.removeFromParent()
+
+        obstacleToShatter.remove()
+        
     }
     
     

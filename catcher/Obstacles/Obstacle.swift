@@ -65,4 +65,24 @@ extension Obstacle {
             return parent
         }
     }
+    
+    var isLastPart: Bool {
+        get {
+            guard let parts = parent()?.parts() else {
+                return false
+            }
+            if parts.count == 1 {
+                return parts.first?.node == self.node
+            }
+            return false
+        }
+    }
+    
+    func remove () {
+        if isLastPart {
+            parent()?.remove()
+        } else {
+            node.removeFromParent()
+        }
+    }
 }
