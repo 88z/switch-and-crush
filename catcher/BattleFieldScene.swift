@@ -102,6 +102,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     
     func startImmortal() {
         hero?.state = .immortal
+        hero?.run(SKAction.applyImpulse(CGVector(dx: 0, dy: -8), duration: 2))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -241,18 +242,17 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         shatterer(for: obstacle).shatter(contactPoint: contactPoint)
-        if hero?.state != .immortal {
-            let generator = UIImpactFeedbackGenerator(style: .heavy)
-            generator.impactOccurred()
-        }
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
         fallSpeed = fallSpeed + CGFloat(obstacle.acceleration)
-        progress += 1
-        updateCounter()
+        if hero?.state != .immortal {
+            progress += 1
+            updateCounter()
+        }
 //        run(shatterSoundAction)
         
-        if progress == capacity {
+        if progress == capacity && hero?.state != .immortal{
             if let level = self.level {
-                counterNode.isHidden = true
                 battleDelegate?.didFinish(level: level)
             }
         }
@@ -295,5 +295,9 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                 obstacle.removeFromParent()
             }
         }
+    }
+    
+    func hideCounter() {
+        counterNode.isHidden = true
     }
 }

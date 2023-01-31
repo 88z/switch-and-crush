@@ -41,9 +41,18 @@ class GamePresenter: BattleFieldPresenter {
         guard let vc = vc else {
             return
         }
-//        battleFieldScene.startImmortal()
-        battleFieldScene.removeHero()
-        LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
+        battleFieldScene.startImmortal()
+        let progress = self.progress
+        let battleFieldScene = battleFieldScene
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+            BackgroundPresenter(vc: vc, progress: progress).present()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+            battleFieldScene?.hideCounter()
+            LevelFinishPresenter(vc: vc, progress: progress, level: level).present()
+        }
+        
         
         guard let levelIndex = (progress.levels.firstIndex { l in
            return l.name == level.name

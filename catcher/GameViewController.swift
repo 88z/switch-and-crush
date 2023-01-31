@@ -43,7 +43,11 @@ class GameViewController: UIViewController {
     func show(uiView: UIView) {
         self.uiView?.removeFromSuperview()
         uiView.frame = view.bounds
+        uiView.alpha = 0
         view.addSubview(uiView)
+        UIView.animate(withDuration: 0.25, animations: {
+          uiView.alpha = 1.0
+        })
         self.uiView = uiView
         battleFieldScene?.alpha = 0.5
     }
