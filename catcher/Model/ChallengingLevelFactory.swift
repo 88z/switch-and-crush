@@ -170,7 +170,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .aquaMauve)
+                     colorScheme: .pink)
     }
     
     func plankAndPlankLevel() -> Level {
@@ -844,7 +844,7 @@ class ChallengingLevelFactory: LevelFactory {
     func fragmentedRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
-        let capacity = 10
+        let capacity = 15
         for _ in 0..<capacity {
             obstacleTypes.append(.fragmentedRing(segmentsCount: 4,
                                                  rotationSpeed: .fast,

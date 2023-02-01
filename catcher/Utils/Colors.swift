@@ -74,8 +74,8 @@ extension UIColor {
         return UIColor(red: 255/255, green: 183/255, blue: 255/255, alpha: 1)
     }
     
-    static func aqua() -> UIColor {
-        return UIColor(red: 48/255, green: 188/255, blue: 237/255, alpha: 1)
+    static func magenta() -> UIColor {
+        return UIColor(red: 242/255, green: 0/255, blue: 137/255, alpha: 1)
     }
 }
 
