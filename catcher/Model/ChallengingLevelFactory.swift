@@ -41,6 +41,7 @@ class ChallengingLevelFactory: LevelFactory {
             level27(),
             level28(),
             ringWithBrickLevel(),
+            doubleRingLevel(),
             endlessLevel()
         ]
     }
@@ -987,7 +988,7 @@ class ChallengingLevelFactory: LevelFactory {
     func ringWithBrickLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
-        let capacity = 15
+        let capacity = 16
         for _ in 0..<capacity {
             obstacleTypes.append(ObstacleType.ringWithBrick(segmentsCount: 6,
                                                             rotationSpeed: .medium,
@@ -1004,6 +1005,42 @@ class ChallengingLevelFactory: LevelFactory {
                                                            isStacked: false,
                                                            spaceAfter: CGFloat(randomBetween(150, and: 200)),
                                                            acceleration: acceleration)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func doubleRingLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 14
+        for _ in 0..<capacity {
+            obstacleTypes.append([.doubleRing(outerSegmentsCount: 8,
+                                                         innerSegmentsCount: 4,
+                                                         outerRotationSpeed: .slow,
+                                                         innerRotationSpeed: .medium,
+                                                         outerIsStacked: false,
+                                                         innerIsStacked: false,
+                                                         outerDirectionClockwise: .random(),
+                                                         innerDirectionClockwise: .random(),
+                                                         spaceAfter: CGFloat(randomBetween(25, and: 75)),
+                                                          acceleration: acceleration)].randomElement()!)
+                
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.doubleRing(outerSegmentsCount: 8,
+                                                                    innerSegmentsCount: 4,
+                                                                    outerRotationSpeed: .slow,
+                                                                    innerRotationSpeed: .medium,
+                                                                    outerIsStacked: false,
+                                                                    innerIsStacked: false,
+                                                                    outerDirectionClockwise: .random(),
+                                                                    innerDirectionClockwise: .random(),
+                                                                    spaceAfter: CGFloat(randomBetween(25, and: 75)),
+                                                                     acceleration: acceleration)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,

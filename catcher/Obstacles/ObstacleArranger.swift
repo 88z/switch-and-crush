@@ -159,8 +159,8 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: 128,
-                                              innerRadius: SOLID_RING_RADIUS,
+                                              outerRadius: SOLID_RING_RADIUS_OUTER,
+                                              innerRadius: SOLID_RING_WITH_BRICK_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .solidRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,
@@ -186,7 +186,7 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: 128,
+                                              outerRadius: SOLID_RING_RADIUS_OUTER,
                                               innerRadius: SOLID_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .solidRing(segmentsCount: outerSegmentsCount,
@@ -213,7 +213,7 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: 128,
+                                              outerRadius: SOLID_RING_RADIUS_OUTER,
                                               innerRadius: SOLID_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .fragmentedRing(segmentsCount: outerSegmentsCount,
