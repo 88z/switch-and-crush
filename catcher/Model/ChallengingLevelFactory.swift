@@ -39,6 +39,7 @@ class ChallengingLevelFactory: LevelFactory {
             fragmentedRingLevel(),
             pingPongAndPendulumLevel(),
             level27(),
+            level28(),
             endlessLevel()
         ]
     }
@@ -941,6 +942,39 @@ class ChallengingLevelFactory: LevelFactory {
                                                    blinkInterval: 0,
                                                    spaceAfter: CGFloat(randomBetween(150, and: 200)),
                                                    acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func level28() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 5
+        let capacity = 25
+        for _ in 0..<capacity {
+            obstacleTypes.append([.solidRing(segmentsCount: 4,
+                                               rotationSpeed: .medium,
+                                               directionClockwise: Bool.random(),
+                                               isStacked: false,
+                                               spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                               acceleration: acceleration),
+                                  .fragmentedRing(segmentsCount: 4,
+                                                   rotationSpeed: .medium,
+                                                   directionClockwise: Bool.random(),
+                                                   isStacked: false,
+                                                   spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                   acceleration: acceleration)].randomElement()!)
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.solidRing(segmentsCount: 4,
+                                                          rotationSpeed: .medium,
+                                                          directionClockwise: Bool.random(),
+                                                          isStacked: false,
+                                                          spaceAfter: CGFloat(randomBetween(50, and: 100)),
+                                                          acceleration: 0)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
