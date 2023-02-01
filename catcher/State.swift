@@ -21,6 +21,7 @@ enum ColorScheme {
     case darkorangeCornflower
     case deepBlueDarkGrey
     case pink
+    case honey
 }
 
 extension ColorScheme {
@@ -47,6 +48,8 @@ extension State {
                 return UIColor.darkGrey()
             case .pink:
                 return UIColor.mauve()
+            case .honey:
+                return UIColor.alabaster()
             }
         case .second:
             switch scheme {
@@ -62,6 +65,8 @@ extension State {
                 return UIColor.deepBlue()
             case .pink:
                 return UIColor.magenta()
+            case .honey:
+                return UIColor.goldenrod()
             }
         case .immortal:
             return UIColor.immortal()

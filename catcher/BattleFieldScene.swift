@@ -141,7 +141,7 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
                                                 obstacleTypesForTail: level.obstacleTypesForTail,
                                                 levelCapacity: level.capacity,
                                                 firstObstacleState: hero?.state ?? .first,
-                                                startPointY: frame.minY-50,
+                                                startPointY: frame.minY-100,
                                                 leftBorderX: frame.minX,
                                                 rightBorderX: frame.maxX,
                                                 obstacleMask: obstacleMask,

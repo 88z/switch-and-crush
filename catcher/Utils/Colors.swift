@@ -77,5 +77,14 @@ extension UIColor {
     static func magenta() -> UIColor {
         return UIColor(red: 242/255, green: 0/255, blue: 137/255, alpha: 1)
     }
+    
+    static func goldenrod() -> UIColor {
+        return UIColor(red: 213/255, green: 160/255, blue: 33/255, alpha: 1)
+    }
+    
+    static func alabaster() -> UIColor {
+        return UIColor(red: 237/255, green: 231/255, blue: 217/255, alpha: 1)
+    }
+
 }
 

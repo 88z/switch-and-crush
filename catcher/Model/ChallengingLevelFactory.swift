@@ -42,6 +42,7 @@ class ChallengingLevelFactory: LevelFactory {
             level28(),
             ringWithBrickLevel(),
             doubleRingLevel(),
+            level31(),
             endlessLevel()
         ]
     }
@@ -320,7 +321,7 @@ class ChallengingLevelFactory: LevelFactory {
                      name:#function,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .honey)
     }
     
     func plankAndCarouselLevel() -> Level{
@@ -988,7 +989,7 @@ class ChallengingLevelFactory: LevelFactory {
     func ringWithBrickLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
-        let capacity = 16
+        let capacity = 12
         for _ in 0..<capacity {
             obstacleTypes.append(ObstacleType.ringWithBrick(segmentsCount: 6,
                                                             rotationSpeed: .medium,
@@ -1048,5 +1049,54 @@ class ChallengingLevelFactory: LevelFactory {
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
     }
+    
+    func level31() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 15
+        for _ in 0..<capacity {
+            obstacleTypes.append([.doubleRing(outerSegmentsCount: 8,
+                                                         innerSegmentsCount: 4,
+                                                         outerRotationSpeed: .slow,
+                                                         innerRotationSpeed: .medium,
+                                                         outerIsStacked: false,
+                                                         innerIsStacked: false,
+                                                         outerDirectionClockwise: .random(),
+                                                         innerDirectionClockwise: .random(),
+                                                         spaceAfter: 25,
+                                                          acceleration: acceleration),
+                                  .solidRing(segmentsCount: 4,
+                                             rotationSpeed: .medium,
+                                             directionClockwise: .random(),
+                                             isStacked: false,
+                                             spaceAfter: 100,
+                                             acceleration: acceleration)].randomElement()!)
+                
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.doubleRing(outerSegmentsCount: 8,
+                                                        innerSegmentsCount: 4,
+                                                        outerRotationSpeed: .slow,
+                                                        innerRotationSpeed: .medium,
+                                                        outerIsStacked: false,
+                                                        innerIsStacked: false,
+                                                        outerDirectionClockwise: .random(),
+                                                        innerDirectionClockwise: .random(),
+                                                        spaceAfter:25,
+                                                        acceleration: acceleration),
+                                            .solidRing(segmentsCount: 4,
+                                                       rotationSpeed: .medium,
+                                                       directionClockwise: .random(),
+                                                       isStacked: false,
+                                                       spaceAfter: 100,
+                                                       acceleration: acceleration)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
 }
 
