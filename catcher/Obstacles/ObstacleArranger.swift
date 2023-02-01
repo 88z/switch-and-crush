@@ -74,7 +74,7 @@ class ObstacleArranger {
                                      type: type)
         case .solidRing:
             obstacle = RingObstacle(mask: obstacleMask,
-                                    radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                    radius: SOLID_RING_RADIUS,
                                     colorScheme: colorScheme,
                                     type: type)
         case .carouselPlank:
@@ -113,7 +113,7 @@ class ObstacleArranger {
                             spaceAfter: let _spaceAfter,
                             acceleration: let _acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                             outerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                             outerRadius: SOLID_RING_WITH_BRICK_RADIUS,
                                              innerRadius: 0,
                                              colorScheme: colorScheme,
                                               outerType: .solidRing(segmentsCount: _segmentsCount,
@@ -134,7 +134,7 @@ class ObstacleArranger {
                             spaceAfter: let _spaceAfter,
                             acceleration: let _acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                             outerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                             outerRadius: SOLID_RING_RADIUS,
                                              innerRadius: 0,
                                              colorScheme: colorScheme,
                                               outerType: .fragmentedRing(segmentsCount: _segmentsCount,
@@ -159,8 +159,8 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
-                                              innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                              outerRadius: 128,
+                                              innerRadius: SOLID_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .solidRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,
@@ -186,8 +186,8 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
-                                              innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                              outerRadius: 128,
+                                              innerRadius: SOLID_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .solidRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,
@@ -213,8 +213,8 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: CIRCLE_OBSTACLE_BIG_RADIUS,
-                                              innerRadius: CIRCLE_OBSTACLE_MEDIUM_RADIUS,
+                                              outerRadius: 128,
+                                              innerRadius: SOLID_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .fragmentedRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,

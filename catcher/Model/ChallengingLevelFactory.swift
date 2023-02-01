@@ -40,6 +40,7 @@ class ChallengingLevelFactory: LevelFactory {
             pingPongAndPendulumLevel(),
             level27(),
             level28(),
+            ringWithBrickLevel(),
             endlessLevel()
         ]
     }
@@ -975,6 +976,34 @@ class ChallengingLevelFactory: LevelFactory {
                                                           isStacked: false,
                                                           spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                           acceleration: 0)],
+                     capacity: capacity,
+                     initialSpeed: 200,
+                     name:#function,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func ringWithBrickLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 10
+        let capacity = 15
+        for _ in 0..<capacity {
+            obstacleTypes.append(ObstacleType.ringWithBrick(segmentsCount: 6,
+                                                            rotationSpeed: .medium,
+                                                            directionClockwise: .random(),
+                                                            isStacked: false,
+                                                            spaceAfter: CGFloat(randomBetween(100, and: 150)),
+                                                            acceleration: acceleration))
+                
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.ringWithBrick(segmentsCount: 4,
+                                                           rotationSpeed: .medium,
+                                                           directionClockwise: .random(),
+                                                           isStacked: false,
+                                                           spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                                           acceleration: acceleration)],
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,

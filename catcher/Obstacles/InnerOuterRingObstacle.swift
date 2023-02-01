@@ -92,10 +92,10 @@ class InnerOuterRingObstacle: MultiStateObstacle {
             innerPart.node.position = CGPoint(x: -STONE_OBSTACLE_HEIGHT/2, y: -STONE_OBSTACLE_HEIGHT/2)
             return innerPart
         case .solidRing:
-            let innerPart = RingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, colorScheme: colorScheme, type: innerType)
+            let innerPart = RingObstacle(mask: mask, radius: SOLID_RING_RADIUS, colorScheme: colorScheme, type: innerType)
             return innerPart
         case .fragmentedRing:
-            let innerPart = FragmentedRingObstacle(mask: mask, radius: CIRCLE_OBSTACLE_MEDIUM_RADIUS, type: innerType, colorScheme: colorScheme)
+            let innerPart = FragmentedRingObstacle(mask: mask, radius: SOLID_RING_RADIUS, type: innerType, colorScheme: colorScheme)
             return innerPart
         case .ringWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: _, acceleration: _):
             let stone = InnerOuterRingObstacle(mask: mask,
