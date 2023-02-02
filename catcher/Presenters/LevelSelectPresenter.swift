@@ -39,12 +39,18 @@ class LevelSelectPresenter: Presenter {
                     completionPart = 1
                 }
                 let title: String
-                if level.isEndless {
+                let iconName: String
+                if level.isBoss {
+                    title = ""
+                    iconName = "skull"
+                } else if level.isEndless {
                     title = ENDLESS_LEVEL_TITLE
+                    iconName = ""
                 } else {
                     title = String(index+1)
+                    iconName = ""
                 }
-                return LevelButtonModel(isEnabled: index < progress.completedLevelsCount, title: title, state: levelButtonState, completionPart: completionPart)
+                return LevelButtonModel(isEnabled: index < progress.completedLevelsCount, title: title, iconName: iconName, state: levelButtonState, completionPart: completionPart)
             }
         }
     }

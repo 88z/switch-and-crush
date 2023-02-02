@@ -81,6 +81,7 @@ class Progress {
     let levels: [Level]
     init(levelFactory: LevelFactory) {
         self.levels = levelFactory.levels
+        self.completedLevelsCount = 29
 //        clean()
     }
     

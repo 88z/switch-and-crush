@@ -35,6 +35,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                              capacity: 100,
                                              initialSpeed: 300,
                                              name:"1",
+                                             isBoss: false,
                                              initialState: State.first,
                                              userInterationEnabled: false,
                                              colorScheme: .defaultScheme()),
@@ -55,6 +56,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  capacity: 1,
                                                  initialSpeed: 300,
                                                  name:"1",
+                                                 isBoss: false,
                                                  initialState: State.second,
                                                  userInterationEnabled: false,
                                                  colorScheme: .defaultScheme()),
@@ -77,7 +79,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                                                acceleration: 0)],
                                                  obstacleTypesForTail: [],
                                                  capacity: 1,
-                                                 initialSpeed: 300,                                                 name:"1", initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
+                                                 initialSpeed: 300,                                                 name:"1", isBoss: false, initialState: State.first, userInterationEnabled: false, colorScheme: .defaultScheme()), shouldShowCounter: false,shouldPlaceHero: true)
             let frame = vc?.view.frame ?? .zero
             let blueObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-120   ), delayBeforePresent: 0, text: "blue BALL crashes blue blocks".localiz()),

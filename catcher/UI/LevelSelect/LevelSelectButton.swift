@@ -15,6 +15,7 @@ protocol LevelSelectButtonDelegate: AnyObject {
 class LevelSelectButton: UIView {
     
     weak var title: UILabel?
+    weak var iconImageView: UIImageView?
     weak var playLabel: UILabel?
     weak var padlockImageView: UIImageView?
     weak var checkImageView: UIImageView?
@@ -73,23 +74,33 @@ class LevelSelectButton: UIView {
             self.button = button
         }
         
-        let title = UILabel(frame: .zero)
-        title.text = model.title
-        title.textColor = .text()
-        title.textAlignment = .center
-        if model.state == .locked {
-            title.alpha = 0.65
+        if model.title.count > 0 {
+            let title = UILabel(frame: .zero)
+            title.text = model.title
+            title.textColor = .text()
+            title.textAlignment = .center
+            if model.state == .locked {
+                title.alpha = 0.65
+            }
+            
+            if title.text == ENDLESS_LEVEL_TITLE {
+                title.font = ENDLESS_LEVEL_TITLE_FONT(size: 40)
+            } else {
+                title.font = FONT(size: 36)
+            }
+            
+            
+            addSubview(title)
+            self.title = title
+        } else if model.iconName.count > 0 {
+            let iconImageView = UIImageView(image: UIImage(named: model.iconName))
+            if model.state == .locked {
+                iconImageView.alpha = 0.65
+            }
+            addSubview(iconImageView)
+            self.iconImageView = iconImageView
         }
         
-        if title.text == ENDLESS_LEVEL_TITLE {
-            title.font = ENDLESS_LEVEL_TITLE_FONT(size: 40)
-        } else {
-            title.font = FONT(size: 36)
-        }
-        
-        
-        addSubview(title)
-        self.title = title
         
         
         
@@ -108,10 +119,19 @@ class LevelSelectButton: UIView {
         title?.pin.hCenter().top(15)
         if title?.text == ENDLESS_LEVEL_TITLE {
             title?.pin.height(36)
-            title?.pin.left().right()
+                .left()
+                .right()
         } else {
             title?.pin.sizeToFit()
         }
+        
+        iconImageView?.pin
+            .hCenter()
+            .top(15)
+            .height(35)
+            .left()
+            .right()
+
         background?.pin.left(0).top(0).bottom(0).width(bounds.size.width*backgroundWidthPart)
         playLabel?.pin.bottom(14).hCenter().sizeToFit()
         padlockImageView?.pin.sizeToFit().hCenter().bottom(10)

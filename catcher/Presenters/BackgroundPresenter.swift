@@ -24,7 +24,7 @@ class BackgroundPresenter: BattleFieldPresenter{
     
     func presentEmpty() {
         super.present()
-        let emptyLevel = Level(initialObstacleTypes: [], obstacleTypesForTail: [], capacity: 0, initialSpeed: 0, name: "empty", initialState: .random(), userInterationEnabled: false, colorScheme: .blueRed)
+        let emptyLevel = Level(initialObstacleTypes: [], obstacleTypesForTail: [], capacity: 0, initialSpeed: 0, name: "empty", isBoss:false, initialState: .random(), userInterationEnabled: false, colorScheme: .blueRed)
         battleFieldScene?.start(level: emptyLevel, shouldShowCounter: false, shouldPlaceHero: false)
     }
 }

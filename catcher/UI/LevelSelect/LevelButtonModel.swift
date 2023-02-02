@@ -17,6 +17,7 @@ enum LevelButtonState {
 struct LevelButtonModel {
     let isEnabled: Bool
     let title: String
+    let iconName: String
     let state: LevelButtonState
     let completionPart: CGFloat
 }

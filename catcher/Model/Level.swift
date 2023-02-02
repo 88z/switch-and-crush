@@ -14,10 +14,12 @@ struct Level {
     let capacity: Int
     let initialSpeed: CGFloat
     let name: String
+    let isBoss: Bool
     let initialState:State
     let userInterationEnabled:Bool
     let colorScheme: ColorScheme
     var isEndless:Bool {
         return capacity < 0
     }
+    
 }

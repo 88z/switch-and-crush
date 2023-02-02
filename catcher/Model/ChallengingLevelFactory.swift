@@ -43,6 +43,7 @@ class ChallengingLevelFactory: LevelFactory {
             ringWithBrickLevel(),
             doubleRingLevel(),
             level31(),
+            bossLevel(),
             endlessLevel()
         ]
     }
@@ -71,6 +72,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: -1,
                      initialSpeed: 100,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -87,6 +89,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 15,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -110,6 +113,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 15,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .greenYellow)
@@ -144,6 +148,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 15,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .enigma)
@@ -173,6 +178,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .pink)
@@ -202,6 +208,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -219,6 +226,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .darkorangeCornflower)
@@ -237,6 +245,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .deepBlueDarkGrey)
@@ -255,6 +264,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -319,6 +329,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .honey)
@@ -355,6 +366,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 220,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -386,6 +398,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -407,6 +420,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -443,6 +457,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -493,6 +508,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: 10,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -529,6 +545,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -566,6 +583,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -593,6 +611,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -620,6 +639,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -656,6 +676,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -699,6 +720,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -730,6 +752,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -765,6 +788,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -792,6 +816,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 150,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -825,6 +850,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -852,6 +878,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -892,6 +919,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -948,6 +976,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -981,6 +1010,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -1009,6 +1039,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -1045,6 +1076,7 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
@@ -1093,6 +1125,24 @@ class ChallengingLevelFactory: LevelFactory {
                      capacity: capacity,
                      initialSpeed: 200,
                      name:#function,
+                     isBoss: false,
+                     initialState: .first,
+                     userInterationEnabled: true,
+                     colorScheme: .blueRed)
+    }
+    
+    func bossLevel() -> Level {
+        var obstacleTypes:[ObstacleType] = []
+        let acceleration = 25
+        for _ in 0..<15 {
+            obstacleTypes.append(.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
+        }
+        return Level(initialObstacleTypes: obstacleTypes,
+                     obstacleTypesForTail: [.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     capacity: 15,
+                     initialSpeed: 200,
+                     name:#function,
+                     isBoss: true,
                      initialState: .first,
                      userInterationEnabled: true,
                      colorScheme: .blueRed)
