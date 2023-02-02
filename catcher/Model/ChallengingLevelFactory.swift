@@ -1048,7 +1048,7 @@ class ChallengingLevelFactory: LevelFactory {
     func doubleRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
         let acceleration = 10
-        let capacity = 14
+        let capacity = 16
         for _ in 0..<capacity {
             obstacleTypes.append([.doubleRing(outerSegmentsCount: 8,
                                                          innerSegmentsCount: 4,
