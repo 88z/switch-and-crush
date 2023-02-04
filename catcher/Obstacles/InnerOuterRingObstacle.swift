@@ -89,8 +89,25 @@ class InnerOuterRingObstacle: MultiStateObstacle {
         case .fragmentedRing:
             let innerPart = FragmentedRingObstacle(mask: mask, radius: FRAGMENTED_RING_RADIUS, type: innerType, colorScheme: colorScheme)
             return innerPart
+        case .fragmentedRingWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: _, acceleration: _):
+            let innerPart = InnerOuterRingObstacle(mask: mask,
+                                               outerRadius: innerRadius,
+                                               innerRadius: 0,
+                                               colorScheme: colorScheme,
+                                               outerType: .fragmentedRing(segmentsCount: _segmentsCount,
+                                                                        rotationSpeed: _rotationSpeed,
+                                                                        directionClockwise: _directionClockwise,
+                                                                        isStacked: _isStacked,
+                                                                        spaceAfter: 0,
+                                                                        acceleration: 0),
+                                               innerType: .brick(state: .random(),
+                                                                 blinkInterval: 0,
+                                                                 spaceAfter: 0,
+                                                                 acceleration: acceleration),
+                                               type: innerType)
+            return innerPart
         case .ringWithBrick(segmentsCount: let _segmentsCount, rotationSpeed: let _rotationSpeed, directionClockwise: let _directionClockwise, isStacked: let _isStacked, spaceAfter: _, acceleration: _):
-            let stone = InnerOuterRingObstacle(mask: mask,
+            let innerPart = InnerOuterRingObstacle(mask: mask,
                                                outerRadius: innerRadius,
                                                innerRadius: 0,
                                                colorScheme: colorScheme,
@@ -105,7 +122,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
                                                                  spaceAfter: 0,
                                                                  acceleration: acceleration),
                                                type: innerType)
-            return stone
+            return innerPart
         default:
             assertionFailure("incorrect stone type for " + String(describing: InnerOuterRingObstacle.self))
             return nil
