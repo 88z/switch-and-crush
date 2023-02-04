@@ -49,7 +49,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration = 1
         
         for _ in 0..<10{
             obstacleTypes.append([
