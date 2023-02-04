@@ -213,8 +213,8 @@ class ObstacleArranger {
                          spaceAfter: let spaceAfter,
                          acceleration: let acceleration):
             obstacle = InnerOuterRingObstacle(mask: obstacleMask,
-                                              outerRadius: SOLID_RING_RADIUS_OUTER,
-                                              innerRadius: SOLID_RING_RADIUS,
+                                              outerRadius: FRAGMENTED_RING_RADIUS_OUTER,
+                                              innerRadius: FRAGMENTED_RING_RADIUS,
                                               colorScheme: colorScheme,
                                               outerType: .fragmentedRing(segmentsCount: outerSegmentsCount,
                                                                        rotationSpeed: outerRotationSpeed,

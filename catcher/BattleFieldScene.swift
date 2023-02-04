@@ -174,8 +174,16 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
             fatalError("unknown collisions")
         }
         
-        guard let obstacleBodies = hero.physicsBody?.allContactedBodies() else {
+        
+        guard var obstacleBodies = hero.physicsBody?.allContactedBodies() else {
             return
+        }
+        
+        if obstacleBodies.count == 0 {
+            guard let obstacleBody = obstacle.node.physicsBody else {
+                return
+            }
+            obstacleBodies = [obstacleBody]
         }
         
         var needBreakObstacle = hero.state == .immortal

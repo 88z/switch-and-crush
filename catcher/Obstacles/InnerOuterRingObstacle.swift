@@ -58,14 +58,6 @@ class InnerOuterRingObstacle: MultiStateObstacle {
         self.type = type
         initParts(mask: mask)
         name = String(describing: Obstacle.self)
-//        physicsBody = SKPhysicsBody(circleOfRadius: outerRadius, center: center)
-//        physicsBody?.affectedByGravity = false
-//        physicsBody?.restitution = 0
-//        physicsBody?.friction = 0
-//        physicsBody?.linearDamping = 0
-//        physicsBody?.angularDamping = 0
-//        physicsBody?.density = 0
-//        physicsBody?.setZeroMask()
         
     }
     
