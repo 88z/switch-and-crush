@@ -266,7 +266,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .india)
     }
     
     func bigRandomLevel() -> Level {
@@ -400,7 +400,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .lava)
     }
     
     func pingPongLevel() -> Level {

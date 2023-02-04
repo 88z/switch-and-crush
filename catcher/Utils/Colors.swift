@@ -85,6 +85,22 @@ extension UIColor {
     static func alabaster() -> UIColor {
         return UIColor(red: 237/255, green: 231/255, blue: 217/255, alpha: 1)
     }
+    
+    static func corn() -> UIColor {
+        return UIColor(red: 255/255, green: 240/255, blue: 90/255, alpha: 1)
+    }
+    
+    static func outrageousOrange() -> UIColor {
+        return UIColor(red: 255/255, green: 120/255, blue: 90/255, alpha: 1)
+    }
+    
+    static func indianYellow() -> UIColor {
+        return UIColor(red: 224/255, green: 164/255, blue: 88/255, alpha: 1)
+    }
+    
+    static func viridian() -> UIColor {
+        return UIColor(red: 73/255, green: 132/255, blue: 103/255, alpha: 1)
+    }
 
 }
 
