@@ -65,7 +65,8 @@ class ChallengingLevelFactory: LevelFactory {
 //                ObstacleType.ringWithBrick(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: acceleration),
 //                ObstacleType.doubleRingWithBrick(outerSegmentsCount: 12, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: Bool.random(), innerDirectionClockwise: Bool.random(), spaceAfter: 200, acceleration: acceleration),
 //                ObstacleType.fragmentedDoubleRing(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-                ObstacleType.fragmentedDoubleRingWithBrick(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration)
+//                ObstacleType.fragmentedDoubleRingWithBrick(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration)
+                ObstacleType.fragmentedRingSolidRing(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration)
 
             ].randomElement()! )
         }
