@@ -42,7 +42,7 @@ class RingObstacle: MultiStateObstacle {
         
         var isStacked = false
         var partsCount = 0
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var rotationSpeed: Speed = .none
         var directionClockwise = true
         var spaceAfter: CGFloat = 0

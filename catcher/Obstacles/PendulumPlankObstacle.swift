@@ -23,7 +23,7 @@ class PendulumPlankObstacle: MultiStateObstacle {
         var isStacked = false
         var blinkInterval: TimeInterval = 0
         var swingSpeed: Speed = .none
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var partsCount = 0
         var spaceAfter: CGFloat = 0
         switch type {

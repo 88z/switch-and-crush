@@ -49,36 +49,170 @@ class ChallengingLevelFactory: LevelFactory {
     
     func endlessLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 1
+        let acceleration: CGFloat = 1
+        
+        let plankSpaceAfter: () -> CGFloat = { CGFloat(randomBetween(100, and: 150)) }
+        let solidRingSpaceAfter: () -> CGFloat = { CGFloat(randomBetween(25, and: 75)) }
+        let fragmentedRingSpaceAfter: () -> CGFloat = { CGFloat(randomBetween(100, and: 150)) }
         
         for _ in 0..<10{
             obstacleTypes.append([
-//                ObstacleType.plank(state: State.random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.pingPongPlank(swingSpeed: .fast, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.gatePlank(swingSpeed: .slow, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.twoStatePlank(isStacked: false, blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.plankStack(blinkInterval: 0, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: true, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.animatedRing(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: true, isStacked: false, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration),
-//                ObstacleType.ringWithBrick(segmentsCount: 4, rotationSpeed: .medium, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.doubleRingWithBrick(outerSegmentsCount: 12, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: Bool.random(), innerDirectionClockwise: Bool.random(), spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.fragmentedDoubleRing(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-                ObstacleType.fragmentedDoubleRingWithBrick(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.fragmentedRingSolidRing(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .fast, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.solidRingFragmentedRing(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.fragmentedRingSolidRingWithBrick(outerSegmentsCount: 8, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.solidRingFragmentedRingWithBrick(outerSegmentsCount: 4, innerSegmentsCount: 4, outerRotationSpeed: .medium, innerRotationSpeed: .medium, outerIsStacked: false, innerIsStacked: false, outerDirectionClockwise: true, innerDirectionClockwise: false, spaceAfter: 200, acceleration: acceleration),
-//                ObstacleType.fragmentedRing(segmentsCount: 8, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 100, acceleration: 0)
-                
+                .plank(state: State.random(),
+                       blinkInterval: 0,
+                       spaceAfter: plankSpaceAfter(),
+                       acceleration: acceleration),
+                .plank(state: State.random(),
+                       blinkInterval: 0,
+                       spaceAfter: plankSpaceAfter(),
+                       acceleration: acceleration),
+                .solidRing(segmentsCount: 4,
+                           rotationSpeed: .medium,
+                           directionClockwise: .random(),
+                           isStacked: false,
+                           spaceAfter: solidRingSpaceAfter(),
+                           acceleration: acceleration),
+                .solidRing(segmentsCount: 4,
+                           rotationSpeed: .medium,
+                           directionClockwise: .random(),
+                           isStacked: false,
+                           spaceAfter: solidRingSpaceAfter(),
+                           acceleration: acceleration),
+                .pingPongPlank(swingSpeed: .fast,
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter:plankSpaceAfter(),
+                               acceleration: acceleration),
+                .pingPongPlank(swingSpeed: .fast,
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter:plankSpaceAfter(),
+                               acceleration: acceleration),
+                .carouselPlank(partsCount: 4,
+                               carouselSpeed: .fast,
+                               directionRight: .random(),
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter: plankSpaceAfter(),
+                               acceleration: acceleration),
+                .carouselPlank(partsCount: 6,
+                               carouselSpeed: .medium,
+                               directionRight: .random(),
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter: plankSpaceAfter(),
+                               acceleration: acceleration),
+                .pendulumPlank(partsCount: 2,
+                               swingSpeed: .fast,
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter: plankSpaceAfter(),
+                               acceleration: acceleration),
+                .pendulumPlank(partsCount: 2,
+                               swingSpeed: .fast,
+                               isStacked: false,
+                               blinkInterval: 0,
+                               spaceAfter: plankSpaceAfter(),
+                               acceleration: acceleration),
+                .fragmentedRing(segmentsCount: 4,
+                                rotationSpeed: .medium,
+                                directionClockwise: true,
+                                isStacked: false,
+                                spaceAfter: fragmentedRingSpaceAfter(),
+                                acceleration: acceleration),
+                .gatePlank(swingSpeed: .medium,
+                           isStacked: false,
+                           blinkInterval: 0,
+                           spaceAfter: plankSpaceAfter(),
+                           acceleration: acceleration),
+                .ringWithBrick(segmentsCount: 4,
+                           rotationSpeed: .medium,
+                               directionClockwise: .random(),
+                           isStacked: false,
+                           spaceAfter: solidRingSpaceAfter(),
+                           acceleration: acceleration),
+                .doubleRing(outerSegmentsCount: 8,
+                            innerSegmentsCount: 4,
+                            outerRotationSpeed: .medium,
+                            innerRotationSpeed: .medium,
+                            outerIsStacked: false,
+                            innerIsStacked: false,
+                            outerDirectionClockwise: .random(),
+                            innerDirectionClockwise: .random(),
+                            spaceAfter: solidRingSpaceAfter(),
+                            acceleration: acceleration),
+                .doubleRingWithBrick(outerSegmentsCount: 8,
+                            innerSegmentsCount: 4,
+                            outerRotationSpeed: .medium,
+                            innerRotationSpeed: .medium,
+                            outerIsStacked: false,
+                            innerIsStacked: false,
+                            outerDirectionClockwise: .random(),
+                            innerDirectionClockwise: .random(),
+                            spaceAfter: solidRingSpaceAfter(),
+                            acceleration: acceleration),
+                .fragmentedRingWithBrick(segmentsCount: 4,
+                                         rotationSpeed: .medium,
+                                         directionClockwise: .random(),
+                                         isStacked: false,
+                                         spaceAfter: fragmentedRingSpaceAfter(),
+                                         acceleration: acceleration),
+                .fragmentedDoubleRing(outerSegmentsCount: 6,
+                                               innerSegmentsCount: 4,
+                                               outerRotationSpeed: .medium,
+                                               innerRotationSpeed: .medium,
+                                               outerIsStacked: false,
+                                               innerIsStacked: false,
+                                               outerDirectionClockwise: .random(),
+                                               innerDirectionClockwise: .random(),
+                                               spaceAfter: fragmentedRingSpaceAfter(),
+                                               acceleration: acceleration),
+                .fragmentedRingSolidRing(outerSegmentsCount: 6,
+                                               innerSegmentsCount: 4,
+                                               outerRotationSpeed: .medium,
+                                               innerRotationSpeed: .medium,
+                                               outerIsStacked: false,
+                                               innerIsStacked: false,
+                                               outerDirectionClockwise: .random(),
+                                               innerDirectionClockwise: .random(),
+                                               spaceAfter: fragmentedRingSpaceAfter(),
+                                               acceleration: acceleration),
+                .solidRingFragmentedRing(outerSegmentsCount: 8,
+                                               innerSegmentsCount: 4,
+                                               outerRotationSpeed: .medium,
+                                               innerRotationSpeed: .medium,
+                                               outerIsStacked: false,
+                                               innerIsStacked: false,
+                                               outerDirectionClockwise: .random(),
+                                               innerDirectionClockwise: .random(),
+                                               spaceAfter: solidRingSpaceAfter(),
+                                               acceleration: acceleration),
+                .fragmentedRingSolidRingWithBrick(outerSegmentsCount: 6,
+                                               innerSegmentsCount: 4,
+                                               outerRotationSpeed: .medium,
+                                               innerRotationSpeed: .medium,
+                                               outerIsStacked: false,
+                                               innerIsStacked: false,
+                                               outerDirectionClockwise: .random(),
+                                               innerDirectionClockwise: .random(),
+                                               spaceAfter: fragmentedRingSpaceAfter(),
+                                               acceleration: acceleration),
+                .solidRingFragmentedRingWithBrick(outerSegmentsCount: 6,
+                                               innerSegmentsCount: 4,
+                                               outerRotationSpeed: .medium,
+                                               innerRotationSpeed: .medium,
+                                               outerIsStacked: false,
+                                               innerIsStacked: false,
+                                               outerDirectionClockwise: .random(),
+                                               innerDirectionClockwise: .random(),
+                                               spaceAfter: solidRingSpaceAfter(),
+                                               acceleration: acceleration),
 
             ].randomElement()! )
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [ObstacleType.ringWithBrick(segmentsCount: 4, rotationSpeed: .slow, directionClockwise: .random(), isStacked: false, spaceAfter: 200, acceleration: 0)],
+                     obstacleTypesForTail: obstacleTypes,
                      capacity: -1,
-                     initialSpeed: 100,
+                     initialSpeed: 200,
                      name:#function,
                      isBoss: false,
                      initialState: .first,
@@ -88,7 +222,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level1() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 25
+        let acceleration: CGFloat = 25
         for _ in 0..<15 {
             obstacleTypes.append(.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
         }
@@ -106,7 +240,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level2() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 25
+        let acceleration: CGFloat = 25
 
         for _ in 0..<10 {
             obstacleTypes.append([
@@ -129,7 +263,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level3() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let spaceShrinkValue = 3
         
         for i in 0..<15 {
@@ -164,7 +298,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func pendulumLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         
         for _ in 0..<10 {
             obstacleTypes.append([.pendulumPlank(partsCount: 2,
@@ -194,7 +328,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func plankAndPlankLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 20
         let spaceShrink = 10
         for i in 0..<capacity/2 {
@@ -224,7 +358,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level5() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 13
+        let acceleration: CGFloat = 13
         let capacity = 15
         for _ in 0..<capacity {
             obstacleTypes.append(.carouselPlank(partsCount: 4, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: 150, acceleration: acceleration))
@@ -242,7 +376,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func  level6() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 8
+        let acceleration: CGFloat = 8
         let spaceShrink = 4
         let capacity = 15
         for i in 0..<capacity {
@@ -261,7 +395,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level8() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let spaceShrink = 5
         let capacity = 10
         for i in 0..<capacity {
@@ -286,7 +420,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func bigRandomLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 3
+        let acceleration: CGFloat = 3
         let spaceShrink = 2
         let capacity = 30
         for i in 0..<capacity {
@@ -351,7 +485,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func plankAndCarouselLevel() -> Level{
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 4
+        let acceleration: CGFloat = 4
         let capacity = 14
         let spaceShrink = 5
         for i in 0..<capacity/2 {
@@ -388,7 +522,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func pendulumAndPlankLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 16
         let spaceShrink = 10
         for i in 0..<capacity/2 {
@@ -420,7 +554,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func pingPongLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 15
+        let acceleration: CGFloat = 15
         let spaceShrink = 5
         for i in 0..<10 {
             obstacleTypes.append(.pingPongPlank(swingSpeed: .fast,
@@ -442,7 +576,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level12() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 15
+        let acceleration: CGFloat = 15
         let spaceShrink = 5
         for i in 0..<10 {
             obstacleTypes.append([.pingPongPlank(swingSpeed: .fast,
@@ -479,7 +613,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level13() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 15
+        let acceleration: CGFloat = 15
         let spaceShrink = 7
         for i in 0..<10 {
             obstacleTypes.append([.carouselPlank(partsCount: 6,
@@ -530,7 +664,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func plankAndGateLevel() -> Level{
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 14
         let spaceShrink = 5
         for i in 0..<capacity/2 {
@@ -567,7 +701,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level15() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 25
         for _ in 0..<capacity {
             obstacleTypes.append([.solidRing(segmentsCount: 4,
@@ -605,7 +739,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func ringLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 10
         for _ in 0..<capacity {
             obstacleTypes.append(.solidRing(segmentsCount: 4,
@@ -633,7 +767,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func crazyRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 0
+        let acceleration: CGFloat = 0
         let capacity = 7
         for _ in 0..<capacity {
             obstacleTypes.append(.solidRing(segmentsCount: 4,
@@ -661,7 +795,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func plankAndRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 20
         let shrinkValue = 10
         for i in 0..<capacity/2 {
@@ -698,7 +832,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level19() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 15
         for _ in 0..<capacity {
             obstacleTypes.append([.solidRing(segmentsCount: 4,
@@ -742,7 +876,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level20() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 10
         let spaceShrink = 10
         for i in 0..<capacity/2 {
@@ -774,7 +908,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func pendulumAndCarouselLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 14
         let spaceShrink = 10
         for i in 0..<capacity/2 {
@@ -810,7 +944,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func chainLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 10
         for _ in 0..<capacity {
             obstacleTypes.append(.solidRing(segmentsCount: 4,
@@ -838,7 +972,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level23() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 7
+        let acceleration: CGFloat = 7
         let capacity = 12
         let spaceShrink = 5
         for i in 0..<capacity/3 {
@@ -872,7 +1006,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func fragmentedRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 15
         for _ in 0..<capacity {
             obstacleTypes.append(.fragmentedRing(segmentsCount: 4,
@@ -900,7 +1034,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func pingPongAndPendulumLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 12
         let spaceShrink = 10
         for i in 0..<capacity/2 {
@@ -941,7 +1075,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level26() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 25
         let spaceShrink = 4
         for i in 0..<capacity {
@@ -998,7 +1132,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level27() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 5
+        let acceleration: CGFloat = 5
         let capacity = 25
         for _ in 0..<capacity {
             obstacleTypes.append([.solidRing(segmentsCount: 4,
@@ -1032,7 +1166,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func ringWithBrickLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 12
         for _ in 0..<capacity {
             obstacleTypes.append(ObstacleType.ringWithBrick(segmentsCount: 6,
@@ -1061,7 +1195,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func doubleRingLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 16
         for _ in 0..<capacity {
             obstacleTypes.append([.doubleRing(outerSegmentsCount: 8,
@@ -1098,7 +1232,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level30() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 10
+        let acceleration: CGFloat = 10
         let capacity = 15
         for _ in 0..<capacity {
             obstacleTypes.append([.doubleRing(outerSegmentsCount: 8,
@@ -1147,7 +1281,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func bossLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration = 1
+        let acceleration: CGFloat = 1.75
         let capacity = 50
         for _ in 0..<capacity {
             let direction = Bool.random()

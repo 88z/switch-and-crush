@@ -28,7 +28,7 @@ class CarouselPlankObstacle: MultiStateObstacle {
         var carouselSpeed: Speed = .none
         var blinkInterval: TimeInterval = 0
         var directionRight = false
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var spaceAfter: CGFloat = 0
         switch type {
         case .carouselPlank(partsCount: let _partsCount,

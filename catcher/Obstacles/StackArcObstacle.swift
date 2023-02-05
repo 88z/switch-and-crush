@@ -24,7 +24,7 @@ class StackArcObstacle: MultiStateObstacle {
          colorScheme: ColorScheme,
          type: ObstacleType) {
         var blinkInterval: TimeInterval = 0
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         switch type {
         case .arc(blinkInterval: let _blinkInterval, acceleration: let _acceleration):
             blinkInterval = _blinkInterval

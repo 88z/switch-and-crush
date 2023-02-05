@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class RectObstacle: StateNode, Obstacle {
-    var acceleration: Int = 10
+    var acceleration: CGFloat = 10
     var spaceAfter: CGFloat = 0
     
     func shatteringDummy() -> SKNode {
@@ -79,7 +79,7 @@ class RectObstacle: StateNode, Obstacle {
         }
         
         var blinkInterval: TimeInterval = 0
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var spaceAfter: CGFloat = 0
         var state: State = .random()
         switch type {

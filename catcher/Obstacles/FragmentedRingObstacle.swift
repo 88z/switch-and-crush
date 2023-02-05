@@ -46,7 +46,7 @@ class FragmentedRingObstacle: MultiStateObstacle {
         var partsCount = 0
         var rotationSpeed: Speed = .none
         var directionClockwise = true
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var spaceAfter: CGFloat = 0
         switch type {
         case .fragmentedRing(segmentsCount: let _segmentsCount,

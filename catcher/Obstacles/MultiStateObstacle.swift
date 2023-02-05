@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class MultiStateObstacle: SKShapeNode, Obstacle {
-    var acceleration: Int = 0
+    var acceleration: CGFloat = 0
     
     var colorScheme: ColorScheme
     var blinkInterval: TimeInterval
@@ -47,7 +47,7 @@ class MultiStateObstacle: SKShapeNode, Obstacle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(colorScheme: ColorScheme, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int){
+    init(colorScheme: ColorScheme, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat){
         self.colorScheme = colorScheme
         self.blinkInterval = blinkInterval
         self.acceleration = acceleration

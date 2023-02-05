@@ -17,29 +17,29 @@ enum Speed {
 }
 
 enum ObstacleType: Equatable {
-    case plank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case pendulumPlank(partsCount: Int, swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case pingPongPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case thinPlank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case plankStack(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case solidRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case arc(blinkInterval: TimeInterval, acceleration: Int)
-    case arcStack(blinkInterval: TimeInterval, acceleration: Int)
-    case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case brick(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: Int)
-    case ringWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case doubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedRingWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedDoubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedDoubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedRingSolidRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case solidRingFragmentedRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case fragmentedRingSolidRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
-    case solidRingFragmentedRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: Int)
+    case plank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case twoStatePlank(isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case pendulumPlank(partsCount: Int, swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case pingPongPlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case thinPlank(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case plankStack(blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case solidRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedRing(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case carouselPlank(partsCount: Int, carouselSpeed: Speed, directionRight: Bool, isStacked: Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case arc(blinkInterval: TimeInterval, acceleration: CGFloat)
+    case arcStack(blinkInterval: TimeInterval, acceleration: CGFloat)
+    case gatePlank(swingSpeed: Speed, isStacked:Bool, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case brick(state: State, blinkInterval: TimeInterval, spaceAfter: CGFloat, acceleration: CGFloat)
+    case ringWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case doubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case doubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedRingWithBrick(segmentsCount: Int, rotationSpeed: Speed, directionClockwise: Bool, isStacked: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedDoubleRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedDoubleRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedRingSolidRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case solidRingFragmentedRing(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case fragmentedRingSolidRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
+    case solidRingFragmentedRingWithBrick(outerSegmentsCount: Int, innerSegmentsCount: Int, outerRotationSpeed: Speed, innerRotationSpeed: Speed, outerIsStacked: Bool, innerIsStacked: Bool, outerDirectionClockwise: Bool, innerDirectionClockwise: Bool, spaceAfter: CGFloat, acceleration: CGFloat)
     
 }
 
@@ -49,7 +49,7 @@ protocol Obstacle: AnyObject {
     var node: SKNode { get }
     var type: ObstacleType! { get }
     var isSolid: Bool { get }
-    var acceleration: Int { get }
+    var acceleration: CGFloat { get }
     func onAddedToScene()
     func state(at point:CGPoint) -> State?
     func contactTest(at point: CGPoint, state: State) -> Bool

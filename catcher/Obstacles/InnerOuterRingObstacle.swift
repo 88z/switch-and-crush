@@ -30,7 +30,7 @@ class InnerOuterRingObstacle: MultiStateObstacle {
     
     init (mask: Mask, outerRadius: CGFloat, innerRadius: CGFloat, colorScheme: ColorScheme, outerType: ObstacleType, innerType: ObstacleType, type: ObstacleType) {
         
-        var acceleration = 0
+        var acceleration: CGFloat = 0
         var spaceAfter: CGFloat = 0
         switch outerType {
         case .solidRing(segmentsCount: _,

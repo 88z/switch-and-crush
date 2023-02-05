@@ -19,7 +19,7 @@ class StackObstacle: MultiStateObstacle {
     init(mask:Mask, width: CGFloat, states: [State], colorScheme: ColorScheme, type: ObstacleType) {
         
         var blinkInterval: TimeInterval = 0
-        var acceleration: Int = 0
+        var acceleration: CGFloat = 0
         var spaceAfter: CGFloat = 0
         switch type {
         case .plankStack(blinkInterval: let _blinkInterval, spaceAfter: let _spaceAfter, acceleration: let _acceleration):
