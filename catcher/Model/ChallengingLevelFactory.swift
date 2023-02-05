@@ -265,7 +265,13 @@ class ChallengingLevelFactory: LevelFactory {
         let spaceShrink = 5
         let capacity = 10
         for i in 0..<capacity {
-            obstacleTypes.append(.carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: Bool.random(), isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrink), acceleration: acceleration))
+            obstacleTypes.append(.carouselPlank(partsCount: 6,
+                                                carouselSpeed: .medium,
+                                                directionRight: Bool.random(),
+                                                isStacked: false,
+                                                blinkInterval: 0,
+                                                spaceAfter: CGFloat(randomBetween(150, and: 200) - i*spaceShrink),
+                                                acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
                      obstacleTypesForTail: [.carouselPlank(partsCount: 6, carouselSpeed: .medium, directionRight: true, isStacked: false, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(100, and: 150)), acceleration: 0)],
@@ -1302,8 +1308,15 @@ class ChallengingLevelFactory: LevelFactory {
                                                innerIsStacked: false,
                                                outerDirectionClockwise: !direction,
                                                innerDirectionClockwise: direction,
-                                               spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                               spaceAfter: CGFloat(randomBetween(100, and: 150)),
                                                acceleration: acceleration),
+                .carouselPlank(partsCount: 6,
+                                carouselSpeed: .fast,
+                                directionRight: Bool.random(),
+                                isStacked: false,
+                                blinkInterval: 0,
+                                spaceAfter: CGFloat(randomBetween(150, and: 200)),
+                                acceleration: acceleration)
                 
                 
             ].randomElement()!)
@@ -1316,7 +1329,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                        spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                        acceleration: acceleration)],
                      capacity: capacity,
-                     initialSpeed: 150,
+                     initialSpeed: 175,
                      name:#function,
                      isBoss: true,
                      initialState: .first,
