@@ -107,5 +107,8 @@ class GamePresenter: BattleFieldPresenter {
         if levelIndex == progress.completedLevelsCount && progress.crushedObstaclesCount < score{
             progress.crushedObstaclesCount = score
         }
+        if level.isEndless && score > progress.infiniteModeRecord {
+            progress.infiniteModeRecord = score
+        }
     }
 }
