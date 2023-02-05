@@ -24,11 +24,16 @@ enum ColorScheme {
     case honey
     case lava
     case india
+    
 }
 
 extension ColorScheme {
     static func defaultScheme() -> ColorScheme {
         return .blueRed
+    }
+    
+    static func random() -> ColorScheme {
+        return [.blueRed, .enigma, .darkorangeCornflower, .deepBlueDarkGrey, .pink, .lava, .india].randomElement()!
     }
     
 }

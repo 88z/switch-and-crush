@@ -258,7 +258,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .greenYellow)
+                     colorScheme: .enigma)
     }
     
     func level3() -> Level {
@@ -293,7 +293,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .enigma)
+                     colorScheme: .blueRed)
     }
     
     func pendulumLevel() -> Level {
@@ -371,7 +371,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .darkorangeCornflower)
+                     colorScheme: .blueRed)
     }
     
     func  level6() -> Level {
@@ -390,7 +390,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .deepBlueDarkGrey)
+                     colorScheme: .blueRed)
     }
     
     func level8() -> Level {
@@ -415,7 +415,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .india)
+                     colorScheme: .blueRed)
     }
     
     func bigRandomLevel() -> Level {
@@ -480,7 +480,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .honey)
+                     colorScheme: .india)
     }
     
     func plankAndCarouselLevel() -> Level{
@@ -549,7 +549,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .lava)
+                     colorScheme: .blueRed)
     }
     
     func pingPongLevel() -> Level {
@@ -571,7 +571,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .darkorangeCornflower)
     }
     
     func level12() -> Level {
@@ -871,7 +871,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .deepBlueDarkGrey)
     }
     
     func level20() -> Level {
@@ -1070,7 +1070,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .blueRed)
+                     colorScheme: .lava)
     }
     
     func level26() -> Level {
