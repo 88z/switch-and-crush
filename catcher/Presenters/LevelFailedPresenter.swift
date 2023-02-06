@@ -50,6 +50,7 @@ class LevelFailedPresenter:Presenter {
                                                             "level_name":  self.level.name,
                                                             "is_endless":  self.level.isEndless,
                                                             "score": self.score])
+        
         let gameOverView = TitleButtonsView(frame: .zero,
                                             buttonModels: [
             ButtonViewModel(text: "try again".localiz(), action: {
@@ -65,7 +66,11 @@ class LevelFailedPresenter:Presenter {
                 vc.freezeInteraction()
                 GamePresenter(vc: vc, startState: .first, level: self.level, progress: self.progress).present()
             }),
-        ], title: title, topText: topText, imageName: "deadFace", backButtonIcon: .home, backButtonAction: {
+        ],                                  title: title,
+                                            topText: topText,
+                                            imageName: level.isEndless ? nil : "deadFace",
+                                            backButtonIcon: .home,
+                                            backButtonAction: {
             Amplitude.instance().logEvent("LevelFailed_Back_Taped",
                                           withEventProperties: ["level_index": self.index ?? "",
                                                                 "level_name": self.level.name,
