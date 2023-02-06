@@ -79,7 +79,20 @@ class LevelSelectPresenter: Presenter {
                                           withEventProperties: ["level_index": index,
                                                                 "level_name": level.name,
                                                                 "is_endless": level.isEndless])
-            GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
+            
+            let gk = GameKitHelper()
+            if level.isEndless && !gk.isAuthenticated {
+                gk.authenticate { viewController, error in
+                    guard viewController == nil else {
+                        vc.present(viewController!, animated: true)
+                        return
+                    }
+                    GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
+                }
+            } else {
+                GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
+            }
+            
             
         })
         vc?.show(uiView: levelSelectView)

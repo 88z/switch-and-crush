@@ -17,6 +17,7 @@
 		2348C9C2289452950096F7E4 /* RingObstacleShaterrer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */; };
 		2348C9C42896895D0096F7E4 /* Shatterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348C9C32896895D0096F7E4 /* Shatterer.swift */; };
 		235778FF2982D4FD00AB56E7 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 235778FE2982D4FD00AB56E7 /* Amplitude */; };
+		235F0B112991999100646875 /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235F0B102991999100646875 /* GameKitHelper.swift */; };
 		2379442729158B8300C3320F /* ModeSelectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442629158B8300C3320F /* ModeSelectPresenter.swift */; };
 		2379442F2918154E00C3320F /* TitleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379442E2918154E00C3320F /* TitleButtonsView.swift */; };
 		237944322918158600C3320F /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237944312918158600C3320F /* ButtonViewModel.swift */; };
@@ -114,6 +115,7 @@
 		232E1B2D2892FA4F00F38DA2 /* ArcObstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcObstacle.swift; sourceTree = "<group>"; };
 		2348C9C1289452950096F7E4 /* RingObstacleShaterrer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingObstacleShaterrer.swift; sourceTree = "<group>"; };
 		2348C9C32896895D0096F7E4 /* Shatterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shatterer.swift; sourceTree = "<group>"; };
+		235F0B102991999100646875 /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		2379442629158B8300C3320F /* ModeSelectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectPresenter.swift; sourceTree = "<group>"; };
 		2379442E2918154E00C3320F /* TitleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleButtonsView.swift; sourceTree = "<group>"; };
 		237944312918158600C3320F /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				8033B22B2542B0D90050C162 /* Mask.swift */,
 				8012B525254606FA00ACBCC0 /* Colors.swift */,
 				23FD3D21287CBFE4007C178C /* SKHelper.swift */,
+				235F0B102991999100646875 /* GameKitHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				2317B83C288C080700EBFDCE /* RingObstacle.swift in Sources */,
 				23FD3D20287C8B08007C178C /* MultiStatePlankObstacle.swift in Sources */,
 				237944342919884300C3320F /* LevelFailedPresenter.swift in Sources */,
+				235F0B112991999100646875 /* GameKitHelper.swift in Sources */,
 				230D987828A8F111008D19CA /* LevelSelectPresenter.swift in Sources */,
 				8056EF18253C91AF000D226E /* InfiniteBorderManager.swift in Sources */,
 				232440B5291C3D7500B3CB8D /* LevelFinishPresenter.swift in Sources */,
