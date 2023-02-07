@@ -33,6 +33,7 @@ class GameKitHelper {
             if GKLocalPlayer.local.isAuthenticated {
                 self.wasAuthenticated = true
             }
+            
             closure(viewController, error)
         }
     }

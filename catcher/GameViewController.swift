@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import LanguageManager_iOS
+import Amplitude
 
 class GameViewController: UIViewController {
     
@@ -23,9 +24,12 @@ class GameViewController: UIViewController {
             let gk = GameKitHelper()
             if gk.wasAuthenticated {
                 gk.authenticate { viewController, error in
-                    guard viewController == nil else {
+                    if error != nil {
+                        Amplitude.instance().logEvent("AppStart_GameCenterAuth_Error",
+                                                      withEventProperties: ["error": error!.localizedDescription])
+                    }
+                    if viewController != nil  {
                         self.present(viewController!, animated: true)
-                        return
                     }
                     LevelSelectPresenter(vc:self, progress: progress).present()
                 }

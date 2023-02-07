@@ -83,6 +83,11 @@ class LevelSelectPresenter: Presenter {
             let gk = GameKitHelper()
             if level.isEndless && !gk.isAuthenticated {
                 gk.authenticate { viewController, error in
+                    if error != nil {
+                        Amplitude.instance().logEvent("LevelSelect_GameCenterAuth_Error",
+                                                      withEventProperties: ["error": error!.localizedDescription])
+                    }
+                    
                     guard viewController == nil else {
                         vc.present(viewController!, animated: true)
                         return
