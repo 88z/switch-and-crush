@@ -8,9 +8,11 @@
 import Foundation
 import GameKit
 
+
 class GameKitHelper {
-    let wasAuthenticatedKey = "GameKitHelper.wasAuthenticated"
-    let userDefaults = UserDefaults.standard
+    private let wasAuthenticatedKey = "GameKitHelper.wasAuthenticated"
+    private let leaderBoardId = "switch_and_crush_main"
+    private let userDefaults = UserDefaults.standard
     
     var wasAuthenticated: Bool {
         get {
@@ -35,6 +37,40 @@ class GameKitHelper {
             }
             
             closure(viewController, error)
+        }
+    }
+    
+    func submitEndlessLevelRecord(_ record:Int, closure: @escaping (_: Error?) -> Void) {
+        guard isAuthenticated else {
+            return
+        }
+        if #available(iOS 14.0, *) {
+            GKLeaderboard.submitScore(record,
+                                      context: 0,
+                                      player: GKLocalPlayer.local,
+                                      leaderboardIDs: [leaderBoardId]) { error in
+                closure(error)
+            }
+        } else {
+            let score = GKScore(leaderboardIdentifier: leaderBoardId)
+            score.value = Int64(record)
+            GKScore.report([score]) { (error) in
+                closure(error)
+            }
+        }
+    }
+    
+    private func test() {
+        let leaderboard = GKLeaderboard()
+        leaderboard.identifier = leaderBoardId
+        leaderboard.loadScores { (scores, error) in
+            if let error = error {
+                print("Error loading leaderboard: \(error.localizedDescription)")
+            } else {
+                for score in scores! {
+                    print("Player: \(score.player.alias), Score: \(score.value)")
+                }
+            }
         }
     }
 }

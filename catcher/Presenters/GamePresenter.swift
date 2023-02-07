@@ -7,6 +7,7 @@
 
 import Foundation
 import SpriteKit
+import Amplitude
 
 class GamePresenter: BattleFieldPresenter {
     
@@ -109,6 +110,12 @@ class GamePresenter: BattleFieldPresenter {
         }
         if level.isEndless && score > progress.infiniteModeRecord {
             progress.infiniteModeRecord = score
+            let gk = GameKitHelper()
+            gk.submitEndlessLevelRecord(score) { error in
+                if error != nil {
+                    Amplitude.instance().logEvent("GameCenterInfiniteRecordSubmit_Error", withEventProperties: ["error": error!.localizedDescription])
+                }
+            }
         }
     }
 }
