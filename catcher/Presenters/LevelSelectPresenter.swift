@@ -84,7 +84,7 @@ class LevelSelectPresenter: Presenter {
             if level.isEndless && !gk.isAuthenticated {
                 gk.authenticate { viewController, error in
                     if error != nil {
-                        Amplitude.instance().logEvent("LevelSelect_GameCenterAuth_Error",
+                        Amplitude.instance().logEvent("LevelSelect_InfiniteLevelGameCenterAuth_Error",
                                                       withEventProperties: ["error": error!.localizedDescription])
                     }
                     
@@ -98,6 +98,30 @@ class LevelSelectPresenter: Presenter {
                 GamePresenter(vc: vc, startState: .first, level: level, progress: self.progress).present()
             }
             
+            
+        }, bottomButtonAction: {
+            let gk = GameKitHelper()
+            Amplitude.instance().logEvent("LevelSelect_Leaderboard_Taped",
+                                          withEventProperties: ["is_authenticated": gk.isAuthenticated])
+            guard let vc = self.vc else {
+                return
+            }
+            if !gk.isAuthenticated {
+                gk.authenticate { viewController, error in
+                    if error != nil {
+                        Amplitude.instance().logEvent("LevelSelect_LeaderboardsGameCenterAuth_Error",
+                                                      withEventProperties: ["error": error!.localizedDescription])
+                    }
+                    
+                    guard viewController == nil else {
+                        vc.present(viewController!, animated: true)
+                        return
+                    }
+                    gk.showLeaderboards(in: vc)
+                }
+            } else {
+                gk.showLeaderboards(in: vc)
+            }
             
         })
         vc?.show(uiView: levelSelectView)

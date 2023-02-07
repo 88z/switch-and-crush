@@ -9,8 +9,9 @@ import UIKit
 import SpriteKit
 import LanguageManager_iOS
 import Amplitude
+import GameKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     private var uiView: UIView?
     private var battleFieldScene: SKScene?
@@ -107,6 +108,10 @@ class GameViewController: UIViewController {
             uiView?.isUserInteractionEnabled = true
             view.isUserInteractionEnabled = true
         })
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated:true)
     }
     
 }

@@ -30,10 +30,16 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     }
     private let levelSelectAction:(_: Int)->Void
     private let backButtonAction: ()->Void
+    private let bottomButtonAction: ()->Void
     
-    init(frame: CGRect, buttonModels: [LevelButtonModel], backButtonAction:@escaping ()->Void, levelSelectAction: @escaping (_: Int)->Void) {
+    init(frame: CGRect,
+         buttonModels: [LevelButtonModel],
+         backButtonAction:@escaping ()->Void,
+         levelSelectAction: @escaping (_: Int)->Void,
+         bottomButtonAction: @escaping()->Void) {
         self.levelSelectAction = levelSelectAction
         self.backButtonAction = backButtonAction
+        self.bottomButtonAction = bottomButtonAction
         super.init(frame: frame)
         backgroundColor = .clear
         
@@ -70,7 +76,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
             border.lineDashPattern = [1, 4]
             leaderBoardButton.titleLabel?.alpha = 0.65
         } else {
-            leaderBoardButton.addTarget(self, action: #selector(leaderBoardPressed(_:)), for: .touchUpInside)
+            leaderBoardButton.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchUpInside)
         }
         
         initButtons(models: buttonModels)
@@ -186,7 +192,7 @@ class LevelSelectView: UIScrollView, LevelSelectButtonDelegate {
     }
     
     
-    @IBAction private func leaderBoardPressed(_ sender: UIButton) {
-        
+    @IBAction private func bottomButtonPressed(_ sender: UIButton) {
+        bottomButtonAction()
     }
 }

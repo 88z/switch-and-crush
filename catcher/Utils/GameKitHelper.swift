@@ -10,6 +10,7 @@ import GameKit
 
 
 class GameKitHelper {
+    
     private let wasAuthenticatedKey = "GameKitHelper.wasAuthenticated"
     private let leaderBoardId = "switch_and_crush_main"
     private let userDefaults = UserDefaults.standard
@@ -58,6 +59,13 @@ class GameKitHelper {
                 closure(error)
             }
         }
+    }
+    
+    func showLeaderboards(in vc:GameViewController) {
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.viewState = .leaderboards
+        gameCenterViewController.gameCenterDelegate = vc
+        vc.present(gameCenterViewController, animated: true, completion: nil)
     }
     
     private func test() {
