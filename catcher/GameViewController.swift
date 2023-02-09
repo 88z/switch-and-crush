@@ -78,8 +78,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         if let view = self.view as! SKView? {
             view.presentScene(scene)
             view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+            view.showsFPS = false
+            view.showsNodeCount = false
             view.showsPhysics = false
             battleFieldScene = scene
         }
