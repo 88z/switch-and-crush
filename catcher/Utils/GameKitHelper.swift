@@ -12,6 +12,7 @@ import GameKit
 class GameKitHelper {
     
     private let wasAuthenticatedKey = "GameKitHelper.wasAuthenticated"
+    private let wasAuthenticationErrorKey = "GameKitHelper.wasAuthenticationErrorKey"
     private let leaderBoardId = "switch_and_crush_main"
     private let userDefaults = UserDefaults.standard
     
@@ -25,6 +26,16 @@ class GameKitHelper {
         }
     }
     
+    var wasAuthenticationError: Bool {
+        get {
+            return userDefaults.bool(forKey: wasAuthenticationErrorKey)
+        }
+        set {
+            userDefaults.set(newValue, forKey: wasAuthenticationErrorKey)
+            userDefaults.synchronize()
+        }
+    }
+    
     var isAuthenticated: Bool {
         get {
             return GKLocalPlayer.local.isAuthenticated
@@ -33,6 +44,9 @@ class GameKitHelper {
     
     func authenticate(closure: @escaping (_: UIViewController?, _: Error?) -> Void) {
         GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            if error != nil {
+                self.wasAuthenticationError = true
+            }
             if GKLocalPlayer.local.isAuthenticated {
                 self.wasAuthenticated = true
             }

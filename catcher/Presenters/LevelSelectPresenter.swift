@@ -81,7 +81,7 @@ class LevelSelectPresenter: Presenter {
                                                                 "is_endless": level.isEndless])
             
             let gk = GameKitHelper()
-            if level.isEndless && !gk.isAuthenticated {
+            if level.isEndless && !gk.isAuthenticated && !gk.wasAuthenticationError {
                 gk.authenticate { viewController, error in
                     if error != nil {
                         Amplitude.instance().logEvent("LevelSelect_InfiniteLevelGameCenterAuth_Error",
