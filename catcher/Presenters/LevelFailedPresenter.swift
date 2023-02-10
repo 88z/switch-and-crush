@@ -80,7 +80,6 @@ class LevelFailedPresenter:Presenter {
                 assertionFailure("viewController no found")
                 return
             }
-            vc.freezeInteraction()
             LevelSelectPresenter(vc: vc, progress: self.progress).present()
         })
         vc?.show(uiView: gameOverView)

@@ -48,7 +48,6 @@ class LevelFinishPresenter: Presenter {
                     return
                 }
                 LevelSelectPresenter(vc: vc, progress: self.progress).present()
-                vc.freezeInteraction()
                 if self.index ?? 0 >= 7 {
                     SKStoreReviewController.requestReview()
                 }

@@ -95,7 +95,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                 return
             }
             progress.isOnboardingShown = true
-            BackgroundPresenter(vc: vc, progress: progress).presentEmpty()
+            BackgroundPresenter(vc: vc, progress: progress).present()
             LevelSelectPresenter(vc: vc, progress: progress).present()
             Amplitude.instance().logEvent("Onboarding_Finished")
         }

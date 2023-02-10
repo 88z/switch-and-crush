@@ -103,6 +103,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     func startImmortal() {
         hero?.state = .immortal
         hero?.run(SKAction.applyImpulse(CGVector(dx: 0, dy: -8), duration: 2))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.removeHero()
+            self?.lastObstacle = self?.obstacleArranger?.arrangeNext(speed: self?.level?.initialSpeed ?? 0)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

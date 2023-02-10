@@ -227,7 +227,7 @@ class ChallengingLevelFactory: LevelFactory {
             obstacleTypes.append(.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
         }
         return Level(initialObstacleTypes: obstacleTypes,
-                     obstacleTypesForTail: [.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
+                     obstacleTypesForTail: [.plank(state: .first, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0), .plank(state: .second, blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: 0)],
                      capacity: 15,
                      initialSpeed: 200,
                      name:#function,

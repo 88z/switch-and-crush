@@ -45,9 +45,6 @@ class GamePresenter: BattleFieldPresenter {
         battleFieldScene.startImmortal()
         let progress = self.progress
         let battleFieldScene = battleFieldScene
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
-            BackgroundPresenter(vc: vc, progress: progress).present()
-        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
             battleFieldScene?.hideCounter()
