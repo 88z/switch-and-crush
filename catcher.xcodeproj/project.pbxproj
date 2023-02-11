@@ -449,6 +449,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80CA5F5A2524F18D003E900D /* Build configuration list for PBXNativeTarget "catcher" */;
 			buildPhases = (
+				235739BE2997B760006E0994 /* Bundle Version Script */,
 				80CA5F2B2524F187003E900D /* Sources */,
 				80CA5F2C2524F187003E900D /* Frameworks */,
 				80CA5F2D2524F187003E900D /* Resources */,
@@ -586,6 +587,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		235739BE2997B760006E0994 /* Bundle Version Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle Version Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "INFO_PLIST=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Info\"\n\nVERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-list master | wc -l)\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $VERSION\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		80CA5F2B2524F187003E900D /* Sources */ = {
