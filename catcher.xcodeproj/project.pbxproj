@@ -838,7 +838,6 @@
 				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = B8QJ3BBF95;
 				INFOPLIST_FILE = catcher/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Switch and Crush";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -866,7 +865,6 @@
 				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = B8QJ3BBF95;
 				INFOPLIST_FILE = catcher/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Switch and Crush";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
