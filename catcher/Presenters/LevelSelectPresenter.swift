@@ -56,7 +56,6 @@ class LevelSelectPresenter: Presenter {
     }
     
     init(vc: GameViewController, progress: Progress) {
-        progress.regenerateLevels()
         self.progress = progress
         self.vc = vc
     }
