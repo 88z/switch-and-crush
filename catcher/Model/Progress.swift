@@ -10,6 +10,7 @@ import Amplitude
 
 
 class Progress {
+    private let levelFactory: LevelFactory
     let userDefaults = UserDefaults.standard
     private let completedLevelsCountKey = "catcher.progress.completedLevelsCount"
     private let crushedObstaclesCountKey = "catcher.progress.crushedObstaclesCount"
@@ -78,8 +79,9 @@ class Progress {
         userDefaults.removeObject(forKey: completedLevelsCountKey)
     }
     
-    let levels: [Level]
+    var levels: [Level]
     init(levelFactory: LevelFactory) {
+        self.levelFactory = levelFactory
         self.levels = levelFactory.levels
         let ENV = Bundle.main.object(forInfoDictionaryKey: "ENV") as? String ?? ""
         if ENV == "Debug" {
@@ -108,5 +110,7 @@ class Progress {
         }
     }
     
-    
+    func regenerateLevels() {
+        self.levels = self.levelFactory.levels
+    }
 }

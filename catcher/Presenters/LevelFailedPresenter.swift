@@ -23,20 +23,23 @@ class LevelFailedPresenter:Presenter {
          progress: Progress,
          score: Int) {
         self.vc = vc
-        self.level = level
         self.progress = progress
         self.score = score
         
         let indexStr: String
+        
         if let index = progress.index(of: level) {
+            progress.regenerateLevels()
+            self.level = progress.levels[index]
             indexStr = String(index+1)
             self.index = index
         } else {
+            self.level = level
             indexStr = ""
             self.index = nil
         }
         
-        if level.isEndless {
+        if self.level.isEndless {
             self.title = "score: \(score)\nbest: \(progress.infiniteModeRecord)"
         } else {
             self.title = "levEl \(indexStr) Failed"
