@@ -571,7 +571,7 @@ class ChallengingLevelFactory: LevelFactory {
                      isBoss: false,
                      initialState: .first,
                      userInterationEnabled: true,
-                     colorScheme: .darkorangeCornflower)
+                     colorScheme: .blueRed)
     }
     
     func level12() -> Level {
