@@ -13,7 +13,7 @@ class GameKitHelper {
     
     private let wasAuthenticatedKey = "GameKitHelper.wasAuthenticated"
     private let wasAuthenticationErrorKey = "GameKitHelper.wasAuthenticationErrorKey"
-    private let leaderBoardId = "switch_and_crush_main"
+    private let leaderBoardId = "switch_and_crush_main_fixed"
     private let userDefaults = UserDefaults.standard
     
     var wasAuthenticated: Bool {
@@ -76,23 +76,8 @@ class GameKitHelper {
     }
     
     func showLeaderboards(in vc:GameViewController) {
-        let gameCenterViewController = GKGameCenterViewController()
-        gameCenterViewController.viewState = .leaderboards
+        let gameCenterViewController = GKGameCenterViewController(leaderboardID: leaderBoardId, playerScope: .global, timeScope: .allTime)
         gameCenterViewController.gameCenterDelegate = vc
         vc.present(gameCenterViewController, animated: true, completion: nil)
-    }
-    
-    private func test() {
-        let leaderboard = GKLeaderboard()
-        leaderboard.identifier = leaderBoardId
-        leaderboard.loadScores { (scores, error) in
-            if let error = error {
-                print("Error loading leaderboard: \(error.localizedDescription)")
-            } else {
-                for score in scores! {
-                    print("Player: \(score.player.alias), Score: \(score.value)")
-                }
-            }
-        }
     }
 }
