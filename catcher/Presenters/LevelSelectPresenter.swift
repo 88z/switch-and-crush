@@ -82,7 +82,9 @@ class LevelSelectPresenter: Presenter {
             
             let gk = GameKitHelper()
             if level.isEndless && !gk.isAuthenticated && !gk.wasAuthenticationError {
+                let loaderController = self.showLoader()
                 gk.authenticate { viewController, error in
+                    loaderController?.dismiss(animated: true)
                     if error != nil {
                         Amplitude.instance().logEvent("LevelSelect_InfiniteLevelGameCenterAuth_Error",
                                                       withEventProperties: ["error": error!.localizedDescription])
@@ -107,7 +109,9 @@ class LevelSelectPresenter: Presenter {
                 return
             }
             if !gk.isAuthenticated {
+                let loaderController = self.showLoader()
                 gk.authenticate { viewController, error in
+                    loaderController?.dismiss(animated: true)
                     if error != nil {
                         Amplitude.instance().logEvent("LevelSelect_LeaderboardsGameCenterAuth_Error",
                                                       withEventProperties: ["error": error!.localizedDescription])
@@ -126,6 +130,20 @@ class LevelSelectPresenter: Presenter {
         })
         vc?.show(uiView: levelSelectView)
         
+    }
+    
+    private func showLoader() -> UIViewController? {
+        guard let vc = vc else {
+            return nil
+        }
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        vc.present(alert, animated: true, completion: nil)
+        return alert
     }
     
 }

@@ -80,4 +80,18 @@ class GameKitHelper {
         gameCenterViewController.gameCenterDelegate = vc
         vc.present(gameCenterViewController, animated: true, completion: nil)
     }
+    
+//    private func test() {
+//        let leaderboard = GKLeaderboard()
+//        leaderboard.identifier = leaderBoardId
+//        leaderboard.loadScores { (scores, error) in
+//            if let error = error {
+//                print("Error loading leaderboard: \(error.localizedDescription)")
+//            } else {
+//                for score in scores! {
+//                    print("Player: \(score.player.alias), Score: \(score.value)")
+//                }
+//            }
+//        }
+//    }
 }
