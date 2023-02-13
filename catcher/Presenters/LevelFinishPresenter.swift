@@ -49,7 +49,9 @@ class LevelFinishPresenter: Presenter {
                 }
                 LevelSelectPresenter(vc: vc, progress: self.progress).present()
                 if self.index ?? 0 >= 7 {
-                    SKStoreReviewController.requestReview()
+                    if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
                 }
             }))
         }
