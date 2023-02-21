@@ -43,6 +43,8 @@
 		23E3467228AA883B005044B6 /* LevelButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467128AA883B005044B6 /* LevelButtonModel.swift */; };
 		23E3467428AAB712005044B6 /* LevelSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E3467328AAB712005044B6 /* LevelSelectButton.swift */; };
 		23E9F4D228903C110045651D /* SandboxScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9F4D128903C110045651D /* SandboxScene.swift */; };
+		23F0DC3429A511D80013FCC4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 23F0DC3329A511D80013FCC4 /* Lottie */; };
+		23F0DC3729A515980013FCC4 /* touch-gesture.json in Resources */ = {isa = PBXBuildFile; fileRef = 23F0DC3629A515980013FCC4 /* touch-gesture.json */; };
 		23F5D3D8297C0A3900C506FC /* LevelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5D3D7297C0A3900C506FC /* LevelFactory.swift */; };
 		23F5D3E2297C17C100C506FC /* AlegreyaSansSC-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F5D3E1297C17BD00C506FC /* AlegreyaSansSC-Light.ttf */; };
 		23F5D3E4297EC5A600C506FC /* NotoSansJP-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23F5D3E3297EC5A200C506FC /* NotoSansJP-Thin.otf */; };
@@ -141,6 +143,7 @@
 		23E3467128AA883B005044B6 /* LevelButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelButtonModel.swift; sourceTree = "<group>"; };
 		23E3467328AAB712005044B6 /* LevelSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectButton.swift; sourceTree = "<group>"; };
 		23E9F4D128903C110045651D /* SandboxScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxScene.swift; sourceTree = "<group>"; };
+		23F0DC3629A515980013FCC4 /* touch-gesture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "touch-gesture.json"; sourceTree = "<group>"; };
 		23F5D3D7297C0A3900C506FC /* LevelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFactory.swift; sourceTree = "<group>"; };
 		23F5D3E1297C17BD00C506FC /* AlegreyaSansSC-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlegreyaSansSC-Light.ttf"; sourceTree = "<group>"; };
 		23F5D3E3297EC5A200C506FC /* NotoSansJP-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Thin.otf"; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F0DC3429A511D80013FCC4 /* Lottie in Frameworks */,
 				23E3467028A91291005044B6 /* PinLayout in Frameworks */,
 				2335706A28A0372D004C163B /* CGPathIntersection in Frameworks */,
 				235778FF2982D4FD00AB56E7 /* Amplitude in Frameworks */,
@@ -280,6 +284,14 @@
 				23E3467328AAB712005044B6 /* LevelSelectButton.swift */,
 			);
 			path = LevelSelect;
+			sourceTree = "<group>";
+		};
+		23F0DC3529A515830013FCC4 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				23F0DC3629A515980013FCC4 /* touch-gesture.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		8012B4F72545841000ACBCC0 /* Presenters */ = {
@@ -390,6 +402,7 @@
 		80CA5F312524F187003E900D /* catcher */ = {
 			isa = PBXGroup;
 			children = (
+				23F0DC3529A515830013FCC4 /* Animations */,
 				806B9DDB25455616003CB4EE /* Model */,
 				804C3AB3254551DE0012EDD8 /* UI */,
 				2348C9C028944A860096F7E4 /* Shaterrer */,
@@ -464,6 +477,7 @@
 				2335706928A0372D004C163B /* CGPathIntersection */,
 				23E3466F28A91291005044B6 /* PinLayout */,
 				235778FE2982D4FD00AB56E7 /* Amplitude */,
+				23F0DC3329A511D80013FCC4 /* Lottie */,
 			);
 			productName = catcher;
 			productReference = 80CA5F2F2524F187003E900D /* catcher.app */;
@@ -542,6 +556,7 @@
 				2335706828A0372D004C163B /* XCRemoteSwiftPackageReference "CGPathIntersection" */,
 				23E3466E28A91291005044B6 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				235778FD2982D4FD00AB56E7 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				23F0DC3229A511D80013FCC4 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 80CA5F302524F187003E900D /* Products */;
 			projectDirPath = "";
@@ -564,6 +579,7 @@
 				23F97A7E293A82620055F709 /* shatter.mp3 in Resources */,
 				23B33AC828782E2E00827535 /* Localizable.strings in Resources */,
 				23F5D3E2297C17C100C506FC /* AlegreyaSansSC-Light.ttf in Resources */,
+				23F0DC3729A515980013FCC4 /* touch-gesture.json in Resources */,
 				2388BA7428731DD800D27DBD /* MajorMonoDisplay-Regular.ttf in Resources */,
 				80CA5F3E2524F187003E900D /* Main.storyboard in Resources */,
 				80CA5F402524F18C003E900D /* Assets.xcassets in Resources */,
@@ -1056,6 +1072,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		23F0DC3229A511D80013FCC4 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		23FD3D1628784BF2007C178C /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS";
@@ -1081,6 +1105,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 23E3466E28A91291005044B6 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		23F0DC3329A511D80013FCC4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23F0DC3229A511D80013FCC4 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 		23FD3D1728784BF2007C178C /* LanguageManager-iOS */ = {
 			isa = XCSwiftPackageProductDependency;

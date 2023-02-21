@@ -16,6 +16,7 @@ protocol BattleDelegate {
 
 protocol BattleFieldSceneDelegate: SKSceneDelegate {
     func crashAnimationFinished(scene: BattleFieldScene)
+    func screenTaped(scene: BattleFieldScene)
 }
 
 
@@ -94,6 +95,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
         addChild(hero)
         hero.physicsBody?.set(mask: heroMask)
         self.hero = hero
+    }
+    
+    func toggleHeroState(){
+        hero?.toggleState()
     }
     
     func removeHero() {
@@ -275,7 +280,10 @@ class BattleFieldScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        hero?.toggleState()
+        guard let delegate = self.delegate as? BattleFieldSceneDelegate else {
+            return
+        }
+        delegate.screenTaped(scene: self)
     }
     
     private func updateCounter() {

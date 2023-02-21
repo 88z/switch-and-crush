@@ -81,8 +81,7 @@ class Progress {
     let levels: [Level]
     init(levelFactory: LevelFactory) {
         self.levels = levelFactory.levels
-        let ENV = Bundle.main.object(forInfoDictionaryKey: "ENV") as? String ?? ""
-        if ENV == "Debug" {
+        if IS_DEBUG  {
 //            self.completedLevelsCount = 31
             //clean()
         }

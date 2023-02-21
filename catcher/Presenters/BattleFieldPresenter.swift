@@ -12,6 +12,14 @@ import SpriteKit
 import PinLayout
 
 class BattleFieldPresenter: NSObject, Presenter, BattleFieldSceneDelegate, BattleDelegate, TrivialUISceneDelegate {
+    func screenTaped(scene: BattleFieldScene) {
+        scene.toggleHeroState()
+        guard let vc = self.vc else {
+            return
+        }
+        vc.fingerTap()
+    }
+    
 
     
     private var backgroundManager: InfiniteBackgroundManager?

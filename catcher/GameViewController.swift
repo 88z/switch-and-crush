@@ -10,12 +10,13 @@ import SpriteKit
 import LanguageManager_iOS
 import Amplitude
 import GameKit
+import Lottie
 
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     private var uiView: UIView?
     private var battleFieldScene: SKScene?
-
+    private var fingerView: LottieAnimationView? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             }
         } else {
             OnboardingPresenter(vc: self, progress: progress).present()
+        }
+        if IS_DEBUG {
+            showFinger()
         }
     }
 
@@ -83,6 +87,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             view.showsPhysics = false
             battleFieldScene = scene
         }
+    }
+    
+    private func showFinger() {
+        let fingerView = LottieAnimationView(name: "touch-gesture")
+        fingerView.frame = view.bounds
+        fingerView.loopMode = .playOnce
+        fingerView.animationSpeed = 2
+        fingerView.isUserInteractionEnabled = false
+        view.addSubview(fingerView)
+        self.fingerView = fingerView
+    }
+    
+    func fingerTap() {
+        fingerView?.play()
     }
     
     override var shouldAutorotate: Bool {

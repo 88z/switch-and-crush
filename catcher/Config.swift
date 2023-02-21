@@ -43,3 +43,11 @@ let ENDLESS_LEVEL_TITLE = "∞"
 func ENDLESS_LEVEL_TITLE_FONT(size: CGFloat) -> UIFont {
     return UIFont(name: "NotoSansJP-Thin", size: size)!
 }
+
+var IS_DEBUG: Bool {
+    get {
+        let ENV = Bundle.main.object(forInfoDictionaryKey: "ENV") as? String ?? ""
+        return ENV == "Debug" 
+    }
+    
+}
