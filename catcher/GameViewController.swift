@@ -91,7 +91,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     private func showFinger() {
         let fingerView = LottieAnimationView(name: "touch-gesture")
-        fingerView.frame = view.bounds
         fingerView.loopMode = .playOnce
         fingerView.animationSpeed = 2
         fingerView.isUserInteractionEnabled = false
@@ -100,6 +99,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func fingerTap() {
+        fingerView?.stop()
         fingerView?.play()
     }
     
@@ -132,4 +132,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         gameCenterViewController.dismiss(animated:true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        fingerView?.pin
+            .bottom(0)
+            .right(0)
+            .width(200)
+            .height(200)
+//        fingerView?.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 6.0)
+    }
 }
