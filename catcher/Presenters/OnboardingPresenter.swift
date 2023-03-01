@@ -48,6 +48,7 @@ class OnboardingPresenter: BattleFieldPresenter {
     }
     
     override func uiScenePressed(scene: TrivialUIScene) {
+        vc?.fingerTap()
         if scene == switchColorUI {
             
             vc?.hideUI()
@@ -62,6 +63,7 @@ class OnboardingPresenter: BattleFieldPresenter {
                                                  colorScheme: .defaultScheme()),
                                     shouldShowCounter: false,
                                     shouldPlaceHero: true)
+            
             let frame = vc?.view.frame ?? .zero
             let redObstacleUI = TrivialUIScene(size: UIScreen.main.bounds.size, uifreezeTime: 3, elements:[
                 TrivialUISceneText(position: CGPoint(x: frame.midX, y: frame.maxY - heroTopOffset-100), delayBeforePresent: 0, text: "red BALL crashes red blocks".localiz()),

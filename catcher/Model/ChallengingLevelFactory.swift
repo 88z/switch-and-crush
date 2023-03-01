@@ -222,7 +222,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func level1() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration: CGFloat = 25
+        let acceleration: CGFloat = 10
         for _ in 0..<15 {
             obstacleTypes.append(.plank(state: .random(), blinkInterval: 0, spaceAfter: CGFloat(randomBetween(150, and: 200)), acceleration: acceleration))
         }
@@ -1281,7 +1281,7 @@ class ChallengingLevelFactory: LevelFactory {
     
     func bossLevel() -> Level {
         var obstacleTypes:[ObstacleType] = []
-        let acceleration: CGFloat = 1.75
+        let acceleration: CGFloat = 0
         let capacity = 50
         for _ in 0..<capacity {
             let direction = Bool.random()
@@ -1463,7 +1463,7 @@ class ChallengingLevelFactory: LevelFactory {
                                                        spaceAfter: CGFloat(randomBetween(50, and: 100)),
                                                        acceleration: acceleration)],
                      capacity: capacity,
-                     initialSpeed: 175,
+                     initialSpeed: 250,
                      name:#function,
                      isBoss: true,
                      initialState: .first,

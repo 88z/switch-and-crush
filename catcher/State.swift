@@ -33,7 +33,7 @@ extension ColorScheme {
     }
     
     static func random() -> ColorScheme {
-        return [.blueRed, .enigma, .darkorangeCornflower, .deepBlueDarkGrey, .pink, .lava, .india].randomElement()!
+        return [.blueRed, .enigma, .darkorangeCornflower, .deepBlueDarkGrey, .pink, .lava, .india, .honey].randomElement()!
     }
     
 }

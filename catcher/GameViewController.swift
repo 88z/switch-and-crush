@@ -92,7 +92,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     private func showFinger() {
         let fingerView = LottieAnimationView(name: "touch-gesture")
         fingerView.loopMode = .playOnce
-        fingerView.animationSpeed = 2
+        fingerView.animationSpeed = 1.5
         fingerView.isUserInteractionEnabled = false
         view.addSubview(fingerView)
         self.fingerView = fingerView
